@@ -151,7 +151,7 @@ body {
 
 /* line 143, /Users/sgoyal4/office/slate/source/stylesheets/custom.scss */
 .lang-selector {
-  background-color: #C158AD;
+  background-color: #9ed6fa;
   font-size: 14px;
   margin-bottom: 24px;
   position: absolute;
@@ -459,7 +459,7 @@ beta:after {
 
 /* line 461, /Users/sgoyal4/office/slate/source/stylesheets/custom.scss */
 .btn-selected {
-  background-color: #C158AD; }
+  background-color: #9ed6fa; }
 
 /* line 465, /Users/sgoyal4/office/slate/source/stylesheets/custom.scss */
 .btn {
