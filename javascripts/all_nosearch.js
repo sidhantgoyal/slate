@@ -176,13 +176,573 @@
 
 
 (function(){function e(){}function t(e,t){for(var n=e.length;n--;)if(e[n].listener===t)return n;return-1}function n(e){return function(){return this[e].apply(this,arguments)}}var i=e.prototype,r=this,o=r.EventEmitter;i.getListeners=function(e){var t,n,i=this._getEvents();if("object"==typeof e){t={};for(n in i)i.hasOwnProperty(n)&&e.test(n)&&(t[n]=i[n])}else t=i[e]||(i[e]=[]);return t},i.flattenListeners=function(e){var t,n=[];for(t=0;e.length>t;t+=1)n.push(e[t].listener);return n},i.getListenersAsObject=function(e){var t,n=this.getListeners(e);return n instanceof Array&&(t={},t[e]=n),t||n},i.addListener=function(e,n){var i,r=this.getListenersAsObject(e),o="object"==typeof n;for(i in r)r.hasOwnProperty(i)&&-1===t(r[i],n)&&r[i].push(o?n:{listener:n,once:!1});return this},i.on=n("addListener"),i.addOnceListener=function(e,t){return this.addListener(e,{listener:t,once:!0})},i.once=n("addOnceListener"),i.defineEvent=function(e){return this.getListeners(e),this},i.defineEvents=function(e){for(var t=0;e.length>t;t+=1)this.defineEvent(e[t]);return this},i.removeListener=function(e,n){var i,r,o=this.getListenersAsObject(e);for(r in o)o.hasOwnProperty(r)&&(i=t(o[r],n),-1!==i&&o[r].splice(i,1));return this},i.off=n("removeListener"),i.addListeners=function(e,t){return this.manipulateListeners(!1,e,t)},i.removeListeners=function(e,t){return this.manipulateListeners(!0,e,t)},i.manipulateListeners=function(e,t,n){var i,r,o=e?this.removeListener:this.addListener,s=e?this.removeListeners:this.addListeners;if("object"!=typeof t||t instanceof RegExp)for(i=n.length;i--;)o.call(this,t,n[i]);else for(i in t)t.hasOwnProperty(i)&&(r=t[i])&&("function"==typeof r?o.call(this,i,r):s.call(this,i,r));return this},i.removeEvent=function(e){var t,n=typeof e,i=this._getEvents();if("string"===n)delete i[e];else if("object"===n)for(t in i)i.hasOwnProperty(t)&&e.test(t)&&delete i[t];else delete this._events;return this},i.removeAllListeners=n("removeEvent"),i.emitEvent=function(e,t){var n,i,r,o,s=this.getListenersAsObject(e);for(r in s)if(s.hasOwnProperty(r))for(i=s[r].length;i--;)n=s[r][i],n.once===!0&&this.removeListener(e,n.listener),o=n.listener.apply(this,t||[]),o===this._getOnceReturnValue()&&this.removeListener(e,n.listener);return this},i.trigger=n("emitEvent"),i.emit=function(e){var t=Array.prototype.slice.call(arguments,1);return this.emitEvent(e,t)},i.setOnceReturnValue=function(e){return this._onceReturnValue=e,this},i._getOnceReturnValue=function(){return this.hasOwnProperty("_onceReturnValue")?this._onceReturnValue:!0},i._getEvents=function(){return this._events||(this._events={})},e.noConflict=function(){return r.EventEmitter=o,e},"function"==typeof define&&define.amd?define("eventEmitter/EventEmitter",[],function(){return e}):"object"==typeof module&&module.exports?module.exports=e:this.EventEmitter=e}).call(this),function(e){function t(t){var n=e.event;return n.target=n.target||n.srcElement||t,n}var n=document.documentElement,i=function(){};n.addEventListener?i=function(e,t,n){e.addEventListener(t,n,!1)}:n.attachEvent&&(i=function(e,n,i){e[n+i]=i.handleEvent?function(){var n=t(e);i.handleEvent.call(i,n)}:function(){var n=t(e);i.call(e,n)},e.attachEvent("on"+n,e[n+i])});var r=function(){};n.removeEventListener?r=function(e,t,n){e.removeEventListener(t,n,!1)}:n.detachEvent&&(r=function(e,t,n){e.detachEvent("on"+t,e[t+n]);try{delete e[t+n]}catch(i){e[t+n]=void 0}});var o={bind:i,unbind:r};"function"==typeof define&&define.amd?define("eventie/eventie",o):e.eventie=o}(this),function(e,t){"function"==typeof define&&define.amd?define(["eventEmitter/EventEmitter","eventie/eventie"],function(n,i){return t(e,n,i)}):"object"==typeof exports?module.exports=t(e,require("wolfy87-eventemitter"),require("eventie")):e.imagesLoaded=t(e,e.EventEmitter,e.eventie)}(window,function(e,t,n){function i(e,t){for(var n in t)e[n]=t[n];return e}function r(e){return"[object Array]"===d.call(e)}function o(e){var t=[];if(r(e))t=e;else if("number"==typeof e.length)for(var n=0,i=e.length;i>n;n++)t.push(e[n]);else t.push(e);return t}function s(e,t,n){if(!(this instanceof s))return new s(e,t);"string"==typeof e&&(e=document.querySelectorAll(e)),this.elements=o(e),this.options=i({},this.options),"function"==typeof t?n=t:i(this.options,t),n&&this.on("always",n),this.getImages(),a&&(this.jqDeferred=new a.Deferred);var r=this;setTimeout(function(){r.check()})}function f(e){this.img=e}function c(e){this.src=e,v[e]=this}var a=e.jQuery,u=e.console,h=u!==void 0,d=Object.prototype.toString;s.prototype=new t,s.prototype.options={},s.prototype.getImages=function(){this.images=[];for(var e=0,t=this.elements.length;t>e;e++){var n=this.elements[e];"IMG"===n.nodeName&&this.addImage(n);var i=n.nodeType;if(i&&(1===i||9===i||11===i))for(var r=n.querySelectorAll("img"),o=0,s=r.length;s>o;o++){var f=r[o];this.addImage(f)}}},s.prototype.addImage=function(e){var t=new f(e);this.images.push(t)},s.prototype.check=function(){function e(e,r){return t.options.debug&&h&&u.log("confirm",e,r),t.progress(e),n++,n===i&&t.complete(),!0}var t=this,n=0,i=this.images.length;if(this.hasAnyBroken=!1,!i)return this.complete(),void 0;for(var r=0;i>r;r++){var o=this.images[r];o.on("confirm",e),o.check()}},s.prototype.progress=function(e){this.hasAnyBroken=this.hasAnyBroken||!e.isLoaded;var t=this;setTimeout(function(){t.emit("progress",t,e),t.jqDeferred&&t.jqDeferred.notify&&t.jqDeferred.notify(t,e)})},s.prototype.complete=function(){var e=this.hasAnyBroken?"fail":"done";this.isComplete=!0;var t=this;setTimeout(function(){if(t.emit(e,t),t.emit("always",t),t.jqDeferred){var n=t.hasAnyBroken?"reject":"resolve";t.jqDeferred[n](t)}})},a&&(a.fn.imagesLoaded=function(e,t){var n=new s(this,e,t);return n.jqDeferred.promise(a(this))}),f.prototype=new t,f.prototype.check=function(){var e=v[this.img.src]||new c(this.img.src);if(e.isConfirmed)return this.confirm(e.isLoaded,"cached was confirmed"),void 0;if(this.img.complete&&void 0!==this.img.naturalWidth)return this.confirm(0!==this.img.naturalWidth,"naturalWidth"),void 0;var t=this;e.on("confirm",function(e,n){return t.confirm(e.isLoaded,n),!0}),e.check()},f.prototype.confirm=function(e,t){this.isLoaded=e,this.emit("confirm",this,t)};var v={};return c.prototype=new t,c.prototype.check=function(){if(!this.isChecked){var e=new Image;n.bind(e,"load",this),n.bind(e,"error",this),e.src=this.src,this.isChecked=!0}},c.prototype.handleEvent=function(e){var t="on"+e.type;this[t]&&this[t](e)},c.prototype.onload=function(e){this.confirm(!0,"onload"),this.unbindProxyEvents(e)},c.prototype.onerror=function(e){this.confirm(!1,"onerror"),this.unbindProxyEvents(e)},c.prototype.confirm=function(e,t){this.isConfirmed=!0,this.isLoaded=e,this.emit("confirm",this,t)},c.prototype.unbindProxyEvents=function(e){n.unbind(e.target,"load",this),n.unbind(e.target,"error",this)},s});
-/*! jQuery UI - v1.10.3 - 2013-09-16
-* http://jqueryui.com
-* Includes: jquery.ui.widget.js
-* Copyright 2013 jQuery Foundation and other contributors; Licensed MIT */
+/*! jQuery UI - v1.11.3 - 2015-02-12
+ * http://jqueryui.com
+ * Includes: widget.js
+ * Copyright 2015 jQuery Foundation and other contributors; Licensed MIT */
 
 
-(function(e,t){var i=0,s=Array.prototype.slice,a=e.cleanData;e.cleanData=function(t){for(var i,s=0;null!=(i=t[s]);s++)try{e(i).triggerHandler("remove")}catch(n){}a(t)},e.widget=function(i,s,a){var n,r,o,h,l={},u=i.split(".")[0];i=i.split(".")[1],n=u+"-"+i,a||(a=s,s=e.Widget),e.expr[":"][n.toLowerCase()]=function(t){return!!e.data(t,n)},e[u]=e[u]||{},r=e[u][i],o=e[u][i]=function(e,i){return this._createWidget?(arguments.length&&this._createWidget(e,i),t):new o(e,i)},e.extend(o,r,{version:a.version,_proto:e.extend({},a),_childConstructors:[]}),h=new s,h.options=e.widget.extend({},h.options),e.each(a,function(i,a){return e.isFunction(a)?(l[i]=function(){var e=function(){return s.prototype[i].apply(this,arguments)},t=function(e){return s.prototype[i].apply(this,e)};return function(){var i,s=this._super,n=this._superApply;return this._super=e,this._superApply=t,i=a.apply(this,arguments),this._super=s,this._superApply=n,i}}(),t):(l[i]=a,t)}),o.prototype=e.widget.extend(h,{widgetEventPrefix:r?h.widgetEventPrefix:i},l,{constructor:o,namespace:u,widgetName:i,widgetFullName:n}),r?(e.each(r._childConstructors,function(t,i){var s=i.prototype;e.widget(s.namespace+"."+s.widgetName,o,i._proto)}),delete r._childConstructors):s._childConstructors.push(o),e.widget.bridge(i,o)},e.widget.extend=function(i){for(var a,n,r=s.call(arguments,1),o=0,h=r.length;h>o;o++)for(a in r[o])n=r[o][a],r[o].hasOwnProperty(a)&&n!==t&&(i[a]=e.isPlainObject(n)?e.isPlainObject(i[a])?e.widget.extend({},i[a],n):e.widget.extend({},n):n);return i},e.widget.bridge=function(i,a){var n=a.prototype.widgetFullName||i;e.fn[i]=function(r){var o="string"==typeof r,h=s.call(arguments,1),l=this;return r=!o&&h.length?e.widget.extend.apply(null,[r].concat(h)):r,o?this.each(function(){var s,a=e.data(this,n);return a?e.isFunction(a[r])&&"_"!==r.charAt(0)?(s=a[r].apply(a,h),s!==a&&s!==t?(l=s&&s.jquery?l.pushStack(s.get()):s,!1):t):e.error("no such method '"+r+"' for "+i+" widget instance"):e.error("cannot call methods on "+i+" prior to initialization; "+"attempted to call method '"+r+"'")}):this.each(function(){var t=e.data(this,n);t?t.option(r||{})._init():e.data(this,n,new a(r,this))}),l}},e.Widget=function(){},e.Widget._childConstructors=[],e.Widget.prototype={widgetName:"widget",widgetEventPrefix:"",defaultElement:"<div>",options:{disabled:!1,create:null},_createWidget:function(t,s){s=e(s||this.defaultElement||this)[0],this.element=e(s),this.uuid=i++,this.eventNamespace="."+this.widgetName+this.uuid,this.options=e.widget.extend({},this.options,this._getCreateOptions(),t),this.bindings=e(),this.hoverable=e(),this.focusable=e(),s!==this&&(e.data(s,this.widgetFullName,this),this._on(!0,this.element,{remove:function(e){e.target===s&&this.destroy()}}),this.document=e(s.style?s.ownerDocument:s.document||s),this.window=e(this.document[0].defaultView||this.document[0].parentWindow)),this._create(),this._trigger("create",null,this._getCreateEventData()),this._init()},_getCreateOptions:e.noop,_getCreateEventData:e.noop,_create:e.noop,_init:e.noop,destroy:function(){this._destroy(),this.element.unbind(this.eventNamespace).removeData(this.widgetName).removeData(this.widgetFullName).removeData(e.camelCase(this.widgetFullName)),this.widget().unbind(this.eventNamespace).removeAttr("aria-disabled").removeClass(this.widgetFullName+"-disabled "+"ui-state-disabled"),this.bindings.unbind(this.eventNamespace),this.hoverable.removeClass("ui-state-hover"),this.focusable.removeClass("ui-state-focus")},_destroy:e.noop,widget:function(){return this.element},option:function(i,s){var a,n,r,o=i;if(0===arguments.length)return e.widget.extend({},this.options);if("string"==typeof i)if(o={},a=i.split("."),i=a.shift(),a.length){for(n=o[i]=e.widget.extend({},this.options[i]),r=0;a.length-1>r;r++)n[a[r]]=n[a[r]]||{},n=n[a[r]];if(i=a.pop(),s===t)return n[i]===t?null:n[i];n[i]=s}else{if(s===t)return this.options[i]===t?null:this.options[i];o[i]=s}return this._setOptions(o),this},_setOptions:function(e){var t;for(t in e)this._setOption(t,e[t]);return this},_setOption:function(e,t){return this.options[e]=t,"disabled"===e&&(this.widget().toggleClass(this.widgetFullName+"-disabled ui-state-disabled",!!t).attr("aria-disabled",t),this.hoverable.removeClass("ui-state-hover"),this.focusable.removeClass("ui-state-focus")),this},enable:function(){return this._setOption("disabled",!1)},disable:function(){return this._setOption("disabled",!0)},_on:function(i,s,a){var n,r=this;"boolean"!=typeof i&&(a=s,s=i,i=!1),a?(s=n=e(s),this.bindings=this.bindings.add(s)):(a=s,s=this.element,n=this.widget()),e.each(a,function(a,o){function h(){return i||r.options.disabled!==!0&&!e(this).hasClass("ui-state-disabled")?("string"==typeof o?r[o]:o).apply(r,arguments):t}"string"!=typeof o&&(h.guid=o.guid=o.guid||h.guid||e.guid++);var l=a.match(/^(\w+)\s*(.*)$/),u=l[1]+r.eventNamespace,c=l[2];c?n.delegate(c,u,h):s.bind(u,h)})},_off:function(e,t){t=(t||"").split(" ").join(this.eventNamespace+" ")+this.eventNamespace,e.unbind(t).undelegate(t)},_delay:function(e,t){function i(){return("string"==typeof e?s[e]:e).apply(s,arguments)}var s=this;return setTimeout(i,t||0)},_hoverable:function(t){this.hoverable=this.hoverable.add(t),this._on(t,{mouseenter:function(t){e(t.currentTarget).addClass("ui-state-hover")},mouseleave:function(t){e(t.currentTarget).removeClass("ui-state-hover")}})},_focusable:function(t){this.focusable=this.focusable.add(t),this._on(t,{focusin:function(t){e(t.currentTarget).addClass("ui-state-focus")},focusout:function(t){e(t.currentTarget).removeClass("ui-state-focus")}})},_trigger:function(t,i,s){var a,n,r=this.options[t];if(s=s||{},i=e.Event(i),i.type=(t===this.widgetEventPrefix?t:this.widgetEventPrefix+t).toLowerCase(),i.target=this.element[0],n=i.originalEvent)for(a in n)a in i||(i[a]=n[a]);return this.element.trigger(i,s),!(e.isFunction(r)&&r.apply(this.element[0],[i].concat(s))===!1||i.isDefaultPrevented())}},e.each({show:"fadeIn",hide:"fadeOut"},function(t,i){e.Widget.prototype["_"+t]=function(s,a,n){"string"==typeof a&&(a={effect:a});var r,o=a?a===!0||"number"==typeof a?i:a.effect||i:t;a=a||{},"number"==typeof a&&(a={duration:a}),r=!e.isEmptyObject(a),a.complete=n,a.delay&&s.delay(a.delay),r&&e.effects&&e.effects.effect[o]?s[t](a):o!==t&&s[o]?s[o](a.duration,a.easing,n):s.queue(function(i){e(this)[t](),n&&n.call(s[0]),i()})}})})(jQuery);
+(function( factory ) {
+  if ( typeof define === "function" && define.amd ) {
+
+    // AMD. Register as an anonymous module.
+    define([ "jquery" ], factory );
+  } else {
+
+    // Browser globals
+    factory( jQuery );
+  }
+}(function( $ ) {
+  /*!
+   * jQuery UI Widget 1.11.3
+   * http://jqueryui.com
+   *
+   * Copyright jQuery Foundation and other contributors
+   * Released under the MIT license.
+   * http://jquery.org/license
+   *
+   * http://api.jqueryui.com/jQuery.widget/
+   */
+
+
+  var widget_uuid = 0,
+      widget_slice = Array.prototype.slice;
+
+  $.cleanData = (function( orig ) {
+    return function( elems ) {
+      var events, elem, i;
+      for ( i = 0; (elem = elems[i]) != null; i++ ) {
+        try {
+
+          // Only trigger remove when necessary to save time
+          events = $._data( elem, "events" );
+          if ( events && events.remove ) {
+            $( elem ).triggerHandler( "remove" );
+          }
+
+          // http://bugs.jquery.com/ticket/8235
+        } catch ( e ) {}
+      }
+      orig( elems );
+    };
+  })( $.cleanData );
+
+  $.widget = function( name, base, prototype ) {
+    var fullName, existingConstructor, constructor, basePrototype,
+    // proxiedPrototype allows the provided prototype to remain unmodified
+    // so that it can be used as a mixin for multiple widgets (#8876)
+        proxiedPrototype = {},
+        namespace = name.split( "." )[ 0 ];
+
+    name = name.split( "." )[ 1 ];
+    fullName = namespace + "-" + name;
+
+    if ( !prototype ) {
+      prototype = base;
+      base = $.Widget;
+    }
+
+    // create selector for plugin
+    $.expr[ ":" ][ fullName.toLowerCase() ] = function( elem ) {
+      return !!$.data( elem, fullName );
+    };
+
+    $[ namespace ] = $[ namespace ] || {};
+    existingConstructor = $[ namespace ][ name ];
+    constructor = $[ namespace ][ name ] = function( options, element ) {
+      // allow instantiation without "new" keyword
+      if ( !this._createWidget ) {
+        return new constructor( options, element );
+      }
+
+      // allow instantiation without initializing for simple inheritance
+      // must use "new" keyword (the code above always passes args)
+      if ( arguments.length ) {
+        this._createWidget( options, element );
+      }
+    };
+    // extend with the existing constructor to carry over any static properties
+    $.extend( constructor, existingConstructor, {
+      version: prototype.version,
+      // copy the object used to create the prototype in case we need to
+      // redefine the widget later
+      _proto: $.extend( {}, prototype ),
+      // track widgets that inherit from this widget in case this widget is
+      // redefined after a widget inherits from it
+      _childConstructors: []
+    });
+
+    basePrototype = new base();
+    // we need to make the options hash a property directly on the new instance
+    // otherwise we'll modify the options hash on the prototype that we're
+    // inheriting from
+    basePrototype.options = $.widget.extend( {}, basePrototype.options );
+    $.each( prototype, function( prop, value ) {
+      if ( !$.isFunction( value ) ) {
+        proxiedPrototype[ prop ] = value;
+        return;
+      }
+      proxiedPrototype[ prop ] = (function() {
+        var _super = function() {
+              return base.prototype[ prop ].apply( this, arguments );
+            },
+            _superApply = function( args ) {
+              return base.prototype[ prop ].apply( this, args );
+            };
+        return function() {
+          var __super = this._super,
+              __superApply = this._superApply,
+              returnValue;
+
+          this._super = _super;
+          this._superApply = _superApply;
+
+          returnValue = value.apply( this, arguments );
+
+          this._super = __super;
+          this._superApply = __superApply;
+
+          return returnValue;
+        };
+      })();
+    });
+    constructor.prototype = $.widget.extend( basePrototype, {
+      // TODO: remove support for widgetEventPrefix
+      // always use the name + a colon as the prefix, e.g., draggable:start
+      // don't prefix for widgets that aren't DOM-based
+      widgetEventPrefix: existingConstructor ? (basePrototype.widgetEventPrefix || name) : name
+    }, proxiedPrototype, {
+      constructor: constructor,
+      namespace: namespace,
+      widgetName: name,
+      widgetFullName: fullName
+    });
+
+    // If this widget is being redefined then we need to find all widgets that
+    // are inheriting from it and redefine all of them so that they inherit from
+    // the new version of this widget. We're essentially trying to replace one
+    // level in the prototype chain.
+    if ( existingConstructor ) {
+      $.each( existingConstructor._childConstructors, function( i, child ) {
+        var childPrototype = child.prototype;
+
+        // redefine the child widget using the same prototype that was
+        // originally used, but inherit from the new version of the base
+        $.widget( childPrototype.namespace + "." + childPrototype.widgetName, constructor, child._proto );
+      });
+      // remove the list of existing child constructors from the old constructor
+      // so the old child constructors can be garbage collected
+      delete existingConstructor._childConstructors;
+    } else {
+      base._childConstructors.push( constructor );
+    }
+
+    $.widget.bridge( name, constructor );
+
+    return constructor;
+  };
+
+  $.widget.extend = function( target ) {
+    var input = widget_slice.call( arguments, 1 ),
+        inputIndex = 0,
+        inputLength = input.length,
+        key,
+        value;
+    for ( ; inputIndex < inputLength; inputIndex++ ) {
+      for ( key in input[ inputIndex ] ) {
+        value = input[ inputIndex ][ key ];
+        if ( input[ inputIndex ].hasOwnProperty( key ) && value !== undefined ) {
+          // Clone objects
+          if ( $.isPlainObject( value ) ) {
+            target[ key ] = $.isPlainObject( target[ key ] ) ?
+                $.widget.extend( {}, target[ key ], value ) :
+              // Don't extend strings, arrays, etc. with objects
+                $.widget.extend( {}, value );
+            // Copy everything else by reference
+          } else {
+            target[ key ] = value;
+          }
+        }
+      }
+    }
+    return target;
+  };
+
+  $.widget.bridge = function( name, object ) {
+    var fullName = object.prototype.widgetFullName || name;
+    $.fn[ name ] = function( options ) {
+      var isMethodCall = typeof options === "string",
+          args = widget_slice.call( arguments, 1 ),
+          returnValue = this;
+
+      if ( isMethodCall ) {
+        this.each(function() {
+          var methodValue,
+              instance = $.data( this, fullName );
+          if ( options === "instance" ) {
+            returnValue = instance;
+            return false;
+          }
+          if ( !instance ) {
+            return $.error( "cannot call methods on " + name + " prior to initialization; " +
+            "attempted to call method '" + options + "'" );
+          }
+          if ( !$.isFunction( instance[options] ) || options.charAt( 0 ) === "_" ) {
+            return $.error( "no such method '" + options + "' for " + name + " widget instance" );
+          }
+          methodValue = instance[ options ].apply( instance, args );
+          if ( methodValue !== instance && methodValue !== undefined ) {
+            returnValue = methodValue && methodValue.jquery ?
+                returnValue.pushStack( methodValue.get() ) :
+                methodValue;
+            return false;
+          }
+        });
+      } else {
+
+        // Allow multiple hashes to be passed on init
+        if ( args.length ) {
+          options = $.widget.extend.apply( null, [ options ].concat(args) );
+        }
+
+        this.each(function() {
+          var instance = $.data( this, fullName );
+          if ( instance ) {
+            instance.option( options || {} );
+            if ( instance._init ) {
+              instance._init();
+            }
+          } else {
+            $.data( this, fullName, new object( options, this ) );
+          }
+        });
+      }
+
+      return returnValue;
+    };
+  };
+
+  $.Widget = function( /* options, element */ ) {};
+  $.Widget._childConstructors = [];
+
+  $.Widget.prototype = {
+    widgetName: "widget",
+    widgetEventPrefix: "",
+    defaultElement: "<div>",
+    options: {
+      disabled: false,
+
+      // callbacks
+      create: null
+    },
+    _createWidget: function( options, element ) {
+      element = $( element || this.defaultElement || this )[ 0 ];
+      this.element = $( element );
+      this.uuid = widget_uuid++;
+      this.eventNamespace = "." + this.widgetName + this.uuid;
+
+      this.bindings = $();
+      this.hoverable = $();
+      this.focusable = $();
+
+      if ( element !== this ) {
+        $.data( element, this.widgetFullName, this );
+        this._on( true, this.element, {
+          remove: function( event ) {
+            if ( event.target === element ) {
+              this.destroy();
+            }
+          }
+        });
+        this.document = $( element.style ?
+          // element within the document
+            element.ownerDocument :
+          // element is window or document
+        element.document || element );
+        this.window = $( this.document[0].defaultView || this.document[0].parentWindow );
+      }
+
+      this.options = $.widget.extend( {},
+          this.options,
+          this._getCreateOptions(),
+          options );
+
+      this._create();
+      this._trigger( "create", null, this._getCreateEventData() );
+      this._init();
+    },
+    _getCreateOptions: $.noop,
+    _getCreateEventData: $.noop,
+    _create: $.noop,
+    _init: $.noop,
+
+    destroy: function() {
+      this._destroy();
+      // we can probably remove the unbind calls in 2.0
+      // all event bindings should go through this._on()
+      this.element
+          .unbind( this.eventNamespace )
+          .removeData( this.widgetFullName )
+        // support: jquery <1.6.3
+        // http://bugs.jquery.com/ticket/9413
+          .removeData( $.camelCase( this.widgetFullName ) );
+      this.widget()
+          .unbind( this.eventNamespace )
+          .removeAttr( "aria-disabled" )
+          .removeClass(
+          this.widgetFullName + "-disabled " +
+          "ui-state-disabled" );
+
+      // clean up events and states
+      this.bindings.unbind( this.eventNamespace );
+      this.hoverable.removeClass( "ui-state-hover" );
+      this.focusable.removeClass( "ui-state-focus" );
+    },
+    _destroy: $.noop,
+
+    widget: function() {
+      return this.element;
+    },
+
+    option: function( key, value ) {
+      var options = key,
+          parts,
+          curOption,
+          i;
+
+      if ( arguments.length === 0 ) {
+        // don't return a reference to the internal hash
+        return $.widget.extend( {}, this.options );
+      }
+
+      if ( typeof key === "string" ) {
+        // handle nested keys, e.g., "foo.bar" => { foo: { bar: ___ } }
+        options = {};
+        parts = key.split( "." );
+        key = parts.shift();
+        if ( parts.length ) {
+          curOption = options[ key ] = $.widget.extend( {}, this.options[ key ] );
+          for ( i = 0; i < parts.length - 1; i++ ) {
+            curOption[ parts[ i ] ] = curOption[ parts[ i ] ] || {};
+            curOption = curOption[ parts[ i ] ];
+          }
+          key = parts.pop();
+          if ( arguments.length === 1 ) {
+            return curOption[ key ] === undefined ? null : curOption[ key ];
+          }
+          curOption[ key ] = value;
+        } else {
+          if ( arguments.length === 1 ) {
+            return this.options[ key ] === undefined ? null : this.options[ key ];
+          }
+          options[ key ] = value;
+        }
+      }
+
+      this._setOptions( options );
+
+      return this;
+    },
+    _setOptions: function( options ) {
+      var key;
+
+      for ( key in options ) {
+        this._setOption( key, options[ key ] );
+      }
+
+      return this;
+    },
+    _setOption: function( key, value ) {
+      this.options[ key ] = value;
+
+      if ( key === "disabled" ) {
+        this.widget()
+            .toggleClass( this.widgetFullName + "-disabled", !!value );
+
+        // If the widget is becoming disabled, then nothing is interactive
+        if ( value ) {
+          this.hoverable.removeClass( "ui-state-hover" );
+          this.focusable.removeClass( "ui-state-focus" );
+        }
+      }
+
+      return this;
+    },
+
+    enable: function() {
+      return this._setOptions({ disabled: false });
+    },
+    disable: function() {
+      return this._setOptions({ disabled: true });
+    },
+
+    _on: function( suppressDisabledCheck, element, handlers ) {
+      var delegateElement,
+          instance = this;
+
+      // no suppressDisabledCheck flag, shuffle arguments
+      if ( typeof suppressDisabledCheck !== "boolean" ) {
+        handlers = element;
+        element = suppressDisabledCheck;
+        suppressDisabledCheck = false;
+      }
+
+      // no element argument, shuffle and use this.element
+      if ( !handlers ) {
+        handlers = element;
+        element = this.element;
+        delegateElement = this.widget();
+      } else {
+        element = delegateElement = $( element );
+        this.bindings = this.bindings.add( element );
+      }
+
+      $.each( handlers, function( event, handler ) {
+        function handlerProxy() {
+          // allow widgets to customize the disabled handling
+          // - disabled as an array instead of boolean
+          // - disabled class as method for disabling individual parts
+          if ( !suppressDisabledCheck &&
+              ( instance.options.disabled === true ||
+              $( this ).hasClass( "ui-state-disabled" ) ) ) {
+            return;
+          }
+          return ( typeof handler === "string" ? instance[ handler ] : handler )
+              .apply( instance, arguments );
+        }
+
+        // copy the guid so direct unbinding works
+        if ( typeof handler !== "string" ) {
+          handlerProxy.guid = handler.guid =
+              handler.guid || handlerProxy.guid || $.guid++;
+        }
+
+        var match = event.match( /^([\w:-]*)\s*(.*)$/ ),
+            eventName = match[1] + instance.eventNamespace,
+            selector = match[2];
+        if ( selector ) {
+          delegateElement.delegate( selector, eventName, handlerProxy );
+        } else {
+          element.bind( eventName, handlerProxy );
+        }
+      });
+    },
+
+    _off: function( element, eventName ) {
+      eventName = (eventName || "").split( " " ).join( this.eventNamespace + " " ) +
+      this.eventNamespace;
+      element.unbind( eventName ).undelegate( eventName );
+
+      // Clear the stack to avoid memory leaks (#10056)
+      this.bindings = $( this.bindings.not( element ).get() );
+      this.focusable = $( this.focusable.not( element ).get() );
+      this.hoverable = $( this.hoverable.not( element ).get() );
+    },
+
+    _delay: function( handler, delay ) {
+      function handlerProxy() {
+        return ( typeof handler === "string" ? instance[ handler ] : handler )
+            .apply( instance, arguments );
+      }
+      var instance = this;
+      return setTimeout( handlerProxy, delay || 0 );
+    },
+
+    _hoverable: function( element ) {
+      this.hoverable = this.hoverable.add( element );
+      this._on( element, {
+        mouseenter: function( event ) {
+          $( event.currentTarget ).addClass( "ui-state-hover" );
+        },
+        mouseleave: function( event ) {
+          $( event.currentTarget ).removeClass( "ui-state-hover" );
+        }
+      });
+    },
+
+    _focusable: function( element ) {
+      this.focusable = this.focusable.add( element );
+      this._on( element, {
+        focusin: function( event ) {
+          $( event.currentTarget ).addClass( "ui-state-focus" );
+        },
+        focusout: function( event ) {
+          $( event.currentTarget ).removeClass( "ui-state-focus" );
+        }
+      });
+    },
+
+    _trigger: function( type, event, data ) {
+      var prop, orig,
+          callback = this.options[ type ];
+
+      data = data || {};
+      event = $.Event( event );
+      event.type = ( type === this.widgetEventPrefix ?
+          type :
+      this.widgetEventPrefix + type ).toLowerCase();
+      // the original event may come from any element
+      // so we need to reset the target on the new event
+      event.target = this.element[ 0 ];
+
+      // copy original event properties over to the new event
+      orig = event.originalEvent;
+      if ( orig ) {
+        for ( prop in orig ) {
+          if ( !( prop in event ) ) {
+            event[ prop ] = orig[ prop ];
+          }
+        }
+      }
+
+      this.element.trigger( event, data );
+      return !( $.isFunction( callback ) &&
+      callback.apply( this.element[0], [ event ].concat( data ) ) === false ||
+      event.isDefaultPrevented() );
+    }
+  };
+
+  $.each( { show: "fadeIn", hide: "fadeOut" }, function( method, defaultEffect ) {
+    $.Widget.prototype[ "_" + method ] = function( element, options, callback ) {
+      if ( typeof options === "string" ) {
+        options = { effect: options };
+      }
+      var hasOptions,
+          effectName = !options ?
+              method :
+              options === true || typeof options === "number" ?
+                  defaultEffect :
+              options.effect || defaultEffect;
+      options = options || {};
+      if ( typeof options === "number" ) {
+        options = { duration: options };
+      }
+      hasOptions = !$.isEmptyObject( options );
+      options.complete = callback;
+      if ( options.delay ) {
+        element.delay( options.delay );
+      }
+      if ( hasOptions && $.effects && $.effects.effect[ effectName ] ) {
+        element[ method ]( options );
+      } else if ( effectName !== method && element[ effectName ] ) {
+        element[ effectName ]( options.duration, options.easing, callback );
+      } else {
+        element.queue(function( next ) {
+          $( this )[ method ]();
+          if ( callback ) {
+            callback.call( element[ 0 ] );
+          }
+          next();
+        });
+      }
+    };
+  });
+
+  var widget = $.widget;
+
+
+
+}));
 
 /* jquery Tocify - v1.8.0 - 2013-09-16
 * http://www.gregfranko.com/jquery.tocify.js/
