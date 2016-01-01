@@ -67,6 +67,751 @@
       <div class="dark-box"></div>
       <div class="content">
         
+          <h1 id="welcome">Welcome</h1>
+
+<p>Smooch lets you have rich conversations with your users, right in your app or on your website. If you want to learn more about Smooch, then visit our website at <a href="http://smooch.io">http://smooch.io</a> or <a href="https://app.smooch.io">sign up here</a>. This page provides in-depth documentation on Smooch&rsquo;s features and is meant to be a guide for developers integrating the SDK and app makers seeking to engage with their users.</p>
+
+<p>Source code examples are provided for all of our SDKs, including both Objective-C and Swift for iOS. You can view code examples inline, and you can switch the programming language of the examples with the tabs in the top left.</p>
+
+<p>If you have any other questions, feel free to reach out to us <a href="mailto:help@smooch.io">here</a>.</p>
+
+          <h1 id="references">References</h1>
+
+<p>For more in-depth details on Smooch&rsquo;s APIs check out our API Reference documentation. The API reference documents every method and property available through Smooch.</p>
+
+<ul>
+<li><a href="http://docs.smooch.io/api/ios" target="_blank">iOS SDK Reference</a></li>
+<li><a href="http://docs.smooch.io/api/android" target="_blank">Android SDK Reference</a></li>
+<li><a href="https://github.com/smooch/smooch-js" target="_blank">Web SDK Reference</a></li>
+<li><a href="/rest" target="_blank">REST API</a></li>
+</ul>
+
+<h2 id="upgrading-to-smooch">Upgrading to Smooch</h2>
+
+<p>Upgrading the SDKs to Smooch requires some changes to your existing code. These changes are documented in our upgrade guides:</p>
+
+<ul>
+<li><a href="https://github.com/smooch/smooch-ios/releases/tag/v3.0.0" target="_blank">iOS Upgrade Guide</a></li>
+<li><a href="https://github.com/smooch/smooch-android/releases/tag/2.0.0" target="_blank">Android Upgrade Guide</a></li>
+<li><a href="https://github.com/smooch/smooch-js/releases/tag/2.0.0" target="_blank">Web SDK Upgrade Guide</a></li>
+</ul>
+
+          <h1 id="adding-smooch-to-your-app">Adding Smooch to your app</h1>
+
+<p>There are two ways to install the Smooch SDK. The recommended and easier way makes use of <a href="http://cocoapods.org">CocoaPods</a> to manage library dependencies and SDK updates. Alternatively, you can go the manual route and drop the SDK into your Xcode project.</p>
+
+<p>We&rsquo;ve documented both methods for adding Smooch to your app. Read on and follow your preferred way of adding the SDK to your project.</p>
+
+<h2 id="cocoapods-method">CocoaPods Method</h2>
+
+<p>First, install Cocoapods if it isn&rsquo;t already available on your system: </p>
+<pre class="highlight plaintext"><code>sudo gem install cocoapods
+</code></pre>
+
+<p>Now that you&rsquo;ve installed CocoaPods, we&rsquo;ll add Smooch to your project&rsquo;s dependencies. Run these commands in terminal from the directory that houses your .xcodeproj file</p>
+<pre class="highlight plaintext"><code>$ echo "pod 'Smooch'" &gt;&gt; Podfile
+</code></pre>
+<pre class="highlight plaintext"><code>$ pod install
+</code></pre>
+
+<p>Open the .xcworkspace file and add the necessary code to <a href="#import-the-smooch-header-file">initialize Smooch in your app</a>. </p>
+
+<aside class="notice">
+Remember — when you use CocoaPods to manage your app&rsquo;s dependencies, you have to build and run your app using the .xcworkspace file and not the .xcodeproj file.
+</aside>
+
+<h2 id="manual-method">Manual Method</h2>
+
+<ol>
+<li><p>First, grab a copy of Smooch by <a href="https://github.com/smooch/smooch-ios/archive/master.zip">downloading the most recent release</a> or visiting our <a href="https://github.com/smooch/smooch-ios">GitHub page</a>.</p></li>
+<li><p>Next, add the SDK to your XCode project by dragging both Smooch.framework and Smooch.bundle into your project as shown below.
+<img alt="Dependencies in XCode" src="../images/dependencies.png" /></p></li>
+<li><p>Now you&rsquo;ll have to add Smooch&rsquo;s dependencies to your project if they&rsquo;re not already linked in. Go to &ldquo;Build phases&rdquo; in your project&rsquo;s target and select &ldquo;Link Binary With Libraries&rdquo;:</p>
+
+<ul>
+<li>AssetsLibrary.framework</li>
+<li>AVFoundation.framework</li>
+<li>CFNetwork.framework</li>
+<li>CoreGraphics.framework</li>
+<li>CoreTelephony.framework</li>
+<li>CoreText.framework</li>
+<li>Foundation.framework</li>
+<li>Photos.framework</li>
+<li>QuartzCore.framework</li>
+<li>SystemConfiguration.framework</li>
+<li>UIKit.framework</li>
+</ul></li>
+<li><p>Add the <code class="prettyprint">-licucore</code> option to your app&rsquo;s <code class="prettyprint">Other Linker Flags</code> build setting.</p></li>
+<li><p>Smooch should now be available to your app and you&rsquo;re ready to add the necessary code to <a href="#initialize-smooch-in-your-app">initialize Smooch in your app</a>.</p></li>
+</ol>
+
+<h2 id="import-the-smooch-header-file">Import the Smooch header file</h2>
+
+<p>Import the Smooch file into the your app delegate&rsquo;s .m file and any other places you plan to use it.</p>
+<pre class="highlight objective_c"><code><span class="cp">#import &lt;Smooch/Smooch.h&gt;
+</span></code></pre>
+<pre class="highlight swift"><code><span class="cp">#import &lt;Smooch/Smooch.h&gt;</span>
+</code></pre>
+
+<aside class="notice">
+If you&rsquo;re writing an app using Swift, then you&rsquo;ll need to import this header into a &ldquo;bridging header&rdquo;. More info on this is available from [Apple](https://developer.apple.com/library/ios/documentation/swift/conceptual/buildingcocoaapps/MixandMatch.html)
+</aside>
+
+<h2 id="initialize-smooch-in-your-app">Initialize Smooch in your app</h2>
+
+<p>After following the steps above, your app is setup for working with the Smooch SDK. Before your code can invoke its functionality, you&rsquo;ll have to initialize the library using your app&rsquo;s token.</p>
+
+<p>This token is free and uniquely identifies your app and links it to the Smooch backend that does the heavy lifting necessary to bridge the gap between you and your users.</p>
+
+<p>You can find your token by <a href="https://app.smooch.io">logging into Smooch</a> and copying it from the settings page as shown below.</p>
+
+<p><img alt="App Token on Overview Page" src="../images/apptoken.png" /></p>
+
+<p>Once you&rsquo;ve located your token, use the code below to initialize Smooch.</p>
+
+<p>Add the following line of code to your applicationDidFinishLaunchingWithOptions: method</p>
+<pre class="highlight objective_c"><code><span class="p">[</span><span class="n">Smooch</span> <span class="nf">initWithSettings</span><span class="p">:[</span><span class="n">SKTSettings</span> <span class="nf">settingsWithAppToken</span><span class="p">:</span><span class="s">@"YOUR_APP_TOKEN"</span><span class="p">]];</span>
+</code></pre>
+<pre class="highlight swift"><code><span class="kt">Smooch</span><span class="o">.</span><span class="nf">initWithSettings</span><span class="p">(</span><span class="kt">SKTSettings</span><span class="p">(</span><span class="nv">appToken</span><span class="p">:</span> <span class="s">"YOUR_APP_TOKEN"</span><span class="p">))</span>
+</code></pre>
+
+<p>Make sure to replace <code class="prettyprint">YOUR_APP_TOKEN</code> with your app token.</p>
+
+<h3 id="displaying-the-smooch-user-interface">Displaying the Smooch User Interface</h3>
+
+<p>Once you&rsquo;ve initialized Smooch, you&rsquo;re ready to try it out. </p>
+
+<p>Find a suitable place in your app&rsquo;s interface to invoke Smooch and use the code below to display the Smooch user interface. You can bring up Smooch whenever you think that your user will need access to help or a communication channel to contact you.</p>
+<pre class="highlight objective_c"><code><span class="p">[</span><span class="n">Smooch</span> <span class="nf">show</span><span class="p">];</span>
+</code></pre>
+<pre class="highlight swift"><code><span class="kt">Smooch</span><span class="o">.</span><span class="nf">show</span><span class="p">()</span>
+</code></pre>
+
+<h2 id="updating-smooch">Updating Smooch</h2>
+
+<h3 id="cocoapods">CocoaPods</h3>
+
+<p>To update via cocoapods, simply execute this</p>
+<pre class="highlight plaintext"><code>$ pod update
+</code></pre>
+
+<h3 id="manual">Manual</h3>
+
+<p>To manually update Smooch simply grab a fresh copy of Smooch by <a href="https://github.com/smooch/smooch-ios/archive/master.zip">downloading the most recent release</a> and re-add the SDK to your XCode project by dragging both Smooch.framework and Smooch.bundle into your project</p>
+
+          <h2 id="configuring-push-notifications">Configuring push notifications</h2>
+
+<p>Push notifications are a great, unobtrusive way to let your users know that a reply to their message has arrived.</p>
+
+<h3 id="step-1-enable-push-notifications-and-generate-the-p12-certificate">Step 1. Enable Push Notifications and Generate the .p12 Certificate</h3>
+
+<ol>
+<li><p>Log into the Identifiers section of the Apple Developer Member Center, and select your app. You can get there by visiting <a href="https://developer.apple.com/account/ios/identifiers/bundle/bundleList.action">this link</a></p></li>
+<li><p>Click &lsquo;Edit&rsquo;, enable &#39;Push Notifications&rsquo;, and then click &#39;Create Certificate&hellip;&ldquo;</p></li>
+<li><p>Follow the instructions to generate a certificate signing request using Keychain Access</p></li>
+<li><p>Once the certificate is ready, download it to your computer and double-click it to open it in Keychain Access</p></li>
+<li><p>Right click on the certificate you created, and select &#39;Export &quot;Apple Development IOS Push Services:&hellip;&rdquo;&rsquo;</p></li>
+<li><p>Save the .p12 file to your computer.</p></li>
+</ol>
+
+<h3 id="step-2-upload-the-p12-file-to-smooch">Step 2. Upload the .p12 file to Smooch</h3>
+
+<ol>
+<li><p>Go to http://app.smooch.io and log into your account.</p></li>
+<li><p>Select the app you want push notifications to enabled for.</p></li>
+<li><p>Upload the .p12 file.</p></li>
+</ol>
+
+<h3 id="step-3-re-create-your-provisioning-profile">Step 3. Re-create your Provisioning Profile</h3>
+
+<p>Now that you have enabled push notifications for your app, you MUST re-create your Provisioning Profile. You can not use the one you&rsquo;ve used in the past.</p>
+
+<ol>
+<li><p>Go to Provisioning Profiles in the Apple Developer Member Center by <a href="https://developer.apple.com/account/ios/profile/profileList.action">clicking here</a>.</p></li>
+<li><p>Click the &rsquo;+&rsquo; button to add a new provisioning profile and follow the on-screen instructions.</p></li>
+<li><p>Notice that once you created the new provisioning profile, it shows that &ldquo;Push Notifications&rdquo; is an enabled service. Download the new profile.</p></li>
+<li><p>Double click it to install it. It should now be selectable in Xcode for your app.</p></li>
+<li><p>Build your app.</p></li>
+</ol>
+
+<h3 id="step-4-test-it-out">Step 4. Test it out!</h3>
+
+<aside class="warning">
+You can&rsquo;t receive push notifications in the Xcode simulator, you must use a physical device.
+</aside>
+
+<ol>
+<li><p>Kill and restart your app.</p></li>
+<li><p>Launch Smooch.</p></li>
+<li><p>Send a message. Important! You must resend a message after uploading the p12 file.</p></li>
+<li><p>Reply to the message from your email inbox</p></li>
+</ol>
+
+<p>You&rsquo;ll receive a notification if you&rsquo;re in the app, or outside the app!</p>
+
+<h3 id="step-5-repeat-for-production-mode">Step 5. Repeat for Production mode</h3>
+
+<p>Take note that there are &ldquo;Development&rdquo; and &ldquo;Production&rdquo; certificates and profiles. Make sure that you upload the &ldquo;Production&rdquo; .p12 file to Smooch when you&rsquo;re ready to release your build through ad-hoc, enterprise or app store distribution.</p>
+
+          <h1 id="users">Users</h1>
+
+          <h2 id="user-data">User data</h2>
+
+<p>Smooch allows you to specify profile information about your users so that you can better understand the context around a user&rsquo;s message.</p>
+<pre class="highlight javascript"><code><span class="nx">Smooch</span><span class="p">.</span><span class="nx">init</span><span class="p">({</span>
+    <span class="na">appToken</span><span class="p">:</span> <span class="s1">'your_app_token'</span><span class="p">,</span>
+    <span class="na">givenName</span><span class="p">:</span> <span class="s1">'Doctor'</span><span class="p">,</span>
+    <span class="na">surname</span><span class="p">:</span> <span class="s1">'Who?'</span><span class="p">,</span>
+    <span class="na">email</span><span class="p">:</span> <span class="s1">'the-doctor@smooch.io'</span><span class="p">,</span>
+    <span class="na">properties</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">'customProp'</span><span class="p">:</span> <span class="s1">'whatever you please'</span>
+    <span class="p">}</span>
+<span class="p">});</span>
+</code></pre>
+
+<h3 id="naming-the-current-user">Naming the current user</h3>
+
+<p>Once you set the user&rsquo;s name it will be persisted by Smooch so any future message from this user contain the value you provided. If the user&rsquo;s information changes, simply call the method a second time and the new information will overwrite it.</p>
+<pre class="highlight objective_c"><code><span class="cp">#import &lt;Smooch/Smooch.h&gt;
+</span>
+<span class="p">[</span><span class="n">SKTUser</span> <span class="nf">currentUser</span><span class="p">].</span><span class="n">firstName</span> <span class="o">=</span> <span class="s">@"Doctor"</span><span class="p">;</span>
+<span class="p">[</span><span class="n">SKTUser</span> <span class="nf">currentUser</span><span class="p">].</span><span class="n">lastName</span> <span class="o">=</span> <span class="s">@"Who"</span><span class="p">;</span>
+</code></pre>
+<pre class="highlight swift"><code><span class="cp">#import &lt;Smooch/Smooch.h&gt;</span>
+
+<span class="kt">SKTUser</span><span class="o">.</span><span class="nf">currentUser</span><span class="p">()</span><span class="o">.</span><span class="n">firstName</span> <span class="o">=</span> <span class="s">"Doctor"</span>
+<span class="kt">SKTUser</span><span class="o">.</span><span class="nf">currentUser</span><span class="p">()</span><span class="o">.</span><span class="n">lastName</span> <span class="o">=</span> <span class="s">"Who"</span>
+</code></pre>
+<pre class="highlight java"><code><span class="kn">import</span> <span class="nn">io.smooch.core.User</span><span class="o">;</span>
+
+<span class="n">User</span><span class="o">.</span><span class="na">getCurrentUser</span><span class="o">().</span><span class="na">setFirstName</span><span class="o">(</span><span class="s">"Artour"</span><span class="o">);</span>
+<span class="n">User</span><span class="o">.</span><span class="na">getCurrentUser</span><span class="o">().</span><span class="na">setLastName</span><span class="o">(</span><span class="s">"Babaev"</span><span class="o">);</span>
+</code></pre>
+<pre class="highlight javascript"><code><span class="nx">Smooch</span><span class="p">.</span><span class="nx">updateUser</span><span class="p">({</span>
+    <span class="na">givenName</span><span class="p">:</span> <span class="s1">'Doctor'</span><span class="p">,</span>
+    <span class="na">surname</span><span class="p">:</span> <span class="s1">'Who'</span>
+<span class="p">})</span>
+</code></pre>
+
+<h3 id="getting-the-avatar-of-the-current-user">Getting the avatar of the current user</h3>
+
+<p>Setting the user&rsquo;s e-mail lets you see their gravatar in the e-mail conversation. The user will not see their own gravatar in the chat.</p>
+<pre class="highlight objective_c"><code><span class="cp">#import &lt;Smooch/Smooch.h&gt;
+</span>
+<span class="p">[</span><span class="n">SKTUser</span> <span class="nf">currentUser</span><span class="p">].</span><span class="n">email</span> <span class="o">=</span> <span class="s">@"bob@example.com"</span><span class="p">;</span>
+</code></pre>
+<pre class="highlight swift"><code><span class="cp">#import &lt;Smooch/Smooch.h&gt;</span>
+
+<span class="kt">SKTUser</span><span class="o">.</span><span class="nf">currentUser</span><span class="p">()</span><span class="o">.</span><span class="n">email</span> <span class="o">=</span> <span class="s">"bob@example.com"</span>
+</code></pre>
+<pre class="highlight java"><code><span class="kn">import</span> <span class="nn">io.smooch.core.User</span><span class="o">;</span>
+
+<span class="n">User</span><span class="o">.</span><span class="na">getCurrentUser</span><span class="o">().</span><span class="na">setEmail</span><span class="o">(</span><span class="s">"2ez@4rtz.com"</span><span class="o">);</span>
+</code></pre>
+<pre class="highlight javascript"><code><span class="nx">Smooch</span><span class="p">.</span><span class="nx">updateUser</span><span class="p">({</span>
+    <span class="na">email</span><span class="p">:</span> <span class="s1">'the-doctor@smooch.io'</span>
+<span class="p">})</span>
+</code></pre>
+
+<h3 id="setting-the-signed-up-date">Setting the signed up date</h3>
+
+<p>Setting the user&rsquo;s signed up date allows Whispers based on that date to be sent to the right people. If not set, we&rsquo;ll default to the first time Smooch sees the user, which is the moment the <code class="prettyprint">init</code> call is made for the first time for a given user. It&rsquo;s best to set it yourself to avoid sending a welcome message to users that in fact signed up a long while ago.</p>
+<pre class="highlight objective_c"><code><span class="cp">#import &lt;Smooch/Smooch.h&gt;
+</span>
+<span class="p">[</span><span class="n">SKTUser</span> <span class="nf">currentUser</span><span class="p">].</span><span class="n">signedUpAt</span> <span class="o">=</span> <span class="p">[</span><span class="n">NSDate</span> <span class="nf">date</span><span class="p">];</span>
+</code></pre>
+<pre class="highlight swift"><code><span class="cp">#import &lt;Smooch/Smooch.h&gt;</span>
+
+<span class="kt">SKTUser</span><span class="o">.</span><span class="nf">currentUser</span><span class="p">()</span><span class="o">.</span><span class="n">signedUpAt</span> <span class="o">=</span> <span class="kt">NSDate</span><span class="p">()</span>
+</code></pre>
+<pre class="highlight java"><code><span class="kn">import</span> <span class="nn">io.smooch.core.User</span><span class="o">;</span>
+
+<span class="n">User</span><span class="o">.</span><span class="na">getCurrentUser</span><span class="o">().</span><span class="na">setSignedUpAt</span><span class="o">(</span><span class="k">new</span> <span class="n">Date</span><span class="o">(</span><span class="mi">1420070400000</span><span class="n">l</span><span class="o">));</span>
+</code></pre>
+<pre class="highlight javascript"><code><span class="nx">Smooch</span><span class="p">.</span><span class="nx">updateUser</span><span class="p">({</span>
+    <span class="na">signedUpAt</span><span class="p">:</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="s2">"Nov 6, 2013"</span><span class="p">)</span>
+<span class="p">})</span>
+</code></pre>
+
+<h3 id="adding-custom-profile-information">Adding custom profile information</h3>
+
+<p>You can also specify any other kind of profile information that will be sent along when users contact you. You can also use any properties you store using this API to send targeted messages to your users proactively using our Whispers feature.</p>
+<pre class="highlight objective_c"><code><span class="cp">#import &lt;Smooch/Smooch.h&gt;
+</span>
+<span class="p">[[</span><span class="n">SKTUser</span> <span class="nf">currentUser</span><span class="p">]</span> <span class="nf">addProperties</span><span class="p">:</span><span class="err">@</span><span class="p">{</span> <span class="s">@"nickname"</span> <span class="o">:</span> <span class="s">@"Lil Big Daddy Slim"</span><span class="p">,</span> <span class="s">@"weight"</span> <span class="o">:</span> <span class="mi">@650</span><span class="p">,</span> <span class="s">@"premiumUser"</span> <span class="o">:</span> <span class="nb">@YES</span> <span class="p">}];</span>
+</code></pre>
+<pre class="highlight swift"><code><span class="cp">#import &lt;Smooch/Smooch.h&gt;</span>
+
+<span class="kt">SKTUser</span><span class="o">.</span><span class="nf">currentUser</span><span class="p">()</span><span class="o">.</span><span class="nf">addProperties</span><span class="p">([</span> <span class="s">"nickname"</span> <span class="p">:</span> <span class="s">"Lil Big Daddy Slim"</span><span class="p">,</span> <span class="s">"weight"</span> <span class="p">:</span> <span class="mi">650</span><span class="p">,</span> <span class="s">"premiumUser"</span> <span class="p">:</span> <span class="kc">true</span> <span class="p">])</span>
+</code></pre>
+<pre class="highlight java"><code><span class="kn">import</span> <span class="nn">io.smooch.core.User</span><span class="o">;</span>
+
+<span class="kd">final</span> <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="n">customProperties</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;&gt;();</span>
+<span class="n">customProperties</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"customDate"</span><span class="o">,</span> <span class="k">new</span> <span class="n">Date</span><span class="o">());</span>
+<span class="n">customProperties</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"customFlag"</span><span class="o">,</span> <span class="kc">true</span><span class="o">);</span>
+<span class="n">customProperties</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"customDigit"</span><span class="o">,</span> <span class="mi">322</span><span class="o">);</span>
+<span class="n">User</span><span class="o">.</span><span class="na">getCurrentUser</span><span class="o">().</span><span class="na">addProperties</span><span class="o">(</span><span class="n">customProperties</span><span class="o">);</span>
+</code></pre>
+
+          <p>The <code class="prettyprint">addProperties:</code> method accepts an <code class="prettyprint">NSDictionary</code> containing the properties to add. This dictionary must have keys that are <code class="prettyprint">NSString</code> and values that are either <code class="prettyprint">NSString</code>, <code class="prettyprint">NSNumber</code> or <code class="prettyprint">NSDate</code>. If your dictionary contains any other data type as a value, then <code class="prettyprint">description</code> will be called on the object and the resulting NSString will be added as a property.</p>
+
+          <aside class="notice">
+Note: The maximum size for a property key is 100 bytes and the maximum property string value is 800 bytes. User keys and string values that exceed these limits will be truncated.
+</aside>
+
+          <h2 id="sensitive-user-data">Sensitive user data</h2>
+
+<p>Smooch sends messages using standard encryption protocols, but in order to keep your users completely safe, the best way is to inform your users they should never send sensitive data through Smooch messages, for example: credit card numbers, passwords, sensitive documents, and private photos.</p>
+
+          <p>Smooch allows you to identify new users on the fly, engage with them in a single conversation thread across multiple devices, and associate user and device profile information so that you can better understand the context of a user&rsquo;s message.</p>
+
+<h2 id="users-on-multiple-devices">Users on multiple devices</h2>
+
+<p>You may have users using your app on multiple devices. For example, suppose they have your app installed on both their iPhone and their iPad. You might also have Smooch integrated in both your mobile app as well as on your web site.</p>
+
+<p>If you want the user to see the same conversation across devices you can do so by assigning your users a <code class="prettyprint">userId</code>. This will link a user across all devices and platforms that have integrated with your Smooch app. Specifying a <code class="prettyprint">userId</code> also facilitates <a href="#securing-your-users">user authentication</a>.</p>
+
+<p>The <code class="prettyprint">userId</code> is a string that can be an email, GUID, or an existing ID from your own user directory. The <code class="prettyprint">userId</code> must be unique within a given Smooch app, and it will only link devices within a single Smooch app.</p>
+
+<aside class="warning">
+**Caution:** If you&rsquo;re specifying a `userId` then in order to keep conversations private we strongly suggest [authenticating your users](#authenticating-users-optional). If a `userId` is used without a JWT credential, then anyone who can discover a user&rsquo;s `userId` could potentially eavesdrop on the conversation.
+</aside>
+
+<p>After Smooch has been initialized, you can set the <code class="prettyprint">userId</code> using the <code class="prettyprint">login</code> API:</p>
+<pre class="highlight objective_c"><code><span class="p">[</span><span class="n">Smooch</span> <span class="nf">login</span><span class="p">:</span><span class="n">yourUserId</span> <span class="nf">jwt</span><span class="p">:</span><span class="nb">nil</span><span class="p">];</span>
+</code></pre>
+<pre class="highlight swift"><code><span class="kt">Smooch</span><span class="o">.</span><span class="nf">login</span><span class="p">(</span><span class="n">yourUserId</span><span class="p">,</span> <span class="nv">jwt</span><span class="p">:</span><span class="kc">nil</span><span class="p">)</span>
+</code></pre>
+<pre class="highlight javascript"><code><span class="nx">Smooch</span><span class="p">.</span><span class="nx">login</span><span class="p">(</span><span class="nx">yourUserId</span><span class="p">);</span>
+</code></pre>
+<pre class="highlight java"><code><span class="n">Smooch</span><span class="o">.</span><span class="na">login</span><span class="o">(</span><span class="n">yourUserId</span><span class="o">);</span>
+</code></pre>
+
+<p>In most use cases Smooch is initialized synchronously as your app loads. For this reason, once you&rsquo;ve set your user&rsquo;s <code class="prettyprint">userId</code> for the first time it is recommended that you store that <code class="prettyprint">userId</code> locally on the device so that it does not need to be fetched again the next time the user opens the app. If your app knows the <code class="prettyprint">userId</code> at app boot time, instead of calling <code class="prettyprint">login</code> you can specify the <code class="prettyprint">userId</code> during Smooch initialization like so:</p>
+<pre class="highlight objective_c"><code><span class="n">SKTSettings</span><span class="o">*</span> <span class="n">settings</span> <span class="o">=</span> <span class="p">[</span><span class="n">SKTSettings</span> <span class="nf">settingsWithAppToken</span><span class="p">:</span><span class="s">@"YOUR_APP_TOKEN"</span><span class="p">];</span>
+<span class="n">settings</span><span class="p">.</span><span class="n">userId</span> <span class="o">=</span> <span class="n">yourUserId</span><span class="p">;</span>
+<span class="p">[</span><span class="n">Smooch</span> <span class="nf">initWithSettings</span><span class="p">:</span><span class="n">settings</span><span class="p">];</span>
+</code></pre>
+<pre class="highlight swift"><code><span class="k">var</span> <span class="nv">settings</span> <span class="o">=</span> <span class="kt">SKTSettings</span><span class="p">(</span><span class="nv">appToken</span><span class="p">:</span> <span class="s">"YOUR_APP_TOKEN"</span><span class="p">)</span>
+<span class="n">settings</span><span class="o">.</span><span class="n">userId</span> <span class="o">=</span> <span class="n">yourUserId</span>
+<span class="kt">Smooch</span><span class="o">.</span><span class="nf">initWithSettings</span><span class="p">(</span><span class="n">settings</span><span class="p">)</span>
+</code></pre>
+<pre class="highlight javascript"><code><span class="nx">Smooch</span><span class="p">.</span><span class="nx">init</span><span class="p">({</span>
+    <span class="na">appToken</span><span class="p">:</span> <span class="s1">'YOUR_APP_TOKEN'</span><span class="p">,</span>
+    <span class="na">userId</span><span class="p">:</span> <span class="nx">yourUserId</span>
+<span class="p">});</span>
+</code></pre>
+<pre class="highlight java"><code><span class="n">Settings</span> <span class="n">settings</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Settings</span><span class="o">(</span><span class="s">"YOUR_APP_TOKEN"</span><span class="o">);</span>
+<span class="n">settings</span><span class="o">.</span><span class="na">setUserId</span><span class="o">(</span><span class="n">yourUserId</span><span class="o">);</span>
+<span class="n">Smooch</span><span class="o">.</span><span class="na">init</span><span class="o">(</span><span class="k">this</span><span class="o">,</span> <span class="n">settings</span><span class="o">);</span>
+</code></pre>
+
+<h3 id="omitting-the-userid">Omitting the userId</h3>
+
+<p>Smooch will work perfectly fine without a <code class="prettyprint">userId</code>. Profile information can still be included but the user will only be able to access the conversation from the device they&rsquo;re currently using. This means that even if you specify the same profile information, if the same individual opens Smooch on a new device, or runs your web app in an incognito browser session, they will see a newly created empty conversation when they open Smooch. Only the <code class="prettyprint">userId</code> can be used to synchronize a conversation across devices.</p>
+
+<p>A <code class="prettyprint">userId</code> can also be omitted at first and added at a later time. If you deploy an update to your app that assigns an existing user with a new <code class="prettyprint">userId</code> that they didn&rsquo;t have before, any existing conversation history they have will be preserved and their messages will start being synchronized across all devices where that <code class="prettyprint">userId</code> is being used. This is particularly useful if a user opens Smooch and starts a conversation before having logged in to your app.</p>
+
+<h3 id="switching-users">Switching users</h3>
+
+<p>If your app allows a shared device to switch between multiple user identities you can call the <code class="prettyprint">login</code> API multiple times to switch between different <code class="prettyprint">userId</code>s.</p>
+
+<h4 id="logging-out">Logging out</h4>
+
+<p>Your app may have a logout function which brings users back to a login screen. In this case you would want to revert Smooch to a pre-login state. You can do this by calling the <code class="prettyprint">logout</code> API.</p>
+
+<p>Calling <code class="prettyprint">logout</code> will disconnect your user from any <code class="prettyprint">userId</code> they were previously logged in with and it will remove any conversation history stored on the device. Logging out will <em>not</em> disable Smooch. While logged out, the user is free to start a new conversation but they will show up as if <code class="prettyprint">userId</code> was <a href="#omitting-the-userid">omitted</a> during Smooch initialization.</p>
+<pre class="highlight objective_c"><code><span class="p">[</span><span class="n">Smooch</span> <span class="nf">logout</span><span class="p">];</span>
+</code></pre>
+<pre class="highlight swift"><code><span class="kt">Smooch</span><span class="o">.</span><span class="nf">logout</span><span class="p">()</span>
+</code></pre>
+<pre class="highlight javascript"><code><span class="nx">Smooch</span><span class="p">.</span><span class="nx">logout</span><span class="p">();</span>
+</code></pre>
+<pre class="highlight java"><code><span class="n">Smooch</span><span class="o">.</span><span class="na">logout</span><span class="o">();</span>
+</code></pre>
+
+          <h2 id="authenticating-users-optional">Authenticating users (optional)</h2>
+
+<p>Provided you&rsquo;re <a href="#users-on-multiple-devices">assigning <code class="prettyprint">userId</code>s to your users</a>, you can authenticate users to Smooch by issuing signed <a href="http://jwt.io">JSON web token</a> (JWT) credentials. This option requires your app to be connected to your own secure web service, or to a 3rd party equivalent such as <a href="https://parse.com">parse.com</a>. There are JWT libraries available supporting a wide variety of popular languages and platforms.</p>
+
+<p>To issue JWTs:</p>
+
+<ol>
+<li><p>Generate a secret key for your Smooch app. You can do this from the <a href="https://app.smooch.io">Smooch dashboard</a> under the Settings tab.</p>
+
+<p><img alt="Secret Keys" src="../images/secret_keys.png" /></p></li>
+<li><p>Implement server side code to sign new JWTs using the key ID and secret provided. The JWT header must specify the key ID (<code class="prettyprint">kid</code>). The JWT body must specify a <code class="prettyprint">scope</code> of &lsquo;appUser&rsquo; and the <code class="prettyprint">userId</code> you&rsquo;ve assigned to the app user.</p>
+
+<p>A node.js sample is provided below:</p>
+<pre class="highlight plaintext"><code>var jwt = require('jsonwebtoken');
+var KEY_ID = '55e9f9bf7a0ce5ca2d429c17';
+var SECRET = 'BFJJ88naxc5PZNAMU9KpBNTR';
+
+var signJwt = function(userId) {
+    return jwt.sign({
+        scope: 'appUser',
+        userId: userId
+    },
+    SECRET,
+    {
+        headers: {
+            kid: KEY_ID
+        }
+    });
+}
+</code></pre></li>
+<li><p>Issue a JWT for each user. You should tie-in the generation and delivery of this JWT with any existing user login process used by your app.</p></li>
+<li><p>Specify the JWT when calling <code class="prettyprint">login</code> on the client:</p>
+<pre class="highlight objective_c"><code><span class="p">[</span><span class="n">Smooch</span> <span class="nf">login</span><span class="p">:</span><span class="n">yourUserId</span> <span class="nf">jwt</span><span class="p">:</span><span class="n">yourJwt</span><span class="p">];</span>
+</code></pre>
+<pre class="highlight swift"><code><span class="kt">Smooch</span><span class="o">.</span><span class="nf">login</span><span class="p">(</span><span class="n">yourUserId</span><span class="p">,</span> <span class="nv">jwt</span><span class="p">:</span><span class="n">yourJwt</span><span class="p">)</span>
+</code></pre>
+<pre class="highlight javascript"><code><span class="nx">Smooch</span><span class="p">.</span><span class="nx">login</span><span class="p">(</span><span class="nx">yourUserId</span><span class="p">,</span> <span class="nx">yourJwt</span><span class="p">);</span>
+</code></pre>
+<pre class="highlight java"><code><span class="n">Smooch</span><span class="o">.</span><span class="na">login</span><span class="o">(</span><span class="n">yourUserId</span><span class="o">,</span> <span class="n">yourJwt</span><span class="o">);</span>
+</code></pre></li>
+</ol>
+
+<p>Securing a <code class="prettyprint">userId</code> happens automatically by using a JWT for the first time. Once a JWT is used to authenticate an individual <code class="prettyprint">userId</code> with Smooch, that specific <code class="prettyprint">userId</code> will require a JWT credential in all future init or login calls made to Smooch.</p>
+
+<p>Once you&rsquo;ve issued a <code class="prettyprint">userId</code> and <code class="prettyprint">JWT</code> to a user for the first time you can save them to the device locally. Having done this, instead of making a separate call to <code class="prettyprint">login</code> you can provide Smooch with the <code class="prettyprint">userId</code> and <code class="prettyprint">JWT</code> parameters during app initialization:</p>
+<pre class="highlight objective_c"><code><span class="n">SKTSettings</span><span class="o">*</span> <span class="n">settings</span> <span class="o">=</span> <span class="p">[</span><span class="n">SKTSettings</span> <span class="nf">settingsWithAppToken</span><span class="p">:</span><span class="s">@"YOUR_APP_TOKEN"</span><span class="p">];</span>
+<span class="n">settings</span><span class="p">.</span><span class="n">userId</span> <span class="o">=</span> <span class="n">yourUserId</span><span class="p">;</span>
+<span class="n">settings</span><span class="p">.</span><span class="n">jwt</span> <span class="o">=</span> <span class="n">yourJwt</span><span class="p">;</span>
+<span class="p">[</span><span class="n">Smooch</span> <span class="nf">initWithSettings</span><span class="p">:</span><span class="n">settings</span><span class="p">];</span>
+</code></pre>
+<pre class="highlight swift"><code><span class="k">var</span> <span class="nv">settings</span> <span class="o">=</span> <span class="kt">SKTSettings</span><span class="p">(</span><span class="nv">appToken</span><span class="p">:</span> <span class="s">"YOUR_APP_TOKEN"</span><span class="p">)</span>
+<span class="n">settings</span><span class="o">.</span><span class="n">userId</span> <span class="o">=</span> <span class="n">yourUserId</span>
+<span class="n">settings</span><span class="o">.</span><span class="n">jwt</span> <span class="o">=</span> <span class="n">yourJwt</span>
+<span class="kt">Smooch</span><span class="o">.</span><span class="nf">initWithSettings</span><span class="p">(</span><span class="n">settings</span><span class="p">)</span>
+</code></pre>
+<pre class="highlight javascript"><code><span class="nx">Smooch</span><span class="p">.</span><span class="nx">init</span><span class="p">({</span>
+    <span class="na">appToken</span><span class="p">:</span> <span class="s1">'YOUR_APP_TOKEN'</span><span class="p">,</span>
+    <span class="na">userId</span><span class="p">:</span> <span class="nx">yourUserId</span><span class="p">,</span>
+    <span class="na">jwt</span><span class="p">:</span> <span class="nx">yourJwt</span>
+<span class="p">});</span>
+</code></pre>
+<pre class="highlight java"><code><span class="n">Settings</span> <span class="n">settings</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Settings</span><span class="o">(</span><span class="s">"YOUR_APP_TOKEN"</span><span class="o">);</span>
+<span class="n">settings</span><span class="o">.</span><span class="na">setUserId</span><span class="o">(</span><span class="n">yourUserId</span><span class="o">);</span>
+<span class="n">settings</span><span class="o">.</span><span class="na">setJWT</span><span class="o">(</span><span class="n">yourJwt</span><span class="o">);</span>
+<span class="n">Smooch</span><span class="o">.</span><span class="na">init</span><span class="o">(</span><span class="k">this</span><span class="o">,</span> <span class="n">settings</span><span class="o">);</span>
+</code></pre>
+
+<aside class="warning">
+If your secret key is ever compromised you can generate a new one. Smooch will accept a JWT as long as it contains all required fields and is signed with any of your Smooch app&rsquo;s valid secret keys. Deleting a secret key will invalidate all JWTs that were signed with it.
+</aside>
+
+          <h1 id="sending-action-buttons">Sending action buttons</h1>
+
+<p>You can send your users an action button with the following syntax:</p>
+<pre class="highlight plaintext"><code>%[Button label here](http://anyurl.com)
+</code></pre>
+
+<p>This works from any channel you configured to use with Smooch. </p>
+
+<p>Your action URL can be anything accepted by <a href="https://developer.apple.com/library/ios/documentation/UIKit/Reference/UIApplication_Class/#//apple_ref/occ/instm/UIApplication/openURL:"><code class="prettyprint">[[UIApplication sharedApplication] openURL:url];</code></a> So anything ranging from a web url, deep link into your app or app store link to ask for a review works like a charm. </p>
+
+<p><img alt="Action buttons" src="../images/action_button.png" /></p>
+
+<aside class="notice">
+Buttons will always be appended at the bottom of your message bubble.
+</aside>
+
+<h3 id="app-store-link">App store link</h3>
+
+<p>For an app store link, you can get your app&rsquo;s App Store ID by finding it on <a href="https://linkmaker.itunes.apple.com">Link Maker</a>. The URL of your app&rsquo;s page will have your App Store ID at the end. The link to use in the Action input will then be <code class="prettyprint">itms-apps://itunes.apple.com/app/id[_yourAppIdHere_]</code></p>
+
+<p><img alt="App Store ID" src="../images/appstoreid_from_url.png" /></p>
+
+          <h1 id="integrations">Integrations</h1>
+
+          <h2 id="email">Email</h2>
+
+<p>By default, all new Smooch apps will have an email channel enabled using the email address of the account owner.</p>
+
+<p>When users send you a message using Smooch, you will receive an email at the configured address(es). This e-mail contains the user&rsquo;s message, device information, and any profile information about the user that you captured in your app. You can respond to your user&rsquo;s message by responding directly to the email.</p>
+
+<p><img src="/images/email_with_context.png" alt="Drawing" style="width: 80%;"/></p>
+
+<h3 id="getting-help-from-your-team">Getting help from your team</h3>
+
+<p>If you want multiple team members to respond to your Smooch requests, you can specify multiple email addresses, or use a mailing list. Whenever a team member replies, the incoming email address and associated name will be used to determine the team member displayed to the user alongside the message.</p>
+
+          <h2 id="slack">Slack</h2>
+
+<p>Slack is a communication tool that combines the best things about chat, email and the web to group all of your team&rsquo;s conversations and workflow into one beautiful, searchable place.</p>
+
+<p>Smooch has a Slack integration that allows your team to effortlessly speak to your app&rsquo;s users, without leaving Slack.</p>
+
+<h3 id="configuring-slack">Configuring Slack</h3>
+
+<p>Click the &ldquo;Connect to Slack&rdquo; button on the Slack integration page.</p>
+
+<p><img style="width:50%; min-width:400px; max-width:800px;" src="/images/connecttoslack.png" alt="Connect to Slack"></p>
+
+<p>This will send you to a Slack page where you will choose which slack team you want to add Smooch to, and it will show you the set of permissions Smooch is requesting in order to function. Once all is done, you&rsquo;ll be redirected back to Smooch. That&rsquo;s it, you&rsquo;re up and running.</p>
+
+<p>When users send you messages, Smooch posts them to Slack. If it&rsquo;s a new conversation, a notification will appear in your dispatch channel in Slack. Smooch will choose <code class="prettyprint">#general</code> as your dispatch channel by default, and you can change this if you wish. The dispatch notification contains a link to a channel associated to the specific user that sent you the message.</p>
+
+<p>By default, Smooch will generate random channel names for users who start conversations. If you want the channel names to be relevant, you must add a <a href="#user-data">first name, last name or email to the user</a>.</p>
+
+<h3 id="talking-to-the-user">Talking to the User</h3>
+
+<p>From a channel associated with a user, you can get more information on the user and reply to their questions.</p>
+
+<p>The messages you send in this new channel are not visible to your user. We do this so that you can invite teammates to collaborate on the user&rsquo;s issue without exposing your internal conversation.</p>
+
+<p>When you&rsquo;re ready to send a message to the user, simply use Smooch&rsquo;s slash command:</p>
+<pre class="highlight plaintext"><code>/sk TYPE YOUR MESSAGE HERE
+</code></pre>
+
+<p>You&rsquo;ll get a notification in the channel confirming that the message was received.</p>
+
+<p>If you want to consult any <a href="#user-data">user data</a> that you&rsquo;ve associated with the user in order to aid the help process, simply use the command below:</p>
+<pre class="highlight plaintext"><code>/sk !profile
+</code></pre>
+
+          <h2 id="help-scout">Help Scout</h2>
+
+<p><a href="http://www.helpscout.net/">Help Scout</a> is a scalable, elegant and intuitive help desk solution. By connecting Smooch to Help Scout, you can manage in-app conversations you have with your users directly from Help Scout. This way, you can use the same system to handle your team&rsquo;s e-mail and in-app support channels. Unlike other Help Scout conversations, agent replies in conversations initiated by Smooch app users won&rsquo;t be sent by email, instead they will appear directly in the app.</p>
+
+<h3 id="configuring-help-scout-to-work-with-smooch">Configuring Help Scout to work with Smooch</h3>
+
+<p>Configuring Help Scout is super easy. All you have to do is copy/paste a Help Scout API key into our integration page.</p>
+
+<ol>
+<li><p>Log in to your Help Scout account, go to &ldquo;Your Profile&rdquo; -&gt; &ldquo;API Keys&rdquo; and generate an API key.</p></li>
+<li><p>On the Help Scout page in your <a href="https://app.smooch.io">Smooch admin area</a>, paste the API key into the field that says &ldquo;Paste API Key here.&rdquo;</p></li>
+<li><p>Now, pick the mailbox you want to receive app user messages in, and next time one of your users messages you using Smooch, the conversation will appear in the Help Scout mailbox.</p></li>
+</ol>
+
+<p><img style="width:50%; min-width:400px; max-width:800px;" src="/images/helpscout_settings.png" alt="Configure Help Scout integration page"></p>
+
+<h3 id="instant-messaging-from-a-help-scout-mailbox">Instant messaging from a Help Scout mailbox</h3>
+
+<p>You can change or delete the Help Scout mailbox that Smooch sends messages to, but you should note that conversations will not automatically migrate to the new mailbox. You must move the conversations you wish to have in the new mailbox via the Help Scout UI. Otherwise they will continue in the previously configured mailbox. Update your settings before deleting a Help Scout mailbox. If the mailbox configured on Smooch no longer exists, messages will be lost.</p>
+
+          <h2 id="hipchat">HipChat</h2>
+
+<p>HipChat is a team-based chat tool that helps to group all of your team&rsquo;s conversations and workflow into one beautiful, searchable place.</p>
+
+<p>Smooch has a HipChat integration that allows your team to communicate with your app&rsquo;s users, without leaving HipChat.</p>
+
+<h3 id="configuring-hipchat">Configuring HipChat</h3>
+
+<h4 id="step-1-authorize-smooch-so-that-it-can-talk-to-your-hipchat">Step 1. Authorize Smooch so that it can talk to your HipChat</h4>
+
+<p><br/>
+<img style="width:50%; min-width:400px; max-width:800px;" src="/images/hipchat_smooch_integration.png" alt="HipChat integration"></p>
+
+<h4 id="step-2">Step 2. &hellip;</h4>
+
+<p><img alt="There is no Step 2" src="../images/step_2.png" />
+<br/></p>
+
+<p>HipChat Connect has allowed Smooch to integrate into HipChat in some awesome ways. 
+<br/>
+You can easily view your active conversations and user profiles at a glance.</p>
+
+<p><img alt="At a glance" src="../images/hipchat_glance.png" />
+<br/></p>
+
+<p>We&rsquo;ve also added some handy options to the context menu so that you can easily use Smooch&rsquo;s features directly within HipChat.</p>
+
+<p><img alt="HipChat actions" src="../images/hipchat_actions.png" /></p>
+
+<p>This makes adding internal notes for fellow colleagues really easy.</p>
+
+<p><img style="width:50%; min-width:400px; max-width:800px;" src="/images/hipchat_note.png" alt="Note"></p>
+
+<p>And you can send your users action buttons through an interface we baked specially for HipChat.</p>
+
+<p><br/>
+<img style="width:50%; min-width:400px; max-width:800px;" src="/images/hipchat_add_action.png" alt="HipChat add action"></p>
+
+          <h2 id="zendesk">Zendesk</h2>
+
+<p>Zendesk is a CRM platform specialized in managing support tickets. Our Zendesk integration combines all the advantages of in-app messaging with a powerful CRM back-end.</p>
+
+<h3 id="configuring-zendesk-ticketing">Configuring Zendesk ticketing</h3>
+
+<p>Configuring Smooch to communicate with Zendesk is easy. Go to your app settings on the Smooch admin page, and in the Zendesk settings, enter your Zendesk subdomain and click on the authenticate button.</p>
+
+<p><img style="width:50%; min-width:400px; max-width:800px;" src="/images/zendesk_integration.png" alt="Configure Zendesk integration page"/></p>
+
+<p>In order to maintain all your interactions with an app user under a single Zendesk End-user profile, it&rsquo;s important to <a href="#user-data">set the email</a> of your user in your app&rsquo;s Smooch integration.</p>
+
+<h4 id="configuring-agent-images">Configuring agent images</h4>
+
+<p>You can set an agent&rsquo;s image in your app (as pictured below) by creating a <a href="http://www.gravatar.com/">Gravatar</a> image associated with the agent&rsquo;s email address.
+<img style="width:50%; min-width:200px; max-width:400px;" src="/images/agent_thumb.png" alt="Set agent images"/></p>
+
+<h4 id="working-with-zendesk-email-signatures">Working with Zendesk email signatures</h4>
+
+<p>Smooch automagically removes agent&rsquo;s personal signatures from messages. Global signatures can be set, but must be prefixed with <code class="prettyprint">--</code>, if they aren’t, you’ll see them appear in SK message bubbles, and it can be unsightly.
+<img style="width:50%; min-width:200px; max-width:400px;" src="/images/unsightly_signature.png" alt="Oops, how unsightly"/></p>
+
+<h4 id="optional-additional-information-on-configuration">Optional additional information on Configuration</h4>
+
+<p>Once you are authenticated with your Zendesk app, Smooch will automatically configure targets and triggers so that your Zendesk agents can communicate with your Smooch app users.</p>
+
+<p>During the configuration process any existing triggers in your Zendesk settings will be modified to not email the End-user if the ticket is tagged &ldquo;smooch&rdquo;. We do this to avoid duplicating the conversation, and to remove any reason for the app user to leave your app to respond via email.</p>
+
+<p>It&rsquo;s suggested that you don&rsquo;t modify the targets and triggers that Smooch configures for you on Zendesk. However, if you do, and anything ever goes wrong, it&rsquo;s easy to fix. Just return to your app settings on the Smooch admin page and in the Zendesk settings click &ldquo;Remove Integration.&rdquo; Re-adding the integration will remove previously configured Smooch targets and triggers and refresh your configuration.</p>
+
+<p>Note: Smooch only ever configures one target and trigger per a Zendesk subdomain. In the event that multiple apps, or even mutliple Smooch accounts are authorized for a Zendesk subdomain, the triggers and targets will not be removed until all Smooch apps have had the Zendesk integration removed.</p>
+
+<h3 id="rate-limiting">Rate Limiting</h3>
+
+<p>Zendesk limits each account to 200 requests per a minute (globally). Additionally, they only allow 15 comments to be made on each individual ticket (regardless of whether the comment is an agent or app user) within a 10 minute period.</p>
+
+<p>In the unlikely event that a conversation surpasses the rate limit, the agent will recieve a message in the Zendesk UI saying as much, and preventing the ticket from being updated for a certain period of time, usually around 6 minutes. Your app user&rsquo;s messages will be queued up and sent after the time period specified by Zendesk.</p>
+
+<p>To reduce the likelihood of you bumping up against the rate limit, Smooch batches together all messages sent from the app user within a 5 second period into a single comment.</p>
+
+          <h2 id="connecting-to-your-crm">Connecting to your CRM</h2>
+
+<p>Smooch&rsquo;s been designed to fit into your existing workflow so you can focus on speaking to your users and take advantage of whatever medium makes you most effective.</p>
+
+<p>In addition to deep integration with <a href="#zendesk">Zendesk</a>, since Smooch uses e-mail to manage its communication, it&rsquo;s easy to use your favourite CRM to manage incoming conversations as tickets if you want to benefit from the additional tools this allows.</p>
+
+<ol>
+<li><p>Take note of the e-mail address that the CRM uses to receive new support requests.</p></li>
+<li><p>Set Smooch&rsquo;s forwarding address to the address you noted in step 1. </p></li>
+<li><p>Turn off any kind of signatures or annotations in your CRM to ensure that users receive a concise chat bubble when you reply.</p></li>
+</ol>
+
+          <h1 id="whispers">Whispers</h1>
+
+<p>Smooch allows you to reach out to your users at scale so that you can start conversations with them about anything that matters to your app, even if they aren&rsquo;t in need of service or support. We call this feature &ldquo;Whispers&rdquo; and it allows you to automatically send a message to a targeted group of users at exactly the right time.</p>
+
+<p>To help get you started, we&rsquo;ve built in 3 basic templates and also allow you to create your own using any custom metadata that you&rsquo;re capturing with the <code class="prettyprint">Smooch User</code> API.</p>
+
+<ul>
+<li><p><em>Welcome Whisper</em> : Welcome new users to your app by starting a conversation where you can answer pressing questions and get initial feedback.</p></li>
+<li><p><em>Re-Engage Users</em> : Send a message to users who were last seen using the app at least 7 days ago. </p></li>
+<li><p><em>Announcement</em> : Send a message to all users when they launch the app.</p></li>
+</ul>
+
+<p>You can start from any of these templates and customize it to meet your needs. You can also create a custom Whisper from scratch and go beyond these templates. You can use Whispers to ask for reviews from your most engaged users at the right time, you can notify users of older versions of your app about new versions, and more.</p>
+
+<h2 id="how-do-whispers-work">How do Whispers work</h2>
+
+<p>You create Whispers from within the <a href="https://app.smooch.io">Smooch dashboard</a> by specifying which users should receive your message, the message you&rsquo;d like to send to your users and the event that should trigger delivery of this message. For example, to create a Whisper that would check in to see how users are doing 2 days after installing an app, you&rsquo;d create a custom Whisper with these settings:</p>
+
+<p><img alt="Whisper creation form" src="../images/create_whisper.png" /></p>
+
+<h3 id="targeting-a-group-of-users">Targeting a group of users</h3>
+
+<p>You can target your users based on any information that you&rsquo;ve stored using the <code class="prettyprint">Smooch User</code> API. We also provide several built-in properties that you can use without instrumenting your app with calls to <code class="prettyprint">Smooch User</code> class.</p>
+
+<ul>
+<li><p><em>All users</em> : Send the Whisper to <em>everyone</em> that has your app. Whispers that target everyone must be <a href="#when-are-whispers-sent">linked to an event</a>.</p></li>
+<li><p><em>Signed Up</em> : Send the message before/after a specified number of days. For example, you can use this to send a message to all users who&rsquo;ve been using your app for less than a day or more than a week. See <a href="#setting-the-signed-up-date">here</a> for more information.</p></li>
+<li><p><em>Last Seen</em> : Send the message based on when the user last interacted with your app. This value is updated automatically each time a user launches your app.</p></li>
+<li><p><em>App Version</em> : Send the message to users who are using (or not using) a specific version of your app. The value for this property is taken from the CFBundleShortVersionString key in your app&rsquo;s info.plist file, and is updated each time the user launches your app.</p></li>
+</ul>
+
+<p>In order to create Whispers based on properties you&rsquo;ve defined using the <code class="prettyprint">Smooch User</code> class, you&rsquo;ll need to run your app and ensure that at least 1 of your users was tagged with the property you want to base your Whisper on. For more information on using custom properties, read our <a href="#user-data">documentation on the subject</a>.</p>
+
+<h3 id="personalizing-the-message-text">Personalizing the message text</h3>
+
+<p>You can personalize the message that&rsquo;s being sent with the first or last name of the user. To do this, simply use the syntax <code class="prettyprint">{{firstName || fallback }}</code> when creating your message. If the user&rsquo;s firstName hasn&rsquo;t been set by your code through the <code class="prettyprint">Smooch User</code> class then the placeholder will be replaced with the string specified as <code class="prettyprint">fallback</code>.</p>
+
+          <h2 id="when-are-whispers-sent">When are Whispers sent</h2>
+
+<p>Whispers can be sent either when a specified event occurs in your app or when a user&rsquo;s profile information matches the criteria of the target group.</p>
+
+<p>Whispers that are based on custom events defined by you in your app are tied to the execution of the Smooch <code class="prettyprint">track:</code> method. When <code class="prettyprint">track:</code> is called, Smooch will check to see if the associated Whisper has already been seen by this user. If it hasn&rsquo;t, the Whisper will be immediately presented to the user through an in-app notification that leads to the messaging interface when tapped. When you create a Whisper, Smooch will display a preview of this in-app notification.</p>
+<pre class="highlight java"><code><span class="n">Smooch</span><span class="o">.</span><span class="na">track</span><span class="o">(</span><span class="s">"item-in-cart"</span><span class="o">);</span>
+</code></pre>
+<pre class="highlight javascript"><code><span class="nx">Smooch</span><span class="p">.</span><span class="nx">track</span><span class="p">(</span><span class="s1">'item-in-cart'</span><span class="p">);</span>
+</code></pre>
+<pre class="highlight objective_c"><code><span class="p">[</span><span class="n">Smooch</span> <span class="nf">track</span><span class="p">:</span><span class="s">@"user-on-promopage"</span><span class="p">];</span>
+</code></pre>
+<pre class="highlight swift"><code><span class="kt">Smooch</span><span class="o">.</span><span class="nf">track</span><span class="p">(</span><span class="s">"user-on-promopage"</span><span class="p">);</span>
+</code></pre>
+
+<p>If the Whisper is not tied to an event, Smooch will monitor your userbase for changes and dispatch Whispers when a user&rsquo;s properties make them a fit for the target group of your Whisper. In many cases, this occurs when the user is not using your app. For instance, if you elect to send a Whisper to new users after 1 day has elapsed, Smooch will deliver the message approximately 24 hours after the user first used your app. If you choose to use this powerful method of Whisper delivery, ensure that you&rsquo;ve enabled push notifications for your app in Smooch. With push enabled, your users will receive a message that will bring them back into the conversation, even if they&rsquo;re not using your app.</p>
+
+<p>Note that users need to be prompted and accept to receive push notifications. To make sure we don&rsquo;t prompt the user at a bad moment, Smooch will only request permission to send push notifications after a user sends his first message and only if the prompt wasn&rsquo;t shown earlier by your app. To get the full power of Whispers, we recommend you prompt for push permission as early as possible.</p>
+
+          <h2 id="adding-user-actions-to-a-whisper">Adding user actions to a Whisper</h2>
+
+<p>You can prompt your users to take actions by adding action buttons to your Whisper. Clicking on &lsquo;Add an action&rsquo; will open up a new input box where you can specify the button text and what action to take when the user clicks on the button.</p>
+
+<p><img alt="Whisper add action" src="../images/whisper_action.png" /></p>
+
+<p>For more information on whisper actions, see <a href="#sending-action-buttons">this section</a> of the docs.</p>
+
+          <h2 id="managing-whispers">Managing Whispers</h2>
+
+<p><img alt="Manage Whispers" src="../images/images/whisper_manage.png" /></p>
+
+<p>Once you&rsquo;ve created a Whisper you can manage it from within the Smooch web interface. By clicking on the &ldquo;Whispers&rdquo; link in the navigation bar, you&rsquo;ll be presented with a list of Whispers as well as the number of users who have been exposed to them while running your app.</p>
+
+<p>You can pause Whispers at any time. When you do so, the Whisper will not be shown to any more users until you mark it as active by clicking &ldquo;Resume&rdquo;.</p>
+
+          <h1 id="localization">Localization</h1>
+
+<p>Every string you see in Smooch can be <a href="#strings-customization">customized</a> and localized. Smooch provides a few languages out of the box, but <a href="#adding-more-languages">adding new languages</a> is easy to do. When localizing strings, Smooch looks for SmoochLocalizable.strings in your app bundle first then in the Smooch bundle, enabling you to customize any strings and add support for other languages.</p>
+
+<h2 id="enabling-localization-in-your-app">Enabling Localization in your app</h2>
+
+<p>For Smooch to display a language other than English, your app needs to first enable support for that language. You can enable a second language in your Xcode project settings:</p>
+
+<p><img alt="Enable Localization" src="../images/add_language.png" /></p>
+
+<p>Once you have this, Smooch will display itself in the device language for the supported language. English, French, Spanish, Chinese traditional, Arabic, German, Persian, Japanese and Finnish are currently included. See how to support more languages in <a href="#adding-more-languages">Adding more languages</a></p>
+
+<aside class="warning">
+Localization is subject to caching. If you can&rsquo;t see your changes, cleaning your project, resetting the simulator, deleting your app from your test devices are good mesures.
+</aside>
+
+<h2 id="adding-more-languages">Adding more languages</h2>
+
+<p>To enable other languages beside the provided ones, first copy the english SmoochLocalizable.strings file from the Smooch bundle to the corresponding .lproj folder for that language. Then, translate the values to match that language.</p>
+
+<p>If you translate Smooch&rsquo;s strings to a language not currently supported, we encourage you to share it with us so that every Smooch user can benefit from it. You can do so by <a href="https://github.com/smooch/smooch-ios/fork">forking</a> our GitHub repo and creating a pull request, or just send us your string file at <a href="mailto:help@smooch.io">help@smooch.io</a></p>
+
+          <h1 id="customization">Customization</h1>
+
+<h2 id="strings-customization">Strings customization</h2>
+
+<p>Smooch lets you customize any strings it displays via Apple&rsquo;s localization mechanism.
+Simply add an empty string file named SmoochLocalizable.strings in your Xcode project and specify new values for the keys present in the SmoochLocalizable.strings available in the Smooch bundle.</p>
+
+<p>To enable string customization across languages, make sure you &ldquo;Localize&rdquo; your SmoochLocalizable.strings file in Xcode.</p>
+
+<p><img alt="Localize SmoochLocalizable.strings" src="../images/localize.png" /></p>
+
+          <h2 id="styling-the-conversation-interface">Styling the Conversation Interface</h2>
+
+<p>The style of the conversation user interface can be controlled through two techniques:</p>
+
+<ul>
+<li>Using the <code class="prettyprint">UIAppearance</code> proxy of <code class="prettyprint">UINavigationBar</code> to style the navigation bar&rsquo;s color and appearance.</li>
+<li>The <code class="prettyprint">SKTSettings</code> class provides access to the status bar and the color of the message bubbles.</li>
+</ul>
+
+<p>Suppose you wanted the conversation UI to have a black navigation bar and red message bubbles. First, you&rsquo;d use <code class="prettyprint">UINavigationBar</code>&rsquo;s appearance proxy to set up the navigation bar. Then, you&rsquo;d use SKTSettings to finish styling the UI:</p>
+<pre class="highlight objective_c"><code><span class="n">SKTSettings</span><span class="o">*</span> <span class="n">settings</span> <span class="o">=</span> <span class="p">[</span><span class="n">SKTSettings</span> <span class="nf">settingsWithAppToken</span><span class="p">:</span><span class="s">@"YOURAPP_TOKEN"</span><span class="p">];</span>
+<span class="n">settings</span><span class="p">.</span><span class="n">conversationAccentColor</span> <span class="o">=</span> <span class="p">[</span><span class="n">UIColor</span> <span class="nf">redColor</span><span class="p">];</span>
+<span class="n">settings</span><span class="p">.</span><span class="n">conversationStatusBarStyle</span> <span class="o">=</span> <span class="n">UIStatusBarStyleLightContent</span><span class="p">;</span>
+
+<span class="p">[[</span><span class="n">UINavigationBar</span> <span class="nf">appearance</span><span class="p">]</span> <span class="nf">setBarTintColor</span><span class="p">:[</span><span class="n">UIColor</span> <span class="nf">blackColor</span><span class="p">]];</span>
+<span class="p">[[</span><span class="n">UINavigationBar</span> <span class="nf">appearance</span><span class="p">]</span> <span class="nf">setTintColor</span><span class="p">:[</span><span class="n">UIColor</span> <span class="nf">redColor</span><span class="p">]];</span>
+<span class="p">[[</span><span class="n">UINavigationBar</span> <span class="nf">appearance</span><span class="p">]</span> <span class="nf">setTitleTextAttributes</span><span class="p">:</span><span class="err">@</span><span class="p">{</span> <span class="nf">NSForegroundColorAttributeName</span> <span class="p">:</span> <span class="p">[</span><span class="n">UIColor</span> <span class="nf">redColor</span><span class="p">]</span> <span class="p">}];</span>
+</code></pre>
+<pre class="highlight swift"><code><span class="k">var</span> <span class="nv">settings</span> <span class="o">=</span> <span class="kt">SKTSettings</span><span class="p">(</span><span class="nv">appToken</span><span class="p">:</span> <span class="s">"YOUR_APP_TOKEN"</span><span class="p">)</span>
+<span class="n">settings</span><span class="o">.</span><span class="n">conversationAccentColor</span> <span class="o">=</span> <span class="kt">UIColor</span><span class="o">.</span><span class="nf">redColor</span><span class="p">();</span>
+<span class="n">settings</span><span class="o">.</span><span class="n">conversationStatusBarStyle</span> <span class="o">=</span> <span class="kt">UIStatusBarStyle</span><span class="o">.</span><span class="kt">LightContent</span><span class="p">;</span>
+
+<span class="kt">UINavigationBar</span><span class="o">.</span><span class="nf">appearance</span><span class="p">()</span><span class="o">.</span><span class="n">barTintColor</span> <span class="o">=</span> <span class="kt">UIColor</span><span class="o">.</span><span class="nf">blackColor</span><span class="p">()</span>
+<span class="kt">UINavigationBar</span><span class="o">.</span><span class="nf">appearance</span><span class="p">()</span><span class="o">.</span><span class="n">tintColor</span> <span class="o">=</span> <span class="kt">UIColor</span><span class="o">.</span><span class="nf">redColor</span><span class="p">()</span>
+<span class="kt">UINavigationBar</span><span class="o">.</span><span class="nf">appearance</span><span class="p">()</span><span class="o">.</span><span class="n">titleTextAttributes</span> <span class="o">=</span> <span class="p">[</span> <span class="kt">NSForegroundColorAttributeName</span> <span class="p">:</span> <span class="kt">UIColor</span><span class="o">.</span><span class="nf">redColor</span><span class="p">()]</span>
+</code></pre>
+
       </div>
       <div class="dark-box">
           <div class="lang-selector">
