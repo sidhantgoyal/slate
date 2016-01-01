@@ -1134,7 +1134,7 @@ body {
 /* line 71, /Users/sgoyal4/office/slate/source/stylesheets/custom.scss */
 .tocify-wrapper .search-results {
   background: none;
-  box-shadow: inset 0 -1px 0px #3da1e0;
+  box-shadow: inset 0 -1px 0px #9ed6fa;
   border: none; }
 
 /* line 77, /Users/sgoyal4/office/slate/source/stylesheets/custom.scss */
@@ -1222,7 +1222,7 @@ body {
 
 /* line 160, /Users/sgoyal4/office/slate/source/stylesheets/custom.scss */
 .lang-selector a:not(:last-child) {
-  border-bottom: 1px solid #3da1e0; }
+  border-bottom: 1px solid #9ed6fa; }
 
 /* line 164, /Users/sgoyal4/office/slate/source/stylesheets/custom.scss */
 .lang-selector a.active {
@@ -1534,7 +1534,7 @@ beta:after {
   -ms-user-select: none;
   user-select: none;
   background-image: none;
-  border: 2px solid #3da1e0;
+  border: 2px solid #9ed6fa;
   border-radius: 4px; }
 
 /* line 487, /Users/sgoyal4/office/slate/source/stylesheets/custom.scss */
@@ -1570,7 +1570,7 @@ beta:after {
 
 /* line 518, /Users/sgoyal4/office/slate/source/stylesheets/custom.scss */
 .separator {
-  border-top: 1px solid #3da1e0; }
+  border-top: 1px solid #9ed6fa; }
 
 /* line 522, /Users/sgoyal4/office/slate/source/stylesheets/custom.scss */
 .platform-nav {
