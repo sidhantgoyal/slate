@@ -516,21 +516,22 @@ beta:after {
 
 /* line 518, /Users/sgoyal4/office/slate/source/stylesheets/custom.scss */
 .separator {
+  display: none;
   border-top: 1px solid #9ed6fa; }
 
-/* line 522, /Users/sgoyal4/office/slate/source/stylesheets/custom.scss */
+/* line 523, /Users/sgoyal4/office/slate/source/stylesheets/custom.scss */
 .platform-nav {
   margin-bottom: 36px; }
 
-/* line 526, /Users/sgoyal4/office/slate/source/stylesheets/custom.scss */
+/* line 527, /Users/sgoyal4/office/slate/source/stylesheets/custom.scss */
 .separator-top {
   margin-top: 10px; }
 
-/* line 530, /Users/sgoyal4/office/slate/source/stylesheets/custom.scss */
+/* line 531, /Users/sgoyal4/office/slate/source/stylesheets/custom.scss */
 .clear {
   clear: both; }
 
-/* line 534, /Users/sgoyal4/office/slate/source/stylesheets/custom.scss */
+/* line 535, /Users/sgoyal4/office/slate/source/stylesheets/custom.scss */
 .arrow-down {
   width: 0;
   height: 0;
@@ -541,15 +542,15 @@ beta:after {
   position: absolute;
   right: 15px; }
 
-/* line 546, /Users/sgoyal4/office/slate/source/stylesheets/custom.scss */
+/* line 547, /Users/sgoyal4/office/slate/source/stylesheets/custom.scss */
 .badge img {
   display: inline-block; }
 
-/* line 550, /Users/sgoyal4/office/slate/source/stylesheets/custom.scss */
+/* line 551, /Users/sgoyal4/office/slate/source/stylesheets/custom.scss */
 .half-width-img img {
   max-width: 50%; }
 
-/* line 554, /Users/sgoyal4/office/slate/source/stylesheets/custom.scss */
+/* line 555, /Users/sgoyal4/office/slate/source/stylesheets/custom.scss */
 .header-primary {
   height: 94px;
   padding-top: 22px;
