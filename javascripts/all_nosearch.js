@@ -1,9 +1,182 @@
-!function(){if("ontouchstart"in window){var t,e,n,i,o,s,r={};t=function(t,e){return Math.abs(t[0]-e[0])>5||Math.abs(t[1]-e[1])>5},e=function(t){this.startXY=[t.touches[0].clientX,t.touches[0].clientY],this.threshold=!1},n=function(e){return this.threshold?!1:void(this.threshold=t(this.startXY,[e.touches[0].clientX,e.touches[0].clientY]))},i=function(e){if(!this.threshold&&!t(this.startXY,[e.changedTouches[0].clientX,e.changedTouches[0].clientY])){var n=e.changedTouches[0],i=document.createEvent("MouseEvents");i.initMouseEvent("click",!0,!0,window,0,n.screenX,n.screenY,n.clientX,n.clientY,!1,!1,!1,!1,0,null),i.simulated=!0,e.target.dispatchEvent(i)}},o=function(t){var e=Date.now(),n=e-r.time,i=t.clientX,o=t.clientY,a=[Math.abs(r.x-i),Math.abs(r.y-o)],c=s(t.target,"A")||t.target,l=c.nodeName,h="A"===l,u=window.navigator.standalone&&h&&t.target.getAttribute("href");return r.time=e,r.x=i,r.y=o,(!t.simulated&&(500>n||1500>n&&a[0]<50&&a[1]<50)||u)&&(t.preventDefault(),t.stopPropagation(),!u)?!1:(u&&(window.location=c.getAttribute("href")),void(c&&c.classList&&(c.classList.add("energize-focus"),window.setTimeout(function(){c.classList.remove("energize-focus")},150))))},s=function(t,e){for(var n=t;n!==document.body;){if(!n||n.nodeName===e)return n;n=n.parentNode}return null},document.addEventListener("touchstart",e,!1),document.addEventListener("touchmove",n,!1),document.addEventListener("touchend",i,!1),document.addEventListener("click",o,!0)}}(),/*!
+/**
+ * energize.js v0.1.0
+ *
+ * Speeds up click events on mobile devices.
+ * https://github.com/davidcalhoun/energize.js
+ */
+
+
+(function() {  // Sandbox
+  /**
+   * Don't add to non-touch devices, which don't need to be sped up
+   */
+  if(!('ontouchstart' in window)) return;
+
+  var lastClick = {},
+      isThresholdReached, touchstart, touchmove, touchend,
+      click, closest;
+  
+  /**
+   * isThresholdReached
+   *
+   * Compare touchstart with touchend xy coordinates,
+   * and only fire simulated click event if the coordinates
+   * are nearby. (don't want clicking to be confused with a swipe)
+   */
+  isThresholdReached = function(startXY, xy) {
+    return Math.abs(startXY[0] - xy[0]) > 5 || Math.abs(startXY[1] - xy[1]) > 5;
+  };
+
+  /**
+   * touchstart
+   *
+   * Save xy coordinates when the user starts touching the screen
+   */
+  touchstart = function(e) {
+    this.startXY = [e.touches[0].clientX, e.touches[0].clientY];
+    this.threshold = false;
+  };
+
+  /**
+   * touchmove
+   *
+   * Check if the user is scrolling past the threshold.
+   * Have to check here because touchend will not always fire
+   * on some tested devices (Kindle Fire?)
+   */
+  touchmove = function(e) {
+    // NOOP if the threshold has already been reached
+    if(this.threshold) return false;
+
+    this.threshold = isThresholdReached(this.startXY, [e.touches[0].clientX, e.touches[0].clientY]);
+  };
+
+  /**
+   * touchend
+   *
+   * If the user didn't scroll past the threshold between
+   * touchstart and touchend, fire a simulated click.
+   *
+   * (This will fire before a native click)
+   */
+  touchend = function(e) {
+    // Don't fire a click if the user scrolled past the threshold
+    if(this.threshold || isThresholdReached(this.startXY, [e.changedTouches[0].clientX, e.changedTouches[0].clientY])) {
+      return;
+    }
+    
+    /**
+     * Create and fire a click event on the target element
+     * https://developer.mozilla.org/en/DOM/event.initMouseEvent
+     */
+    var touch = e.changedTouches[0],
+        evt = document.createEvent('MouseEvents');
+    evt.initMouseEvent('click', true, true, window, 0, touch.screenX, touch.screenY, touch.clientX, touch.clientY, false, false, false, false, 0, null);
+    evt.simulated = true;   // distinguish from a normal (nonsimulated) click
+    e.target.dispatchEvent(evt);
+  };
+  
+  /**
+   * click
+   *
+   * Because we've already fired a click event in touchend,
+   * we need to listed for all native click events here
+   * and suppress them as necessary.
+   */  
+  click = function(e) {
+    /**
+     * Prevent ghost clicks by only allowing clicks we created
+     * in the click event we fired (look for e.simulated)
+     */
+    var time = Date.now(),
+        timeDiff = time - lastClick.time,
+        x = e.clientX,
+        y = e.clientY,
+        xyDiff = [Math.abs(lastClick.x - x), Math.abs(lastClick.y - y)],
+        target = closest(e.target, 'A') || e.target,  // needed for standalone apps
+        nodeName = target.nodeName,
+        isLink = nodeName === 'A',
+        standAlone = window.navigator.standalone && isLink && e.target.getAttribute("href");
+    
+    lastClick.time = time;
+    lastClick.x = x;
+    lastClick.y = y;
+
+    /**
+     * Unfortunately Android sometimes fires click events without touch events (seen on Kindle Fire),
+     * so we have to add more logic to determine the time of the last click.  Not perfect...
+     *
+     * Older, simpler check: if((!e.simulated) || standAlone)
+     */
+    if((!e.simulated && (timeDiff < 500 || (timeDiff < 1500 && xyDiff[0] < 50 && xyDiff[1] < 50))) || standAlone) {
+      e.preventDefault();
+      e.stopPropagation();
+      if(!standAlone) return false;
+    }
+
+    /** 
+     * Special logic for standalone web apps
+     * See http://stackoverflow.com/questions/2898740/iphone-safari-web-app-opens-links-in-new-window
+     */
+    if(standAlone) {
+      window.location = target.getAttribute("href");
+    }
+
+    /**
+     * Add an energize-focus class to the targeted link (mimics :focus behavior)
+     * TODO: test and/or remove?  Does this work?
+     */
+    if(!target || !target.classList) return;
+    target.classList.add("energize-focus");
+    window.setTimeout(function(){
+      target.classList.remove("energize-focus");
+    }, 150);
+  };
+
+  /**
+   * closest
+   * @param {HTMLElement} node current node to start searching from.
+   * @param {string} tagName the (uppercase) name of the tag you're looking for.
+   *
+   * Find the closest ancestor tag of a given node.
+   *
+   * Starts at node and goes up the DOM tree looking for a
+   * matching nodeName, continuing until hitting document.body
+   */
+  closest = function(node, tagName){
+    var curNode = node;
+
+    while(curNode !== document.body) {  // go up the dom until we find the tag we're after
+      if(!curNode || curNode.nodeName === tagName) { return curNode; } // found
+      curNode = curNode.parentNode;     // not found, so keep going up
+    }
+    
+    return null;  // not found
+  };
+
+  /**
+   * Add all delegated event listeners
+   * 
+   * All the events we care about bubble up to document,
+   * so we can take advantage of event delegation.
+   *
+   * Note: no need to wait for DOMContentLoaded here
+   */
+  document.addEventListener('touchstart', touchstart, false);
+  document.addEventListener('touchmove', touchmove, false);
+  document.addEventListener('touchend', touchend, false);
+  document.addEventListener('click', click, true);  // TODO: why does this use capture?
+  
+})();
+/*!
  * imagesLoaded PACKAGED v3.1.8
  * JavaScript is all like "You images are done yet or what?"
  * MIT License
  */
-function(){function t(){}function e(t,e){for(var n=t.length;n--;)if(t[n].listener===e)return n;return-1}function n(t){return function(){return this[t].apply(this,arguments)}}var i=t.prototype,o=this,s=o.EventEmitter;i.getListeners=function(t){var e,n,i=this._getEvents();if("object"==typeof t){e={};for(n in i)i.hasOwnProperty(n)&&t.test(n)&&(e[n]=i[n])}else e=i[t]||(i[t]=[]);return e},i.flattenListeners=function(t){var e,n=[];for(e=0;t.length>e;e+=1)n.push(t[e].listener);return n},i.getListenersAsObject=function(t){var e,n=this.getListeners(t);return n instanceof Array&&(e={},e[t]=n),e||n},i.addListener=function(t,n){var i,o=this.getListenersAsObject(t),s="object"==typeof n;for(i in o)o.hasOwnProperty(i)&&-1===e(o[i],n)&&o[i].push(s?n:{listener:n,once:!1});return this},i.on=n("addListener"),i.addOnceListener=function(t,e){return this.addListener(t,{listener:e,once:!0})},i.once=n("addOnceListener"),i.defineEvent=function(t){return this.getListeners(t),this},i.defineEvents=function(t){for(var e=0;t.length>e;e+=1)this.defineEvent(t[e]);return this},i.removeListener=function(t,n){var i,o,s=this.getListenersAsObject(t);for(o in s)s.hasOwnProperty(o)&&(i=e(s[o],n),-1!==i&&s[o].splice(i,1));return this},i.off=n("removeListener"),i.addListeners=function(t,e){return this.manipulateListeners(!1,t,e)},i.removeListeners=function(t,e){return this.manipulateListeners(!0,t,e)},i.manipulateListeners=function(t,e,n){var i,o,s=t?this.removeListener:this.addListener,r=t?this.removeListeners:this.addListeners;if("object"!=typeof e||e instanceof RegExp)for(i=n.length;i--;)s.call(this,e,n[i]);else for(i in e)e.hasOwnProperty(i)&&(o=e[i])&&("function"==typeof o?s.call(this,i,o):r.call(this,i,o));return this},i.removeEvent=function(t){var e,n=typeof t,i=this._getEvents();if("string"===n)delete i[t];else if("object"===n)for(e in i)i.hasOwnProperty(e)&&t.test(e)&&delete i[e];else delete this._events;return this},i.removeAllListeners=n("removeEvent"),i.emitEvent=function(t,e){var n,i,o,s,r=this.getListenersAsObject(t);for(o in r)if(r.hasOwnProperty(o))for(i=r[o].length;i--;)n=r[o][i],n.once===!0&&this.removeListener(t,n.listener),s=n.listener.apply(this,e||[]),s===this._getOnceReturnValue()&&this.removeListener(t,n.listener);return this},i.trigger=n("emitEvent"),i.emit=function(t){var e=Array.prototype.slice.call(arguments,1);return this.emitEvent(t,e)},i.setOnceReturnValue=function(t){return this._onceReturnValue=t,this},i._getOnceReturnValue=function(){return this.hasOwnProperty("_onceReturnValue")?this._onceReturnValue:!0},i._getEvents=function(){return this._events||(this._events={})},t.noConflict=function(){return o.EventEmitter=s,t},"function"==typeof define&&define.amd?define("eventEmitter/EventEmitter",[],function(){return t}):"object"==typeof module&&module.exports?module.exports=t:this.EventEmitter=t}.call(this),function(t){function e(e){var n=t.event;return n.target=n.target||n.srcElement||e,n}var n=document.documentElement,i=function(){};n.addEventListener?i=function(t,e,n){t.addEventListener(e,n,!1)}:n.attachEvent&&(i=function(t,n,i){t[n+i]=i.handleEvent?function(){var n=e(t);i.handleEvent.call(i,n)}:function(){var n=e(t);i.call(t,n)},t.attachEvent("on"+n,t[n+i])});var o=function(){};n.removeEventListener?o=function(t,e,n){t.removeEventListener(e,n,!1)}:n.detachEvent&&(o=function(t,e,n){t.detachEvent("on"+e,t[e+n]);try{delete t[e+n]}catch(i){t[e+n]=void 0}});var s={bind:i,unbind:o};"function"==typeof define&&define.amd?define("eventie/eventie",s):t.eventie=s}(this),function(t,e){"function"==typeof define&&define.amd?define(["eventEmitter/EventEmitter","eventie/eventie"],function(n,i){return e(t,n,i)}):"object"==typeof exports?module.exports=e(t,require("wolfy87-eventemitter"),require("eventie")):t.imagesLoaded=e(t,t.EventEmitter,t.eventie)}(window,function(t,e,n){function i(t,e){for(var n in e)t[n]=e[n];return t}function o(t){return"[object Array]"===d.call(t)}function s(t){var e=[];if(o(t))e=t;else if("number"==typeof t.length)for(var n=0,i=t.length;i>n;n++)e.push(t[n]);else e.push(t);return e}function r(t,e,n){if(!(this instanceof r))return new r(t,e);"string"==typeof t&&(t=document.querySelectorAll(t)),this.elements=s(t),this.options=i({},this.options),"function"==typeof e?n=e:i(this.options,e),n&&this.on("always",n),this.getImages(),l&&(this.jqDeferred=new l.Deferred);var o=this;setTimeout(function(){o.check()})}function a(t){this.img=t}function c(t){this.src=t,f[t]=this}var l=t.jQuery,h=t.console,u=void 0!==h,d=Object.prototype.toString;r.prototype=new e,r.prototype.options={},r.prototype.getImages=function(){this.images=[];for(var t=0,e=this.elements.length;e>t;t++){var n=this.elements[t];"IMG"===n.nodeName&&this.addImage(n);var i=n.nodeType;if(i&&(1===i||9===i||11===i))for(var o=n.querySelectorAll("img"),s=0,r=o.length;r>s;s++){var a=o[s];this.addImage(a)}}},r.prototype.addImage=function(t){var e=new a(t);this.images.push(e)},r.prototype.check=function(){function t(t,o){return e.options.debug&&u&&h.log("confirm",t,o),e.progress(t),n++,n===i&&e.complete(),!0}var e=this,n=0,i=this.images.length;if(this.hasAnyBroken=!1,!i)return void this.complete();for(var o=0;i>o;o++){var s=this.images[o];s.on("confirm",t),s.check()}},r.prototype.progress=function(t){this.hasAnyBroken=this.hasAnyBroken||!t.isLoaded;var e=this;setTimeout(function(){e.emit("progress",e,t),e.jqDeferred&&e.jqDeferred.notify&&e.jqDeferred.notify(e,t)})},r.prototype.complete=function(){var t=this.hasAnyBroken?"fail":"done";this.isComplete=!0;var e=this;setTimeout(function(){if(e.emit(t,e),e.emit("always",e),e.jqDeferred){var n=e.hasAnyBroken?"reject":"resolve";e.jqDeferred[n](e)}})},l&&(l.fn.imagesLoaded=function(t,e){var n=new r(this,t,e);return n.jqDeferred.promise(l(this))}),a.prototype=new e,a.prototype.check=function(){var t=f[this.img.src]||new c(this.img.src);if(t.isConfirmed)return void this.confirm(t.isLoaded,"cached was confirmed");if(this.img.complete&&void 0!==this.img.naturalWidth)return void this.confirm(0!==this.img.naturalWidth,"naturalWidth");var e=this;t.on("confirm",function(t,n){return e.confirm(t.isLoaded,n),!0}),t.check()},a.prototype.confirm=function(t,e){this.isLoaded=t,this.emit("confirm",this,e)};var f={};return c.prototype=new e,c.prototype.check=function(){if(!this.isChecked){var t=new Image;n.bind(t,"load",this),n.bind(t,"error",this),t.src=this.src,this.isChecked=!0}},c.prototype.handleEvent=function(t){var e="on"+t.type;this[e]&&this[e](t)},c.prototype.onload=function(t){this.confirm(!0,"onload"),this.unbindProxyEvents(t)},c.prototype.onerror=function(t){this.confirm(!1,"onerror"),this.unbindProxyEvents(t)},c.prototype.confirm=function(t,e){this.isConfirmed=!0,this.isLoaded=t,this.emit("confirm",this,e)},c.prototype.unbindProxyEvents=function(t){n.unbind(t.target,"load",this),n.unbind(t.target,"error",this)},r}),/* jquery Tocify - v1.8.0 - 2013-09-16
+
+
+(function(){function e(){}function t(e,t){for(var n=e.length;n--;)if(e[n].listener===t)return n;return-1}function n(e){return function(){return this[e].apply(this,arguments)}}var i=e.prototype,r=this,o=r.EventEmitter;i.getListeners=function(e){var t,n,i=this._getEvents();if("object"==typeof e){t={};for(n in i)i.hasOwnProperty(n)&&e.test(n)&&(t[n]=i[n])}else t=i[e]||(i[e]=[]);return t},i.flattenListeners=function(e){var t,n=[];for(t=0;e.length>t;t+=1)n.push(e[t].listener);return n},i.getListenersAsObject=function(e){var t,n=this.getListeners(e);return n instanceof Array&&(t={},t[e]=n),t||n},i.addListener=function(e,n){var i,r=this.getListenersAsObject(e),o="object"==typeof n;for(i in r)r.hasOwnProperty(i)&&-1===t(r[i],n)&&r[i].push(o?n:{listener:n,once:!1});return this},i.on=n("addListener"),i.addOnceListener=function(e,t){return this.addListener(e,{listener:t,once:!0})},i.once=n("addOnceListener"),i.defineEvent=function(e){return this.getListeners(e),this},i.defineEvents=function(e){for(var t=0;e.length>t;t+=1)this.defineEvent(e[t]);return this},i.removeListener=function(e,n){var i,r,o=this.getListenersAsObject(e);for(r in o)o.hasOwnProperty(r)&&(i=t(o[r],n),-1!==i&&o[r].splice(i,1));return this},i.off=n("removeListener"),i.addListeners=function(e,t){return this.manipulateListeners(!1,e,t)},i.removeListeners=function(e,t){return this.manipulateListeners(!0,e,t)},i.manipulateListeners=function(e,t,n){var i,r,o=e?this.removeListener:this.addListener,s=e?this.removeListeners:this.addListeners;if("object"!=typeof t||t instanceof RegExp)for(i=n.length;i--;)o.call(this,t,n[i]);else for(i in t)t.hasOwnProperty(i)&&(r=t[i])&&("function"==typeof r?o.call(this,i,r):s.call(this,i,r));return this},i.removeEvent=function(e){var t,n=typeof e,i=this._getEvents();if("string"===n)delete i[e];else if("object"===n)for(t in i)i.hasOwnProperty(t)&&e.test(t)&&delete i[t];else delete this._events;return this},i.removeAllListeners=n("removeEvent"),i.emitEvent=function(e,t){var n,i,r,o,s=this.getListenersAsObject(e);for(r in s)if(s.hasOwnProperty(r))for(i=s[r].length;i--;)n=s[r][i],n.once===!0&&this.removeListener(e,n.listener),o=n.listener.apply(this,t||[]),o===this._getOnceReturnValue()&&this.removeListener(e,n.listener);return this},i.trigger=n("emitEvent"),i.emit=function(e){var t=Array.prototype.slice.call(arguments,1);return this.emitEvent(e,t)},i.setOnceReturnValue=function(e){return this._onceReturnValue=e,this},i._getOnceReturnValue=function(){return this.hasOwnProperty("_onceReturnValue")?this._onceReturnValue:!0},i._getEvents=function(){return this._events||(this._events={})},e.noConflict=function(){return r.EventEmitter=o,e},"function"==typeof define&&define.amd?define("eventEmitter/EventEmitter",[],function(){return e}):"object"==typeof module&&module.exports?module.exports=e:this.EventEmitter=e}).call(this),function(e){function t(t){var n=e.event;return n.target=n.target||n.srcElement||t,n}var n=document.documentElement,i=function(){};n.addEventListener?i=function(e,t,n){e.addEventListener(t,n,!1)}:n.attachEvent&&(i=function(e,n,i){e[n+i]=i.handleEvent?function(){var n=t(e);i.handleEvent.call(i,n)}:function(){var n=t(e);i.call(e,n)},e.attachEvent("on"+n,e[n+i])});var r=function(){};n.removeEventListener?r=function(e,t,n){e.removeEventListener(t,n,!1)}:n.detachEvent&&(r=function(e,t,n){e.detachEvent("on"+t,e[t+n]);try{delete e[t+n]}catch(i){e[t+n]=void 0}});var o={bind:i,unbind:r};"function"==typeof define&&define.amd?define("eventie/eventie",o):e.eventie=o}(this),function(e,t){"function"==typeof define&&define.amd?define(["eventEmitter/EventEmitter","eventie/eventie"],function(n,i){return t(e,n,i)}):"object"==typeof exports?module.exports=t(e,require("wolfy87-eventemitter"),require("eventie")):e.imagesLoaded=t(e,e.EventEmitter,e.eventie)}(window,function(e,t,n){function i(e,t){for(var n in t)e[n]=t[n];return e}function r(e){return"[object Array]"===d.call(e)}function o(e){var t=[];if(r(e))t=e;else if("number"==typeof e.length)for(var n=0,i=e.length;i>n;n++)t.push(e[n]);else t.push(e);return t}function s(e,t,n){if(!(this instanceof s))return new s(e,t);"string"==typeof e&&(e=document.querySelectorAll(e)),this.elements=o(e),this.options=i({},this.options),"function"==typeof t?n=t:i(this.options,t),n&&this.on("always",n),this.getImages(),a&&(this.jqDeferred=new a.Deferred);var r=this;setTimeout(function(){r.check()})}function f(e){this.img=e}function c(e){this.src=e,v[e]=this}var a=e.jQuery,u=e.console,h=u!==void 0,d=Object.prototype.toString;s.prototype=new t,s.prototype.options={},s.prototype.getImages=function(){this.images=[];for(var e=0,t=this.elements.length;t>e;e++){var n=this.elements[e];"IMG"===n.nodeName&&this.addImage(n);var i=n.nodeType;if(i&&(1===i||9===i||11===i))for(var r=n.querySelectorAll("img"),o=0,s=r.length;s>o;o++){var f=r[o];this.addImage(f)}}},s.prototype.addImage=function(e){var t=new f(e);this.images.push(t)},s.prototype.check=function(){function e(e,r){return t.options.debug&&h&&u.log("confirm",e,r),t.progress(e),n++,n===i&&t.complete(),!0}var t=this,n=0,i=this.images.length;if(this.hasAnyBroken=!1,!i)return this.complete(),void 0;for(var r=0;i>r;r++){var o=this.images[r];o.on("confirm",e),o.check()}},s.prototype.progress=function(e){this.hasAnyBroken=this.hasAnyBroken||!e.isLoaded;var t=this;setTimeout(function(){t.emit("progress",t,e),t.jqDeferred&&t.jqDeferred.notify&&t.jqDeferred.notify(t,e)})},s.prototype.complete=function(){var e=this.hasAnyBroken?"fail":"done";this.isComplete=!0;var t=this;setTimeout(function(){if(t.emit(e,t),t.emit("always",t),t.jqDeferred){var n=t.hasAnyBroken?"reject":"resolve";t.jqDeferred[n](t)}})},a&&(a.fn.imagesLoaded=function(e,t){var n=new s(this,e,t);return n.jqDeferred.promise(a(this))}),f.prototype=new t,f.prototype.check=function(){var e=v[this.img.src]||new c(this.img.src);if(e.isConfirmed)return this.confirm(e.isLoaded,"cached was confirmed"),void 0;if(this.img.complete&&void 0!==this.img.naturalWidth)return this.confirm(0!==this.img.naturalWidth,"naturalWidth"),void 0;var t=this;e.on("confirm",function(e,n){return t.confirm(e.isLoaded,n),!0}),e.check()},f.prototype.confirm=function(e,t){this.isLoaded=e,this.emit("confirm",this,t)};var v={};return c.prototype=new t,c.prototype.check=function(){if(!this.isChecked){var e=new Image;n.bind(e,"load",this),n.bind(e,"error",this),e.src=this.src,this.isChecked=!0}},c.prototype.handleEvent=function(e){var t="on"+e.type;this[t]&&this[t](e)},c.prototype.onload=function(e){this.confirm(!0,"onload"),this.unbindProxyEvents(e)},c.prototype.onerror=function(e){this.confirm(!1,"onerror"),this.unbindProxyEvents(e)},c.prototype.confirm=function(e,t){this.isConfirmed=!0,this.isLoaded=e,this.emit("confirm",this,t)},c.prototype.unbindProxyEvents=function(e){n.unbind(e.target,"load",this),n.unbind(e.target,"error",this)},s});
+/* jquery Tocify - v1.8.0 - 2013-09-16
 * http://www.gregfranko.com/jquery.tocify.js/
 * Copyright (c) 2013 Greg Franko; Licensed MIT
 * Modified lightly by Robert Lord to fix a bug I found,
@@ -11,11 +184,1059 @@ function(){function t(){}function e(t,e){for(var n=t.length;n--;)if(t[n].listene
 * also because I want height caching, since the
 * height lookup for h1s and h2s was causing serious
 * lag spikes below 30 fps */
-function(t){"use strict";t(window.jQuery,window,document)}(function(t,e,n,i){"use strict";var o="tocify",s="tocify-focus",r="tocify-hover",a="tocify-hide",c="tocify-header",l="."+c,h="tocify-subheader",u="."+h,d="tocify-item",f="."+d,p="tocify-extend-page",g="."+p;t.widget("toc.tocify",{version:"1.8.0",options:{context:"body",ignoreSelector:null,selectors:"h1, h2, h3",showAndHide:!0,showEffect:"slideDown",showEffectSpeed:"medium",hideEffect:"slideUp",hideEffectSpeed:"medium",smoothScroll:!0,smoothScrollSpeed:"medium",scrollTo:0,showAndHideOnScroll:!0,highlightOnScroll:!0,highlightOffset:40,theme:"bootstrap",extendPage:!0,extendPageOffset:100,history:!0,scrollHistory:!1,hashGenerator:"compact",highlightDefault:!0},_create:function(){var n=this;n.tocifyWrapper=t(".tocify-wrapper"),n.extendPageScroll=!0,n.items=[],n._generateToc(),n.cachedHeights=[],n.cachedAnchors=[],n._addCSSClasses(),n.webkit=function(){for(var t in e)if(t&&-1!==t.toLowerCase().indexOf("webkit"))return!0;return!1}(),n._setEventHandlers(),t(e).load(function(){n._setActiveElement(!0),t("html, body").promise().done(function(){setTimeout(function(){n.extendPageScroll=!1},0)})})},_generateToc:function(){var e,n,i=this,s=i.options.ignoreSelector;return e=t(this.options.context).find(-1!==this.options.selectors.indexOf(",")?this.options.selectors.replace(/ /g,"").substr(0,this.options.selectors.indexOf(",")):this.options.selectors.replace(/ /g,"")),e.length?(i.element.addClass(o),void e.each(function(e){t(this).is(s)||(n=t("<ul/>",{id:c+e,"class":c}).append(i._nestElements(t(this),e)),i.element.append(n),t(this).nextUntil(this.nodeName.toLowerCase()).each(function(){0===t(this).find(i.options.selectors).length?t(this).filter(i.options.selectors).each(function(){t(this).is(s)||i._appendSubheaders.call(this,i,n)}):t(this).find(i.options.selectors).each(function(){t(this).is(s)||i._appendSubheaders.call(this,i,n)})}))})):void i.element.addClass(a)},_setActiveElement:function(t){var n=this,i=e.location.hash.substring(1),o=n.element.find("li[data-unique='"+i+"']");return i.length?(n.element.find("."+n.focusClass).removeClass(n.focusClass),o.addClass(n.focusClass),n.options.showAndHide&&o.click()):(n.element.find("."+n.focusClass).removeClass(n.focusClass),!i.length&&t&&n.options.highlightDefault&&n.element.find(f).first().addClass(n.focusClass)),n},_nestElements:function(e,n){var i,o,s;return i=t.grep(this.items,function(t){return t===e.text()}),this.items.push(i.length?e.text()+n:e.text()),s=this._generateHashValue(i,e,n),o=t("<li/>",{"class":d,"data-unique":s}).append(t("<a/>",{text:e.text()})),e.before(t("<div/>",{name:s,"data-unique":s})),o},_generateHashValue:function(t,e,n){var i="",o=this.options.hashGenerator;if("pretty"===o){for(i=e.text().toLowerCase().replace(/\s/g,"-"),i=i.replace(/[^\x00-\x7F]/g,"");i.indexOf("--")>-1;)i=i.replace(/--/g,"-");for(;i.indexOf(":-")>-1;)i=i.replace(/:-/g,"-")}else i="function"==typeof o?o(e.text(),e):e.text().replace(/\s/g,"");return t.length&&(i+=""+n),i},_appendSubheaders:function(e,n){var i=t(this).index(e.options.selectors),o=t(e.options.selectors).eq(i-1),s=+t(this).prop("tagName").charAt(1),r=+o.prop("tagName").charAt(1);r>s?e.element.find(u+"[data-tag="+s+"]").last().append(e._nestElements(t(this),i)):s===r?n.find(f).last().after(e._nestElements(t(this),i)):n.find(f).last().after(t("<ul/>",{"class":h,"data-tag":s})).next(u).append(e._nestElements(t(this),i))},_setEventHandlers:function(){var o=this;this.element.on("click.tocify","li",function(){if(o.options.history&&(e.location.hash=t(this).attr("data-unique")),o.element.find("."+o.focusClass).removeClass(o.focusClass),t(this).addClass(o.focusClass),o.options.showAndHide){var n=t('li[data-unique="'+t(this).attr("data-unique")+'"]');o._triggerShow(n)}o._scrollTo(t(this))}),this.element.find("li").on({"mouseenter.tocify":function(){t(this).addClass(o.hoverClass),t(this).css("cursor","pointer")},"mouseleave.tocify":function(){"bootstrap"!==o.options.theme&&t(this).removeClass(o.hoverClass)}}),t(e).on("resize",function(){o.calculateHeights()}),t(e).on("scroll.tocify",function(){t("html, body").promise().done(function(){var s,r,a,c,l=t(e).scrollTop(),h=t(e).height(),u=t(n).height(),d=t("body")[0].scrollHeight;if(o.options.extendPage&&(o.webkit&&l>=d-h-o.options.extendPageOffset||!o.webkit&&h+l>u-o.options.extendPageOffset)&&!t(g).length){if(r=t('div[data-unique="'+t(f).last().attr("data-unique")+'"]'),!r.length)return;a=r.offset().top,t(o.options.context).append(t("<div />",{"class":p,height:Math.abs(a-l)+"px","data-unique":p})),o.extendPageScroll&&(c=o.element.find("li.active"),o._scrollTo(t("div[data-unique="+c.attr("data-unique")+"]")))}setTimeout(function(){var r,a=null;0==o.cachedHeights.length&&o.calculateHeights();var c=t(e).scrollTop();if(o.cachedAnchors.each(function(t){return o.cachedHeights[t]-c<0?void(a=t):!1}),r=t(o.cachedAnchors[a]).attr("data-unique"),s=t('li[data-unique="'+r+'"]'),o.options.highlightOnScroll&&s.length&&!s.hasClass(o.focusClass)){o.element.find("."+o.focusClass).removeClass(o.focusClass),s.addClass(o.focusClass);var l=o.tocifyWrapper,h=t(s).closest(".tocify-header"),u=h.offset().top,d=l.offset().top,f=u-d;if(f>=t(e).height()){var p=f+l.scrollTop();l.scrollTop(p)}else 0>f&&l.scrollTop(0)}o.options.scrollHistory&&e.location.hash!=="#"+r&&r!==i&&(history.replaceState?history.replaceState({},"","#"+r):(scrollV=n.body.scrollTop,scrollH=n.body.scrollLeft,location.hash="#"+r,n.body.scrollTop=scrollV,n.body.scrollLeft=scrollH)),o.options.showAndHideOnScroll&&o.options.showAndHide&&o._triggerShow(s,!0)},0)})})},calculateHeights:function(){var e=this;e.cachedHeights=[],e.cachedAnchors=[];var n=t(e.options.context).find("div[data-unique]");n.each(function(n){var i=(t(this).next().length?t(this).next():t(this)).offset().top-e.options.highlightOffset;e.cachedHeights[n]=i}),e.cachedAnchors=n},show:function(e){var n=this;if(!e.is(":visible"))switch(e.find(u).length||e.parent().is(l)||e.parent().is(":visible")?e.children(u).length||e.parent().is(l)||(e=e.closest(u)):e=e.parents(u).add(e),n.options.showEffect){case"none":e.show();break;case"show":e.show(n.options.showEffectSpeed);break;case"slideDown":e.slideDown(n.options.showEffectSpeed);break;case"fadeIn":e.fadeIn(n.options.showEffectSpeed);break;default:e.show()}return n.hide(t(u).not(e.parent().is(l)?e:e.closest(l).find(u).not(e.siblings()))),n},hide:function(t){var e=this;switch(e.options.hideEffect){case"none":t.hide();break;case"hide":t.hide(e.options.hideEffectSpeed);break;case"slideUp":t.slideUp(e.options.hideEffectSpeed);break;case"fadeOut":t.fadeOut(e.options.hideEffectSpeed);break;default:t.hide()}return e},_triggerShow:function(t,e){var n=this;return t.parent().is(l)||t.next().is(u)?n.show(t.next(u),e):t.parent().is(u)&&n.show(t.parent(),e),n},_addCSSClasses:function(){return"jqueryui"===this.options.theme?(this.focusClass="ui-state-default",this.hoverClass="ui-state-hover",this.element.addClass("ui-widget").find(".toc-title").addClass("ui-widget-header").end().find("li").addClass("ui-widget-content")):"bootstrap"===this.options.theme?(this.element.find(l+","+u).addClass("nav nav-list"),this.focusClass="active"):(this.focusClass=s,this.hoverClass=r),this},setOption:function(){t.Widget.prototype._setOption.apply(this,arguments)},setOptions:function(){t.Widget.prototype._setOptions.apply(this,arguments)},_scrollTo:function(e){var n=this,i=n.options.smoothScroll||0,o=n.options.scrollTo;return t("html, body").promise().done(function(){t("html, body").animate({scrollTop:t('div[data-unique="'+e.attr("data-unique")+'"]').next().offset().top-(t.isFunction(o)?o.call():o)+"px"},{duration:i})}),n}})}),/*! jQuery UI - v1.11.3 - 2015-02-12
+
+// Immediately-Invoked Function Expression (IIFE) [Ben Alman Blog Post](http://benalman.com/news/2010/11/immediately-invoked-function-expression/) that calls another IIFE that contains all of the plugin logic.  I used this pattern so that anyone viewing this code would not have to scroll to the bottom of the page to view the local parameters that were passed to the main IIFE.
+(function(tocify) {
+
+    // ECMAScript 5 Strict Mode: [John Resig Blog Post](http://ejohn.org/blog/ecmascript-5-strict-mode-json-and-more/)
+    "use strict";
+
+    // Calls the second IIFE and locally passes in the global jQuery, window, and document objects
+    tocify(window.jQuery, window, document);
+
+}
+
+// Locally passes in `jQuery`, the `window` object, the `document` object, and an `undefined` variable.  The `jQuery`, `window` and `document` objects are passed in locally, to improve performance, since javascript first searches for a variable match within the local variables set before searching the global variables set.  All of the global variables are also passed in locally to be minifier friendly. `undefined` can be passed in locally, because it is not a reserved word in JavaScript.
+(function($, window, document, undefined) {
+
+    // ECMAScript 5 Strict Mode: [John Resig Blog Post](http://ejohn.org/blog/ecmascript-5-strict-mode-json-and-more/)
+    "use strict";
+
+    var tocClassName = "tocify",
+        tocClass = "." + tocClassName,
+        tocFocusClassName = "tocify-focus",
+        tocHoverClassName = "tocify-hover",
+        hideTocClassName = "tocify-hide",
+        hideTocClass = "." + hideTocClassName,
+        headerClassName = "tocify-header",
+        headerClass = "." + headerClassName,
+        subheaderClassName = "tocify-subheader",
+        subheaderClass = "." + subheaderClassName,
+        itemClassName = "tocify-item",
+        itemClass = "." + itemClassName,
+        extendPageClassName = "tocify-extend-page",
+        extendPageClass = "." + extendPageClassName;
+
+    // Calling the jQueryUI Widget Factory Method
+    $.widget("toc.tocify", {
+
+        //Plugin version
+        version: "1.8.0",
+
+        // These options will be used as defaults
+        options: {
+
+            // **context**: Accepts String: Any jQuery selector
+            // The container element that holds all of the elements used to generate the table of contents
+            context: "body",
+
+            // **ignoreSelector**: Accepts String: Any jQuery selector
+            // A selector to any element that would be matched by selectors that you wish to be ignored
+            ignoreSelector: null,
+
+            // **selectors**: Accepts an Array of Strings: Any jQuery selectors
+            // The element's used to generate the table of contents.  The order is very important since it will determine the table of content's nesting structure
+            selectors: "h1, h2, h3",
+
+            // **showAndHide**: Accepts a boolean: true or false
+            // Used to determine if elements should be shown and hidden
+            showAndHide: true,
+
+            // **showEffect**: Accepts String: "none", "fadeIn", "show", or "slideDown"
+            // Used to display any of the table of contents nested items
+            showEffect: "slideDown",
+
+            // **showEffectSpeed**: Accepts Number (milliseconds) or String: "slow", "medium", or "fast"
+            // The time duration of the show animation
+            showEffectSpeed: "medium",
+
+            // **hideEffect**: Accepts String: "none", "fadeOut", "hide", or "slideUp"
+            // Used to hide any of the table of contents nested items
+            hideEffect: "slideUp",
+
+            // **hideEffectSpeed**: Accepts Number (milliseconds) or String: "slow", "medium", or "fast"
+            // The time duration of the hide animation
+            hideEffectSpeed: "medium",
+
+            // **smoothScroll**: Accepts a boolean: true or false
+            // Determines if a jQuery animation should be used to scroll to specific table of contents items on the page
+            smoothScroll: true,
+
+            // **smoothScrollSpeed**: Accepts Number (milliseconds) or String: "slow", "medium", or "fast"
+            // The time duration of the smoothScroll animation
+            smoothScrollSpeed: "medium",
+
+            // **scrollTo**: Accepts Number (pixels)
+            // The amount of space between the top of page and the selected table of contents item after the page has been scrolled
+            scrollTo: 0,
+
+            // **showAndHideOnScroll**: Accepts a boolean: true or false
+            // Determines if table of contents nested items should be shown and hidden while scrolling
+            showAndHideOnScroll: true,
+
+            // **highlightOnScroll**: Accepts a boolean: true or false
+            // Determines if table of contents nested items should be highlighted (set to a different color) while scrolling
+            highlightOnScroll: true,
+
+            // **highlightOffset**: Accepts a number
+            // The offset distance in pixels to trigger the next active table of contents item
+            highlightOffset: 40,
+
+            // **theme**: Accepts a string: "bootstrap", "jqueryui", or "none"
+            // Determines if Twitter Bootstrap, jQueryUI, or Tocify classes should be added to the table of contents
+            theme: "bootstrap",
+
+            // **extendPage**: Accepts a boolean: true or false
+            // If a user scrolls to the bottom of the page and the page is not tall enough to scroll to the last table of contents item, then the page height is increased
+            extendPage: true,
+
+            // **extendPageOffset**: Accepts a number: pixels
+            // How close to the bottom of the page a user must scroll before the page is extended
+            extendPageOffset: 100,
+
+            // **history**: Accepts a boolean: true or false
+            // Adds a hash to the page url to maintain history
+            history: true,
+
+            // **scrollHistory**: Accepts a boolean: true or false
+            // Adds a hash to the page url, to maintain history, when scrolling to a TOC item
+            scrollHistory: false,
+
+            // **hashGenerator**: How the hash value (the anchor segment of the URL, following the
+            // # character) will be generated.
+            //
+            // "compact" (default) - #CompressesEverythingTogether
+            // "pretty" - #looks-like-a-nice-url-and-is-easily-readable
+            // function(text, element){} - Your own hash generation function that accepts the text as an
+            // argument, and returns the hash value.
+            hashGenerator: "compact",
+
+            // **highlightDefault**: Accepts a boolean: true or false
+            // Set's the first TOC item as active if no other TOC item is active.
+            highlightDefault: true
+
+        },
+
+        // _Create
+        // -------
+        //      Constructs the plugin.  Only called once.
+        _create: function() {
+
+            var self = this;
+
+            self.tocifyWrapper = $('.tocify-wrapper');
+            self.extendPageScroll = true;
+
+            // Internal array that keeps track of all TOC items (Helps to recognize if there are duplicate TOC item strings)
+            self.items = [];
+
+            // Generates the HTML for the dynamic table of contents
+            self._generateToc();
+
+            // Caches heights and anchors
+            self.cachedHeights = [],
+            self.cachedAnchors = [];
+
+            // Adds CSS classes to the newly generated table of contents HTML
+            self._addCSSClasses();
+
+            self.webkit = (function() {
+
+                for(var prop in window) {
+
+                    if(prop) {
+
+                        if(prop.toLowerCase().indexOf("webkit") !== -1) {
+
+                            return true;
+
+                        }
+
+                    }
+
+                }
+
+                return false;
+
+            }());
+
+            // Adds jQuery event handlers to the newly generated table of contents
+            self._setEventHandlers();
+
+            // Binding to the Window load event to make sure the correct scrollTop is calculated
+            $(window).load(function() {
+
+                // Sets the active TOC item
+                self._setActiveElement(true);
+
+                // Once all animations on the page are complete, this callback function will be called
+                $("html, body").promise().done(function() {
+
+                    setTimeout(function() {
+
+                        self.extendPageScroll = false;
+
+                    },0);
+
+                });
+
+            });
+
+        },
+
+        // _generateToc
+        // ------------
+        //      Generates the HTML for the dynamic table of contents
+        _generateToc: function() {
+
+            // _Local variables_
+
+            // Stores the plugin context in the self variable
+            var self = this,
+
+                // All of the HTML tags found within the context provided (i.e. body) that match the top level jQuery selector above
+                firstElem,
+
+                // Instantiated variable that will store the top level newly created unordered list DOM element
+                ul,
+                ignoreSelector = self.options.ignoreSelector;
+
+             // If the selectors option has a comma within the string
+             if(this.options.selectors.indexOf(",") !== -1) {
+
+                 // Grabs the first selector from the string
+                 firstElem = $(this.options.context).find(this.options.selectors.replace(/ /g,"").substr(0, this.options.selectors.indexOf(",")));
+
+             }
+
+             // If the selectors option does not have a comman within the string
+             else {
+
+                 // Grabs the first selector from the string and makes sure there are no spaces
+                 firstElem = $(this.options.context).find(this.options.selectors.replace(/ /g,""));
+
+             }
+
+            if(!firstElem.length) {
+
+                self.element.addClass(hideTocClassName);
+
+                return;
+
+            }
+
+            self.element.addClass(tocClassName);
+
+            // Loops through each top level selector
+            firstElem.each(function(index) {
+
+                //If the element matches the ignoreSelector then we skip it
+                if($(this).is(ignoreSelector)) {
+                    return;
+                }
+
+                // Creates an unordered list HTML element and adds a dynamic ID and standard class name
+                ul = $("<ul/>", {
+                    "id": headerClassName + index,
+                    "class": headerClassName
+                }).
+
+                // Appends a top level list item HTML element to the previously created HTML header
+                append(self._nestElements($(this), index));
+
+                // Add the created unordered list element to the HTML element calling the plugin
+                self.element.append(ul);
+
+                // Finds all of the HTML tags between the header and subheader elements
+                $(this).nextUntil(this.nodeName.toLowerCase()).each(function() {
+
+                    // If there are no nested subheader elemements
+                    if($(this).find(self.options.selectors).length === 0) {
+
+                        // Loops through all of the subheader elements
+                        $(this).filter(self.options.selectors).each(function() {
+
+                            //If the element matches the ignoreSelector then we skip it
+                            if($(this).is(ignoreSelector)) {
+                                return;
+                            }
+
+                            self._appendSubheaders.call(this, self, ul);
+
+                        });
+
+                    }
+
+                    // If there are nested subheader elements
+                    else {
+
+                        // Loops through all of the subheader elements
+                        $(this).find(self.options.selectors).each(function() {
+
+                            //If the element matches the ignoreSelector then we skip it
+                            if($(this).is(ignoreSelector)) {
+                                return;
+                            }
+
+                            self._appendSubheaders.call(this, self, ul);
+
+                        });
+
+                    }
+
+                });
+
+            });
+
+        },
+
+        _setActiveElement: function(pageload) {
+
+            var self = this,
+
+                hash = window.location.hash.substring(1),
+
+                elem = self.element.find("li[data-unique='" + hash + "']");
+
+            if(hash.length) {
+
+                // Removes highlighting from all of the list item's
+                self.element.find("." + self.focusClass).removeClass(self.focusClass);
+
+                // Highlights the current list item that was clicked
+                elem.addClass(self.focusClass);
+
+                // If the showAndHide option is true
+                if(self.options.showAndHide) {
+
+                    // Triggers the click event on the currently focused TOC item
+                    elem.click();
+
+                }
+
+            }
+
+            else {
+
+                // Removes highlighting from all of the list item's
+                self.element.find("." + self.focusClass).removeClass(self.focusClass);
+
+                if(!hash.length && pageload && self.options.highlightDefault) {
+
+                    // Highlights the first TOC item if no other items are highlighted
+                    self.element.find(itemClass).first().addClass(self.focusClass);
+
+                }
+
+            }
+
+            return self;
+
+        },
+
+        // _nestElements
+        // -------------
+        //      Helps create the table of contents list by appending nested list items
+        _nestElements: function(self, index) {
+
+            var arr, item, hashValue;
+
+            arr = $.grep(this.items, function (item) {
+
+                return item === self.text();
+
+            });
+
+            // If there is already a duplicate TOC item
+            if(arr.length) {
+
+                // Adds the current TOC item text and index (for slight randomization) to the internal array
+                this.items.push(self.text() + index);
+
+            }
+
+            // If there not a duplicate TOC item
+            else {
+
+                // Adds the current TOC item text to the internal array
+                this.items.push(self.text());
+
+            }
+
+            hashValue = this._generateHashValue(arr, self, index);
+
+            // ADDED BY ROBERT
+            // actually add the hash value to the element's id
+            // self.attr("id", "link-" + hashValue);
+
+            // Appends a list item HTML element to the last unordered list HTML element found within the HTML element calling the plugin
+            item = $("<li/>", {
+
+                // Sets a common class name to the list item
+                "class": itemClassName,
+
+                "data-unique": hashValue
+
+            }).append($("<a/>", {
+
+                "text": self.text()
+
+            }));
+
+            // Adds an HTML anchor tag before the currently traversed HTML element
+            self.before($("<div/>", {
+
+                // Sets a name attribute on the anchor tag to the text of the currently traversed HTML element (also making sure that all whitespace is replaced with an underscore)
+                "name": hashValue,
+
+                "data-unique": hashValue
+
+            }));
+
+            return item;
+
+        },
+
+        // _generateHashValue
+        // ------------------
+        //      Generates the hash value that will be used to refer to each item.
+        _generateHashValue: function(arr, self, index) {
+
+            var hashValue = "",
+                hashGeneratorOption = this.options.hashGenerator;
+
+            if (hashGeneratorOption === "pretty") {
+                // remove weird characters
+
+
+                // prettify the text
+                hashValue = self.text().toLowerCase().replace(/\s/g, "-");
+
+                // ADDED BY ROBERT
+                // remove weird characters
+                hashValue = hashValue.replace(/[^\x00-\x7F]/g, "");
+
+                // fix double hyphens
+                while (hashValue.indexOf("--") > -1) {
+                    hashValue = hashValue.replace(/--/g, "-");
+                }
+
+                // fix colon-space instances
+                while (hashValue.indexOf(":-") > -1) {
+                    hashValue = hashValue.replace(/:-/g, "-");
+                }
+
+            } else if (typeof hashGeneratorOption === "function") {
+
+                // call the function
+                hashValue = hashGeneratorOption(self.text(), self);
+
+            } else {
+
+                // compact - the default
+                hashValue = self.text().replace(/\s/g, "");
+
+            }
+
+            // add the index if we need to
+            if (arr.length) { hashValue += ""+index; }
+
+            // return the value
+            return hashValue;
+
+        },
+
+        // _appendElements
+        // ---------------
+        //      Helps create the table of contents list by appending subheader elements
+
+        _appendSubheaders: function(self, ul) {
+
+            // The current element index
+            var index = $(this).index(self.options.selectors),
+
+                // Finds the previous header DOM element
+                previousHeader = $(self.options.selectors).eq(index - 1),
+
+                currentTagName = +$(this).prop("tagName").charAt(1),
+
+                previousTagName = +previousHeader.prop("tagName").charAt(1),
+
+                lastSubheader;
+
+            // If the current header DOM element is smaller than the previous header DOM element or the first subheader
+            if(currentTagName < previousTagName) {
+
+                // Selects the last unordered list HTML found within the HTML element calling the plugin
+                self.element.find(subheaderClass + "[data-tag=" + currentTagName + "]").last().append(self._nestElements($(this), index));
+
+            }
+
+            // If the current header DOM element is the same type of header(eg. h4) as the previous header DOM element
+            else if(currentTagName === previousTagName) {
+
+                ul.find(itemClass).last().after(self._nestElements($(this), index));
+
+            }
+
+            else {
+
+                // Selects the last unordered list HTML found within the HTML element calling the plugin
+                ul.find(itemClass).last().
+
+                // Appends an unorderedList HTML element to the dynamic `unorderedList` variable and sets a common class name
+                after($("<ul/>", {
+
+                    "class": subheaderClassName,
+
+                    "data-tag": currentTagName
+
+                })).next(subheaderClass).
+
+                // Appends a list item HTML element to the last unordered list HTML element found within the HTML element calling the plugin
+                append(self._nestElements($(this), index));
+            }
+
+        },
+
+       // _setEventHandlers
+        // ----------------
+        //      Adds jQuery event handlers to the newly generated table of contents
+        _setEventHandlers: function() {
+
+            // _Local variables_
+
+            // Stores the plugin context in the self variable
+            var self = this,
+
+                // Instantiates a new variable that will be used to hold a specific element's context
+                $self,
+
+                // Instantiates a new variable that will be used to determine the smoothScroll animation time duration
+                duration;
+
+            // Event delegation that looks for any clicks on list item elements inside of the HTML element calling the plugin
+            this.element.on("click.tocify", "li", function(event) {
+
+                if(self.options.history) {
+
+                    window.location.hash = $(this).attr("data-unique");
+
+                }
+
+                // Removes highlighting from all of the list item's
+                self.element.find("." + self.focusClass).removeClass(self.focusClass);
+
+                // Highlights the current list item that was clicked
+                $(this).addClass(self.focusClass);
+
+                // If the showAndHide option is true
+                if(self.options.showAndHide) {
+
+                    var elem = $('li[data-unique="' + $(this).attr("data-unique") + '"]');
+
+                    self._triggerShow(elem);
+
+                }
+
+                self._scrollTo($(this));
+
+            });
+
+            // Mouseenter and Mouseleave event handlers for the list item's within the HTML element calling the plugin
+            this.element.find("li").on({
+
+                // Mouseenter event handler
+                "mouseenter.tocify": function() {
+
+                    // Adds a hover CSS class to the current list item
+                    $(this).addClass(self.hoverClass);
+
+                    // Makes sure the cursor is set to the pointer icon
+                    $(this).css("cursor", "pointer");
+
+                },
+
+                // Mouseleave event handler
+                "mouseleave.tocify": function() {
+
+                    if(self.options.theme !== "bootstrap") {
+
+                        // Removes the hover CSS class from the current list item
+                        $(this).removeClass(self.hoverClass);
+
+                    }
+
+                }
+            });
+
+            // Reset height cache on scroll
+
+            $(window).on('resize', function() {
+                self.calculateHeights();
+            });
+
+            // Window scroll event handler
+            $(window).on("scroll.tocify", function() {
+
+                // Once all animations on the page are complete, this callback function will be called
+                $("html, body").promise().done(function() {
+
+                    // Local variables
+
+                    // Stores how far the user has scrolled
+                    var winScrollTop = $(window).scrollTop(),
+
+                        // Stores the height of the window
+                        winHeight = $(window).height(),
+
+                        // Stores the height of the document
+                        docHeight = $(document).height(),
+
+                        scrollHeight = $("body")[0].scrollHeight,
+
+                        // Instantiates a variable that will be used to hold a selected HTML element
+                        elem,
+
+                        lastElem,
+
+                        lastElemOffset,
+
+                        currentElem;
+
+                    if(self.options.extendPage) {
+
+                        // If the user has scrolled to the bottom of the page and the last toc item is not focused
+                        if((self.webkit && winScrollTop >= scrollHeight - winHeight - self.options.extendPageOffset) || (!self.webkit && winHeight + winScrollTop > docHeight - self.options.extendPageOffset)) {
+
+                            if(!$(extendPageClass).length) {
+
+                                lastElem = $('div[data-unique="' + $(itemClass).last().attr("data-unique") + '"]');
+
+                                if(!lastElem.length) return;
+
+                                // Gets the top offset of the page header that is linked to the last toc item
+                                lastElemOffset = lastElem.offset().top;
+
+                                // Appends a div to the bottom of the page and sets the height to the difference of the window scrollTop and the last element's position top offset
+                                $(self.options.context).append($("<div />", {
+
+                                    "class": extendPageClassName,
+
+                                    "height": Math.abs(lastElemOffset - winScrollTop) + "px",
+
+                                    "data-unique": extendPageClassName
+
+                                }));
+
+                                if(self.extendPageScroll) {
+
+                                    currentElem = self.element.find('li.active');
+
+                                    self._scrollTo($("div[data-unique=" + currentElem.attr("data-unique") + "]"));
+
+                                }
+
+                            }
+
+                        }
+
+                    }
+
+                    // The zero timeout ensures the following code is run after the scroll events
+                    setTimeout(function() {
+
+                        // _Local variables_
+
+                        // Stores the distance to the closest anchor
+                        var // Stores the index of the closest anchor
+                            closestAnchorIdx = null,
+                            anchorText;
+
+                        // if never calculated before, calculate and cache the heights
+                        if (self.cachedHeights.length == 0) {
+                            self.calculateHeights();
+                        }
+
+                        var scrollTop = $(window).scrollTop();
+
+                        // Determines the index of the closest anchor
+                        self.cachedAnchors.each(function(idx) {
+                            if (self.cachedHeights[idx] - scrollTop < 0) {
+                                closestAnchorIdx = idx;
+                            } else {
+                                return false;
+                            }
+                        });
+
+                        anchorText = $(self.cachedAnchors[closestAnchorIdx]).attr("data-unique");
+
+                        // Stores the list item HTML element that corresponds to the currently traversed anchor tag
+                        elem = $('li[data-unique="' + anchorText + '"]');
+
+                        // If the `highlightOnScroll` option is true and a next element is found
+                        if(self.options.highlightOnScroll && elem.length && !elem.hasClass(self.focusClass)) {
+
+                            // Removes highlighting from all of the list item's
+                            self.element.find("." + self.focusClass).removeClass(self.focusClass);
+
+                            // Highlights the corresponding list item
+                            elem.addClass(self.focusClass);
+
+                            // Scroll to highlighted element's header
+                            var tocifyWrapper = self.tocifyWrapper;
+                            var scrollToElem = $(elem).closest('.tocify-header');
+
+                            var elementOffset = scrollToElem.offset().top,
+                                wrapperOffset = tocifyWrapper.offset().top;
+                            var offset = elementOffset - wrapperOffset;
+
+                            if (offset >= $(window).height()) {
+                              var scrollPosition = offset + tocifyWrapper.scrollTop();
+                              tocifyWrapper.scrollTop(scrollPosition);
+                            } else if (offset < 0) {
+                              tocifyWrapper.scrollTop(0);
+                            }
+                        }
+
+                        if(self.options.scrollHistory) {
+
+                            // IF STATEMENT ADDED BY ROBERT
+
+                            if(window.location.hash !== "#" + anchorText && anchorText !== undefined) {
+
+                                if(history.replaceState) {
+                                    history.replaceState({}, "", "#" + anchorText);
+                                // provide a fallback
+                                } else {
+                                    scrollV = document.body.scrollTop;
+                                    scrollH = document.body.scrollLeft;
+                                    location.hash = "#" + anchorText;
+                                    document.body.scrollTop = scrollV;
+                                    document.body.scrollLeft = scrollH;
+                                }
+
+                            }
+
+                        }
+
+                        // If the `showAndHideOnScroll` option is true
+                        if(self.options.showAndHideOnScroll && self.options.showAndHide) {
+
+                            self._triggerShow(elem, true);
+
+                        }
+
+                    }, 0);
+
+                });
+
+            });
+
+        },
+
+        // calculateHeights
+        // ----
+        //      ADDED BY ROBERT
+        calculateHeights: function() {
+            var self = this;
+            self.cachedHeights = [];
+            self.cachedAnchors = [];
+            var anchors = $(self.options.context).find("div[data-unique]");
+            anchors.each(function(idx) {
+                var distance = (($(this).next().length ? $(this).next() : $(this)).offset().top - self.options.highlightOffset);
+                self.cachedHeights[idx] = distance;
+            });
+            self.cachedAnchors = anchors;
+        },
+
+        // Show
+        // ----
+        //      Opens the current sub-header
+        show: function(elem, scroll) {
+
+            // Stores the plugin context in the `self` variable
+            var self = this,
+                element = elem;
+
+            // If the sub-header is not already visible
+            if (!elem.is(":visible")) {
+
+                // If the current element does not have any nested subheaders, is not a header, and its parent is not visible
+                if(!elem.find(subheaderClass).length && !elem.parent().is(headerClass) && !elem.parent().is(":visible")) {
+
+                    // Sets the current element to all of the subheaders within the current header
+                    elem = elem.parents(subheaderClass).add(elem);
+
+                }
+
+                // If the current element does not have any nested subheaders and is not a header
+                else if(!elem.children(subheaderClass).length && !elem.parent().is(headerClass)) {
+
+                    // Sets the current element to the closest subheader
+                    elem = elem.closest(subheaderClass);
+
+                }
+
+                //Determines what jQuery effect to use
+                switch (self.options.showEffect) {
+
+                    //Uses `no effect`
+                    case "none":
+
+                        elem.show();
+
+                    break;
+
+                    //Uses the jQuery `show` special effect
+                    case "show":
+
+                        elem.show(self.options.showEffectSpeed);
+
+                    break;
+
+                    //Uses the jQuery `slideDown` special effect
+                    case "slideDown":
+
+                        elem.slideDown(self.options.showEffectSpeed);
+
+                    break;
+
+                    //Uses the jQuery `fadeIn` special effect
+                    case "fadeIn":
+
+                        elem.fadeIn(self.options.showEffectSpeed);
+
+                    break;
+
+                    //If none of the above options were passed, then a `jQueryUI show effect` is expected
+                    default:
+
+                        elem.show();
+
+                    break;
+
+                }
+
+            }
+
+            // If the current subheader parent element is a header
+            if(elem.parent().is(headerClass)) {
+
+                // Hides all non-active sub-headers
+                self.hide($(subheaderClass).not(elem));
+
+            }
+
+            // If the current subheader parent element is not a header
+            else {
+
+                // Hides all non-active sub-headers
+                self.hide($(subheaderClass).not(elem.closest(headerClass).find(subheaderClass).not(elem.siblings())));
+
+            }
+
+            // Maintains chainablity
+            return self;
+
+        },
+
+        // Hide
+        // ----
+        //      Closes the current sub-header
+        hide: function(elem) {
+
+            // Stores the plugin context in the `self` variable
+            var self = this;
+
+            //Determines what jQuery effect to use
+            switch (self.options.hideEffect) {
+
+                // Uses `no effect`
+                case "none":
+
+                    elem.hide();
+
+                break;
+
+                // Uses the jQuery `hide` special effect
+                case "hide":
+
+                    elem.hide(self.options.hideEffectSpeed);
+
+                break;
+
+                // Uses the jQuery `slideUp` special effect
+                case "slideUp":
+
+                    elem.slideUp(self.options.hideEffectSpeed);
+
+                break;
+
+                // Uses the jQuery `fadeOut` special effect
+                case "fadeOut":
+
+                    elem.fadeOut(self.options.hideEffectSpeed);
+
+                break;
+
+                // If none of the above options were passed, then a `jqueryUI hide effect` is expected
+                default:
+
+                    elem.hide();
+
+                break;
+
+            }
+
+            // Maintains chainablity
+            return self;
+        },
+
+        // _triggerShow
+        // ------------
+        //      Determines what elements get shown on scroll and click
+        _triggerShow: function(elem, scroll) {
+
+            var self = this;
+
+            // If the current element's parent is a header element or the next element is a nested subheader element
+            if(elem.parent().is(headerClass) || elem.next().is(subheaderClass)) {
+
+                // Shows the next sub-header element
+                self.show(elem.next(subheaderClass), scroll);
+
+            }
+
+            // If the current element's parent is a subheader element
+            else if(elem.parent().is(subheaderClass)) {
+
+                // Shows the parent sub-header element
+                self.show(elem.parent(), scroll);
+
+            }
+
+            // Maintains chainability
+            return self;
+
+        },
+
+        // _addCSSClasses
+        // --------------
+        //      Adds CSS classes to the newly generated table of contents HTML
+        _addCSSClasses: function() {
+
+            // If the user wants a jqueryUI theme
+            if(this.options.theme === "jqueryui") {
+
+                this.focusClass = "ui-state-default";
+
+                this.hoverClass = "ui-state-hover";
+
+                //Adds the default styling to the dropdown list
+                this.element.addClass("ui-widget").find(".toc-title").addClass("ui-widget-header").end().find("li").addClass("ui-widget-content");
+
+            }
+
+            // If the user wants a twitterBootstrap theme
+            else if(this.options.theme === "bootstrap") {
+
+                this.element.find(headerClass + "," + subheaderClass).addClass("nav nav-list");
+
+                this.focusClass = "active";
+
+            }
+
+            // If a user does not want a prebuilt theme
+            else {
+
+                // Adds more neutral classes (instead of jqueryui)
+
+                this.focusClass = tocFocusClassName;
+
+                this.hoverClass = tocHoverClassName;
+
+            }
+
+            //Maintains chainability
+            return this;
+
+        },
+
+        // setOption
+        // ---------
+        //      Sets a single Tocify option after the plugin is invoked
+        setOption: function() {
+
+            // Calls the jQueryUI Widget Factory setOption method
+            $.Widget.prototype._setOption.apply(this, arguments);
+
+        },
+
+        // setOptions
+        // ----------
+        //      Sets a single or multiple Tocify options after the plugin is invoked
+        setOptions: function() {
+
+            // Calls the jQueryUI Widget Factory setOptions method
+            $.Widget.prototype._setOptions.apply(this, arguments);
+
+        },
+
+        // _scrollTo
+        // ---------
+        //      Scrolls to a specific element
+        _scrollTo: function(elem) {
+
+            var self = this,
+                duration = self.options.smoothScroll || 0,
+                scrollTo = self.options.scrollTo;
+
+            // Once all animations on the page are complete, this callback function will be called
+            $("html, body").promise().done(function() {
+
+                // Animates the html and body element scrolltops
+                $("html, body").animate({
+
+                    // Sets the jQuery `scrollTop` to the top offset of the HTML div tag that matches the current list item's `data-unique` tag
+                    "scrollTop": $('div[data-unique="' + elem.attr("data-unique") + '"]').next().offset().top - ($.isFunction(scrollTo) ? scrollTo.call() : scrollTo) + "px"
+
+                }, {
+
+                    // Sets the smoothScroll animation time duration to the smoothScrollSpeed option
+                    "duration": duration
+
+                });
+
+            });
+
+            // Maintains chainability
+            return self;
+
+        }
+
+    });
+
+})); //end of plugin
+;
+/*! jQuery UI - v1.11.3 - 2015-02-12
  * http://jqueryui.com
  * Includes: widget.js
  * Copyright 2015 jQuery Foundation and other contributors; Licensed MIT */
-function(t){"function"==typeof define&&define.amd?define(["jquery"],t):t(jQuery)}(function(t){/*!
+
+
+(function( factory ) {
+  if ( typeof define === "function" && define.amd ) {
+
+    // AMD. Register as an anonymous module.
+    define([ "jquery" ], factory );
+  } else {
+
+    // Browser globals
+    factory( jQuery );
+  }
+}(function( $ ) {
+  /*!
    * jQuery UI Widget 1.11.3
    * http://jqueryui.com
    *
@@ -25,7 +1246,640 @@ function(t){"function"==typeof define&&define.amd?define(["jquery"],t):t(jQuery)
    *
    * http://api.jqueryui.com/jQuery.widget/
    */
-var e=0,n=Array.prototype.slice;t.cleanData=function(e){return function(n){var i,o,s;for(s=0;null!=(o=n[s]);s++)try{i=t._data(o,"events"),i&&i.remove&&t(o).triggerHandler("remove")}catch(r){}e(n)}}(t.cleanData),t.widget=function(e,n,i){var o,s,r,a,c={},l=e.split(".")[0];return e=e.split(".")[1],o=l+"-"+e,i||(i=n,n=t.Widget),t.expr[":"][o.toLowerCase()]=function(e){return!!t.data(e,o)},t[l]=t[l]||{},s=t[l][e],r=t[l][e]=function(t,e){return this._createWidget?void(arguments.length&&this._createWidget(t,e)):new r(t,e)},t.extend(r,s,{version:i.version,_proto:t.extend({},i),_childConstructors:[]}),a=new n,a.options=t.widget.extend({},a.options),t.each(i,function(e,i){return t.isFunction(i)?void(c[e]=function(){var t=function(){return n.prototype[e].apply(this,arguments)},o=function(t){return n.prototype[e].apply(this,t)};return function(){var e,n=this._super,s=this._superApply;return this._super=t,this._superApply=o,e=i.apply(this,arguments),this._super=n,this._superApply=s,e}}()):void(c[e]=i)}),r.prototype=t.widget.extend(a,{widgetEventPrefix:s?a.widgetEventPrefix||e:e},c,{constructor:r,namespace:l,widgetName:e,widgetFullName:o}),s?(t.each(s._childConstructors,function(e,n){var i=n.prototype;t.widget(i.namespace+"."+i.widgetName,r,n._proto)}),delete s._childConstructors):n._childConstructors.push(r),t.widget.bridge(e,r),r},t.widget.extend=function(e){for(var i,o,s=n.call(arguments,1),r=0,a=s.length;a>r;r++)for(i in s[r])o=s[r][i],s[r].hasOwnProperty(i)&&void 0!==o&&(e[i]=t.isPlainObject(o)?t.isPlainObject(e[i])?t.widget.extend({},e[i],o):t.widget.extend({},o):o);return e},t.widget.bridge=function(e,i){var o=i.prototype.widgetFullName||e;t.fn[e]=function(s){var r="string"==typeof s,a=n.call(arguments,1),c=this;return r?this.each(function(){var n,i=t.data(this,o);return"instance"===s?(c=i,!1):i?t.isFunction(i[s])&&"_"!==s.charAt(0)?(n=i[s].apply(i,a),n!==i&&void 0!==n?(c=n&&n.jquery?c.pushStack(n.get()):n,!1):void 0):t.error("no such method '"+s+"' for "+e+" widget instance"):t.error("cannot call methods on "+e+" prior to initialization; attempted to call method '"+s+"'")}):(a.length&&(s=t.widget.extend.apply(null,[s].concat(a))),this.each(function(){var e=t.data(this,o);e?(e.option(s||{}),e._init&&e._init()):t.data(this,o,new i(s,this))})),c}},t.Widget=function(){},t.Widget._childConstructors=[],t.Widget.prototype={widgetName:"widget",widgetEventPrefix:"",defaultElement:"<div>",options:{disabled:!1,create:null},_createWidget:function(n,i){i=t(i||this.defaultElement||this)[0],this.element=t(i),this.uuid=e++,this.eventNamespace="."+this.widgetName+this.uuid,this.bindings=t(),this.hoverable=t(),this.focusable=t(),i!==this&&(t.data(i,this.widgetFullName,this),this._on(!0,this.element,{remove:function(t){t.target===i&&this.destroy()}}),this.document=t(i.style?i.ownerDocument:i.document||i),this.window=t(this.document[0].defaultView||this.document[0].parentWindow)),this.options=t.widget.extend({},this.options,this._getCreateOptions(),n),this._create(),this._trigger("create",null,this._getCreateEventData()),this._init()},_getCreateOptions:t.noop,_getCreateEventData:t.noop,_create:t.noop,_init:t.noop,destroy:function(){this._destroy(),this.element.unbind(this.eventNamespace).removeData(this.widgetFullName).removeData(t.camelCase(this.widgetFullName)),this.widget().unbind(this.eventNamespace).removeAttr("aria-disabled").removeClass(this.widgetFullName+"-disabled ui-state-disabled"),this.bindings.unbind(this.eventNamespace),this.hoverable.removeClass("ui-state-hover"),this.focusable.removeClass("ui-state-focus")},_destroy:t.noop,widget:function(){return this.element},option:function(e,n){var i,o,s,r=e;if(0===arguments.length)return t.widget.extend({},this.options);if("string"==typeof e)if(r={},i=e.split("."),e=i.shift(),i.length){for(o=r[e]=t.widget.extend({},this.options[e]),s=0;s<i.length-1;s++)o[i[s]]=o[i[s]]||{},o=o[i[s]];if(e=i.pop(),1===arguments.length)return void 0===o[e]?null:o[e];o[e]=n}else{if(1===arguments.length)return void 0===this.options[e]?null:this.options[e];r[e]=n}return this._setOptions(r),this},_setOptions:function(t){var e;for(e in t)this._setOption(e,t[e]);return this},_setOption:function(t,e){return this.options[t]=e,"disabled"===t&&(this.widget().toggleClass(this.widgetFullName+"-disabled",!!e),e&&(this.hoverable.removeClass("ui-state-hover"),this.focusable.removeClass("ui-state-focus"))),this},enable:function(){return this._setOptions({disabled:!1})},disable:function(){return this._setOptions({disabled:!0})},_on:function(e,n,i){var o,s=this;"boolean"!=typeof e&&(i=n,n=e,e=!1),i?(n=o=t(n),this.bindings=this.bindings.add(n)):(i=n,n=this.element,o=this.widget()),t.each(i,function(i,r){function a(){return e||s.options.disabled!==!0&&!t(this).hasClass("ui-state-disabled")?("string"==typeof r?s[r]:r).apply(s,arguments):void 0}"string"!=typeof r&&(a.guid=r.guid=r.guid||a.guid||t.guid++);var c=i.match(/^([\w:-]*)\s*(.*)$/),l=c[1]+s.eventNamespace,h=c[2];h?o.delegate(h,l,a):n.bind(l,a)})},_off:function(e,n){n=(n||"").split(" ").join(this.eventNamespace+" ")+this.eventNamespace,e.unbind(n).undelegate(n),this.bindings=t(this.bindings.not(e).get()),this.focusable=t(this.focusable.not(e).get()),this.hoverable=t(this.hoverable.not(e).get())},_delay:function(t,e){function n(){return("string"==typeof t?i[t]:t).apply(i,arguments)}var i=this;return setTimeout(n,e||0)},_hoverable:function(e){this.hoverable=this.hoverable.add(e),this._on(e,{mouseenter:function(e){t(e.currentTarget).addClass("ui-state-hover")},mouseleave:function(e){t(e.currentTarget).removeClass("ui-state-hover")}})},_focusable:function(e){this.focusable=this.focusable.add(e),this._on(e,{focusin:function(e){t(e.currentTarget).addClass("ui-state-focus")},focusout:function(e){t(e.currentTarget).removeClass("ui-state-focus")}})},_trigger:function(e,n,i){var o,s,r=this.options[e];if(i=i||{},n=t.Event(n),n.type=(e===this.widgetEventPrefix?e:this.widgetEventPrefix+e).toLowerCase(),n.target=this.element[0],s=n.originalEvent)for(o in s)o in n||(n[o]=s[o]);return this.element.trigger(n,i),!(t.isFunction(r)&&r.apply(this.element[0],[n].concat(i))===!1||n.isDefaultPrevented())}},t.each({show:"fadeIn",hide:"fadeOut"},function(e,n){t.Widget.prototype["_"+e]=function(i,o,s){"string"==typeof o&&(o={effect:o});var r,a=o?o===!0||"number"==typeof o?n:o.effect||n:e;o=o||{},"number"==typeof o&&(o={duration:o}),r=!t.isEmptyObject(o),o.complete=s,o.delay&&i.delay(o.delay),r&&t.effects&&t.effects.effect[a]?i[e](o):a!==e&&i[a]?i[a](o.duration,o.easing,s):i.queue(function(n){t(this)[e](),s&&s.call(i[0]),n()})}});t.widget}),function(){function t(t){$(".platform-selector button").removeClass("btn-selected").filter("[data-platform-name='"+t+"']").addClass("btn-selected")}function e(t){$(".language-dropdown").text(n(t))}function n(t){return t.replace("_","-")}$(function(){$(".platform-selector button").on("click",function(){var t=$(this).data("platform-name");console.log(t),window.location="android"===t?"/android"+window.location.hash:"web"===t?"/javascript"+window.location.hash:"rest"===t?"/rest"+window.location.hash:"/ios"+window.location.hash});var i=window.location.pathname;-1!==i.indexOf("android")?(t("android"),localStorage.setItem("language","java"),setupLanguages(["java"])):-1!==i.indexOf("javascript")?(t("web"),localStorage.setItem("language","javascript"),setupLanguages(["javascript"])):(t("ios"),localStorage.setItem("language","objective_c"));var o=window.location.search.substr(1);!o||"objective_c"!==o&&"swift"!==o||e(o),$(".lang-selector").hide(),$(".language-dropdown").on("click",function(){$(".lang-selector").toggle()}),$(".lang-selector a").on("click",function(){e($(this).text()),$(".lang-selector").hide()}),$(document).on("click",function(t){$(t.target).is(".language-dropdown")||$(".lang-selector").hide()}),$(".language-dropdown, .lang-selector a").each(function(){$(this).text(n($(this).text()))})})}(window),/*
+
+
+  var widget_uuid = 0,
+      widget_slice = Array.prototype.slice;
+
+  $.cleanData = (function( orig ) {
+    return function( elems ) {
+      var events, elem, i;
+      for ( i = 0; (elem = elems[i]) != null; i++ ) {
+        try {
+
+          // Only trigger remove when necessary to save time
+          events = $._data( elem, "events" );
+          if ( events && events.remove ) {
+            $( elem ).triggerHandler( "remove" );
+          }
+
+          // http://bugs.jquery.com/ticket/8235
+        } catch ( e ) {}
+      }
+      orig( elems );
+    };
+  })( $.cleanData );
+
+  $.widget = function( name, base, prototype ) {
+    var fullName, existingConstructor, constructor, basePrototype,
+    // proxiedPrototype allows the provided prototype to remain unmodified
+    // so that it can be used as a mixin for multiple widgets (#8876)
+        proxiedPrototype = {},
+        namespace = name.split( "." )[ 0 ];
+
+    name = name.split( "." )[ 1 ];
+    fullName = namespace + "-" + name;
+
+    if ( !prototype ) {
+      prototype = base;
+      base = $.Widget;
+    }
+
+    // create selector for plugin
+    $.expr[ ":" ][ fullName.toLowerCase() ] = function( elem ) {
+      return !!$.data( elem, fullName );
+    };
+
+    $[ namespace ] = $[ namespace ] || {};
+    existingConstructor = $[ namespace ][ name ];
+    constructor = $[ namespace ][ name ] = function( options, element ) {
+      // allow instantiation without "new" keyword
+      if ( !this._createWidget ) {
+        return new constructor( options, element );
+      }
+
+      // allow instantiation without initializing for simple inheritance
+      // must use "new" keyword (the code above always passes args)
+      if ( arguments.length ) {
+        this._createWidget( options, element );
+      }
+    };
+    // extend with the existing constructor to carry over any static properties
+    $.extend( constructor, existingConstructor, {
+      version: prototype.version,
+      // copy the object used to create the prototype in case we need to
+      // redefine the widget later
+      _proto: $.extend( {}, prototype ),
+      // track widgets that inherit from this widget in case this widget is
+      // redefined after a widget inherits from it
+      _childConstructors: []
+    });
+
+    basePrototype = new base();
+    // we need to make the options hash a property directly on the new instance
+    // otherwise we'll modify the options hash on the prototype that we're
+    // inheriting from
+    basePrototype.options = $.widget.extend( {}, basePrototype.options );
+    $.each( prototype, function( prop, value ) {
+      if ( !$.isFunction( value ) ) {
+        proxiedPrototype[ prop ] = value;
+        return;
+      }
+      proxiedPrototype[ prop ] = (function() {
+        var _super = function() {
+              return base.prototype[ prop ].apply( this, arguments );
+            },
+            _superApply = function( args ) {
+              return base.prototype[ prop ].apply( this, args );
+            };
+        return function() {
+          var __super = this._super,
+              __superApply = this._superApply,
+              returnValue;
+
+          this._super = _super;
+          this._superApply = _superApply;
+
+          returnValue = value.apply( this, arguments );
+
+          this._super = __super;
+          this._superApply = __superApply;
+
+          return returnValue;
+        };
+      })();
+    });
+    constructor.prototype = $.widget.extend( basePrototype, {
+      // TODO: remove support for widgetEventPrefix
+      // always use the name + a colon as the prefix, e.g., draggable:start
+      // don't prefix for widgets that aren't DOM-based
+      widgetEventPrefix: existingConstructor ? (basePrototype.widgetEventPrefix || name) : name
+    }, proxiedPrototype, {
+      constructor: constructor,
+      namespace: namespace,
+      widgetName: name,
+      widgetFullName: fullName
+    });
+
+    // If this widget is being redefined then we need to find all widgets that
+    // are inheriting from it and redefine all of them so that they inherit from
+    // the new version of this widget. We're essentially trying to replace one
+    // level in the prototype chain.
+    if ( existingConstructor ) {
+      $.each( existingConstructor._childConstructors, function( i, child ) {
+        var childPrototype = child.prototype;
+
+        // redefine the child widget using the same prototype that was
+        // originally used, but inherit from the new version of the base
+        $.widget( childPrototype.namespace + "." + childPrototype.widgetName, constructor, child._proto );
+      });
+      // remove the list of existing child constructors from the old constructor
+      // so the old child constructors can be garbage collected
+      delete existingConstructor._childConstructors;
+    } else {
+      base._childConstructors.push( constructor );
+    }
+
+    $.widget.bridge( name, constructor );
+
+    return constructor;
+  };
+
+  $.widget.extend = function( target ) {
+    var input = widget_slice.call( arguments, 1 ),
+        inputIndex = 0,
+        inputLength = input.length,
+        key,
+        value;
+    for ( ; inputIndex < inputLength; inputIndex++ ) {
+      for ( key in input[ inputIndex ] ) {
+        value = input[ inputIndex ][ key ];
+        if ( input[ inputIndex ].hasOwnProperty( key ) && value !== undefined ) {
+          // Clone objects
+          if ( $.isPlainObject( value ) ) {
+            target[ key ] = $.isPlainObject( target[ key ] ) ?
+                $.widget.extend( {}, target[ key ], value ) :
+              // Don't extend strings, arrays, etc. with objects
+                $.widget.extend( {}, value );
+            // Copy everything else by reference
+          } else {
+            target[ key ] = value;
+          }
+        }
+      }
+    }
+    return target;
+  };
+
+  $.widget.bridge = function( name, object ) {
+    var fullName = object.prototype.widgetFullName || name;
+    $.fn[ name ] = function( options ) {
+      var isMethodCall = typeof options === "string",
+          args = widget_slice.call( arguments, 1 ),
+          returnValue = this;
+
+      if ( isMethodCall ) {
+        this.each(function() {
+          var methodValue,
+              instance = $.data( this, fullName );
+          if ( options === "instance" ) {
+            returnValue = instance;
+            return false;
+          }
+          if ( !instance ) {
+            return $.error( "cannot call methods on " + name + " prior to initialization; " +
+            "attempted to call method '" + options + "'" );
+          }
+          if ( !$.isFunction( instance[options] ) || options.charAt( 0 ) === "_" ) {
+            return $.error( "no such method '" + options + "' for " + name + " widget instance" );
+          }
+          methodValue = instance[ options ].apply( instance, args );
+          if ( methodValue !== instance && methodValue !== undefined ) {
+            returnValue = methodValue && methodValue.jquery ?
+                returnValue.pushStack( methodValue.get() ) :
+                methodValue;
+            return false;
+          }
+        });
+      } else {
+
+        // Allow multiple hashes to be passed on init
+        if ( args.length ) {
+          options = $.widget.extend.apply( null, [ options ].concat(args) );
+        }
+
+        this.each(function() {
+          var instance = $.data( this, fullName );
+          if ( instance ) {
+            instance.option( options || {} );
+            if ( instance._init ) {
+              instance._init();
+            }
+          } else {
+            $.data( this, fullName, new object( options, this ) );
+          }
+        });
+      }
+
+      return returnValue;
+    };
+  };
+
+  $.Widget = function( /* options, element */ ) {};
+  $.Widget._childConstructors = [];
+
+  $.Widget.prototype = {
+    widgetName: "widget",
+    widgetEventPrefix: "",
+    defaultElement: "<div>",
+    options: {
+      disabled: false,
+
+      // callbacks
+      create: null
+    },
+    _createWidget: function( options, element ) {
+      element = $( element || this.defaultElement || this )[ 0 ];
+      this.element = $( element );
+      this.uuid = widget_uuid++;
+      this.eventNamespace = "." + this.widgetName + this.uuid;
+
+      this.bindings = $();
+      this.hoverable = $();
+      this.focusable = $();
+
+      if ( element !== this ) {
+        $.data( element, this.widgetFullName, this );
+        this._on( true, this.element, {
+          remove: function( event ) {
+            if ( event.target === element ) {
+              this.destroy();
+            }
+          }
+        });
+        this.document = $( element.style ?
+          // element within the document
+            element.ownerDocument :
+          // element is window or document
+        element.document || element );
+        this.window = $( this.document[0].defaultView || this.document[0].parentWindow );
+      }
+
+      this.options = $.widget.extend( {},
+          this.options,
+          this._getCreateOptions(),
+          options );
+
+      this._create();
+      this._trigger( "create", null, this._getCreateEventData() );
+      this._init();
+    },
+    _getCreateOptions: $.noop,
+    _getCreateEventData: $.noop,
+    _create: $.noop,
+    _init: $.noop,
+
+    destroy: function() {
+      this._destroy();
+      // we can probably remove the unbind calls in 2.0
+      // all event bindings should go through this._on()
+      this.element
+          .unbind( this.eventNamespace )
+          .removeData( this.widgetFullName )
+        // support: jquery <1.6.3
+        // http://bugs.jquery.com/ticket/9413
+          .removeData( $.camelCase( this.widgetFullName ) );
+      this.widget()
+          .unbind( this.eventNamespace )
+          .removeAttr( "aria-disabled" )
+          .removeClass(
+          this.widgetFullName + "-disabled " +
+          "ui-state-disabled" );
+
+      // clean up events and states
+      this.bindings.unbind( this.eventNamespace );
+      this.hoverable.removeClass( "ui-state-hover" );
+      this.focusable.removeClass( "ui-state-focus" );
+    },
+    _destroy: $.noop,
+
+    widget: function() {
+      return this.element;
+    },
+
+    option: function( key, value ) {
+      var options = key,
+          parts,
+          curOption,
+          i;
+
+      if ( arguments.length === 0 ) {
+        // don't return a reference to the internal hash
+        return $.widget.extend( {}, this.options );
+      }
+
+      if ( typeof key === "string" ) {
+        // handle nested keys, e.g., "foo.bar" => { foo: { bar: ___ } }
+        options = {};
+        parts = key.split( "." );
+        key = parts.shift();
+        if ( parts.length ) {
+          curOption = options[ key ] = $.widget.extend( {}, this.options[ key ] );
+          for ( i = 0; i < parts.length - 1; i++ ) {
+            curOption[ parts[ i ] ] = curOption[ parts[ i ] ] || {};
+            curOption = curOption[ parts[ i ] ];
+          }
+          key = parts.pop();
+          if ( arguments.length === 1 ) {
+            return curOption[ key ] === undefined ? null : curOption[ key ];
+          }
+          curOption[ key ] = value;
+        } else {
+          if ( arguments.length === 1 ) {
+            return this.options[ key ] === undefined ? null : this.options[ key ];
+          }
+          options[ key ] = value;
+        }
+      }
+
+      this._setOptions( options );
+
+      return this;
+    },
+    _setOptions: function( options ) {
+      var key;
+
+      for ( key in options ) {
+        this._setOption( key, options[ key ] );
+      }
+
+      return this;
+    },
+    _setOption: function( key, value ) {
+      this.options[ key ] = value;
+
+      if ( key === "disabled" ) {
+        this.widget()
+            .toggleClass( this.widgetFullName + "-disabled", !!value );
+
+        // If the widget is becoming disabled, then nothing is interactive
+        if ( value ) {
+          this.hoverable.removeClass( "ui-state-hover" );
+          this.focusable.removeClass( "ui-state-focus" );
+        }
+      }
+
+      return this;
+    },
+
+    enable: function() {
+      return this._setOptions({ disabled: false });
+    },
+    disable: function() {
+      return this._setOptions({ disabled: true });
+    },
+
+    _on: function( suppressDisabledCheck, element, handlers ) {
+      var delegateElement,
+          instance = this;
+
+      // no suppressDisabledCheck flag, shuffle arguments
+      if ( typeof suppressDisabledCheck !== "boolean" ) {
+        handlers = element;
+        element = suppressDisabledCheck;
+        suppressDisabledCheck = false;
+      }
+
+      // no element argument, shuffle and use this.element
+      if ( !handlers ) {
+        handlers = element;
+        element = this.element;
+        delegateElement = this.widget();
+      } else {
+        element = delegateElement = $( element );
+        this.bindings = this.bindings.add( element );
+      }
+
+      $.each( handlers, function( event, handler ) {
+        function handlerProxy() {
+          // allow widgets to customize the disabled handling
+          // - disabled as an array instead of boolean
+          // - disabled class as method for disabling individual parts
+          if ( !suppressDisabledCheck &&
+              ( instance.options.disabled === true ||
+              $( this ).hasClass( "ui-state-disabled" ) ) ) {
+            return;
+          }
+          return ( typeof handler === "string" ? instance[ handler ] : handler )
+              .apply( instance, arguments );
+        }
+
+        // copy the guid so direct unbinding works
+        if ( typeof handler !== "string" ) {
+          handlerProxy.guid = handler.guid =
+              handler.guid || handlerProxy.guid || $.guid++;
+        }
+
+        var match = event.match( /^([\w:-]*)\s*(.*)$/ ),
+            eventName = match[1] + instance.eventNamespace,
+            selector = match[2];
+        if ( selector ) {
+          delegateElement.delegate( selector, eventName, handlerProxy );
+        } else {
+          element.bind( eventName, handlerProxy );
+        }
+      });
+    },
+
+    _off: function( element, eventName ) {
+      eventName = (eventName || "").split( " " ).join( this.eventNamespace + " " ) +
+      this.eventNamespace;
+      element.unbind( eventName ).undelegate( eventName );
+
+      // Clear the stack to avoid memory leaks (#10056)
+      this.bindings = $( this.bindings.not( element ).get() );
+      this.focusable = $( this.focusable.not( element ).get() );
+      this.hoverable = $( this.hoverable.not( element ).get() );
+    },
+
+    _delay: function( handler, delay ) {
+      function handlerProxy() {
+        return ( typeof handler === "string" ? instance[ handler ] : handler )
+            .apply( instance, arguments );
+      }
+      var instance = this;
+      return setTimeout( handlerProxy, delay || 0 );
+    },
+
+    _hoverable: function( element ) {
+      this.hoverable = this.hoverable.add( element );
+      this._on( element, {
+        mouseenter: function( event ) {
+          $( event.currentTarget ).addClass( "ui-state-hover" );
+        },
+        mouseleave: function( event ) {
+          $( event.currentTarget ).removeClass( "ui-state-hover" );
+        }
+      });
+    },
+
+    _focusable: function( element ) {
+      this.focusable = this.focusable.add( element );
+      this._on( element, {
+        focusin: function( event ) {
+          $( event.currentTarget ).addClass( "ui-state-focus" );
+        },
+        focusout: function( event ) {
+          $( event.currentTarget ).removeClass( "ui-state-focus" );
+        }
+      });
+    },
+
+    _trigger: function( type, event, data ) {
+      var prop, orig,
+          callback = this.options[ type ];
+
+      data = data || {};
+      event = $.Event( event );
+      event.type = ( type === this.widgetEventPrefix ?
+          type :
+      this.widgetEventPrefix + type ).toLowerCase();
+      // the original event may come from any element
+      // so we need to reset the target on the new event
+      event.target = this.element[ 0 ];
+
+      // copy original event properties over to the new event
+      orig = event.originalEvent;
+      if ( orig ) {
+        for ( prop in orig ) {
+          if ( !( prop in event ) ) {
+            event[ prop ] = orig[ prop ];
+          }
+        }
+      }
+
+      this.element.trigger( event, data );
+      return !( $.isFunction( callback ) &&
+      callback.apply( this.element[0], [ event ].concat( data ) ) === false ||
+      event.isDefaultPrevented() );
+    }
+  };
+
+  $.each( { show: "fadeIn", hide: "fadeOut" }, function( method, defaultEffect ) {
+    $.Widget.prototype[ "_" + method ] = function( element, options, callback ) {
+      if ( typeof options === "string" ) {
+        options = { effect: options };
+      }
+      var hasOptions,
+          effectName = !options ?
+              method :
+              options === true || typeof options === "number" ?
+                  defaultEffect :
+              options.effect || defaultEffect;
+      options = options || {};
+      if ( typeof options === "number" ) {
+        options = { duration: options };
+      }
+      hasOptions = !$.isEmptyObject( options );
+      options.complete = callback;
+      if ( options.delay ) {
+        element.delay( options.delay );
+      }
+      if ( hasOptions && $.effects && $.effects.effect[ effectName ] ) {
+        element[ method ]( options );
+      } else if ( effectName !== method && element[ effectName ] ) {
+        element[ effectName ]( options.duration, options.easing, callback );
+      } else {
+        element.queue(function( next ) {
+          $( this )[ method ]();
+          if ( callback ) {
+            callback.call( element[ 0 ] );
+          }
+          next();
+        });
+      }
+    };
+  });
+
+  var widget = $.widget;
+
+
+
+}));
+/*
+This adds the platform toggle support and turn the language links into a dropdown
+*/
+
+
+'use strict';
+
+( function(global) {
+
+    function selectPlaform(platform) {
+        $('.platform-selector button')
+            .removeClass('btn-selected')
+            .filter('[data-platform-name=\'' + platform + '\']')
+            .addClass('btn-selected');
+    }
+
+    function setLanguageDropdown(lang) {
+        $('.language-dropdown').text(underscoreToDash(lang));
+    }
+
+    function underscoreToDash(str) {
+        return str.replace('_', '-');
+    }
+
+    $(function() {
+        $('.platform-selector button').on('click', function() {
+            var platform = $(this).data('platform-name');
+            console.log(platform);
+            if (platform === 'android') {
+                window.location = '/android' + window.location.hash;
+            } else if (platform === 'web') {
+                window.location = '/javascript' + window.location.hash;
+            } else if (platform === 'rest') {
+                window.location = '/rest' + window.location.hash;
+            } else {
+                window.location = '/ios' + window.location.hash;
+            }
+        });
+
+        var path = window.location.pathname;
+
+        if (path.indexOf('android') !== -1) {
+            selectPlaform('android');
+            /*  
+                We need to switch the variable in localStorage which is being set not
+                only here but also in pushURL (the first time).
+            */
+            localStorage.setItem("language", "java");
+            /*
+                This needs to be done as the languages array has to contain the names of
+                all the languages for this view. For the 'iOS' view, the array has only two
+                values: objective_c and swift.
+            */
+            setupLanguages(['java']);
+        } else if (path.indexOf('javascript') !== -1) {
+            selectPlaform('web');
+            localStorage.setItem("language", "javascript");
+            setupLanguages(['javascript']);
+        } else {
+            selectPlaform('ios');
+            localStorage.setItem("language", "objective_c");
+        }
+
+        var onLoadLang = window.location.search.substr(1);
+        if (onLoadLang && (onLoadLang === 'objective_c' || onLoadLang === 'swift')) {
+            setLanguageDropdown(onLoadLang);
+        }
+
+        // poor man dropdown for languages
+        $('.lang-selector').hide();
+        $('.language-dropdown').on('click', function() {
+            $('.lang-selector').toggle();
+        });
+
+        $('.lang-selector a').on('click', function() {
+            setLanguageDropdown($(this).text());
+            $('.lang-selector').hide();
+        });
+
+        $(document).on('click', function(e) {
+            if (!$(e.target).is('.language-dropdown')) {
+                $('.lang-selector').hide();
+            }
+        });
+
+        // make objective_c pretty 
+        $('.language-dropdown, .lang-selector a').each(function() {
+            $(this).text(underscoreToDash($(this).text()));
+        })
+
+    });
+
+} )(window);
+/*
 Copyright 2008-2013 Concur Technologies, Inc.
 
 Licensed under the Apache License, Version 2.0 (the "License"); you may
@@ -40,4 +1894,133 @@ WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
 License for the specific language governing permissions and limitations
 under the License.
 */
-function(t){function e(t){if(t&&""!==t){$(".lang-selector a").removeClass("active"),$(".lang-selector a[data-language-name='"+t+"']").addClass("active");for(var e=0;e<o.length;e++)$(".highlight."+o[e]).hide();$(".highlight."+t).show(),window.location.hash&&$(window.location.hash).get(0)?$(window.location.hash).get(0).scrollIntoView(!0):history.pushState("",document.title,window.location.pathname)}}function n(t){if(history){var e=window.location.hash;e&&(e=e.replace(/^#+/,"")),history.pushState({},"","?"+t+"#"+e),localStorage.setItem("language",t)}}function i(t){var n=(t[0],localStorage.getItem("language"));""!==location.search.substr(1)&&-1!=jQuery.inArray(location.search.substr(1),o)?(e(location.search.substr(1)),localStorage.setItem("language",location.search.substr(1))):e(null!==n&&-1!=jQuery.inArray(n,o)?n:o[0])}var o=["javascript","java","swift","objective_c"];t.setupLanguages=i,t.activateLanguage=e,$(function(){$(".lang-selector a").on("click",function(){var t=$(this).data("language-name");return n(t),e(t),!1}),window.onpopstate=function(){e(window.location.search.substr(1))}})}(window),function(t){"use strict";function e(){setTimeout(function(){toc.setOption("showEffectSpeed",180)},50)}var n=function(){$(".tocify-wrapper").removeClass("open"),$("#nav-button").removeClass("open")},i=function(){t.toc=$("#toc").tocify({selectors:"h1, h2",extendPage:!1,theme:"none",smoothScroll:!1,showEffectSpeed:0,hideEffectSpeed:180,ignoreSelector:".toc-ignore",highlightOffset:60,scrollTo:-1,scrollHistory:!0,hashGenerator:function(t,e){return e.prop("id")}}).data("toc-tocify"),$("#nav-button").click(function(){return $(".tocify-wrapper").toggleClass("open"),$("#nav-button").toggleClass("open"),!1}),$(".page-wrapper").click(n),$(".tocify-item").click(n)};$(function(){i(),e(),$(".content").imagesLoaded(function(){t.toc.calculateHeights()})})}(window);
+
+( function(global) {
+    var languages = ['javascript', 'java', 'swift', 'objective_c'];
+
+    global.setupLanguages = setupLanguages;
+    global.activateLanguage = activateLanguage;
+
+    function activateLanguage(language) {
+        if (!language || language === "") return;
+        $(".lang-selector a").removeClass('active');
+        $(".lang-selector a[data-language-name='" + language + "']").addClass('active');
+        for (var i = 0; i < languages.length; i++) {
+            $(".highlight." + languages[i]).hide();
+        }
+        $(".highlight." + language).show();
+
+        if (window.location.hash && $(window.location.hash).get(0)) {
+            // scroll to the new location of the position
+            $(window.location.hash).get(0).scrollIntoView(true);
+        } else {
+            history.pushState("", document.title, window.location.pathname);
+        }
+    }
+
+    // if a button is clicked, add the state to the history
+    function pushURL(language) {
+        if (!history) {
+            return;
+        }
+        var hash = window.location.hash;
+        if (hash) {
+            hash = hash.replace(/^#+/, '');
+        }
+        history.pushState({}, '', '?' + language + '#' + hash);
+
+        // save language as next default
+        localStorage.setItem("language", language);
+    }
+
+    function setupLanguages(l) {
+        var currentLanguage = l[0];
+        var defaultLanguage = localStorage.getItem("language");
+
+        if ((location.search.substr(1) !== "") && (jQuery.inArray(location.search.substr(1), languages)) != -1) {
+            // the language is in the URL, so use that language!
+            activateLanguage(location.search.substr(1));
+
+            localStorage.setItem("language", location.search.substr(1));
+        } else if ((defaultLanguage !== null) && (jQuery.inArray(defaultLanguage, languages) != -1)) {
+            // the language was the last selected one saved in localstorage, so use that language!
+            activateLanguage(defaultLanguage);
+        } else {
+            // no language selected, so use the default
+            activateLanguage(languages[0]);
+        }
+    }
+
+    // if we click on a language tab, activate that language
+    $(function() {
+        $(".lang-selector a").on("click", function() {
+            var language = $(this).data("language-name");
+            pushURL(language);
+            activateLanguage(language);
+            return false;
+        });
+        window.onpopstate = function(event) {
+            activateLanguage(window.location.search.substr(1));
+        };
+    });
+
+} )(window);
+
+
+
+(function (global) {
+  'use strict';
+
+  var closeToc = function() {
+    $(".tocify-wrapper").removeClass('open');
+    $("#nav-button").removeClass('open');
+  };
+
+  var makeToc = function() {
+    global.toc = $("#toc").tocify({
+      selectors: 'h1, h2',
+      extendPage: false,
+      theme: 'none',
+      smoothScroll: false,
+      showEffectSpeed: 0,
+      hideEffectSpeed: 180,
+      ignoreSelector: '.toc-ignore',
+      highlightOffset: 60,
+      scrollTo: -1,
+      scrollHistory: true,
+      hashGenerator: function (text, element) {
+        return element.prop('id');
+      }
+    }).data('toc-tocify');
+
+    $("#nav-button").click(function() {
+      $(".tocify-wrapper").toggleClass('open');
+      $("#nav-button").toggleClass('open');
+      return false;
+    });
+
+    $(".page-wrapper").click(closeToc);
+    $(".tocify-item").click(closeToc);
+  };
+
+  // Hack to make already open sections to start opened,
+  // instead of displaying an ugly animation
+  function animate() {
+    setTimeout(function() {
+      toc.setOption('showEffectSpeed', 180);
+    }, 50);
+  }
+
+  $(function() {
+    makeToc();
+    animate();
+    $('.content').imagesLoaded( function() {
+      global.toc.calculateHeights();
+    });
+  });
+})(window);
+
+
+
+
+

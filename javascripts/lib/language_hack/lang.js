@@ -1,1 +1,93 @@
-"use strict";!function(){function t(t){$(".platform-selector button").removeClass("btn-selected").filter("[data-platform-name='"+t+"']").addClass("btn-selected")}function e(t){$(".language-dropdown").text(n(t))}function n(t){return t.replace("_","-")}$(function(){$(".platform-selector button").on("click",function(){var t=$(this).data("platform-name");console.log(t),window.location="android"===t?"/android"+window.location.hash:"web"===t?"/javascript"+window.location.hash:"rest"===t?"/rest"+window.location.hash:"/ios"+window.location.hash});var i=window.location.pathname;-1!==i.indexOf("android")?(t("android"),localStorage.setItem("language","java"),setupLanguages(["java"])):-1!==i.indexOf("javascript")?(t("web"),localStorage.setItem("language","javascript"),setupLanguages(["javascript"])):(t("ios"),localStorage.setItem("language","objective_c"));var o=window.location.search.substr(1);!o||"objective_c"!==o&&"swift"!==o||e(o),$(".lang-selector").hide(),$(".language-dropdown").on("click",function(){$(".lang-selector").toggle()}),$(".lang-selector a").on("click",function(){e($(this).text()),$(".lang-selector").hide()}),$(document).on("click",function(t){$(t.target).is(".language-dropdown")||$(".lang-selector").hide()}),$(".language-dropdown, .lang-selector a").each(function(){$(this).text(n($(this).text()))})})}(window);
+/*
+This adds the platform toggle support and turn the language links into a dropdown
+*/
+
+
+'use strict';
+
+( function(global) {
+
+    function selectPlaform(platform) {
+        $('.platform-selector button')
+            .removeClass('btn-selected')
+            .filter('[data-platform-name=\'' + platform + '\']')
+            .addClass('btn-selected');
+    }
+
+    function setLanguageDropdown(lang) {
+        $('.language-dropdown').text(underscoreToDash(lang));
+    }
+
+    function underscoreToDash(str) {
+        return str.replace('_', '-');
+    }
+
+    $(function() {
+        $('.platform-selector button').on('click', function() {
+            var platform = $(this).data('platform-name');
+            console.log(platform);
+            if (platform === 'android') {
+                window.location = '/android' + window.location.hash;
+            } else if (platform === 'web') {
+                window.location = '/javascript' + window.location.hash;
+            } else if (platform === 'rest') {
+                window.location = '/rest' + window.location.hash;
+            } else {
+                window.location = '/ios' + window.location.hash;
+            }
+        });
+
+        var path = window.location.pathname;
+
+        if (path.indexOf('android') !== -1) {
+            selectPlaform('android');
+            /*  
+                We need to switch the variable in localStorage which is being set not
+                only here but also in pushURL (the first time).
+            */
+            localStorage.setItem("language", "java");
+            /*
+                This needs to be done as the languages array has to contain the names of
+                all the languages for this view. For the 'iOS' view, the array has only two
+                values: objective_c and swift.
+            */
+            setupLanguages(['java']);
+        } else if (path.indexOf('javascript') !== -1) {
+            selectPlaform('web');
+            localStorage.setItem("language", "javascript");
+            setupLanguages(['javascript']);
+        } else {
+            selectPlaform('ios');
+            localStorage.setItem("language", "objective_c");
+        }
+
+        var onLoadLang = window.location.search.substr(1);
+        if (onLoadLang && (onLoadLang === 'objective_c' || onLoadLang === 'swift')) {
+            setLanguageDropdown(onLoadLang);
+        }
+
+        // poor man dropdown for languages
+        $('.lang-selector').hide();
+        $('.language-dropdown').on('click', function() {
+            $('.lang-selector').toggle();
+        });
+
+        $('.lang-selector a').on('click', function() {
+            setLanguageDropdown($(this).text());
+            $('.lang-selector').hide();
+        });
+
+        $(document).on('click', function(e) {
+            if (!$(e.target).is('.language-dropdown')) {
+                $('.lang-selector').hide();
+            }
+        });
+
+        // make objective_c pretty 
+        $('.language-dropdown, .lang-selector a').each(function() {
+            $(this).text(underscoreToDash($(this).text()));
+        })
+
+    });
+
+} )(window);

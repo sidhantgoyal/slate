@@ -1,1 +1,550 @@
-@font-face{font-family:'proxima-nova';src:url("https://cdn.smooch.io/app/fonts/2F0A2B_2A_0.eot");src:url("https://cdn.smooch.io/app/fonts/2F0A2B_2A_0.eot?#iefix") format("embedded-opentype"),url("https://cdn.smooch.io/app/fonts/2F0A2B_2A_0.woff2") format("woff2"),url("https://cdn.smooch.io/app/fonts/2F0A2B_2A_0.woff") format("woff"),url("https://cdn.smooch.io/app/fonts/2F0A2B_2A_0.ttf") format("truetype")}.content h1,.content h2,.content h3,.content h4,.content h5,.content h6,html,body{font-family:"proxima-nova", "Helvetica Neue", Helvetica, Arial, sans-serif;font-size:16px}html,body{color:#444;background-color:#ffffff}.page-wrapper{background-color:transparent}.tocify-wrapper{background-color:#007dc6;box-shadow:inset -30px 0 39px -18px rgba(0,0,0,0.15);padding:24px 0;width:300px}.tocify-wrapper>img{margin-left:10px;margin-bottom:15px}.tocify-wrapper>.search{margin-bottom:12px;margin-left:36px;margin-right:36px}.tocify-wrapper>.search input{background:transparent;border-color:transparent;border-radius:60px;font-size:14px;margin:10px 0px 6px 0px;padding:12px 0 10px 20px}.tocify-wrapper>.search input::-webkit-input-placeholder{color:#98cffd}.tocify-wrapper>.search:before{color:#79b9e7;left:0px;top:23px}.tocify-wrapper .search-results{background:none;box-shadow:inset 0 -1px 0px #3da1e0;border:none}.tocify-wrapper .search-results.visible{margin-top:-14px}.tocify-wrapper .search-results li{margin-left:50px;margin-right:36px;font-size:13px;font-weight:normal}.tocify-wrapper .search-results li a{color:#dfebed}.tocify-wrapper li{color:#fff;font-size:15px;font-weight:600;line-height:40px;margin-left:36px;margin-right:36px}.tocify-wrapper .tocify-focus{color:#98cffd;box-shadow:none}.tocify-wrapper .tocify-subheader{background:none}.tocify-wrapper .tocify-subheader li{line-height:32px}.tocify-wrapper .toc-footer{border-top:none}.tocify-wrapper .toc-footer li,.tocify-wrapper .toc-footer a{color:#dfebed}.tocify-wrapper .tocify-subheader .tocify-item>a{font-size:13px;font-weight:500}.tocify-wrapper .tocify-item>a{padding:0}.tocify-wrapper .toc-footer li{color:#dfebed;font-size:13px;font-weight:normal;padding-left:0px}.page-wrapper{margin-left:300px}.lang-selector{background-color:#C158AD;font-size:14px;margin-bottom:24px;position:absolute;z-index:9;left:0px;font-weight:normal;text-transform:capitalize;top:42px}.lang-selector a{padding:0 20px;float:none}.lang-selector a:not(:last-child){border-bottom:1px solid #CF65B7}.lang-selector a.active{background:none}.lang-selector a:active{background:none !important}.lang-selector a:focus{outline:0}.content{max-width:1200px;padding-top:30px}.content>h1,.content>h2,.content>h3,.content>h4,.content>h5,.content>h6,.content>p,.content>table,.content>ul,.content>ol,.content>aside,.content>dl{padding:0 42px}.content h1{border:none;color:#464646;font-size:36px;font-weight:normal;background:none;text-shadow:none}.content h2{font-size:26px;border-top:none;margin-top:0;font-weight:600;text-shadow:none;padding-top:1em;padding-bottom:1em;background:none}.content h3,.content h4,.content h5,.content h6{font-size:19px;font-weight:600;margin-top:1.8em;margin-bottom:1em;text-transform:none}.content p,.content li,.content dt,.content dd{margin-bottom:1.4em}.content>ul,.content>ol{padding-left:62px}.content aside{background:#efd7ee;margin-left:42px;padding:0.8em 20px;text-shadow:none;border:1px solid #912d8d;border-radius:3px;border:none}.content aside a{color:#912d8d}.content aside.notice:before{color:#912d8d;font-size:16px}.content aside.warning{background-color:#fcdfe3;text-shadow:none;border-color:#e53e51;border:none}.content aside.warning:before{color:#e53e51;font-size:16px}.content api{display:block;background:#eaeaea;padding:0.8em 20px;text-shadow:none;border:1px solid #912d8d;border-radius:3px;border:none}.content api code{background:transparent}.content beta{display:inline-block;vertical-align:middle;font-size:16px;background:#007dc6;padding:3px 6px 3px 6px;text-shadow:none;border-radius:3px;border:none;color:white}beta:after{content:"beta"}.content pre{background-color:#362d38;border-radius:3px;margin-left:42px;padding:0.8em 18px;background-color:#242632;border-left:6px solid #912d8d;color:#dee3ec}.content blockquote{background:transparent;margin-left:42px;padding:10px 18px}.content code,.content pre{font-size:13px;line-height:1.6;margin-bottom:1.4em}.content code{background-color:rgba(0,0,0,0.05);border-radius:3px;text-shadow:none}.content tbody td:first-child{text-align:right}.highlight,.highlight .w{color:#dee3ec;background-color:transparent}.highlight .kt{color:#f26dc8}.highlight .kd{color:#1cbbb4}.highlight .kc{color:#f26dc8}.highlight .s,.highlight .sb,.highlight .sc,.highlight .sd,.highlight .s2,.highlight .sh,.highlight .sx,.highlight .s1{color:#1cbbb4}.highlight .m,.highlight .mf,.highlight .mh,.highlight .mi,.highlight .il,.highlight .mo,.highlight .mb,.highlight .mx{color:#f26dc8}.highlight .k,.highlight .kn,.highlight .kp,.highlight .kr,.highlight .kv{color:#bcd42a}.content .search-highlight{border:1px solid #ffdf7e;text-shadow:none;background:url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgi…pZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JhZCkiIC8+PC9zdmc+IA==");background:linear-gradient(to top left, #ffdf7e 0%, #ffdf7e 100%);color:#464646}#nav-button{opacity:0.82}#nav-button span{background-color:#912d8d;color:#fff;padding:6px 10px 6px}#nav-button.open{left:285px}#nav-button:focus{outline:0}@media (max-width: 930px){.tocify-wrapper{left:-300px}.tocify-wrapper.open{left:0}.page-wrapper{margin-left:0}}.btn-group{position:relative;vertical-align:middle;margin-left:36px;margin-right:32px}.btn-group>.btn:first-child:not(.language-dropdown){border-right:none}.btn-group>.btn:first-child:not(:last-child):not(.language-dropdown){border-top-right-radius:0;border-bottom-right-radius:0}.btn-group>.btn:last-child:not(:first-child),.btn-group>.dropdown-toggle:not(:first-child){border-top-left-radius:0;border-bottom-left-radius:0}.btn-group>.btn{position:relative;float:left;width:33%}.btn-default{color:#fff;background-color:transparent}.btn-selected{background-color:#C158AD}.btn{display:inline-block;padding:9px 11px;margin-bottom:0;font-size:14px;font-weight:400;line-height:1.42857143;text-align:center;white-space:nowrap;vertical-align:middle;-ms-touch-action:manipulation;touch-action:manipulation;cursor:pointer;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;background-image:none;border:2px solid #C158AD;border-radius:4px}.btn:focus{outline:0}.nav-label{color:#F183CE;margin-left:36px;margin-bottom:12px;font-size:15px;font-weight:normal;margin-top:32px}.dropdown-wrapper{position:relative;width:131px}.btn-group>.language-dropdown{width:131px;text-transform:capitalize;width:100%;text-align:left;z-index:2}.btn-group>.btn:not(:first-child):not(:last-child){border-radius:0;border-right:0}.separator{border-top:1px solid #9F3A97}.platform-nav{margin-bottom:36px}.separator-top{margin-top:10px}.clear{clear:both}.arrow-down{width:0;height:0;border-left:4px solid transparent;border-right:4px solid transparent;border-top:4px solid #FFF;top:18px;position:absolute;right:15px}.badge img{display:inline-block}.half-width-img img{max-width:50%}
+@charset "UTF-8";
+/*
+Copyright 2008-2013 Concur Technologies, Inc.
+
+Licensed under the Apache License, Version 2.0 (the "License"); you may
+not use this file except in compliance with the License. You may obtain
+a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+License for the specific language governing permissions and limitations
+under the License.
+*/
+@font-face {
+  font-family: 'proxima-nova';
+  src: url("https://cdn.smooch.io/app/fonts/2F0A2B_2A_0.eot");
+  src: url("https://cdn.smooch.io/app/fonts/2F0A2B_2A_0.eot?#iefix") format("embedded-opentype"), url("https://cdn.smooch.io/app/fonts/2F0A2B_2A_0.woff2") format("woff2"), url("https://cdn.smooch.io/app/fonts/2F0A2B_2A_0.woff") format("woff"), url("https://cdn.smooch.io/app/fonts/2F0A2B_2A_0.ttf") format("truetype"); }
+/* line 12, /Users/sgoyal4/office/slate/source/stylesheets/custom.scss */
+.content h1,
+.content h2,
+.content h3,
+.content h4,
+.content h5,
+.content h6,
+html,
+body {
+  font-family: "proxima-nova", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 16px; }
+
+/* line 24, /Users/sgoyal4/office/slate/source/stylesheets/custom.scss */
+html,
+body {
+  color: #444;
+  background-color: #ffffff; }
+
+/* line 30, /Users/sgoyal4/office/slate/source/stylesheets/custom.scss */
+.page-wrapper {
+  background-color: transparent; }
+
+/* line 34, /Users/sgoyal4/office/slate/source/stylesheets/custom.scss */
+.tocify-wrapper {
+  background-color: #007dc6;
+  box-shadow: inset -30px 0 39px -18px rgba(0, 0, 0, 0.15);
+  padding: 24px 0;
+  width: 300px; }
+
+/* line 41, /Users/sgoyal4/office/slate/source/stylesheets/custom.scss */
+.tocify-wrapper > img {
+  margin-left: 10px;
+  margin-bottom: 15px; }
+
+/* line 46, /Users/sgoyal4/office/slate/source/stylesheets/custom.scss */
+.tocify-wrapper > .search {
+  margin-bottom: 12px;
+  margin-left: 36px;
+  margin-right: 36px; }
+
+/* line 52, /Users/sgoyal4/office/slate/source/stylesheets/custom.scss */
+.tocify-wrapper > .search input {
+  background: transparent;
+  border-color: transparent;
+  border-radius: 60px;
+  font-size: 14px;
+  margin: 10px 0px 6px 0px;
+  padding: 12px 0 10px 20px; }
+
+/* line 61, /Users/sgoyal4/office/slate/source/stylesheets/custom.scss */
+.tocify-wrapper > .search input::-webkit-input-placeholder {
+  color: #98cffd; }
+
+/* line 65, /Users/sgoyal4/office/slate/source/stylesheets/custom.scss */
+.tocify-wrapper > .search:before {
+  color: #79b9e7;
+  left: 0px;
+  top: 23px; }
+
+/* line 71, /Users/sgoyal4/office/slate/source/stylesheets/custom.scss */
+.tocify-wrapper .search-results {
+  background: none;
+  box-shadow: inset 0 -1px 0px #3da1e0;
+  border: none; }
+
+/* line 77, /Users/sgoyal4/office/slate/source/stylesheets/custom.scss */
+.tocify-wrapper .search-results.visible {
+  margin-top: -14px; }
+
+/* line 81, /Users/sgoyal4/office/slate/source/stylesheets/custom.scss */
+.tocify-wrapper .search-results li {
+  margin-left: 50px;
+  margin-right: 36px;
+  font-size: 13px;
+  font-weight: normal; }
+
+/* line 88, /Users/sgoyal4/office/slate/source/stylesheets/custom.scss */
+.tocify-wrapper .search-results li a {
+  color: #dfebed; }
+
+/* line 92, /Users/sgoyal4/office/slate/source/stylesheets/custom.scss */
+.tocify-wrapper li {
+  color: #fff;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 40px;
+  margin-left: 36px;
+  margin-right: 36px; }
+
+/* line 101, /Users/sgoyal4/office/slate/source/stylesheets/custom.scss */
+.tocify-wrapper .tocify-focus {
+  color: #98cffd;
+  box-shadow: none; }
+
+/* line 106, /Users/sgoyal4/office/slate/source/stylesheets/custom.scss */
+.tocify-wrapper .tocify-subheader {
+  background: none; }
+
+/* line 110, /Users/sgoyal4/office/slate/source/stylesheets/custom.scss */
+.tocify-wrapper .tocify-subheader li {
+  line-height: 32px; }
+
+/* line 114, /Users/sgoyal4/office/slate/source/stylesheets/custom.scss */
+.tocify-wrapper .toc-footer {
+  border-top: none; }
+
+/* line 118, /Users/sgoyal4/office/slate/source/stylesheets/custom.scss */
+.tocify-wrapper .toc-footer li,
+.tocify-wrapper .toc-footer a {
+  color: #dfebed; }
+
+/* line 123, /Users/sgoyal4/office/slate/source/stylesheets/custom.scss */
+.tocify-wrapper .tocify-subheader .tocify-item > a {
+  font-size: 13px;
+  font-weight: 500; }
+
+/* line 128, /Users/sgoyal4/office/slate/source/stylesheets/custom.scss */
+.tocify-wrapper .tocify-item > a {
+  padding: 0; }
+
+/* line 132, /Users/sgoyal4/office/slate/source/stylesheets/custom.scss */
+.tocify-wrapper .toc-footer li {
+  color: #dfebed;
+  font-size: 13px;
+  font-weight: normal;
+  padding-left: 0px; }
+
+/* line 139, /Users/sgoyal4/office/slate/source/stylesheets/custom.scss */
+.page-wrapper {
+  margin-left: 300px; }
+
+/* line 143, /Users/sgoyal4/office/slate/source/stylesheets/custom.scss */
+.lang-selector {
+  background-color: #C158AD;
+  font-size: 14px;
+  margin-bottom: 24px;
+  position: absolute;
+  z-index: 9;
+  left: 0px;
+  font-weight: normal;
+  text-transform: capitalize;
+  top: 42px; }
+
+/* line 155, /Users/sgoyal4/office/slate/source/stylesheets/custom.scss */
+.lang-selector a {
+  padding: 0 20px;
+  float: none; }
+
+/* line 160, /Users/sgoyal4/office/slate/source/stylesheets/custom.scss */
+.lang-selector a:not(:last-child) {
+  border-bottom: 1px solid #CF65B7; }
+
+/* line 164, /Users/sgoyal4/office/slate/source/stylesheets/custom.scss */
+.lang-selector a.active {
+  background: none; }
+
+/* line 168, /Users/sgoyal4/office/slate/source/stylesheets/custom.scss */
+.lang-selector a:active {
+  background: none !important; }
+
+/* line 172, /Users/sgoyal4/office/slate/source/stylesheets/custom.scss */
+.lang-selector a:focus {
+  outline: 0; }
+
+/* line 176, /Users/sgoyal4/office/slate/source/stylesheets/custom.scss */
+.content {
+  max-width: 1200px;
+  padding-top: 30px; }
+
+/* line 181, /Users/sgoyal4/office/slate/source/stylesheets/custom.scss */
+.content > h1,
+.content > h2,
+.content > h3,
+.content > h4,
+.content > h5,
+.content > h6,
+.content > p,
+.content > table,
+.content > ul,
+.content > ol,
+.content > aside,
+.content > dl {
+  padding: 0 42px; }
+
+/* line 196, /Users/sgoyal4/office/slate/source/stylesheets/custom.scss */
+.content h1 {
+  border: none;
+  color: #464646;
+  font-size: 36px;
+  font-weight: normal;
+  background: none;
+  text-shadow: none; }
+
+/* line 205, /Users/sgoyal4/office/slate/source/stylesheets/custom.scss */
+.content h2 {
+  font-size: 26px;
+  border-top: none;
+  margin-top: 0;
+  font-weight: 600;
+  text-shadow: none;
+  padding-top: 1em;
+  padding-bottom: 1em;
+  background: none; }
+
+/* line 216, /Users/sgoyal4/office/slate/source/stylesheets/custom.scss */
+.content h3,
+.content h4,
+.content h5,
+.content h6 {
+  font-size: 19px;
+  font-weight: 600;
+  margin-top: 1.8em;
+  margin-bottom: 1em;
+  text-transform: none; }
+
+/* line 227, /Users/sgoyal4/office/slate/source/stylesheets/custom.scss */
+.content p,
+.content li,
+.content dt,
+.content dd {
+  margin-bottom: 1.4em; }
+
+/* line 234, /Users/sgoyal4/office/slate/source/stylesheets/custom.scss */
+.content > ul,
+.content > ol {
+  padding-left: 62px; }
+
+/* line 239, /Users/sgoyal4/office/slate/source/stylesheets/custom.scss */
+.content aside {
+  background: #efd7ee;
+  margin-left: 42px;
+  padding: 0.8em 20px;
+  text-shadow: none;
+  border: 1px solid #912d8d;
+  border-radius: 3px;
+  border: none; }
+
+/* line 249, /Users/sgoyal4/office/slate/source/stylesheets/custom.scss */
+.content aside a {
+  color: #912d8d; }
+
+/* line 253, /Users/sgoyal4/office/slate/source/stylesheets/custom.scss */
+.content aside.notice:before {
+  color: #912d8d;
+  font-size: 16px; }
+
+/* line 258, /Users/sgoyal4/office/slate/source/stylesheets/custom.scss */
+.content aside.warning {
+  background-color: #fcdfe3;
+  text-shadow: none;
+  border-color: #e53e51;
+  border: none; }
+
+/* line 265, /Users/sgoyal4/office/slate/source/stylesheets/custom.scss */
+.content aside.warning:before {
+  color: #e53e51;
+  font-size: 16px; }
+
+/* line 270, /Users/sgoyal4/office/slate/source/stylesheets/custom.scss */
+.content api {
+  display: block;
+  background: #eaeaea;
+  padding: 0.8em 20px;
+  text-shadow: none;
+  border: 1px solid #912d8d;
+  border-radius: 3px;
+  border: none; }
+
+/* line 280, /Users/sgoyal4/office/slate/source/stylesheets/custom.scss */
+.content api code {
+  background: transparent; }
+
+/* line 284, /Users/sgoyal4/office/slate/source/stylesheets/custom.scss */
+.content beta {
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 16px;
+  background: #007dc6;
+  padding: 3px 6px 3px 6px;
+  text-shadow: none;
+  border-radius: 3px;
+  border: none;
+  color: white; }
+
+/* line 296, /Users/sgoyal4/office/slate/source/stylesheets/custom.scss */
+beta:after {
+  content: "beta"; }
+
+/* line 300, /Users/sgoyal4/office/slate/source/stylesheets/custom.scss */
+.content pre {
+  background-color: #362d38;
+  border-radius: 3px;
+  margin-left: 42px;
+  padding: 0.8em 18px;
+  background-color: #242632;
+  border-left: 6px solid #912d8d;
+  color: #dee3ec; }
+
+/* line 310, /Users/sgoyal4/office/slate/source/stylesheets/custom.scss */
+.content blockquote {
+  background: transparent;
+  margin-left: 42px;
+  padding: 10px 18px; }
+
+/* line 316, /Users/sgoyal4/office/slate/source/stylesheets/custom.scss */
+.content code,
+.content pre {
+  font-size: 13px;
+  line-height: 1.6;
+  margin-bottom: 1.4em; }
+
+/* line 323, /Users/sgoyal4/office/slate/source/stylesheets/custom.scss */
+.content code {
+  background-color: rgba(0, 0, 0, 0.05);
+  border-radius: 3px;
+  text-shadow: none; }
+
+/* line 329, /Users/sgoyal4/office/slate/source/stylesheets/custom.scss */
+.content tbody td:first-child {
+  text-align: right; }
+
+/* line 333, /Users/sgoyal4/office/slate/source/stylesheets/custom.scss */
+.highlight,
+.highlight .w {
+  color: #dee3ec;
+  background-color: transparent; }
+
+/* line 339, /Users/sgoyal4/office/slate/source/stylesheets/custom.scss */
+.highlight .kt {
+  color: #f26dc8; }
+
+/* line 343, /Users/sgoyal4/office/slate/source/stylesheets/custom.scss */
+.highlight .kd {
+  color: #1cbbb4; }
+
+/* line 347, /Users/sgoyal4/office/slate/source/stylesheets/custom.scss */
+.highlight .kc {
+  color: #f26dc8; }
+
+/* line 351, /Users/sgoyal4/office/slate/source/stylesheets/custom.scss */
+.highlight .s,
+.highlight .sb,
+.highlight .sc,
+.highlight .sd,
+.highlight .s2,
+.highlight .sh,
+.highlight .sx,
+.highlight .s1 {
+  color: #1cbbb4; }
+
+/* line 362, /Users/sgoyal4/office/slate/source/stylesheets/custom.scss */
+.highlight .m,
+.highlight .mf,
+.highlight .mh,
+.highlight .mi,
+.highlight .il,
+.highlight .mo,
+.highlight .mb,
+.highlight .mx {
+  color: #f26dc8; }
+
+/* line 373, /Users/sgoyal4/office/slate/source/stylesheets/custom.scss */
+.highlight .k,
+.highlight .kn,
+.highlight .kp,
+.highlight .kr,
+.highlight .kv {
+  color: #bcd42a; }
+
+/* line 381, /Users/sgoyal4/office/slate/source/stylesheets/custom.scss */
+.content .search-highlight {
+  border: 1px solid #ffdf7e;
+  text-shadow: none;
+  background: url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgi…pZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JhZCkiIC8+PC9zdmc+IA==");
+  background: linear-gradient(to top left, #ffdf7e 0%, #ffdf7e 100%);
+  color: #464646; }
+
+/* line 392, /Users/sgoyal4/office/slate/source/stylesheets/custom.scss */
+#nav-button {
+  opacity: 0.82; }
+
+/* line 396, /Users/sgoyal4/office/slate/source/stylesheets/custom.scss */
+#nav-button span {
+  background-color: #912d8d;
+  color: #fff;
+  padding: 6px 10px 6px; }
+
+/* line 402, /Users/sgoyal4/office/slate/source/stylesheets/custom.scss */
+#nav-button.open {
+  left: 285px; }
+
+/* line 406, /Users/sgoyal4/office/slate/source/stylesheets/custom.scss */
+#nav-button:focus {
+  outline: 0; }
+
+@media (max-width: 930px) {
+  /* line 411, /Users/sgoyal4/office/slate/source/stylesheets/custom.scss */
+  .tocify-wrapper {
+    left: -300px; }
+    /* line 414, /Users/sgoyal4/office/slate/source/stylesheets/custom.scss */
+    .tocify-wrapper.open {
+      left: 0; }
+
+  /* line 420, /Users/sgoyal4/office/slate/source/stylesheets/custom.scss */
+  .page-wrapper {
+    margin-left: 0; } }
+/* line 428, /Users/sgoyal4/office/slate/source/stylesheets/custom.scss */
+.btn-group {
+  position: relative;
+  vertical-align: middle;
+  margin-left: 36px;
+  margin-right: 32px; }
+
+/* line 435, /Users/sgoyal4/office/slate/source/stylesheets/custom.scss */
+.btn-group > .btn:first-child:not(.language-dropdown) {
+  border-right: none; }
+
+/* line 439, /Users/sgoyal4/office/slate/source/stylesheets/custom.scss */
+.btn-group > .btn:first-child:not(:last-child):not(.language-dropdown) {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0; }
+
+/* line 444, /Users/sgoyal4/office/slate/source/stylesheets/custom.scss */
+.btn-group > .btn:last-child:not(:first-child),
+.btn-group > .dropdown-toggle:not(:first-child) {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0; }
+
+/* line 450, /Users/sgoyal4/office/slate/source/stylesheets/custom.scss */
+.btn-group > .btn {
+  position: relative;
+  float: left;
+  width: 33%; }
+
+/* line 456, /Users/sgoyal4/office/slate/source/stylesheets/custom.scss */
+.btn-default {
+  color: #fff;
+  background-color: transparent; }
+
+/* line 461, /Users/sgoyal4/office/slate/source/stylesheets/custom.scss */
+.btn-selected {
+  background-color: #C158AD; }
+
+/* line 465, /Users/sgoyal4/office/slate/source/stylesheets/custom.scss */
+.btn {
+  display: inline-block;
+  padding: 9px 11px;
+  margin-bottom: 0;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.42857143;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  -ms-touch-action: manipulation;
+  touch-action: manipulation;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  background-image: none;
+  border: 2px solid #C158AD;
+  border-radius: 4px; }
+
+/* line 487, /Users/sgoyal4/office/slate/source/stylesheets/custom.scss */
+.btn:focus {
+  outline: 0; }
+
+/* line 491, /Users/sgoyal4/office/slate/source/stylesheets/custom.scss */
+.nav-label {
+  color: #F183CE;
+  margin-left: 36px;
+  margin-bottom: 12px;
+  font-size: 15px;
+  font-weight: normal;
+  margin-top: 32px; }
+
+/* line 500, /Users/sgoyal4/office/slate/source/stylesheets/custom.scss */
+.dropdown-wrapper {
+  position: relative;
+  width: 131px; }
+
+/* line 505, /Users/sgoyal4/office/slate/source/stylesheets/custom.scss */
+.btn-group > .language-dropdown {
+  width: 131px;
+  text-transform: capitalize;
+  width: 100%;
+  text-align: left;
+  z-index: 2; }
+
+/* line 513, /Users/sgoyal4/office/slate/source/stylesheets/custom.scss */
+.btn-group > .btn:not(:first-child):not(:last-child) {
+  border-radius: 0;
+  border-right: 0; }
+
+/* line 518, /Users/sgoyal4/office/slate/source/stylesheets/custom.scss */
+.separator {
+  border-top: 1px solid #9F3A97; }
+
+/* line 522, /Users/sgoyal4/office/slate/source/stylesheets/custom.scss */
+.platform-nav {
+  margin-bottom: 36px; }
+
+/* line 526, /Users/sgoyal4/office/slate/source/stylesheets/custom.scss */
+.separator-top {
+  margin-top: 10px; }
+
+/* line 530, /Users/sgoyal4/office/slate/source/stylesheets/custom.scss */
+.clear {
+  clear: both; }
+
+/* line 534, /Users/sgoyal4/office/slate/source/stylesheets/custom.scss */
+.arrow-down {
+  width: 0;
+  height: 0;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-top: 4px solid #FFF;
+  top: 18px;
+  position: absolute;
+  right: 15px; }
+
+/* line 546, /Users/sgoyal4/office/slate/source/stylesheets/custom.scss */
+.badge img {
+  display: inline-block; }
+
+/* line 550, /Users/sgoyal4/office/slate/source/stylesheets/custom.scss */
+.half-width-img img {
+  max-width: 50%; }
