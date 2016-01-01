@@ -797,17 +797,17 @@ body {
   margin-left: 42px;
   padding: 0.8em 20px;
   text-shadow: none;
-  border: 1px solid 007dc6;
+  border: 1px solid #007dc6;
   border-radius: 3px;
   border: none; }
 
 /* line 249, /Users/sgoyal4/office/slate/source/stylesheets/custom.scss */
 .content aside a {
-  color: 007dc6; }
+  color: #007dc6; }
 
 /* line 253, /Users/sgoyal4/office/slate/source/stylesheets/custom.scss */
 .content aside.notice:before {
-  color: 007dc6;
+  color: #007dc6;
   font-size: 16px; }
 
 /* line 258, /Users/sgoyal4/office/slate/source/stylesheets/custom.scss */
@@ -828,7 +828,7 @@ body {
   background: #eaeaea;
   padding: 0.8em 20px;
   text-shadow: none;
-  border: 1px solid 007dc6;
+  border: 1px solid #007dc6;
   border-radius: 3px;
   border: none; }
 
@@ -859,7 +859,7 @@ beta:after {
   margin-left: 42px;
   padding: 0.8em 18px;
   background-color: #242632;
-  border-left: 6px solid 007dc6;
+  border-left: 6px solid #007dc6;
   color: #dee3ec; }
 
 /* line 310, /Users/sgoyal4/office/slate/source/stylesheets/custom.scss */
@@ -947,7 +947,7 @@ beta:after {
 
 /* line 396, /Users/sgoyal4/office/slate/source/stylesheets/custom.scss */
 #nav-button span {
-  background-color: 007dc6;
+  background-color: #007dc6;
   color: #fff;
   padding: 6px 10px 6px; }
 
