@@ -1128,9 +1128,13 @@ beta:after {
 
 /* line 586, /Users/sgoyal4/office/slate/source/stylesheets/custom.scss */
 .half-width-img img {
-  width: 50%; }
+  max-width: 50%; }
 
 /* line 590, /Users/sgoyal4/office/slate/source/stylesheets/custom.scss */
+.three-fourth-width-img img {
+  max-width: 75%; }
+
+/* line 594, /Users/sgoyal4/office/slate/source/stylesheets/custom.scss */
 .header-primary {
   height: 94px;
   padding-top: 22px;
