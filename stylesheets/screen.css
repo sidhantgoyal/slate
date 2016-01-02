@@ -1746,6 +1746,7 @@ beta:after {
 
 /* line 553, /Users/sgoyal4/office/slate/source/stylesheets/custom.scss */
 .download-button {
+  margin: 0px 42px;
   color: #fff;
   background-color: #76c143;
   border-radius: 4px;
