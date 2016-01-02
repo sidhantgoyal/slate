@@ -6,22 +6,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>API Documentation</title>
 
-    <link href="../stylesheets/screen.css" rel="stylesheet" type="text/css" media="screen" />
-    <link href="../stylesheets/print.css" rel="stylesheet" type="text/css" media="print" />
+    <link href="../../stylesheets/screen.css" rel="stylesheet" type="text/css" media="screen" />
+    <link href="../../stylesheets/print.css" rel="stylesheet" type="text/css" media="print" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-      <script src="../javascripts/all_nosearch.js" type="text/javascript"></script>
+      <script src="../../javascripts/all_nosearch.js" type="text/javascript"></script>
 
   </head>
 
-  <body class="includes includes_getting_started_on_ios">
+  <body class="includes includes_getting_started_for_ios includes_getting_started_for_ios_add_sdk_to_project">
     <a href="#" id="nav-button">
       <span>
         NAV
-        <img src="../images/navbar.png" />
+        <img src="../../images/navbar.png" />
       </span>
     </a>
     <div class="tocify-wrapper">
-      <img src="../images/logo.svg" />
+      <img src="../../images/logo.svg" />
       <div class="separator separator-top"></div>
       <div class="platform-nav">
         <div class="nav-label">Platform</div>
@@ -39,40 +39,21 @@
     <div class="page-wrapper">
       <div class="dark-box"></div>
       <div class="content">
-        <h2 id="getting-started-for-ios">Getting Started for iOS</h2>
-
-<p>Integrate with Walmart BuyNow for your iOS app. Drive sales and let your iOS app users buy from Walmart through your
-app. Source code examples are provided for both Objective-C and Swift. You can view code examples inline, and you can
-switch the programming language of the examples with the tabs in the top left.</p>
-
-<h3 id="prerequisites">Prerequisites</h3>
-
-<ul>
-<li>Apps using Walmart BuyNow SDK can target: iOS 8 or later (iOS 7 cannot be supported because it does not allow using
-3rd party dynamic frameworks, and it is impossible to build static libraries that contain Swift code.)</li>
-<li>Xcode (<a href="#">Documentation</a> / <a href="#">Download</a>)</li>
-</ul>
-
-<h3 id="download-the-sdk">Download the SDK</h3>
-
-<p>Download the SDK and unzip the archive to  <code class="prettyprint">~/Documents/WalmartSDK</code>
-<div class="download">Download iOS SDK</div></p>
-
-<h3 id="add-the-sdk-to-your-xcode-project">Add the SDK to your Xcode Project</h3>
+        <h3 id="add-the-sdk-to-your-xcode-project">Add the SDK to your Xcode Project</h3>
 
 <ol>
 <li><p>Open <code class="prettyprint">~/Documents/WalmartSDK</code></p></li>
 <li><p>Drag <code class="prettyprint">WMTSDKKit.framework</code> into the <code class="prettyprint">Embedded Binaries</code> section of your target. Make sure <strong>Copy items if
 needed</strong> is selected and click <strong>Finish</strong>.</p>
 
-<p><span class="three-fourth-width-img"><img alt="Embed Framework" src="../images/embed_framework.png" /></span></p>
+<p><span class="three-fourth-width-img"><img alt="Embed Framework" src="../../images/embed_framework.png" /></span></p>
 
 <aside class="notice">If your application is <strong>Objective-C</strong> based, make sure in your <code>Build
 Settings</code>
 the <code>Build Option, Embedded ContentContains Swift Code</code> is set to <code>Yes</code>
 </aside>
 
-<p><span class="three-fourth-width-img"><img alt="Embedded Content Contains Swift Code" src="../images/embedded_content_contains_swift_code.png" /></span></p></li>
+<p><span class="three-fourth-width-img"><img alt="Embedded Content Contains Swift Code" src="../../images/embedded_content_contains_swift_code.png" /></span></p></li>
 <li><p>Add a new <code class="prettyprint">Run Script Phase</code> in your target’s <code class="prettyprint">Build Phases</code>.</p>
 
 <p><strong>Important</strong>: Make sure this <code class="prettyprint">Run Script Phase</code> is below the <code class="prettyprint">Embed Frameworks</code> build phase. You can drag
@@ -84,7 +65,6 @@ field:</p>
 
 <p>This step is required to work around an <a href="http://www.openradar
 .me/radar?id=6409498411401216">App Store submission bug</a> when archiving universal binaries.</p></li>
-<li><p>Fourth point</p></li>
 </ol>
 
       </div>

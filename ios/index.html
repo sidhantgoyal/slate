@@ -88,15 +88,15 @@ switch the programming language of the examples with the tabs in the top left.</
 <ul>
 <li>Apps using Walmart BuyNow SDK can target: iOS 8 or later (iOS 7 cannot be supported because it does not allow using
 3rd party dynamic frameworks, and it is impossible to build static libraries that contain Swift code.)</li>
-<li>Xcode (<a href="#">Documentation</a> / <a href="#">Download</a>)</li>
+<li>Xcode (<a href="https://developer.apple.com/xcode/">Documentation</a> / <a href="http://itunes.apple.com/us/app/xcode/id497799835?ls=1&amp;mt=12">Download</a>)</li>
 </ul>
 
-<h3 id="download-the-sdk">Download the SDK</h3>
+          <h3 id="download-the-sdk">Download the SDK</h3>
 
 <p>Download the SDK and unzip the archive to  <code class="prettyprint">~/Documents/WalmartSDK</code>
 <div class="download">Download iOS SDK</div></p>
 
-<h3 id="add-the-sdk-to-your-xcode-project">Add the SDK to your Xcode Project</h3>
+          <h3 id="add-the-sdk-to-your-xcode-project">Add the SDK to your Xcode Project</h3>
 
 <ol>
 <li><p>Open <code class="prettyprint">~/Documents/WalmartSDK</code></p></li>
@@ -122,63 +122,9 @@ field:</p>
 
 <p>This step is required to work around an <a href="http://www.openradar
 .me/radar?id=6409498411401216">App Store submission bug</a> when archiving universal binaries.</p></li>
-<li><p>Fourth point</p></li>
 </ol>
 
-          <h2 id="configuring-push-notifications">Configuring push notifications</h2>
-
-<p>Push notifications are a great, unobtrusive way to let your users know that a reply to their message has arrived.</p>
-
-<h3 id="step-1-enable-push-notifications-and-generate-the-p12-certificate">Step 1. Enable Push Notifications and Generate the .p12 Certificate</h3>
-
-<ol>
-<li><p>Log into the Identifiers section of the Apple Developer Member Center, and select your app. You can get there by visiting <a href="https://developer.apple.com/account/ios/identifiers/bundle/bundleList.action">this link</a></p></li>
-<li><p>Click &lsquo;Edit&rsquo;, enable &#39;Push Notifications&rsquo;, and then click &#39;Create Certificate&hellip;&ldquo;</p></li>
-<li><p>Follow the instructions to generate a certificate signing request using Keychain Access</p></li>
-<li><p>Once the certificate is ready, download it to your computer and double-click it to open it in Keychain Access</p></li>
-<li><p>Right click on the certificate you created, and select &#39;Export &quot;Apple Development IOS Push Services:&hellip;&rdquo;&rsquo;</p></li>
-<li><p>Save the .p12 file to your computer.</p></li>
-</ol>
-
-<h3 id="step-2-upload-the-p12-file-to-smooch">Step 2. Upload the .p12 file to Smooch</h3>
-
-<ol>
-<li><p>Go to http://app.smooch.io and log into your account.</p></li>
-<li><p>Select the app you want push notifications to enabled for.</p></li>
-<li><p>Upload the .p12 file.</p></li>
-</ol>
-
-<h3 id="step-3-re-create-your-provisioning-profile">Step 3. Re-create your Provisioning Profile</h3>
-
-<p>Now that you have enabled push notifications for your app, you MUST re-create your Provisioning Profile. You can not use the one you&rsquo;ve used in the past.</p>
-
-<ol>
-<li><p>Go to Provisioning Profiles in the Apple Developer Member Center by <a href="https://developer.apple.com/account/ios/profile/profileList.action">clicking here</a>.</p></li>
-<li><p>Click the &rsquo;+&rsquo; button to add a new provisioning profile and follow the on-screen instructions.</p></li>
-<li><p>Notice that once you created the new provisioning profile, it shows that &ldquo;Push Notifications&rdquo; is an enabled service. Download the new profile.</p></li>
-<li><p>Double click it to install it. It should now be selectable in Xcode for your app.</p></li>
-<li><p>Build your app.</p></li>
-</ol>
-
-<h3 id="step-4-test-it-out">Step 4. Test it out!</h3>
-
-<aside class="warning">
-You can&rsquo;t receive push notifications in the Xcode simulator, you must use a physical device.
-</aside>
-
-<ol>
-<li><p>Kill and restart your app.</p></li>
-<li><p>Launch Smooch.</p></li>
-<li><p>Send a message. Important! You must resend a message after uploading the p12 file.</p></li>
-<li><p>Reply to the message from your email inbox</p></li>
-</ol>
-
-<p>You&rsquo;ll receive a notification if you&rsquo;re in the app, or outside the app!</p>
-
-<h3 id="step-5-repeat-for-production-mode">Step 5. Repeat for Production mode</h3>
-
-<p>Take note that there are &ldquo;Development&rdquo; and &ldquo;Production&rdquo; certificates and profiles. Make sure that you upload the &ldquo;Production&rdquo; .p12 file to Smooch when you&rsquo;re ready to release your build through ad-hoc, enterprise or app store distribution.</p>
-
+          
           <h1 id="users">Users</h1>
 
           <h2 id="user-data">User data</h2>
