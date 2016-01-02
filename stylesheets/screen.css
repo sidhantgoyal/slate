@@ -1746,20 +1746,18 @@ beta:after {
 
 /* line 553, /Users/sgoyal4/office/slate/source/stylesheets/custom.scss */
 .download-button {
-  background: #00BF6F none repeat scroll 0% 0%;
-  color: #FFF;
-  padding: 14px 24px;
-  border: 0px;
-  font-weight: 700;
-  letter-spacing: 1px;
-  text-transform: uppercase;
+  color: #fff;
+  background-color: #76c143;
+  border-radius: 4px;
+  outline: 0;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
   display: inline-block;
-  margin-bottom: 0px;
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 1.42857;
+  padding: 11px 34px;
+  border: 0;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1;
   text-align: center;
-  white-space: nowrap;
   vertical-align: middle;
-  cursor: pointer;
-  border-radius: 4px; }
+  cursor: pointer; }
