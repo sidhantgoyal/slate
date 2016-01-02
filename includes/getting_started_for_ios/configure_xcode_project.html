@@ -41,6 +41,24 @@
       <div class="content">
         <h2 id="configure-xcode-project">Configure Xcode Project</h2>
 
+<p>You will need a publisher Id to use the SDK. This is either provided by Walmart or if you are a Linkshare publisher,
+then Linkshare publisher Id can be used.</p>
+
+<p>Now configure the .plist for your project:</p>
+
+<ol>
+<li>In Xcode right-click your .plist file and choose &ldquo;Open As Source Code&rdquo;.</li>
+<li>Copy &amp; Paste the XML snippet into the body of your file (<dict>&hellip;</dict>).</li>
+<li><p>Replace:
+{publisher-id} with your publisher Id</p>
+
+<h3 id="for-ios-9-only-whitelist-walmart-servers">For iOS 9 only: Whitelist Walmart Servers</h3>
+
+<p>If you compile your app with iOS SDK <code class="prettyprint">9.0</code>, you will be affected by <a href="https://developer.apple
+.com/library/prerelease/ios/technotes/App-Transport-Security-Technote/">App Transport Security</a>. Currently, you will need to whitelist
+Walmart domains in your app by adding the following to your application&rsquo;s <code class="prettyprint">plist</code>:</p></li>
+</ol>
+
       </div>
       <div class="dark-box">
       </div>
