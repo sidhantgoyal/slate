@@ -51,13 +51,11 @@ then Linkshare publisher Id can be used. Now configure the <code class="prettypr
 <span class="nt">&lt;string&gt;</span>{your-publisher-id}<span class="nt">&lt;/string&gt;</span>
 </code></pre></li>
 <li><p>Replace:
-<code class="prettyprint">{your-publisher-id}</code> with your publisher Id</p></li>
-</ol>
+<code class="prettyprint">{your-publisher-id}</code> with your publisher Id</p>
 
-<h4>For iOS 9 only: Whitelist Walmart Servers</h4>
-
-<p>If you compile your app with iOS SDK <code class="prettyprint">9.0</code>, you will be affected by <a href="https://developer.apple
-.com/library/prerelease/ios/technotes/App-Transport-Security-Technote/">App Transport Security</a>. Currently, you will need to whitelist
+<h5>For iOS 9 only: Whitelist Walmart Servers</h5></li>
+<li><p>If you compile your app with iOS SDK <code class="prettyprint">9.0</code>, you will be affected by <a href="https://developer
+.apple.com/library/prerelease/ios/technotes/App-Transport-Security-Technote/">App Transport Security</a>. Currently, you will need to whitelist
 Walmart domains in your app by adding the following to your application&rsquo;s <code class="prettyprint">plist</code></p>
 <pre class="highlight xml"><code><span class="nt">&lt;key&gt;</span>NSAppTransportSecurity<span class="nt">&lt;/key&gt;</span>
 <span class="nt">&lt;dict&gt;</span>
@@ -80,7 +78,8 @@ Walmart domains in your app by adding the following to your application&rsquo;s 
         <span class="nt">&lt;/dict&gt;</span>
     <span class="nt">&lt;/dict&gt;</span>
 <span class="nt">&lt;/dict&gt;</span>
-</code></pre>
+</code></pre></li>
+</ol>
 
       </div>
       <div class="dark-box">
