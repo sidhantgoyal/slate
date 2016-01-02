@@ -129,20 +129,20 @@ field:</p>
 <p>You will need a publisher Id to use the SDK. This is either provided by Walmart or if you are a Linkshare publisher,
 then Linkshare publisher Id can be used.</p>
 
-<p>Now configure the .plist for your project:</p>
+<p>Now configure the <code class="prettyprint">.plist</code> for your project:</p>
 
 <ol>
-<li>In Xcode right-click your .plist file and choose &ldquo;Open As Source Code&rdquo;.</li>
-<li>Copy &amp; Paste the XML snippet into the body of your file (<dict>&hellip;</dict>).</li>
-<li><p>Replace:
-{publisher-id} with your publisher Id</p>
+<li>In Xcode right-click your <code class="prettyprint">.plist</code> file and choose &ldquo;Open As Source Code&rdquo;.</li>
+<li>Copy &amp; Paste the XML snippet into the body of your file (<code class="prettyprint">&lt;dict&gt;...&lt;/dict&gt;</code>).</li>
+<li>Replace:
+<code class="prettyprint">{publisher-id}</code> with your publisher Id</li>
+</ol>
 
-<h3 id="for-ios-9-only-whitelist-walmart-servers">For iOS 9 only: Whitelist Walmart Servers</h3>
+<h4>For iOS 9 only: Whitelist Walmart Servers</h4>
 
 <p>If you compile your app with iOS SDK <code class="prettyprint">9.0</code>, you will be affected by <a href="https://developer.apple
 .com/library/prerelease/ios/technotes/App-Transport-Security-Technote/">App Transport Security</a>. Currently, you will need to whitelist
-Walmart domains in your app by adding the following to your application&rsquo;s <code class="prettyprint">plist</code>:</p></li>
-</ol>
+Walmart domains in your app by adding the following to your application&rsquo;s <code class="prettyprint">plist</code>:</p>
 
           <h1 id="users">Users</h1>
 
