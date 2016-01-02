@@ -458,110 +458,254 @@ under the License.
   margin: 0; }
 
 /* line 22, /Users/sgoyal4/office/slate/source/stylesheets/_syntax.scss.erb */
-.highlight, .highlight .w {
-  color: #f8f8f2;
-  background-color: #272822; }
+.highlight .gh {
+  color: #999999; }
 
-/* line 26, /Users/sgoyal4/office/slate/source/stylesheets/_syntax.scss.erb */
-.highlight .err {
-  color: #151515;
-  background-color: #ac4142; }
+/* line 25, /Users/sgoyal4/office/slate/source/stylesheets/_syntax.scss.erb */
+.highlight .sr {
+  color: #f6aa11; }
 
-/* line 30, /Users/sgoyal4/office/slate/source/stylesheets/_syntax.scss.erb */
-.highlight .c, .highlight .cd, .highlight .cm, .highlight .c1, .highlight .cs {
-  color: #505050; }
+/* line 28, /Users/sgoyal4/office/slate/source/stylesheets/_syntax.scss.erb */
+.highlight .go {
+  color: #888888; }
 
-/* line 33, /Users/sgoyal4/office/slate/source/stylesheets/_syntax.scss.erb */
-.highlight .cp {
-  color: #f4bf75; }
+/* line 31, /Users/sgoyal4/office/slate/source/stylesheets/_syntax.scss.erb */
+.highlight .gp {
+  color: #555555; }
 
 /* line 36, /Users/sgoyal4/office/slate/source/stylesheets/_syntax.scss.erb */
-.highlight .nt {
-  color: #f4bf75; }
+.highlight .gu {
+  color: #aaaaaa; }
 
 /* line 39, /Users/sgoyal4/office/slate/source/stylesheets/_syntax.scss.erb */
-.highlight .o, .highlight .ow {
-  color: #d0d0d0; }
+.highlight .nb {
+  color: #f6aa11; }
 
 /* line 42, /Users/sgoyal4/office/slate/source/stylesheets/_syntax.scss.erb */
-.highlight .p, .highlight .pi {
-  color: #d0d0d0; }
+.highlight .cm {
+  color: #75715e; }
 
 /* line 45, /Users/sgoyal4/office/slate/source/stylesheets/_syntax.scss.erb */
-.highlight .gi {
-  color: #90a959; }
+.highlight .cp {
+  color: #75715e; }
 
 /* line 48, /Users/sgoyal4/office/slate/source/stylesheets/_syntax.scss.erb */
-.highlight .gd {
-  color: #ac4142; }
+.highlight .c1 {
+  color: #75715e; }
 
 /* line 51, /Users/sgoyal4/office/slate/source/stylesheets/_syntax.scss.erb */
-.highlight .gh {
-  color: #6a9fb5;
-  background-color: #151515;
-  font-weight: bold; }
+.highlight .cs {
+  color: #75715e; }
 
-/* line 56, /Users/sgoyal4/office/slate/source/stylesheets/_syntax.scss.erb */
-.highlight .k, .highlight .kn, .highlight .kp, .highlight .kr, .highlight .kv {
-  color: #aa759f; }
+/* line 54, /Users/sgoyal4/office/slate/source/stylesheets/_syntax.scss.erb */
+.highlight .c, .highlight .cd {
+  color: #75715e; }
 
-/* line 59, /Users/sgoyal4/office/slate/source/stylesheets/_syntax.scss.erb */
+/* line 57, /Users/sgoyal4/office/slate/source/stylesheets/_syntax.scss.erb */
+.highlight .err {
+  color: #960050; }
+
+/* line 60, /Users/sgoyal4/office/slate/source/stylesheets/_syntax.scss.erb */
+.highlight .gr {
+  color: #960050; }
+
+/* line 63, /Users/sgoyal4/office/slate/source/stylesheets/_syntax.scss.erb */
+.highlight .gt {
+  color: #960050; }
+
+/* line 66, /Users/sgoyal4/office/slate/source/stylesheets/_syntax.scss.erb */
+.highlight .gd {
+  color: #49483e; }
+
+/* line 69, /Users/sgoyal4/office/slate/source/stylesheets/_syntax.scss.erb */
+.highlight .gi {
+  color: #49483e; }
+
+/* line 72, /Users/sgoyal4/office/slate/source/stylesheets/_syntax.scss.erb */
+.highlight .ge {
+  color: #49483e; }
+
+/* line 75, /Users/sgoyal4/office/slate/source/stylesheets/_syntax.scss.erb */
 .highlight .kc {
-  color: #d28445; }
+  color: #66d9ef; }
 
-/* line 62, /Users/sgoyal4/office/slate/source/stylesheets/_syntax.scss.erb */
-.highlight .kt {
-  color: #d28445; }
-
-/* line 65, /Users/sgoyal4/office/slate/source/stylesheets/_syntax.scss.erb */
+/* line 78, /Users/sgoyal4/office/slate/source/stylesheets/_syntax.scss.erb */
 .highlight .kd {
-  color: #d28445; }
+  color: #66d9ef; }
 
-/* line 68, /Users/sgoyal4/office/slate/source/stylesheets/_syntax.scss.erb */
-.highlight .s, .highlight .sb, .highlight .sc, .highlight .sd, .highlight .s2, .highlight .sh, .highlight .sx, .highlight .s1 {
-  color: #90a959; }
+/* line 81, /Users/sgoyal4/office/slate/source/stylesheets/_syntax.scss.erb */
+.highlight .kr {
+  color: #66d9ef; }
 
-/* line 71, /Users/sgoyal4/office/slate/source/stylesheets/_syntax.scss.erb */
-.highlight .sr {
-  color: #75b5aa; }
-
-/* line 74, /Users/sgoyal4/office/slate/source/stylesheets/_syntax.scss.erb */
-.highlight .si {
-  color: #8f5536; }
-
-/* line 77, /Users/sgoyal4/office/slate/source/stylesheets/_syntax.scss.erb */
-.highlight .se {
-  color: #8f5536; }
-
-/* line 80, /Users/sgoyal4/office/slate/source/stylesheets/_syntax.scss.erb */
-.highlight .nn {
-  color: #f4bf75; }
-
-/* line 83, /Users/sgoyal4/office/slate/source/stylesheets/_syntax.scss.erb */
-.highlight .nc {
-  color: #f4bf75; }
-
-/* line 86, /Users/sgoyal4/office/slate/source/stylesheets/_syntax.scss.erb */
+/* line 84, /Users/sgoyal4/office/slate/source/stylesheets/_syntax.scss.erb */
 .highlight .no {
-  color: #f4bf75; }
+  color: #66d9ef; }
 
-/* line 89, /Users/sgoyal4/office/slate/source/stylesheets/_syntax.scss.erb */
-.highlight .na {
-  color: #6a9fb5; }
+/* line 87, /Users/sgoyal4/office/slate/source/stylesheets/_syntax.scss.erb */
+.highlight .kt {
+  color: #66d9ef; }
 
-/* line 92, /Users/sgoyal4/office/slate/source/stylesheets/_syntax.scss.erb */
-.highlight .m, .highlight .mf, .highlight .mh, .highlight .mi, .highlight .il, .highlight .mo, .highlight .mb, .highlight .mx {
-  color: #90a959; }
+/* line 90, /Users/sgoyal4/office/slate/source/stylesheets/_syntax.scss.erb */
+.highlight .mf {
+  color: #ae81ff; }
 
-/* line 95, /Users/sgoyal4/office/slate/source/stylesheets/_syntax.scss.erb */
+/* line 93, /Users/sgoyal4/office/slate/source/stylesheets/_syntax.scss.erb */
+.highlight .mh {
+  color: #ae81ff; }
+
+/* line 96, /Users/sgoyal4/office/slate/source/stylesheets/_syntax.scss.erb */
+.highlight .il {
+  color: #ae81ff; }
+
+/* line 99, /Users/sgoyal4/office/slate/source/stylesheets/_syntax.scss.erb */
+.highlight .mi {
+  color: #ae81ff; }
+
+/* line 102, /Users/sgoyal4/office/slate/source/stylesheets/_syntax.scss.erb */
+.highlight .mo {
+  color: #ae81ff; }
+
+/* line 105, /Users/sgoyal4/office/slate/source/stylesheets/_syntax.scss.erb */
+.highlight .m, .highlight .mb, .highlight .mx {
+  color: #ae81ff; }
+
+/* line 108, /Users/sgoyal4/office/slate/source/stylesheets/_syntax.scss.erb */
+.highlight .sc {
+  color: #ae81ff; }
+
+/* line 111, /Users/sgoyal4/office/slate/source/stylesheets/_syntax.scss.erb */
+.highlight .se {
+  color: #ae81ff; }
+
+/* line 114, /Users/sgoyal4/office/slate/source/stylesheets/_syntax.scss.erb */
 .highlight .ss {
-  color: #90a959; }
+  color: #ae81ff; }
 
-/* line 98, /Users/sgoyal4/office/slate/source/stylesheets/_syntax.scss.erb */
+/* line 117, /Users/sgoyal4/office/slate/source/stylesheets/_syntax.scss.erb */
+.highlight .sd {
+  color: #e6db74; }
+
+/* line 120, /Users/sgoyal4/office/slate/source/stylesheets/_syntax.scss.erb */
+.highlight .s2 {
+  color: #e6db74; }
+
+/* line 123, /Users/sgoyal4/office/slate/source/stylesheets/_syntax.scss.erb */
+.highlight .sb {
+  color: #e6db74; }
+
+/* line 126, /Users/sgoyal4/office/slate/source/stylesheets/_syntax.scss.erb */
+.highlight .sh {
+  color: #e6db74; }
+
+/* line 129, /Users/sgoyal4/office/slate/source/stylesheets/_syntax.scss.erb */
+.highlight .si {
+  color: #e6db74; }
+
+/* line 132, /Users/sgoyal4/office/slate/source/stylesheets/_syntax.scss.erb */
+.highlight .sx {
+  color: #e6db74; }
+
+/* line 135, /Users/sgoyal4/office/slate/source/stylesheets/_syntax.scss.erb */
+.highlight .s1 {
+  color: #e6db74; }
+
+/* line 138, /Users/sgoyal4/office/slate/source/stylesheets/_syntax.scss.erb */
+.highlight .s {
+  color: #e6db74; }
+
+/* line 141, /Users/sgoyal4/office/slate/source/stylesheets/_syntax.scss.erb */
+.highlight .na {
+  color: #a6e22e; }
+
+/* line 144, /Users/sgoyal4/office/slate/source/stylesheets/_syntax.scss.erb */
+.highlight .nc {
+  color: #a6e22e; }
+
+/* line 147, /Users/sgoyal4/office/slate/source/stylesheets/_syntax.scss.erb */
+.highlight .nd {
+  color: #a6e22e; }
+
+/* line 150, /Users/sgoyal4/office/slate/source/stylesheets/_syntax.scss.erb */
+.highlight .ne {
+  color: #a6e22e; }
+
+/* line 153, /Users/sgoyal4/office/slate/source/stylesheets/_syntax.scss.erb */
+.highlight .nf {
+  color: #a6e22e; }
+
+/* line 156, /Users/sgoyal4/office/slate/source/stylesheets/_syntax.scss.erb */
+.highlight .vc {
+  color: #ffffff; }
+
+/* line 159, /Users/sgoyal4/office/slate/source/stylesheets/_syntax.scss.erb */
+.highlight .nn {
+  color: #ffffff; }
+
+/* line 162, /Users/sgoyal4/office/slate/source/stylesheets/_syntax.scss.erb */
+.highlight .nl {
+  color: #ffffff; }
+
+/* line 165, /Users/sgoyal4/office/slate/source/stylesheets/_syntax.scss.erb */
+.highlight .ni {
+  color: #ffffff; }
+
+/* line 168, /Users/sgoyal4/office/slate/source/stylesheets/_syntax.scss.erb */
+.highlight .bp {
+  color: #ffffff; }
+
+/* line 171, /Users/sgoyal4/office/slate/source/stylesheets/_syntax.scss.erb */
+.highlight .vg {
+  color: #ffffff; }
+
+/* line 174, /Users/sgoyal4/office/slate/source/stylesheets/_syntax.scss.erb */
+.highlight .vi {
+  color: #ffffff; }
+
+/* line 177, /Users/sgoyal4/office/slate/source/stylesheets/_syntax.scss.erb */
+.highlight .nv {
+  color: #ffffff; }
+
+/* line 180, /Users/sgoyal4/office/slate/source/stylesheets/_syntax.scss.erb */
+.highlight .w {
+  color: #ffffff; }
+
+/* line 183, /Users/sgoyal4/office/slate/source/stylesheets/_syntax.scss.erb */
+.highlight {
+  color: #ffffff; }
+
+/* line 186, /Users/sgoyal4/office/slate/source/stylesheets/_syntax.scss.erb */
+.highlight .n, .highlight .py, .highlight .nx {
+  color: #ffffff; }
+
+/* line 189, /Users/sgoyal4/office/slate/source/stylesheets/_syntax.scss.erb */
+.highlight .ow {
+  color: #f92672; }
+
+/* line 192, /Users/sgoyal4/office/slate/source/stylesheets/_syntax.scss.erb */
+.highlight .nt {
+  color: #f92672; }
+
+/* line 195, /Users/sgoyal4/office/slate/source/stylesheets/_syntax.scss.erb */
+.highlight .k, .highlight .kv {
+  color: #f92672; }
+
+/* line 198, /Users/sgoyal4/office/slate/source/stylesheets/_syntax.scss.erb */
+.highlight .kn {
+  color: #f92672; }
+
+/* line 201, /Users/sgoyal4/office/slate/source/stylesheets/_syntax.scss.erb */
+.highlight .kp {
+  color: #f92672; }
+
+/* line 204, /Users/sgoyal4/office/slate/source/stylesheets/_syntax.scss.erb */
+.highlight .o {
+  color: #f92672; }
+
+/* line 207, /Users/sgoyal4/office/slate/source/stylesheets/_syntax.scss.erb */
 .highlight .c, .highlight .cm, .highlight .c1, .highlight .cs {
   color: #909090; }
 
-/* line 102, /Users/sgoyal4/office/slate/source/stylesheets/_syntax.scss.erb */
+/* line 211, /Users/sgoyal4/office/slate/source/stylesheets/_syntax.scss.erb */
 .highlight, .highlight .w {
   background-color: #292929; }
 
