@@ -41,9 +41,11 @@
       <div class="content">
         <h2 id="initialize-walmart-sdk">Initialize Walmart SDK</h2>
 
-<p>Now that the SDK is installed, you&rsquo;ll need to initialize it first in your app. A good place to do that is in
-your <code class="prettyprint">AppDelegate</code>&rsquo;s application <code class="prettyprint">(_:didFinishLaunchingWithOptions:)</code> method. You can also configure other
-settings of the SDK there as well. Please go through the detailed Reference docs for iOS for available settings.</p>
+<p>Now that you have covered all the above steps and successfully installed the SDK, you&rsquo;ll need to initialize it
+first in your app to use it. A good place to do that is in your <code class="prettyprint">AppDelegate</code>&rsquo;s application <code class="prettyprint">
+(_:didFinishLaunchingWithOptions:)</code> method.
+You can also configure other settings of the SDK there as well. Please
+go through the detailed Reference docs for iOS for available settings.</p>
 <pre class="highlight objective_c"><code><span class="cp">#import "AppDelegate.h"
 </span><span class="k">@import</span> <span class="n">WMTSDKKit</span><span class="p">;</span>
 
@@ -61,9 +63,7 @@ settings of the SDK there as well. Please go through the detailed Reference docs
     <span class="c1">// Override point for customization after application launch.
 </span>    <span class="k">return</span> <span class="nb">YES</span><span class="p">;</span>
 <span class="p">}</span>
-
 <span class="p">......</span>
-
 </code></pre>
 <pre class="highlight swift"><code>
 <span class="kd">import</span> <span class="kt">UIKit</span>
@@ -74,7 +74,6 @@ settings of the SDK there as well. Please go through the detailed Reference docs
 
     <span class="k">var</span> <span class="nv">window</span><span class="p">:</span> <span class="kt">UIWindow</span><span class="p">?</span>
 
-
     <span class="kd">func</span> <span class="nf">application</span><span class="p">(</span><span class="nv">application</span><span class="p">:</span> <span class="kt">UIApplication</span><span class="p">,</span> <span class="n">didFinishLaunchingWithOptions</span> <span class="nv">launchOptions</span><span class="p">:</span> <span class="p">[</span><span class="kt">NSObject</span><span class="p">:</span> <span class="kt">AnyObject</span><span class="p">]?)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span> <span class="p">{</span>
         <span class="c1">// Override point for customization after application launch.</span>
         <span class="kt">WMTSDK</span><span class="o">.</span><span class="nf">initSDK</span><span class="p">()</span>
@@ -82,9 +81,7 @@ settings of the SDK there as well. Please go through the detailed Reference docs
         <span class="kt">WMTSDK</span><span class="o">.</span><span class="nf">setLinksharePartner</span><span class="p">(</span><span class="kc">true</span><span class="p">)</span>
         <span class="k">return</span> <span class="kc">true</span>
     <span class="p">}</span>
-
     <span class="o">......</span>
-
 </code></pre>
 
       </div>
