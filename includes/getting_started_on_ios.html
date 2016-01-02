@@ -42,15 +42,21 @@
         <h2 id="getting-started-for-ios">Getting Started for iOS</h2>
 
 <p>Integrate with Walmart BuyNow for your iOS app. Drive sales and let your iOS app users buy from Walmart through your
-app.
-<strong>Requirements</strong>: OS X, Xcode (<a href="#">Documentation</a> / <a href="#">Download</a>) and iOS 8 or higher.</p>
+app. Source code examples are provided for both Objective-C and Swift. You can view code examples inline, and you can
+switch the programming language of the examples with the tabs in the top left.</p>
+
+<h3 id="prerequisites">Prerequisites</h3>
+
+<ul>
+<li>Apps using Walmart BuyNow SDK can target: iOS 8 or later (iOS 7 cannot be supported because it does not allow using
+3rd party dynamic frameworks, and it is impossible to build static libraries that contain Swift code.)</li>
+<li>Xcode (<a href="#">Documentation</a> / <a href="#">Download</a>)</li>
+</ul>
 
 <h3 id="download-the-sdk">Download the SDK</h3>
 
 <p>Download the SDK and unzip the archive to ~/Documents/WalmartSDK.
 <div class="download">Download iOS SDK</div></p>
-<pre class="highlight plaintext"><code>sudo gem install cocoapods
-</code></pre>
 
 <p>Now that you&rsquo;ve installed CocoaPods, we&rsquo;ll add Smooch to your project&rsquo;s dependencies. Run these commands in terminal from the directory that houses your .xcodeproj file</p>
 <pre class="highlight plaintext"><code>$ echo "pod 'Smooch'" &gt;&gt; Podfile
