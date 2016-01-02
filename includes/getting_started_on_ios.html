@@ -55,99 +55,19 @@ switch the programming language of the examples with the tabs in the top left.</
 
 <h3 id="download-the-sdk">Download the SDK</h3>
 
-<p>Download the SDK and unzip the archive to <code class="prettyprint">~/Documents/WalmartSDK.</code>
+<p>Download the SDK and unzip the archive to  <code class="prettyprint">~/Documents/WalmartSDK</code>
 <div class="download">Download iOS SDK</div></p>
 
-<p>Now that you&rsquo;ve installed CocoaPods, we&rsquo;ll add Smooch to your project&rsquo;s dependencies. Run these commands in terminal from the directory that houses your .xcodeproj file</p>
-<pre class="highlight plaintext"><code>$ echo "pod 'Smooch'" &gt;&gt; Podfile
-</code></pre>
-<pre class="highlight plaintext"><code>$ pod install
-</code></pre>
+<h3 id="add-the-sdk-to-your-xcode-project">Add the SDK to your Xcode Project</h3>
 
-<p>Open the .xcworkspace file and add the necessary code to <a href="#import-the-smooch-header-file">initialize Smooch in your app</a>. </p>
-
+<p>1 Open <code class="prettyprint">~/Documents/WalmartSDK</code>
+2. Drag <code class="prettyprint">WMTSDKKit.framework</code> into the <code class="prettyprint">Embedded Binaries</code> section of your target.
+3. Add a new <code class="prettyprint">Run Script Phase</code> in your target’s <code class="prettyprint">Build Phases</code>.
 <aside class="notice">
-Remember — when you use CocoaPods to manage your app&rsquo;s dependencies, you have to build and run your app using the .xcworkspace file and not the .xcodeproj file.
+Make sure this <code class="prettyprint">Run Script Phase</code> is below the <code class="prettyprint">Embed Frameworks</code> build phase. You can drag
+and drop build phases to rearrange them. Paste the following line in this <code class="prettyprint">Run Script Phase</code>&rsquo;s script text field:
 </aside>
-
-<h2 id="manual-method">Manual Method</h2>
-
-<ol>
-<li><p>First, grab a copy of Smooch by <a href="https://github.com/smooch/smooch-ios/archive/master.zip">downloading the most recent release</a> or visiting our <a href="https://github.com/smooch/smooch-ios">GitHub page</a>.</p></li>
-<li><p>Next, add the SDK to your XCode project by dragging both Smooch.framework and Smooch.bundle into your project as shown below.
-<img alt="Dependencies in XCode" src="../images/dependencies.png" /></p></li>
-<li><p>Now you&rsquo;ll have to add Smooch&rsquo;s dependencies to your project if they&rsquo;re not already linked in. Go to &ldquo;Build phases&rdquo; in your project&rsquo;s target and select &ldquo;Link Binary With Libraries&rdquo;:</p>
-
-<ul>
-<li>AssetsLibrary.framework</li>
-<li>AVFoundation.framework</li>
-<li>CFNetwork.framework</li>
-<li>CoreGraphics.framework</li>
-<li>CoreTelephony.framework</li>
-<li>CoreText.framework</li>
-<li>Foundation.framework</li>
-<li>Photos.framework</li>
-<li>QuartzCore.framework</li>
-<li>SystemConfiguration.framework</li>
-<li>UIKit.framework</li>
-</ul></li>
-<li><p>Add the <code class="prettyprint">-licucore</code> option to your app&rsquo;s <code class="prettyprint">Other Linker Flags</code> build setting.</p></li>
-<li><p>Smooch should now be available to your app and you&rsquo;re ready to add the necessary code to <a href="#initialize-smooch-in-your-app">initialize Smooch in your app</a>.</p></li>
-</ol>
-
-<h2 id="import-the-smooch-header-file">Import the Smooch header file</h2>
-
-<p>Import the Smooch file into the your app delegate&rsquo;s .m file and any other places you plan to use it.</p>
-<pre class="highlight objective_c"><code><span class="cp">#import &lt;Smooch/Smooch.h&gt;
-</span></code></pre>
-<pre class="highlight swift"><code><span class="cp">#import &lt;Smooch/Smooch.h&gt;</span>
-</code></pre>
-
-<aside class="notice">
-If you&rsquo;re writing an app using Swift, then you&rsquo;ll need to import this header into a &ldquo;bridging header&rdquo;. More info on this is available from [Apple](https://developer.apple.com/library/ios/documentation/swift/conceptual/buildingcocoaapps/MixandMatch.html)
-</aside>
-
-<h2 id="initialize-smooch-in-your-app">Initialize Smooch in your app</h2>
-
-<p>After following the steps above, your app is setup for working with the Smooch SDK. Before your code can invoke its functionality, you&rsquo;ll have to initialize the library using your app&rsquo;s token.</p>
-
-<p>This token is free and uniquely identifies your app and links it to the Smooch backend that does the heavy lifting necessary to bridge the gap between you and your users.</p>
-
-<p>You can find your token by <a href="https://app.smooch.io">logging into Smooch</a> and copying it from the settings page as shown below.</p>
-
-<p><img alt="App Token on Overview Page" src="../images/apptoken.png" /></p>
-
-<p>Once you&rsquo;ve located your token, use the code below to initialize Smooch.</p>
-
-<p>Add the following line of code to your applicationDidFinishLaunchingWithOptions: method</p>
-<pre class="highlight objective_c"><code><span class="p">[</span><span class="n">Smooch</span> <span class="nf">initWithSettings</span><span class="p">:[</span><span class="n">SKTSettings</span> <span class="nf">settingsWithAppToken</span><span class="p">:</span><span class="s">@"YOUR_APP_TOKEN"</span><span class="p">]];</span>
-</code></pre>
-<pre class="highlight swift"><code><span class="kt">Smooch</span><span class="o">.</span><span class="nf">initWithSettings</span><span class="p">(</span><span class="kt">SKTSettings</span><span class="p">(</span><span class="nv">appToken</span><span class="p">:</span> <span class="s">"YOUR_APP_TOKEN"</span><span class="p">))</span>
-</code></pre>
-
-<p>Make sure to replace <code class="prettyprint">YOUR_APP_TOKEN</code> with your app token.</p>
-
-<h3 id="displaying-the-smooch-user-interface">Displaying the Smooch User Interface</h3>
-
-<p>Once you&rsquo;ve initialized Smooch, you&rsquo;re ready to try it out. </p>
-
-<p>Find a suitable place in your app&rsquo;s interface to invoke Smooch and use the code below to display the Smooch user interface. You can bring up Smooch whenever you think that your user will need access to help or a communication channel to contact you.</p>
-<pre class="highlight objective_c"><code><span class="p">[</span><span class="n">Smooch</span> <span class="nf">show</span><span class="p">];</span>
-</code></pre>
-<pre class="highlight swift"><code><span class="kt">Smooch</span><span class="o">.</span><span class="nf">show</span><span class="p">()</span>
-</code></pre>
-
-<h2 id="updating-smooch">Updating Smooch</h2>
-
-<h3 id="cocoapods">CocoaPods</h3>
-
-<p>To update via cocoapods, simply execute this</p>
-<pre class="highlight plaintext"><code>$ pod update
-</code></pre>
-
-<h3 id="manual">Manual</h3>
-
-<p>To manually update Smooch simply grab a fresh copy of Smooch by <a href="https://github.com/smooch/smooch-ios/archive/master.zip">downloading the most recent release</a> and re-add the SDK to your XCode project by dragging both Smooch.framework and Smooch.bundle into your project</p>
+4. Fourth point</p>
 
       </div>
       <div class="dark-box">
