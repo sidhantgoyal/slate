@@ -127,15 +127,16 @@ field:</p>
           <h2 id="configure-xcode-project">Configure Xcode Project</h2>
 
 <p>You will need a publisher Id to use the SDK. This is either provided by Walmart or if you are a Linkshare publisher,
-then Linkshare publisher Id can be used.</p>
-
-<p>Now configure the <code class="prettyprint">.plist</code> for your project:</p>
+then Linkshare publisher Id can be used. Now configure the <code class="prettyprint">.plist</code> for your project:</p>
 
 <ol>
 <li>In Xcode right-click your <code class="prettyprint">.plist</code> file and choose &ldquo;Open As Source Code&rdquo;.</li>
-<li>Copy &amp; Paste the XML snippet into the body of your file (<code class="prettyprint">&lt;dict&gt;...&lt;/dict&gt;</code>).</li>
-<li>Replace:
-<code class="prettyprint">{publisher-id}</code> with your publisher Id</li>
+<li><p>Copy &amp; Paste the XML snippet into the body of your file (<code class="prettyprint">&lt;dict&gt;...&lt;/dict&gt;</code>).</p>
+<pre class="highlight xml"><code><span class="nt">&lt;key&gt;</span>WalmartPublisherId<span class="nt">&lt;/key&gt;</span>
+<span class="nt">&lt;string&gt;</span>{your-publisher-id}<span class="nt">&lt;/string&gt;</span>
+</code></pre></li>
+<li><p>Replace:
+<code class="prettyprint">{your-publisher-id}</code> with your publisher Id</p></li>
 </ol>
 
 <h4>For iOS 9 only: Whitelist Walmart Servers</h4>
