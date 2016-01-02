@@ -63,17 +63,14 @@ switch the programming language of the examples with the tabs in the top left.</
 <ol>
 <li><p>Open <code class="prettyprint">~/Documents/WalmartSDK</code></p></li>
 <li><p>Drag <code class="prettyprint">WMTSDKKit.framework</code> into the <code class="prettyprint">Embedded Binaries</code> section of your target.</p></li>
-<li><p>Add a new <code class="prettyprint">Run Script Phase</code> in your target’s <code class="prettyprint">Build Phases</code>.</p></li>
-</ol>
+<li><p>Add a new <code class="prettyprint">Run Script Phase</code> in your target’s <code class="prettyprint">Build Phases</code>.</p>
 
 <p><strong>Important</strong>: Make sure this <code class="prettyprint">Run Script Phase</code> is below the <code class="prettyprint">Embed Frameworks</code> build phase. You can drag
 and drop build phases to rearrange them.
 Paste the following line in this <code class="prettyprint">Run Script Phase</code>&rsquo;s script text field:</p>
 <pre class="highlight shell"><code>bash <span class="s2">"</span><span class="nv">$BUILT_PRODUCTS_DIR</span><span class="s2">/</span><span class="nv">$FRAMEWORKS_FOLDER_PATH</span><span class="s2">/WMTSDKKit.framework/strip-framework.sh"</span>
-</code></pre>
-
-<ol>
-<li>Fourth point</li>
+</code></pre></li>
+<li><p>Fourth point</p></li>
 </ol>
 
       </div>
