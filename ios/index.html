@@ -145,6 +145,30 @@ then Linkshare publisher Id can be used. Now configure the <code class="prettypr
 .com/library/prerelease/ios/technotes/App-Transport-Security-Technote/">App Transport Security</a>. Currently, you will need to whitelist
 Walmart domains in your app by adding the following to your application&rsquo;s <code class="prettyprint">plist</code>:</p>
 
+<p><code class="prettyprint">xml
+    &lt;key&gt;NSAppTransportSecurity&lt;/key&gt;
+    &lt;dict&gt;
+        &lt;key&gt;NSExceptionDomains&lt;/key&gt;
+        &lt;dict&gt;
+            &lt;key&gt;walmart.com&lt;/key&gt;
+            &lt;dict&gt;
+                &lt;key&gt;NSIncludesSubdomains&lt;/key&gt;&lt;true/&gt;
+                &lt;key&gt;NSExceptionAllowsInsecureHTTPLoads&lt;/key&gt;&lt;true/&gt;
+            &lt;/dict&gt;
+            &lt;key&gt;walmartimages.com&lt;/key&gt;
+            &lt;dict&gt;
+                &lt;key&gt;NSIncludesSubdomains&lt;/key&gt;&lt;true/&gt;
+                &lt;key&gt;NSExceptionAllowsInsecureHTTPLoads&lt;/key&gt;&lt;true/&gt;
+            &lt;/dict&gt;
+            &lt;key&gt;wal.co&lt;/key&gt;
+            &lt;dict&gt;
+                &lt;key&gt;NSIncludesSubdomains&lt;/key&gt;&lt;true/&gt;
+                &lt;key&gt;NSExceptionAllowsInsecureHTTPLoads&lt;/key&gt;&lt;true/&gt;
+            &lt;/dict&gt;
+        &lt;/dict&gt;
+    &lt;/dict&gt;
+</code></p>
+
           <h1 id="users">Users</h1>
 
           <h2 id="user-data">User data</h2>
