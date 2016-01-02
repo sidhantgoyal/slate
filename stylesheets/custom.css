@@ -582,7 +582,7 @@ beta:after {
 
 /* line 586, /Users/sgoyal4/office/slate/source/stylesheets/custom.scss */
 .half-width-img img {
-  max-width: 50%; }
+  width: 50%; }
 
 /* line 590, /Users/sgoyal4/office/slate/source/stylesheets/custom.scss */
 .header-primary {
