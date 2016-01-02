@@ -701,14 +701,6 @@ under the License.
 .highlight .o {
   color: #f92672; }
 
-/* line 207, /Users/sgoyal4/office/slate/source/stylesheets/_syntax.scss.erb */
-.highlight .c, .highlight .cm, .highlight .c1, .highlight .cs {
-  color: #909090; }
-
-/* line 211, /Users/sgoyal4/office/slate/source/stylesheets/_syntax.scss.erb */
-.highlight, .highlight .w {
-  background-color: #292929; }
-
 @font-face {
   font-family: 'slate';
   src: url("../fonts/slate.eot?-syv14m");
