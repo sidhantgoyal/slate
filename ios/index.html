@@ -105,10 +105,13 @@ needed</strong> is selected and click <strong>Finish</strong>.</p>
 
 <p><span class="three-fourth-width-img"><img alt="Embed Framework" src="../images/embed_framework.png" /></span></p>
 
-<p><aside class="notice">If your application is <strong>Objective-C</strong> based, make sure in your <code>Build Settings<code/>
-the <code>Build Option, Embedded ContentContains Swift Code</code> is set to <code>Yes</code></p>
+<aside class="notice">If your application is **Objective-C** based, make sure in your <code>Build Settings</code>
+the <code>Build Option, Embedded ContentContains Swift Code</code> is set to <code>Yes</code>
 
-<p><span class="three-fourth-width-img"><img alt="Embedded Content Contains Swift Code" src="../images/embedded_content_contains_swift_code.png" /> </span></p></li>
+<span class="three-fourth-width-img">![Embedded Content Contains Swift Code]
+(images/embedded_content_contains_swift_code.png) </span>
+
+</aside></li>
 <li><p>Add a new <code class="prettyprint">Run Script Phase</code> in your target’s <code class="prettyprint">Build Phases</code>.</p>
 
 <p><strong>Important</strong>: Make sure this <code class="prettyprint">Run Script Phase</code> is below the <code class="prettyprint">Embed Frameworks</code> build phase. You can drag
@@ -116,7 +119,10 @@ and drop build phases to rearrange them.
 Paste the following line in this <code class="prettyprint">Run Script Phase</code>&rsquo;s script text
 field:</p>
 <pre class="highlight shell"><code>bash <span class="s2">"</span><span class="nv">$BUILT_PRODUCTS_DIR</span><span class="s2">/</span><span class="nv">$FRAMEWORKS_FOLDER_PATH</span><span class="s2">/WMTSDKKit.framework/strip-framework.sh"</span>
-</code></pre></li>
+</code></pre>
+
+<aside class="notice">This step is required to work around an [App Store submission bug](http://www.openradar.me/radar?id=6409498411401216) when archiving universal
+binaries. </aside></li>
 <li><p>Fourth point</p></li>
 </ol>
 
