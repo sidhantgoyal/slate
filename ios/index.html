@@ -103,7 +103,12 @@ switch the programming language of the examples with the tabs in the top left.</
 <li><p>Drag <code class="prettyprint">WMTSDKKit.framework</code> into the <code class="prettyprint">Embedded Binaries</code> section of your target. Make sure <strong>Copy items if
 needed</strong> is selected and click <strong>Finish</strong>.</p>
 
-<p><span class="half-width-img"><img alt="Embed Framework" src="../images/embed_framework.png" /></span></p></li>
+<p><span class="half-width-img"><img alt="Embed Framework" src="../images/embed_framework.png" /></span></p>
+
+<aside class="notice">If your application is Objective-C based, make sure in your &ldquo;`Build Settings&rdquo;` &ldquo;`Embedded
+Content Contains Swift Code&rdquo;` is set to &ldquo;`Yes&rdquo;`
+    <span class="half-width-img">![Embed Framework](/images/embed_code_contains_swift_code.png)</span>
+</aside></li>
 <li><p>Add a new <code class="prettyprint">Run Script Phase</code> in your target’s <code class="prettyprint">Build Phases</code>.</p>
 
 <p><strong>Important</strong>: Make sure this <code class="prettyprint">Run Script Phase</code> is below the <code class="prettyprint">Embed Frameworks</code> build phase. You can drag
