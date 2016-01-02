@@ -1743,3 +1743,23 @@ beta:after {
   height: 94px;
   padding-top: 22px;
   background: #007dc6; }
+
+/* line 553, /Users/sgoyal4/office/slate/source/stylesheets/custom.scss */
+.download-button {
+  background: #00BF6F none repeat scroll 0% 0%;
+  color: #FFF;
+  padding: 14px 24px;
+  border: 0px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  display: inline-block;
+  margin-bottom: 0px;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.42857;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  cursor: pointer;
+  border-radius: 4px; }
