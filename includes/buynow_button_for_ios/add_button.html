@@ -52,6 +52,62 @@
 <li>Adding the Walmart iOS SDK to your project.</li>
 </ul>
 
+<h3 id="add-buynow-button-code">Add BuyNow Button Code</h3>
+
+<p>You can add the BuyNow button to your view like you would any other UIView. Create a new BuyNow button WMTBuyNowControl
+instance along with the productIds as shown in the code example shown below.</p>
+<pre class="highlight objective_c"><code><span class="cp">#import "ViewController.h"
+</span><span class="k">@import</span> <span class="n">WMTSDKKit</span><span class="p">;</span>
+
+<span class="k">@interface</span> <span class="nc">ViewController</span><span class="p">()</span>
+<span class="k">@end</span>
+
+<span class="k">@implementation</span> <span class="nc">ViewController</span>
+
+<span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="n">viewDidLoad</span> <span class="p">{</span>
+    <span class="p">[</span><span class="n">super</span> <span class="nf">viewDidLoad</span><span class="p">];</span>
+    <span class="n">NSSet</span> <span class="o">*</span><span class="n">productIdSet</span> <span class="o">=</span> <span class="p">[</span><span class="n">NSSet</span> <span class="nf">setWithObjects</span><span class="p">:</span><span class="s">@"39665237"</span><span class="p">,</span> <span class="s">@"47364217"</span><span class="p">,</span> <span class="nb">nil</span><span class="p">];</span>
+    <span class="n">WMTBuyNowControl</span> <span class="o">*</span><span class="n">_wmtBuyControl</span> <span class="o">=</span> <span class="p">[[</span><span class="n">WMTBuyNowControl</span> <span class="nf">alloc</span><span class="p">]</span> <span class="nf">initWithProductIds</span><span class="p">:</span><span class="n">productIdSet</span><span class="p">];</span>
+    <span class="n">_wmtBuyControl</span><span class="p">.</span><span class="n">center</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="n">view</span><span class="p">.</span><span class="n">center</span><span class="p">;</span>
+    <span class="p">[</span><span class="n">self</span><span class="p">.</span><span class="n">view</span> <span class="nf">addSubview</span><span class="p">:</span><span class="n">_wmtBuyControl</span><span class="p">];</span>
+<span class="p">}</span>
+
+<span class="k">@end</span>
+</code></pre>
+<pre class="highlight swift"><code><span class="kd">import</span> <span class="kt">UIKit</span>
+<span class="kd">import</span> <span class="kt">WMTSDKKit</span>
+
+<span class="kd">class</span> <span class="kt">ViewController</span><span class="p">:</span> <span class="kt">UIViewController</span> <span class="p">{</span>
+
+    <span class="k">override</span> <span class="kd">func</span> <span class="nf">viewDidLoad</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">super</span><span class="o">.</span><span class="nf">viewDidLoad</span><span class="p">()</span>
+        <span class="k">let</span> <span class="nv">productIdsSet</span><span class="p">:</span> <span class="kt">Set</span><span class="o">&lt;</span><span class="kt">String</span><span class="o">&gt;</span> <span class="o">=</span> <span class="p">[</span><span class="s">"39665237"</span><span class="p">,</span> <span class="s">"47364217"</span><span class="p">]</span>
+        <span class="k">let</span> <span class="nv">wmtBuyNowControl</span> <span class="o">=</span> <span class="kt">WMTBuyNowControl</span><span class="p">(</span><span class="nv">productIds</span><span class="p">:</span> <span class="n">productIdsSet</span><span class="p">)</span>
+        <span class="n">wmtBuyNowControl</span><span class="o">.</span><span class="n">center</span> <span class="o">=</span> <span class="k">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">center</span>
+        <span class="k">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="nf">addSubview</span><span class="p">(</span><span class="n">wmtBuyNowControl</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+</code></pre>
+
+<h3 id="customize-buynow-button">Customize BuyNow button</h3>
+
+<p>You can customize the BuyNow button size and color using the options shown in the following table.</p>
+
+<table>
+    <tr>
+        <th>Setting</th>
+        <th>Options</th>
+    <tr>
+    <tr>
+        <th>sizeScheme</th>
+        <th>1. Primary (Default)
+            2. Compact
+            3. Mini
+        </th>
+    </tr>
+</table>
+
       </div>
       <div class="dark-box">
       </div>
