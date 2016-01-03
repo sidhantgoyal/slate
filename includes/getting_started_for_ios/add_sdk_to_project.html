@@ -59,7 +59,8 @@ the <code>Build Option, Embedded ContentContains Swift Code</code> is set to <co
 and drop build phases to rearrange them.
 Paste the following line in this <code class="prettyprint">Run Script Phase</code>&rsquo;s script text
 field:</p>
-<pre class="highlight shell"><code>bash <span class="s2">"</span><span class="nv">$BUILT_PRODUCTS_DIR</span><span class="s2">/</span><span class="nv">$FRAMEWORKS_FOLDER_PATH</span><span class="s2">/WMTSDKKit.framework/strip-framework.sh"</span>
+
+<pre><code class="prettyprint lang-bash">bash &quot;$BUILT_PRODUCTS_DIR/$FRAMEWORKS_FOLDER_PATH/WMTSDKKit.framework/strip-framework.sh&quot;
 </code></pre>
 
 <p>This step is required to work around an <a href="http://www.openradar

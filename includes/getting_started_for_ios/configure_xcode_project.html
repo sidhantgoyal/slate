@@ -46,8 +46,9 @@ then Linkshare publisher Id can be used. Now configure the <code class="prettypr
 <ol>
 <li>In Xcode right-click your <code class="prettyprint">.plist</code> file and choose &ldquo;Open As Source Code&rdquo;.</li>
 <li><p>Copy &amp; Paste the XML snippet into the body of your file (<code class="prettyprint">&lt;dict&gt;...&lt;/dict&gt;</code>).</p>
-<pre class="highlight xml"><code><span class="nt">&lt;key&gt;</span>WalmartPublisherId<span class="nt">&lt;/key&gt;</span>
-<span class="nt">&lt;string&gt;</span>{your-publisher-id}<span class="nt">&lt;/string&gt;</span>
+
+<pre><code class="prettyprint lang-xml">&lt;key&gt;WalmartPublisherId&lt;/key&gt;
+&lt;string&gt;{your-publisher-id}&lt;/string&gt;
 </code></pre></li>
 <li><p>Replace:</p>
 
@@ -59,27 +60,28 @@ then Linkshare publisher Id can be used. Now configure the <code class="prettypr
 <p>If you compile your app with iOS SDK <code class="prettyprint">9.0</code>, you will be affected by <a href="https://developer
 .apple.com/library/prerelease/ios/technotes/App-Transport-Security-Technote/">App Transport Security</a>. Currently, you will need to whitelist
 Walmart domains in your app by adding the following to your application&rsquo;s <code class="prettyprint">plist</code></p>
-<pre class="highlight xml"><code><span class="nt">&lt;key&gt;</span>NSAppTransportSecurity<span class="nt">&lt;/key&gt;</span>
-<span class="nt">&lt;dict&gt;</span>
-    <span class="nt">&lt;key&gt;</span>NSExceptionDomains<span class="nt">&lt;/key&gt;</span>
-    <span class="nt">&lt;dict&gt;</span>
-        <span class="nt">&lt;key&gt;</span>walmart.com<span class="nt">&lt;/key&gt;</span>
-        <span class="nt">&lt;dict&gt;</span>
-            <span class="nt">&lt;key&gt;</span>NSIncludesSubdomains<span class="nt">&lt;/key&gt;&lt;true/&gt;</span>
-            <span class="nt">&lt;key&gt;</span>NSExceptionAllowsInsecureHTTPLoads<span class="nt">&lt;/key&gt;&lt;true/&gt;</span>
-        <span class="nt">&lt;/dict&gt;</span>
-        <span class="nt">&lt;key&gt;</span>walmartimages.com<span class="nt">&lt;/key&gt;</span>
-        <span class="nt">&lt;dict&gt;</span>
-            <span class="nt">&lt;key&gt;</span>NSIncludesSubdomains<span class="nt">&lt;/key&gt;&lt;true/&gt;</span>
-            <span class="nt">&lt;key&gt;</span>NSExceptionAllowsInsecureHTTPLoads<span class="nt">&lt;/key&gt;&lt;true/&gt;</span>
-        <span class="nt">&lt;/dict&gt;</span>
-        <span class="nt">&lt;key&gt;</span>wal.co<span class="nt">&lt;/key&gt;</span>
-        <span class="nt">&lt;dict&gt;</span>
-            <span class="nt">&lt;key&gt;</span>NSIncludesSubdomains<span class="nt">&lt;/key&gt;&lt;true/&gt;</span>
-            <span class="nt">&lt;key&gt;</span>NSExceptionAllowsInsecureHTTPLoads<span class="nt">&lt;/key&gt;&lt;true/&gt;</span>
-        <span class="nt">&lt;/dict&gt;</span>
-    <span class="nt">&lt;/dict&gt;</span>
-<span class="nt">&lt;/dict&gt;</span>
+
+<pre><code class="prettyprint lang-xml">&lt;key&gt;NSAppTransportSecurity&lt;/key&gt;
+&lt;dict&gt;
+    &lt;key&gt;NSExceptionDomains&lt;/key&gt;
+    &lt;dict&gt;
+        &lt;key&gt;walmart.com&lt;/key&gt;
+        &lt;dict&gt;
+            &lt;key&gt;NSIncludesSubdomains&lt;/key&gt;&lt;true/&gt;
+            &lt;key&gt;NSExceptionAllowsInsecureHTTPLoads&lt;/key&gt;&lt;true/&gt;
+        &lt;/dict&gt;
+        &lt;key&gt;walmartimages.com&lt;/key&gt;
+        &lt;dict&gt;
+            &lt;key&gt;NSIncludesSubdomains&lt;/key&gt;&lt;true/&gt;
+            &lt;key&gt;NSExceptionAllowsInsecureHTTPLoads&lt;/key&gt;&lt;true/&gt;
+        &lt;/dict&gt;
+        &lt;key&gt;wal.co&lt;/key&gt;
+        &lt;dict&gt;
+            &lt;key&gt;NSIncludesSubdomains&lt;/key&gt;&lt;true/&gt;
+            &lt;key&gt;NSExceptionAllowsInsecureHTTPLoads&lt;/key&gt;&lt;true/&gt;
+        &lt;/dict&gt;
+    &lt;/dict&gt;
+&lt;/dict&gt;
 </code></pre>
 
       </div>
