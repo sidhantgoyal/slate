@@ -43,43 +43,41 @@
 
 <p>You can add the BuyNow button to your view like you would any other UIView. Create a new BuyNow button WMTBuyNowControl
 instance along with the productIds as shown in the code example shown below.</p>
+<pre class="highlight objective_c"><code>
+<span class="c1">// ViewController.m example
+</span><span class="cp">#import "ViewController.h"
+</span><span class="k">@import</span> <span class="n">WMTSDKKit</span><span class="p">;</span>
 
-<pre><code class="objective_c">
-// ViewController.m example
-#import &quot;ViewController.h&quot;
-@import WMTSDKKit;
+<span class="k">@interface</span> <span class="nc">ViewController</span><span class="p">()</span>
+<span class="k">@end</span>
 
-@interface ViewController()
-@end
+<span class="k">@implementation</span> <span class="nc">ViewController</span>
 
-@implementation ViewController
+<span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="n">viewDidLoad</span> <span class="p">{</span>
+    <span class="p">[</span><span class="n">super</span> <span class="nf">viewDidLoad</span><span class="p">];</span>
+    <span class="n">NSSet</span> <span class="o">*</span><span class="n">productIdSet</span> <span class="o">=</span> <span class="p">[</span><span class="n">NSSet</span> <span class="nf">setWithObjects</span><span class="p">:</span><span class="s">@"39665237"</span><span class="p">,</span> <span class="s">@"47364217"</span><span class="p">,</span> <span class="nb">nil</span><span class="p">];</span>
+    <span class="n">WMTBuyNowControl</span> <span class="o">*</span><span class="n">buyNowButton</span> <span class="o">=</span> <span class="p">[[</span><span class="n">WMTBuyNowControl</span> <span class="nf">alloc</span><span class="p">]</span> <span class="nf">initWithProductIds</span><span class="p">:</span><span class="n">productIdSet</span><span class="p">];</span>
+    <span class="n">buyNowButton</span><span class="p">.</span><span class="n">center</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="n">view</span><span class="p">.</span><span class="n">center</span><span class="p">;</span>
+    <span class="p">[</span><span class="n">self</span><span class="p">.</span><span class="n">view</span> <span class="nf">addSubview</span><span class="p">:</span><span class="n">buyNowButton</span><span class="p">];</span>
+<span class="p">}</span>
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    NSSet *productIdSet = [NSSet setWithObjects:@&quot;39665237&quot;, @&quot;47364217&quot;, nil];
-    WMTBuyNowControl *buyNowButton = [[WMTBuyNowControl alloc] initWithProductIds:productIdSet];
-    buyNowButton.center = self.view.center;
-    [self.view addSubview:buyNowButton];
-}
-
-@end
+<span class="k">@end</span>
 </code></pre>
+<pre class="highlight swift"><code>
+<span class="c1">// ViewController.swift example</span>
+<span class="kd">import</span> <span class="kt">UIKit</span>
+<span class="kd">import</span> <span class="kt">WMTSDKKit</span>
 
-<pre><code class="swift">
-// ViewController.swift example
-import UIKit
-import WMTSDKKit
+<span class="kd">class</span> <span class="kt">ViewController</span><span class="p">:</span> <span class="kt">UIViewController</span> <span class="p">{</span>
 
-class ViewController: UIViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        let productIdsSet: Set&lt;String&gt; = [&quot;39665237&quot;, &quot;47364217&quot;]
-        let wmtBuyNowControl = WMTBuyNowControl(productIds: productIdsSet)
-        wmtBuyNowControl.center = self.view.center
-        self.view.addSubview(wmtBuyNowControl)
-    }
-}
+    <span class="k">override</span> <span class="kd">func</span> <span class="nf">viewDidLoad</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">super</span><span class="o">.</span><span class="nf">viewDidLoad</span><span class="p">()</span>
+        <span class="k">let</span> <span class="nv">productIdsSet</span><span class="p">:</span> <span class="kt">Set</span><span class="o">&lt;</span><span class="kt">String</span><span class="o">&gt;</span> <span class="o">=</span> <span class="p">[</span><span class="s">"39665237"</span><span class="p">,</span> <span class="s">"47364217"</span><span class="p">]</span>
+        <span class="k">let</span> <span class="nv">wmtBuyNowControl</span> <span class="o">=</span> <span class="kt">WMTBuyNowControl</span><span class="p">(</span><span class="nv">productIds</span><span class="p">:</span> <span class="n">productIdsSet</span><span class="p">)</span>
+        <span class="n">wmtBuyNowControl</span><span class="o">.</span><span class="n">center</span> <span class="o">=</span> <span class="k">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">center</span>
+        <span class="k">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="nf">addSubview</span><span class="p">(</span><span class="n">wmtBuyNowControl</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
 
 </code></pre>
 

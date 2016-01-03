@@ -42,8 +42,8 @@
         <h2 id="add-the-sdk-to-your-xcode-project">Add the SDK to your Xcode Project</h2>
 
 <ol>
-<li><p>Open <code>~/Documents/WalmartSDK</code></p></li>
-<li><p>Drag <code>WMTSDKKit.framework</code> into the <code>Embedded Binaries</code> section of your target. Make sure <strong>Copy items if
+<li><p>Open <code class="prettyprint">~/Documents/WalmartSDK</code></p></li>
+<li><p>Drag <code class="prettyprint">WMTSDKKit.framework</code> into the <code class="prettyprint">Embedded Binaries</code> section of your target. Make sure <strong>Copy items if
 needed</strong> is selected and click <strong>Finish</strong>.</p>
 
 <p><span class="three-fourth-width-img"><img alt="Embed Framework" src="../../images/embed_framework.png" /></span></p>
@@ -54,14 +54,13 @@ the <code>Build Option, Embedded ContentContains Swift Code</code> is set to <co
 </aside>
 
 <p><span class="three-fourth-width-img"><img alt="Embedded Content Contains Swift Code" src="../../images/embedded_content_contains_swift_code.png" /></span></p></li>
-<li><p>Add a new <code>Run Script Phase</code> in your target’s <code>Build Phases</code>.</p>
+<li><p>Add a new <code class="prettyprint">Run Script Phase</code> in your target’s <code class="prettyprint">Build Phases</code>.</p>
 
-<p><strong>Important</strong>: Make sure this <code>Run Script Phase</code> is below the <code>Embed Frameworks</code> build phase. You can drag
+<p><strong>Important</strong>: Make sure this <code class="prettyprint">Run Script Phase</code> is below the <code class="prettyprint">Embed Frameworks</code> build phase. You can drag
 and drop build phases to rearrange them.
-Paste the following line in this <code>Run Script Phase</code>&rsquo;s script text
+Paste the following line in this <code class="prettyprint">Run Script Phase</code>&rsquo;s script text
 field:</p>
-
-<pre><code class="bash">bash &quot;$BUILT_PRODUCTS_DIR/$FRAMEWORKS_FOLDER_PATH/WMTSDKKit.framework/strip-framework.sh&quot;
+<pre class="highlight shell"><code>bash <span class="s2">"</span><span class="nv">$BUILT_PRODUCTS_DIR</span><span class="s2">/</span><span class="nv">$FRAMEWORKS_FOLDER_PATH</span><span class="s2">/WMTSDKKit.framework/strip-framework.sh"</span>
 </code></pre>
 
 <p>This step is required to work around an <a href="http://www.openradar

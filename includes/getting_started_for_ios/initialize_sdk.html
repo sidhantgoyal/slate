@@ -42,48 +42,46 @@
         <h2 id="initialize-walmart-sdk">Initialize Walmart SDK</h2>
 
 <p>Now that you have covered all the above steps and successfully installed the SDK, you&rsquo;ll need to initialize it
-first in your app to use it. A good place to do that is in your <code>AppDelegate</code>&rsquo;s application <code>
+first in your app to use it. A good place to do that is in your <code class="prettyprint">AppDelegate</code>&rsquo;s application <code class="prettyprint">
 (_:didFinishLaunchingWithOptions:)</code> method.
 You can also configure other settings of the SDK there as well. Please
 go through the detailed Reference docs for iOS for available settings.</p>
+<pre class="highlight objective_c"><code><span class="cp">#import "AppDelegate.h"
+</span><span class="k">@import</span> <span class="n">WMTSDKKit</span><span class="p">;</span>
 
-<pre><code class="objective_c">#import &quot;AppDelegate.h&quot;
-@import WMTSDKKit;
+<span class="k">@interface</span> <span class="nc">AppDelegate</span> <span class="p">()</span>
 
-@interface AppDelegate ()
+<span class="k">@end</span>
 
-@end
-
-@implementation AppDelegate
+<span class="k">@implementation</span> <span class="nc">AppDelegate</span>
 
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    [WMTSDK initSDK:false];
-    [WMTSDK setEnableDebugging:true];
-    [WMTSDK setLinksharePartner:true];
-    // Override point for customization after application launch.
-    return YES;
-}
-......
+<span class="k">-</span> <span class="p">(</span><span class="n">BOOL</span><span class="p">)</span><span class="nf">application</span><span class="p">:(</span><span class="n">UIApplication</span> <span class="o">*</span><span class="p">)</span><span class="nv">application</span> <span class="nf">didFinishLaunchingWithOptions</span><span class="p">:(</span><span class="n">NSDictionary</span> <span class="o">*</span><span class="p">)</span><span class="nv">launchOptions</span> <span class="p">{</span>
+    <span class="p">[</span><span class="n">WMTSDK</span> <span class="nf">initSDK</span><span class="p">:</span><span class="nb">false</span><span class="p">];</span>
+    <span class="p">[</span><span class="n">WMTSDK</span> <span class="nf">setEnableDebugging</span><span class="p">:</span><span class="nb">true</span><span class="p">];</span>
+    <span class="p">[</span><span class="n">WMTSDK</span> <span class="nf">setLinksharePartner</span><span class="p">:</span><span class="nb">true</span><span class="p">];</span>
+    <span class="c1">// Override point for customization after application launch.
+</span>    <span class="k">return</span> <span class="nb">YES</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="p">......</span>
 </code></pre>
+<pre class="highlight swift"><code>
+<span class="kd">import</span> <span class="kt">UIKit</span>
+<span class="kd">import</span> <span class="kt">WMTSDKKit</span>
 
-<pre><code class="swift">
-import UIKit
-import WMTSDKKit
+<span class="k">@UIApplicationMain</span>
+<span class="kd">class</span> <span class="kt">AppDelegate</span><span class="p">:</span> <span class="kt">UIResponder</span><span class="p">,</span> <span class="kt">UIApplicationDelegate</span> <span class="p">{</span>
 
-@UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+    <span class="k">var</span> <span class="nv">window</span><span class="p">:</span> <span class="kt">UIWindow</span><span class="p">?</span>
 
-    var window: UIWindow?
-
-    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -&gt; Bool {
-        // Override point for customization after application launch.
-        WMTSDK.initSDK()
-        WMTSDK.setEnableDebugging(true)
-        WMTSDK.setLinksharePartner(true)
-        return true
-    }
-    ......
+    <span class="kd">func</span> <span class="nf">application</span><span class="p">(</span><span class="nv">application</span><span class="p">:</span> <span class="kt">UIApplication</span><span class="p">,</span> <span class="n">didFinishLaunchingWithOptions</span> <span class="nv">launchOptions</span><span class="p">:</span> <span class="p">[</span><span class="kt">NSObject</span><span class="p">:</span> <span class="kt">AnyObject</span><span class="p">]?)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span> <span class="p">{</span>
+        <span class="c1">// Override point for customization after application launch.</span>
+        <span class="kt">WMTSDK</span><span class="o">.</span><span class="nf">initSDK</span><span class="p">()</span>
+        <span class="kt">WMTSDK</span><span class="o">.</span><span class="nf">setEnableDebugging</span><span class="p">(</span><span class="kc">true</span><span class="p">)</span>
+        <span class="kt">WMTSDK</span><span class="o">.</span><span class="nf">setLinksharePartner</span><span class="p">(</span><span class="kc">true</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">true</span>
+    <span class="p">}</span>
+    <span class="o">......</span>
 </code></pre>
 
       </div>
