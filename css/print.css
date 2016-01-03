@@ -902,18 +902,19 @@ beta:after {
 /* line 348, /Users/sgoyal4/office/slate/source/css/custom.scss */
 .content code,
 .content pre {
+  color: green;
   font-family: Monaco,Menlo,Consolas,"Courier New",monospace;
   font-size: 13px;
   line-height: 1.6;
   margin-bottom: 1.4em; }
 
-/* line 356, /Users/sgoyal4/office/slate/source/css/custom.scss */
+/* line 357, /Users/sgoyal4/office/slate/source/css/custom.scss */
 .content code {
   font-weight: bold;
   border-radius: 3px;
   text-shadow: none; }
 
-/* line 366, /Users/sgoyal4/office/slate/source/css/custom.scss */
+/* line 367, /Users/sgoyal4/office/slate/source/css/custom.scss */
 .content .search-highlight {
   border: 1px solid #ffdf7e;
   text-shadow: none;
@@ -921,73 +922,73 @@ beta:after {
   background: linear-gradient(to top left, #ffdf7e 0%, #ffdf7e 100%);
   color: #464646; }
 
-/* line 377, /Users/sgoyal4/office/slate/source/css/custom.scss */
+/* line 378, /Users/sgoyal4/office/slate/source/css/custom.scss */
 #nav-button {
   opacity: 0.82; }
 
-/* line 381, /Users/sgoyal4/office/slate/source/css/custom.scss */
+/* line 382, /Users/sgoyal4/office/slate/source/css/custom.scss */
 #nav-button span {
   background-color: #007dc6;
   color: #fff;
   padding: 6px 10px 6px; }
 
-/* line 387, /Users/sgoyal4/office/slate/source/css/custom.scss */
+/* line 388, /Users/sgoyal4/office/slate/source/css/custom.scss */
 #nav-button.open {
   left: 285px; }
 
-/* line 391, /Users/sgoyal4/office/slate/source/css/custom.scss */
+/* line 392, /Users/sgoyal4/office/slate/source/css/custom.scss */
 #nav-button:focus {
   outline: 0; }
 
 @media (max-width: 930px) {
-  /* line 396, /Users/sgoyal4/office/slate/source/css/custom.scss */
+  /* line 397, /Users/sgoyal4/office/slate/source/css/custom.scss */
   .tocify-wrapper {
     left: -300px; }
-    /* line 399, /Users/sgoyal4/office/slate/source/css/custom.scss */
+    /* line 400, /Users/sgoyal4/office/slate/source/css/custom.scss */
     .tocify-wrapper.open {
       left: 0; }
 
-  /* line 405, /Users/sgoyal4/office/slate/source/css/custom.scss */
+  /* line 406, /Users/sgoyal4/office/slate/source/css/custom.scss */
   .page-wrapper {
     margin-left: 0; } }
-/* line 413, /Users/sgoyal4/office/slate/source/css/custom.scss */
+/* line 414, /Users/sgoyal4/office/slate/source/css/custom.scss */
 .btn-group {
   position: relative;
   vertical-align: middle;
   margin-left: 36px;
   margin-right: 32px; }
 
-/* line 420, /Users/sgoyal4/office/slate/source/css/custom.scss */
+/* line 421, /Users/sgoyal4/office/slate/source/css/custom.scss */
 .btn-group > .btn:first-child:not(.language-dropdown) {
   border-right: none; }
 
-/* line 424, /Users/sgoyal4/office/slate/source/css/custom.scss */
+/* line 425, /Users/sgoyal4/office/slate/source/css/custom.scss */
 .btn-group > .btn:first-child:not(:last-child):not(.language-dropdown) {
   border-top-right-radius: 0;
   border-bottom-right-radius: 0; }
 
-/* line 429, /Users/sgoyal4/office/slate/source/css/custom.scss */
+/* line 430, /Users/sgoyal4/office/slate/source/css/custom.scss */
 .btn-group > .btn:last-child:not(:first-child),
 .btn-group > .dropdown-toggle:not(:first-child) {
   border-top-left-radius: 0;
   border-bottom-left-radius: 0; }
 
-/* line 435, /Users/sgoyal4/office/slate/source/css/custom.scss */
+/* line 436, /Users/sgoyal4/office/slate/source/css/custom.scss */
 .btn-group > .btn {
   position: relative;
   float: left;
   width: 33%; }
 
-/* line 441, /Users/sgoyal4/office/slate/source/css/custom.scss */
+/* line 442, /Users/sgoyal4/office/slate/source/css/custom.scss */
 .btn-default {
   color: #fff;
   background-color: transparent; }
 
-/* line 446, /Users/sgoyal4/office/slate/source/css/custom.scss */
+/* line 447, /Users/sgoyal4/office/slate/source/css/custom.scss */
 .btn-selected {
   background-color: #3da1e0; }
 
-/* line 450, /Users/sgoyal4/office/slate/source/css/custom.scss */
+/* line 451, /Users/sgoyal4/office/slate/source/css/custom.scss */
 .btn {
   display: inline-block;
   padding: 9px 11px;
@@ -1009,11 +1010,11 @@ beta:after {
   border: 2px solid #9ed6fa;
   border-radius: 4px; }
 
-/* line 472, /Users/sgoyal4/office/slate/source/css/custom.scss */
+/* line 473, /Users/sgoyal4/office/slate/source/css/custom.scss */
 .btn:focus {
   outline: 0; }
 
-/* line 476, /Users/sgoyal4/office/slate/source/css/custom.scss */
+/* line 477, /Users/sgoyal4/office/slate/source/css/custom.scss */
 .nav-label {
   color: #79b9e7;
   margin-left: 36px;
@@ -1022,12 +1023,12 @@ beta:after {
   font-weight: normal;
   margin-top: 32px; }
 
-/* line 485, /Users/sgoyal4/office/slate/source/css/custom.scss */
+/* line 486, /Users/sgoyal4/office/slate/source/css/custom.scss */
 .dropdown-wrapper {
   position: relative;
   width: 131px; }
 
-/* line 490, /Users/sgoyal4/office/slate/source/css/custom.scss */
+/* line 491, /Users/sgoyal4/office/slate/source/css/custom.scss */
 .btn-group > .language-dropdown {
   width: 131px;
   text-transform: capitalize;
@@ -1035,29 +1036,29 @@ beta:after {
   text-align: left;
   z-index: 2; }
 
-/* line 498, /Users/sgoyal4/office/slate/source/css/custom.scss */
+/* line 499, /Users/sgoyal4/office/slate/source/css/custom.scss */
 .btn-group > .btn:not(:first-child):not(:last-child) {
   border-radius: 0;
   border-right: 0; }
 
-/* line 503, /Users/sgoyal4/office/slate/source/css/custom.scss */
+/* line 504, /Users/sgoyal4/office/slate/source/css/custom.scss */
 .separator {
   display: none;
   border-top: 1px solid #9ed6fa; }
 
-/* line 508, /Users/sgoyal4/office/slate/source/css/custom.scss */
+/* line 509, /Users/sgoyal4/office/slate/source/css/custom.scss */
 .platform-nav {
   margin-bottom: 36px; }
 
-/* line 512, /Users/sgoyal4/office/slate/source/css/custom.scss */
+/* line 513, /Users/sgoyal4/office/slate/source/css/custom.scss */
 .separator-top {
   margin-top: 10px; }
 
-/* line 516, /Users/sgoyal4/office/slate/source/css/custom.scss */
+/* line 517, /Users/sgoyal4/office/slate/source/css/custom.scss */
 .clear {
   clear: both; }
 
-/* line 520, /Users/sgoyal4/office/slate/source/css/custom.scss */
+/* line 521, /Users/sgoyal4/office/slate/source/css/custom.scss */
 .arrow-down {
   width: 0;
   height: 0;
@@ -1068,25 +1069,25 @@ beta:after {
   position: absolute;
   right: 15px; }
 
-/* line 532, /Users/sgoyal4/office/slate/source/css/custom.scss */
+/* line 533, /Users/sgoyal4/office/slate/source/css/custom.scss */
 .badge img {
   display: inline-block; }
 
-/* line 536, /Users/sgoyal4/office/slate/source/css/custom.scss */
+/* line 537, /Users/sgoyal4/office/slate/source/css/custom.scss */
 .half-width-img img {
   max-width: 50%; }
 
-/* line 540, /Users/sgoyal4/office/slate/source/css/custom.scss */
+/* line 541, /Users/sgoyal4/office/slate/source/css/custom.scss */
 .three-fourth-width-img img {
   max-width: 75%; }
 
-/* line 544, /Users/sgoyal4/office/slate/source/css/custom.scss */
+/* line 545, /Users/sgoyal4/office/slate/source/css/custom.scss */
 .header-primary {
   height: 94px;
   padding-top: 22px;
   background: #007dc6; }
 
-/* line 550, /Users/sgoyal4/office/slate/source/css/custom.scss */
+/* line 551, /Users/sgoyal4/office/slate/source/css/custom.scss */
 .download-button {
   margin: 0px 42px;
   color: #fff;
@@ -1105,277 +1106,277 @@ beta:after {
   vertical-align: middle;
   cursor: pointer; }
 
-/* line 572, /Users/sgoyal4/office/slate/source/css/custom.scss */
+/* line 573, /Users/sgoyal4/office/slate/source/css/custom.scss */
 .highlight table td {
   padding: 5px; }
 
-/* line 573, /Users/sgoyal4/office/slate/source/css/custom.scss */
+/* line 574, /Users/sgoyal4/office/slate/source/css/custom.scss */
 .highlight table pre {
   margin: 0; }
 
-/* line 574, /Users/sgoyal4/office/slate/source/css/custom.scss */
+/* line 575, /Users/sgoyal4/office/slate/source/css/custom.scss */
 .highlight .c, .highlight .cd {
   color: #75715e;
   font-style: italic; }
 
-/* line 578, /Users/sgoyal4/office/slate/source/css/custom.scss */
+/* line 579, /Users/sgoyal4/office/slate/source/css/custom.scss */
 .highlight .cm {
   color: #75715e;
   font-style: italic; }
 
-/* line 582, /Users/sgoyal4/office/slate/source/css/custom.scss */
+/* line 583, /Users/sgoyal4/office/slate/source/css/custom.scss */
 .highlight .c1 {
   color: #75715e;
   font-style: italic; }
 
-/* line 586, /Users/sgoyal4/office/slate/source/css/custom.scss */
+/* line 587, /Users/sgoyal4/office/slate/source/css/custom.scss */
 .highlight .cp {
   color: #75715e;
   font-weight: bold; }
 
-/* line 590, /Users/sgoyal4/office/slate/source/css/custom.scss */
+/* line 591, /Users/sgoyal4/office/slate/source/css/custom.scss */
 .highlight .cs {
   color: #75715e;
   font-weight: bold;
   font-style: italic; }
 
-/* line 595, /Users/sgoyal4/office/slate/source/css/custom.scss */
+/* line 596, /Users/sgoyal4/office/slate/source/css/custom.scss */
 .highlight .err {
   color: #960050;
   background-color: #1e0010; }
 
-/* line 599, /Users/sgoyal4/office/slate/source/css/custom.scss */
+/* line 600, /Users/sgoyal4/office/slate/source/css/custom.scss */
 .highlight .gd {
   color: #000000; }
 
-/* line 602, /Users/sgoyal4/office/slate/source/css/custom.scss */
+/* line 603, /Users/sgoyal4/office/slate/source/css/custom.scss */
 .highlight .gi {
   color: #000000; }
 
-/* line 605, /Users/sgoyal4/office/slate/source/css/custom.scss */
+/* line 606, /Users/sgoyal4/office/slate/source/css/custom.scss */
 .highlight .ge {
   color: #000000;
   font-style: italic; }
 
-/* line 609, /Users/sgoyal4/office/slate/source/css/custom.scss */
+/* line 610, /Users/sgoyal4/office/slate/source/css/custom.scss */
 .highlight .gr {
   color: #aa0000; }
 
-/* line 612, /Users/sgoyal4/office/slate/source/css/custom.scss */
+/* line 613, /Users/sgoyal4/office/slate/source/css/custom.scss */
 .highlight .gt {
   color: #aa0000; }
 
-/* line 615, /Users/sgoyal4/office/slate/source/css/custom.scss */
+/* line 616, /Users/sgoyal4/office/slate/source/css/custom.scss */
 .highlight .gh {
   color: #999999; }
 
-/* line 618, /Users/sgoyal4/office/slate/source/css/custom.scss */
+/* line 619, /Users/sgoyal4/office/slate/source/css/custom.scss */
 .highlight .go {
   color: #888888; }
 
-/* line 621, /Users/sgoyal4/office/slate/source/css/custom.scss */
+/* line 622, /Users/sgoyal4/office/slate/source/css/custom.scss */
 .highlight .gp {
   color: #555555; }
 
-/* line 624, /Users/sgoyal4/office/slate/source/css/custom.scss */
+/* line 625, /Users/sgoyal4/office/slate/source/css/custom.scss */
 .highlight .gs {
   font-weight: bold; }
 
-/* line 627, /Users/sgoyal4/office/slate/source/css/custom.scss */
+/* line 628, /Users/sgoyal4/office/slate/source/css/custom.scss */
 .highlight .gu {
   color: #aaaaaa; }
 
-/* line 630, /Users/sgoyal4/office/slate/source/css/custom.scss */
+/* line 631, /Users/sgoyal4/office/slate/source/css/custom.scss */
 .highlight .k, .highlight .kv {
   color: #66d9ef;
   font-weight: bold; }
 
-/* line 634, /Users/sgoyal4/office/slate/source/css/custom.scss */
+/* line 635, /Users/sgoyal4/office/slate/source/css/custom.scss */
 .highlight .kc {
   color: #66d9ef;
   font-weight: bold; }
 
-/* line 638, /Users/sgoyal4/office/slate/source/css/custom.scss */
+/* line 639, /Users/sgoyal4/office/slate/source/css/custom.scss */
 .highlight .kd {
   color: #66d9ef;
   font-weight: bold; }
 
-/* line 642, /Users/sgoyal4/office/slate/source/css/custom.scss */
+/* line 643, /Users/sgoyal4/office/slate/source/css/custom.scss */
 .highlight .kp {
   color: #66d9ef;
   font-weight: bold; }
 
-/* line 646, /Users/sgoyal4/office/slate/source/css/custom.scss */
+/* line 647, /Users/sgoyal4/office/slate/source/css/custom.scss */
 .highlight .kr {
   color: #66d9ef;
   font-weight: bold; }
 
-/* line 650, /Users/sgoyal4/office/slate/source/css/custom.scss */
+/* line 651, /Users/sgoyal4/office/slate/source/css/custom.scss */
 .highlight .kt {
   color: #66d9ef;
   font-weight: bold; }
 
-/* line 654, /Users/sgoyal4/office/slate/source/css/custom.scss */
+/* line 655, /Users/sgoyal4/office/slate/source/css/custom.scss */
 .highlight .kn {
   color: #f92672;
   font-weight: bold; }
 
-/* line 658, /Users/sgoyal4/office/slate/source/css/custom.scss */
+/* line 659, /Users/sgoyal4/office/slate/source/css/custom.scss */
 .highlight .ow {
   color: #f92672;
   font-weight: bold; }
 
-/* line 662, /Users/sgoyal4/office/slate/source/css/custom.scss */
+/* line 663, /Users/sgoyal4/office/slate/source/css/custom.scss */
 .highlight .o {
   color: #f92672;
   font-weight: bold; }
 
-/* line 666, /Users/sgoyal4/office/slate/source/css/custom.scss */
+/* line 667, /Users/sgoyal4/office/slate/source/css/custom.scss */
 .highlight .mf {
   color: #ae81ff; }
 
-/* line 669, /Users/sgoyal4/office/slate/source/css/custom.scss */
+/* line 670, /Users/sgoyal4/office/slate/source/css/custom.scss */
 .highlight .mh {
   color: #ae81ff; }
 
-/* line 672, /Users/sgoyal4/office/slate/source/css/custom.scss */
+/* line 673, /Users/sgoyal4/office/slate/source/css/custom.scss */
 .highlight .il {
   color: #ae81ff; }
 
-/* line 675, /Users/sgoyal4/office/slate/source/css/custom.scss */
+/* line 676, /Users/sgoyal4/office/slate/source/css/custom.scss */
 .highlight .mi {
   color: #ae81ff; }
 
-/* line 678, /Users/sgoyal4/office/slate/source/css/custom.scss */
+/* line 679, /Users/sgoyal4/office/slate/source/css/custom.scss */
 .highlight .mo {
   color: #ae81ff; }
 
-/* line 681, /Users/sgoyal4/office/slate/source/css/custom.scss */
+/* line 682, /Users/sgoyal4/office/slate/source/css/custom.scss */
 .highlight .m, .highlight .mb, .highlight .mx {
   color: #ae81ff; }
 
-/* line 684, /Users/sgoyal4/office/slate/source/css/custom.scss */
+/* line 685, /Users/sgoyal4/office/slate/source/css/custom.scss */
 .highlight .se {
   color: #ae81ff; }
 
-/* line 687, /Users/sgoyal4/office/slate/source/css/custom.scss */
+/* line 688, /Users/sgoyal4/office/slate/source/css/custom.scss */
 .highlight .sb {
   color: #e6db74; }
 
-/* line 690, /Users/sgoyal4/office/slate/source/css/custom.scss */
+/* line 691, /Users/sgoyal4/office/slate/source/css/custom.scss */
 .highlight .sc {
   color: #e6db74; }
 
-/* line 693, /Users/sgoyal4/office/slate/source/css/custom.scss */
+/* line 694, /Users/sgoyal4/office/slate/source/css/custom.scss */
 .highlight .sd {
   color: #e6db74; }
 
-/* line 696, /Users/sgoyal4/office/slate/source/css/custom.scss */
+/* line 697, /Users/sgoyal4/office/slate/source/css/custom.scss */
 .highlight .s2 {
   color: #e6db74; }
 
-/* line 699, /Users/sgoyal4/office/slate/source/css/custom.scss */
+/* line 700, /Users/sgoyal4/office/slate/source/css/custom.scss */
 .highlight .sh {
   color: #e6db74; }
 
-/* line 702, /Users/sgoyal4/office/slate/source/css/custom.scss */
+/* line 703, /Users/sgoyal4/office/slate/source/css/custom.scss */
 .highlight .si {
   color: #e6db74; }
 
-/* line 705, /Users/sgoyal4/office/slate/source/css/custom.scss */
+/* line 706, /Users/sgoyal4/office/slate/source/css/custom.scss */
 .highlight .sx {
   color: #e6db74; }
 
-/* line 708, /Users/sgoyal4/office/slate/source/css/custom.scss */
+/* line 709, /Users/sgoyal4/office/slate/source/css/custom.scss */
 .highlight .sr {
   color: #e6db74; }
 
-/* line 711, /Users/sgoyal4/office/slate/source/css/custom.scss */
+/* line 712, /Users/sgoyal4/office/slate/source/css/custom.scss */
 .highlight .s1 {
   color: #e6db74; }
 
-/* line 714, /Users/sgoyal4/office/slate/source/css/custom.scss */
+/* line 715, /Users/sgoyal4/office/slate/source/css/custom.scss */
 .highlight .ss {
   color: #e6db74; }
 
-/* line 717, /Users/sgoyal4/office/slate/source/css/custom.scss */
+/* line 718, /Users/sgoyal4/office/slate/source/css/custom.scss */
 .highlight .s {
   color: #e6db74; }
 
-/* line 720, /Users/sgoyal4/office/slate/source/css/custom.scss */
+/* line 721, /Users/sgoyal4/office/slate/source/css/custom.scss */
 .highlight .na {
   color: #a6e22e; }
 
-/* line 723, /Users/sgoyal4/office/slate/source/css/custom.scss */
+/* line 724, /Users/sgoyal4/office/slate/source/css/custom.scss */
 .highlight .nc {
   color: #a6e22e;
   font-weight: bold; }
 
-/* line 727, /Users/sgoyal4/office/slate/source/css/custom.scss */
+/* line 728, /Users/sgoyal4/office/slate/source/css/custom.scss */
 .highlight .nd {
   color: #a6e22e;
   font-weight: bold; }
 
-/* line 731, /Users/sgoyal4/office/slate/source/css/custom.scss */
+/* line 732, /Users/sgoyal4/office/slate/source/css/custom.scss */
 .highlight .ne {
   color: #a6e22e;
   font-weight: bold; }
 
-/* line 735, /Users/sgoyal4/office/slate/source/css/custom.scss */
+/* line 736, /Users/sgoyal4/office/slate/source/css/custom.scss */
 .highlight .nf {
   color: #a6e22e;
   font-weight: bold; }
 
-/* line 739, /Users/sgoyal4/office/slate/source/css/custom.scss */
+/* line 740, /Users/sgoyal4/office/slate/source/css/custom.scss */
 .highlight .no {
   color: #66d9ef; }
 
-/* line 742, /Users/sgoyal4/office/slate/source/css/custom.scss */
+/* line 743, /Users/sgoyal4/office/slate/source/css/custom.scss */
 .highlight .bp {
   color: #f8f8f2; }
 
-/* line 745, /Users/sgoyal4/office/slate/source/css/custom.scss */
+/* line 746, /Users/sgoyal4/office/slate/source/css/custom.scss */
 .highlight .nb {
   color: #f8f8f2; }
 
-/* line 748, /Users/sgoyal4/office/slate/source/css/custom.scss */
+/* line 749, /Users/sgoyal4/office/slate/source/css/custom.scss */
 .highlight .ni {
   color: #f8f8f2; }
 
-/* line 751, /Users/sgoyal4/office/slate/source/css/custom.scss */
+/* line 752, /Users/sgoyal4/office/slate/source/css/custom.scss */
 .highlight .nn {
   color: #f8f8f2; }
 
-/* line 754, /Users/sgoyal4/office/slate/source/css/custom.scss */
+/* line 755, /Users/sgoyal4/office/slate/source/css/custom.scss */
 .highlight .vc {
   color: #f8f8f2; }
 
-/* line 757, /Users/sgoyal4/office/slate/source/css/custom.scss */
+/* line 758, /Users/sgoyal4/office/slate/source/css/custom.scss */
 .highlight .vg {
   color: #f8f8f2; }
 
-/* line 760, /Users/sgoyal4/office/slate/source/css/custom.scss */
+/* line 761, /Users/sgoyal4/office/slate/source/css/custom.scss */
 .highlight .vi {
   color: #f8f8f2; }
 
-/* line 763, /Users/sgoyal4/office/slate/source/css/custom.scss */
+/* line 764, /Users/sgoyal4/office/slate/source/css/custom.scss */
 .highlight .nv {
   color: #f8f8f2; }
 
-/* line 766, /Users/sgoyal4/office/slate/source/css/custom.scss */
+/* line 767, /Users/sgoyal4/office/slate/source/css/custom.scss */
 .highlight .w {
   color: #f8f8f2; }
 
-/* line 769, /Users/sgoyal4/office/slate/source/css/custom.scss */
+/* line 770, /Users/sgoyal4/office/slate/source/css/custom.scss */
 .highlight .nl {
   color: #f8f8f2;
   font-weight: bold; }
 
-/* line 773, /Users/sgoyal4/office/slate/source/css/custom.scss */
+/* line 774, /Users/sgoyal4/office/slate/source/css/custom.scss */
 .highlight .nt {
   color: #f92672; }
 
-/* line 776, /Users/sgoyal4/office/slate/source/css/custom.scss */
+/* line 777, /Users/sgoyal4/office/slate/source/css/custom.scss */
 .highlight {
   color: #f8f8f2;
   background-color: #49483e; }
@@ -1383,21 +1384,21 @@ beta:after {
 /*
 Tables
 ---------------------------------------------------------------------------------------------------- */
-/* line 787, /Users/sgoyal4/office/slate/source/css/custom.scss */
+/* line 788, /Users/sgoyal4/office/slate/source/css/custom.scss */
 table {
   max-width: 100%; }
 
-/* line 791, /Users/sgoyal4/office/slate/source/css/custom.scss */
+/* line 792, /Users/sgoyal4/office/slate/source/css/custom.scss */
 th {
   text-align: left; }
 
-/* line 795, /Users/sgoyal4/office/slate/source/css/custom.scss */
+/* line 796, /Users/sgoyal4/office/slate/source/css/custom.scss */
 .table {
   width: 85%;
   margin-left: 48px;
   margin-bottom: 20px; }
 
-/* line 801, /Users/sgoyal4/office/slate/source/css/custom.scss */
+/* line 802, /Users/sgoyal4/office/slate/source/css/custom.scss */
 .table > thead > tr > th,
 .table > tbody > tr > th,
 .table > tfoot > tr > th,
@@ -1409,12 +1410,12 @@ th {
   vertical-align: top;
   border-top: 1px solid #ddd; }
 
-/* line 813, /Users/sgoyal4/office/slate/source/css/custom.scss */
+/* line 814, /Users/sgoyal4/office/slate/source/css/custom.scss */
 .table > thead > tr > th {
   vertical-align: bottom;
   border-bottom: 2px solid #ddd; }
 
-/* line 818, /Users/sgoyal4/office/slate/source/css/custom.scss */
+/* line 819, /Users/sgoyal4/office/slate/source/css/custom.scss */
 .table > caption + thead > tr:first-child > th,
 .table > colgroup + thead > tr:first-child > th,
 .table > thead:first-child > tr:first-child > th,
@@ -1423,15 +1424,15 @@ th {
 .table > thead:first-child > tr:first-child > td {
   border-top: 0; }
 
-/* line 827, /Users/sgoyal4/office/slate/source/css/custom.scss */
+/* line 828, /Users/sgoyal4/office/slate/source/css/custom.scss */
 .table > tbody + tbody {
   border-top: 2px solid #ddd; }
 
-/* line 831, /Users/sgoyal4/office/slate/source/css/custom.scss */
+/* line 832, /Users/sgoyal4/office/slate/source/css/custom.scss */
 .table .table {
   background-color: #fff; }
 
-/* line 835, /Users/sgoyal4/office/slate/source/css/custom.scss */
+/* line 836, /Users/sgoyal4/office/slate/source/css/custom.scss */
 .table-condensed > thead > tr > th,
 .table-condensed > tbody > tr > th,
 .table-condensed > tfoot > tr > th,
@@ -1440,11 +1441,11 @@ th {
 .table-condensed > tfoot > tr > td {
   padding: 5px; }
 
-/* line 844, /Users/sgoyal4/office/slate/source/css/custom.scss */
+/* line 845, /Users/sgoyal4/office/slate/source/css/custom.scss */
 .table-bordered {
   border: 1px solid #ddd; }
 
-/* line 848, /Users/sgoyal4/office/slate/source/css/custom.scss */
+/* line 849, /Users/sgoyal4/office/slate/source/css/custom.scss */
 .table-bordered > thead > tr > th,
 .table-bordered > tbody > tr > th,
 .table-bordered > tfoot > tr > th,
@@ -1453,17 +1454,17 @@ th {
 .table-bordered > tfoot > tr > td {
   border: 1px solid #ddd; }
 
-/* line 857, /Users/sgoyal4/office/slate/source/css/custom.scss */
+/* line 858, /Users/sgoyal4/office/slate/source/css/custom.scss */
 .table-bordered > thead > tr > th,
 .table-bordered > thead > tr > td {
   border-bottom-width: 2px; }
 
-/* line 862, /Users/sgoyal4/office/slate/source/css/custom.scss */
+/* line 863, /Users/sgoyal4/office/slate/source/css/custom.scss */
 .table-striped > tbody > tr:nth-child(odd) > td,
 .table-striped > tbody > tr:nth-child(odd) > th {
   background-color: #eaeaea; }
 
-/* line 867, /Users/sgoyal4/office/slate/source/css/custom.scss */
+/* line 868, /Users/sgoyal4/office/slate/source/css/custom.scss */
 .table-hover > tbody > tr:hover > td,
 .table-hover > tbody > tr:hover > th {
   background-color: #f5f5f5; }
