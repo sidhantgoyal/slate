@@ -165,48 +165,42 @@ iOS</a> for available settings.</p>
 <p><strong>Code Example</strong></p>
 
 <ul>
-<li><p>Objective_C
-&ldquo;`objective_c</p>
+<li><p>Objective_C</p>
+<pre class="highlight objective_c"><code><span class="cp">#import "AppDelegate.h"
+</span><span class="k">@import</span> <span class="n">WMTSDKKit</span><span class="p">;</span>
 
-<h1 id="import-quot-appdelegate-h-quot">import &quot;AppDelegate.h&rdquo;</h1>
+<span class="k">@interface</span> <span class="nc">AppDelegate</span> <span class="p">()</span>
+<span class="k">@end</span>
 
-<p>@import WMTSDKKit;</p>
+<span class="k">@implementation</span> <span class="nc">AppDelegate</span>
 
-<p>@interface AppDelegate ()
-@end</p>
+<span class="k">-</span> <span class="p">(</span><span class="n">BOOL</span><span class="p">)</span><span class="nf">application</span><span class="p">:(</span><span class="n">UIApplication</span> <span class="o">*</span><span class="p">)</span><span class="nv">application</span> <span class="nf">didFinishLaunchingWithOptions</span><span class="p">:(</span><span class="n">NSDictionary</span> <span class="o">*</span><span class="p">)</span><span class="nv">launchOptions</span> <span class="p">{</span>
+    <span class="p">[</span><span class="n">WMTSDK</span> <span class="nf">initSDK</span><span class="p">:</span><span class="nb">false</span><span class="p">];</span>
+    <span class="p">[</span><span class="n">WMTSDK</span> <span class="nf">setEnableDebugging</span><span class="p">:</span><span class="nb">true</span><span class="p">];</span>
+    <span class="p">[</span><span class="n">WMTSDK</span> <span class="nf">setLinksharePartner</span><span class="p">:</span><span class="nb">true</span><span class="p">];</span>
+    <span class="c1">// Override point for customization after application launch.
+</span>    <span class="k">return</span> <span class="nb">YES</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="p">......</span>
+</code></pre></li>
+<li><p>Swift</p>
+<pre class="highlight swift"><code><span class="kd">import</span> <span class="kt">UIKit</span>
+<span class="kd">import</span> <span class="kt">WMTSDKKit</span>
 
-<p>@implementation AppDelegate</p>
+<span class="k">@UIApplicationMain</span>
+<span class="kd">class</span> <span class="kt">AppDelegate</span><span class="p">:</span> <span class="kt">UIResponder</span><span class="p">,</span> <span class="kt">UIApplicationDelegate</span> <span class="p">{</span>
 
-<ul>
-<li>(BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-[WMTSDK initSDK:false];
-[WMTSDK setEnableDebugging:true];
-[WMTSDK setLinksharePartner:true];
-// Override point for customization after application launch.
-return YES;
-}
-&hellip;&hellip;
-&ldquo;`</li>
-</ul></li>
-<li><p>Swift
-&rdquo;`swift
-import UIKit
-import WMTSDKKit</p>
+    <span class="k">var</span> <span class="nv">window</span><span class="p">:</span> <span class="kt">UIWindow</span><span class="p">?</span>
 
-<p>@UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {</p>
-
-<p>var window: UIWindow?</p>
-
-<p>func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -&gt; Bool {
-        // Override point for customization after application launch.
-        WMTSDK.initSDK()
-        WMTSDK.setEnableDebugging(true)
-        WMTSDK.setLinksharePartner(true)
-        return true
-    }
-    &hellip;&hellip;
-&ldquo;`</p></li>
+    <span class="kd">func</span> <span class="nf">application</span><span class="p">(</span><span class="nv">application</span><span class="p">:</span> <span class="kt">UIApplication</span><span class="p">,</span> <span class="n">didFinishLaunchingWithOptions</span> <span class="nv">launchOptions</span><span class="p">:</span> <span class="p">[</span><span class="kt">NSObject</span><span class="p">:</span> <span class="kt">AnyObject</span><span class="p">]?)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span> <span class="p">{</span>
+        <span class="c1">// Override point for customization after application launch.</span>
+        <span class="kt">WMTSDK</span><span class="o">.</span><span class="nf">initSDK</span><span class="p">()</span>
+        <span class="kt">WMTSDK</span><span class="o">.</span><span class="nf">setEnableDebugging</span><span class="p">(</span><span class="kc">true</span><span class="p">)</span>
+        <span class="kt">WMTSDK</span><span class="o">.</span><span class="nf">setLinksharePartner</span><span class="p">(</span><span class="kc">true</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">true</span>
+    <span class="p">}</span>
+    <span class="o">......</span>
+</code></pre></li>
 </ul>
 
           <h1 id="buynow-button-for-ios">BuyNow Button for iOS</h1>
