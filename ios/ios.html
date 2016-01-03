@@ -165,7 +165,7 @@ iOS</a> for available settings.</p>
 <p><strong>Code Example</strong></p>
 
 <ul>
-<li><p>Objective_C</p>
+<li><p><strong>Objective_C</strong></p>
 <pre class="highlight objective_c"><code><span class="cp">#import "AppDelegate.h"
 </span><span class="k">@import</span> <span class="n">WMTSDKKit</span><span class="p">;</span>
 
@@ -183,7 +183,7 @@ iOS</a> for available settings.</p>
 <span class="p">}</span>
 <span class="p">......</span>
 </code></pre></li>
-<li><p>Swift</p>
+<li><p><strong>Swift</strong></p>
 <pre class="highlight swift"><code><span class="kd">import</span> <span class="kt">UIKit</span>
 <span class="kd">import</span> <span class="kt">WMTSDKKit</span>
 
@@ -225,6 +225,9 @@ the cart on <a href="http://www.walmart.com">Walmart</a> opened in-app.</p>
 
 <p>You can add the BuyNow button to your view like you would any other UIView. Create a new BuyNow button WMTBuyNowControl
 instance along with the productIds as shown in the code example shown below.</p>
+
+<ul>
+<li><p><strong>Objective_C</strong>:</p>
 <pre class="highlight objective_c"><code>
 <span class="c1">// ViewController.m example
 </span><span class="cp">#import "ViewController.h"
@@ -244,7 +247,8 @@ instance along with the productIds as shown in the code example shown below.</p>
 <span class="p">}</span>
 
 <span class="k">@end</span>
-</code></pre>
+</code></pre></li>
+<li><p><strong>Swift</strong>:</p>
 <pre class="highlight swift"><code>
 <span class="c1">// ViewController.swift example</span>
 <span class="kd">import</span> <span class="kt">UIKit</span>
@@ -261,7 +265,8 @@ instance along with the productIds as shown in the code example shown below.</p>
     <span class="p">}</span>
 <span class="p">}</span>
 
-</code></pre>
+</code></pre></li>
+</ul>
 
           <h2 id="customize-buynow-button">Customize BuyNow button</h2>
 
@@ -293,22 +298,28 @@ instance along with the productIds as shown in the code example shown below.</p>
     </table>
 </div>
 
-<p><strong>code example</strong></p>
+<ul>
+<li><p><strong>Objective_C</strong>:</p>
 <pre class="highlight objective_c"><code><span class="c1">// Change Size to Compact Scheme
 </span><span class="n">buyNowButton</span><span class="p">.</span><span class="n">sizeScheme</span> <span class="o">=</span> <span class="n">WMTButtonSizeSchemeCompact</span><span class="p">;</span>
 
 <span class="c1">// Change Color to Blue Scheme
 </span><span class="n">buyNowButton</span><span class="p">.</span><span class="n">colorScheme</span> <span class="o">=</span> <span class="n">WMTButtonColorSchemeBlue</span><span class="p">;</span>
-</code></pre>
+</code></pre></li>
+<li><p><strong>Swift</strong>:</p>
 <pre class="highlight swift"><code><span class="c1">// Change Size to Compact Scheme</span>
 <span class="n">buyNowButton</span><span class="o">.</span><span class="n">sizeScheme</span> <span class="o">=</span> <span class="kt">WMTButtonSizeScheme</span><span class="o">.</span><span class="kt">Compact</span><span class="p">;</span>
 
 <span class="c1">// Change Color to Blue Scheme</span>
 <span class="n">buyNowButton</span><span class="o">.</span><span class="n">colorScheme</span> <span class="o">=</span> <span class="kt">WMTButtonColorScheme</span><span class="o">.</span><span class="kt">Blue</span><span class="p">;</span>
-</code></pre>
+</code></pre></li>
+</ul>
 
 <p>Once you have created a BuyNow button it is also possible to add or remove associated productIds. See the code
 example below:</p>
+
+<ul>
+<li><p><strong>Objective_C</strong>:</p>
 <pre class="highlight objective_c"><code><span class="c1">// Add a single product
 </span><span class="p">[</span><span class="n">buyNowButton</span> <span class="nf">addProductId</span><span class="p">:{</span><span class="n">productId</span><span class="p">}];</span>
 
@@ -317,7 +328,8 @@ example below:</p>
 
 <span class="c1">// Or you can also Set Products
 </span><span class="p">[</span><span class="n">buyNowButton</span> <span class="nf">setProductIds</span><span class="p">:{</span><span class="n">setOfProductIds</span><span class="p">}];</span>
-</code></pre>
+</code></pre></li>
+<li><p><strong>Swift</strong>:</p>
 <pre class="highlight swift"><code><span class="c1">// Add a single product</span>
 <span class="n">buyNowButton</span><span class="o">.</span><span class="nf">addProductId</span><span class="p">(</span><span class="n">productId</span><span class="p">)</span>
 
@@ -326,7 +338,8 @@ example below:</p>
 
 <span class="c1">// Or you can also Set Products</span>
 <span class="n">buyNowButton</span><span class="o">.</span><span class="nf">setProductIds</span><span class="p">(</span><span class="n">setOfProductIds</span><span class="p">)</span>
-</code></pre>
+</code></pre></li>
+</ul>
 
       </div>
     </div>
