@@ -1138,7 +1138,6 @@ p img {
 
 /* line 547, /Users/sgoyal4/office/slate/source/css/screen.css.scss */
 .content pre, .content blockquote {
-  background-color: #292929;
   color: #fff;
   padding: 2em 28px;
   margin: 0;
@@ -1147,61 +1146,61 @@ p img {
   clear: none;
   box-sizing: border-box;
   text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.4); }
-  /* line 563, /Users/sgoyal4/office/slate/source/css/screen.css.scss */
+  /* line 562, /Users/sgoyal4/office/slate/source/css/screen.css.scss */
   .content pre > p, .content blockquote > p {
     margin: 0; }
-  /* line 565, /Users/sgoyal4/office/slate/source/css/screen.css.scss */
+  /* line 564, /Users/sgoyal4/office/slate/source/css/screen.css.scss */
   .content pre a, .content blockquote a {
     color: #fff;
     text-decoration: none;
     border-bottom: dashed 1px #ccc; }
-/* line 577, /Users/sgoyal4/office/slate/source/css/screen.css.scss */
+/* line 576, /Users/sgoyal4/office/slate/source/css/screen.css.scss */
 .content blockquote > p {
   color: #333; }
 
 @media (max-width: 930px) {
-  /* line 590, /Users/sgoyal4/office/slate/source/css/screen.css.scss */
+  /* line 589, /Users/sgoyal4/office/slate/source/css/screen.css.scss */
   .tocify-wrapper {
     left: -230px; }
-    /* line 593, /Users/sgoyal4/office/slate/source/css/screen.css.scss */
+    /* line 592, /Users/sgoyal4/office/slate/source/css/screen.css.scss */
     .tocify-wrapper.open {
       left: 0; }
 
-  /* line 598, /Users/sgoyal4/office/slate/source/css/screen.css.scss */
+  /* line 597, /Users/sgoyal4/office/slate/source/css/screen.css.scss */
   .page-wrapper {
     margin-left: 0; }
 
-  /* line 602, /Users/sgoyal4/office/slate/source/css/screen.css.scss */
+  /* line 601, /Users/sgoyal4/office/slate/source/css/screen.css.scss */
   #nav-button {
     display: block; }
 
-  /* line 606, /Users/sgoyal4/office/slate/source/css/screen.css.scss */
+  /* line 605, /Users/sgoyal4/office/slate/source/css/screen.css.scss */
   .tocify-wrapper .tocify-item > a {
     padding-top: 0.3em;
     padding-bottom: 0.3em; } }
 @media (max-width: 700px) {
-  /* line 613, /Users/sgoyal4/office/slate/source/css/screen.css.scss */
+  /* line 612, /Users/sgoyal4/office/slate/source/css/screen.css.scss */
   .dark-box {
     display: none; }
 
-  /* line 617, /Users/sgoyal4/office/slate/source/css/screen.css.scss */
+  /* line 616, /Users/sgoyal4/office/slate/source/css/screen.css.scss */
   .content > h1, .content > h2, .content > h3, .content > h4, .content > h5, .content > h6, .content > p, .content > table, .content > ul, .content > ol, .content > aside, .content > dl {
     margin-right: 0; }
 
-  /* line 621, /Users/sgoyal4/office/slate/source/css/screen.css.scss */
+  /* line 620, /Users/sgoyal4/office/slate/source/css/screen.css.scss */
   .tocify-wrapper .lang-selector {
     display: block; }
 
-  /* line 625, /Users/sgoyal4/office/slate/source/css/screen.css.scss */
+  /* line 624, /Users/sgoyal4/office/slate/source/css/screen.css.scss */
   .page-wrapper .lang-selector {
     display: none; }
 
-  /* line 629, /Users/sgoyal4/office/slate/source/css/screen.css.scss */
+  /* line 628, /Users/sgoyal4/office/slate/source/css/screen.css.scss */
   .content pre, .content blockquote {
     width: auto;
     float: none; }
 
-  /* line 634, /Users/sgoyal4/office/slate/source/css/screen.css.scss */
+  /* line 633, /Users/sgoyal4/office/slate/source/css/screen.css.scss */
   .content > pre + h1, .content > blockquote + h1, .content > pre + h2, .content > blockquote + h2, .content > pre + h3, .content > blockquote + h3, .content > pre + h4, .content > blockquote + h4, .content > pre + h5, .content > blockquote + h5, .content > pre + h6, .content > blockquote + h6, .content > pre + p, .content > blockquote + p, .content > pre + table, .content > blockquote + table, .content > pre + ul, .content > blockquote + ul, .content > pre + ol, .content > blockquote + ol, .content > pre + aside, .content > blockquote + aside, .content > pre + dl, .content > blockquote + dl {
     margin-top: 28px; } }
 /*{"k":"1.6.4","version":"17704664","created":"2013-11-04T21:43:45Z","mac":"1:4941bef6c5779f0a2fc7968cdc5a2a55eaf44c3816f9acc03822fb94b352d007"}*/
