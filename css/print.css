@@ -902,11 +902,18 @@ beta:after {
   margin-left: 42px;
   padding: 10px 18px; }
 
-/* line 353, /Users/sgoyal4/office/slate/source/css/custom.scss */
+/* line 351, /Users/sgoyal4/office/slate/source/css/custom.scss */
+.content code,
+.content pre {
+  font-size: 15px;
+  line-height: 1.6;
+  margin-bottom: 1.4em; }
+
+/* line 359, /Users/sgoyal4/office/slate/source/css/custom.scss */
 .content tbody td:first-child {
   text-align: right; }
 
-/* line 358, /Users/sgoyal4/office/slate/source/css/custom.scss */
+/* line 364, /Users/sgoyal4/office/slate/source/css/custom.scss */
 .content .search-highlight {
   border: 1px solid #ffdf7e;
   text-shadow: none;
@@ -914,73 +921,73 @@ beta:after {
   background: linear-gradient(to top left, #ffdf7e 0%, #ffdf7e 100%);
   color: #464646; }
 
-/* line 369, /Users/sgoyal4/office/slate/source/css/custom.scss */
+/* line 375, /Users/sgoyal4/office/slate/source/css/custom.scss */
 #nav-button {
   opacity: 0.82; }
 
-/* line 373, /Users/sgoyal4/office/slate/source/css/custom.scss */
+/* line 379, /Users/sgoyal4/office/slate/source/css/custom.scss */
 #nav-button span {
   background-color: #007dc6;
   color: #fff;
   padding: 6px 10px 6px; }
 
-/* line 379, /Users/sgoyal4/office/slate/source/css/custom.scss */
+/* line 385, /Users/sgoyal4/office/slate/source/css/custom.scss */
 #nav-button.open {
   left: 285px; }
 
-/* line 383, /Users/sgoyal4/office/slate/source/css/custom.scss */
+/* line 389, /Users/sgoyal4/office/slate/source/css/custom.scss */
 #nav-button:focus {
   outline: 0; }
 
 @media (max-width: 930px) {
-  /* line 388, /Users/sgoyal4/office/slate/source/css/custom.scss */
+  /* line 394, /Users/sgoyal4/office/slate/source/css/custom.scss */
   .tocify-wrapper {
     left: -300px; }
-    /* line 391, /Users/sgoyal4/office/slate/source/css/custom.scss */
+    /* line 397, /Users/sgoyal4/office/slate/source/css/custom.scss */
     .tocify-wrapper.open {
       left: 0; }
 
-  /* line 397, /Users/sgoyal4/office/slate/source/css/custom.scss */
+  /* line 403, /Users/sgoyal4/office/slate/source/css/custom.scss */
   .page-wrapper {
     margin-left: 0; } }
-/* line 405, /Users/sgoyal4/office/slate/source/css/custom.scss */
+/* line 411, /Users/sgoyal4/office/slate/source/css/custom.scss */
 .btn-group {
   position: relative;
   vertical-align: middle;
   margin-left: 36px;
   margin-right: 32px; }
 
-/* line 412, /Users/sgoyal4/office/slate/source/css/custom.scss */
+/* line 418, /Users/sgoyal4/office/slate/source/css/custom.scss */
 .btn-group > .btn:first-child:not(.language-dropdown) {
   border-right: none; }
 
-/* line 416, /Users/sgoyal4/office/slate/source/css/custom.scss */
+/* line 422, /Users/sgoyal4/office/slate/source/css/custom.scss */
 .btn-group > .btn:first-child:not(:last-child):not(.language-dropdown) {
   border-top-right-radius: 0;
   border-bottom-right-radius: 0; }
 
-/* line 421, /Users/sgoyal4/office/slate/source/css/custom.scss */
+/* line 427, /Users/sgoyal4/office/slate/source/css/custom.scss */
 .btn-group > .btn:last-child:not(:first-child),
 .btn-group > .dropdown-toggle:not(:first-child) {
   border-top-left-radius: 0;
   border-bottom-left-radius: 0; }
 
-/* line 427, /Users/sgoyal4/office/slate/source/css/custom.scss */
+/* line 433, /Users/sgoyal4/office/slate/source/css/custom.scss */
 .btn-group > .btn {
   position: relative;
   float: left;
   width: 33%; }
 
-/* line 433, /Users/sgoyal4/office/slate/source/css/custom.scss */
+/* line 439, /Users/sgoyal4/office/slate/source/css/custom.scss */
 .btn-default {
   color: #fff;
   background-color: transparent; }
 
-/* line 438, /Users/sgoyal4/office/slate/source/css/custom.scss */
+/* line 444, /Users/sgoyal4/office/slate/source/css/custom.scss */
 .btn-selected {
   background-color: #3da1e0; }
 
-/* line 442, /Users/sgoyal4/office/slate/source/css/custom.scss */
+/* line 448, /Users/sgoyal4/office/slate/source/css/custom.scss */
 .btn {
   display: inline-block;
   padding: 9px 11px;
@@ -1002,11 +1009,11 @@ beta:after {
   border: 2px solid #9ed6fa;
   border-radius: 4px; }
 
-/* line 464, /Users/sgoyal4/office/slate/source/css/custom.scss */
+/* line 470, /Users/sgoyal4/office/slate/source/css/custom.scss */
 .btn:focus {
   outline: 0; }
 
-/* line 468, /Users/sgoyal4/office/slate/source/css/custom.scss */
+/* line 474, /Users/sgoyal4/office/slate/source/css/custom.scss */
 .nav-label {
   color: #79b9e7;
   margin-left: 36px;
@@ -1015,12 +1022,12 @@ beta:after {
   font-weight: normal;
   margin-top: 32px; }
 
-/* line 477, /Users/sgoyal4/office/slate/source/css/custom.scss */
+/* line 483, /Users/sgoyal4/office/slate/source/css/custom.scss */
 .dropdown-wrapper {
   position: relative;
   width: 131px; }
 
-/* line 482, /Users/sgoyal4/office/slate/source/css/custom.scss */
+/* line 488, /Users/sgoyal4/office/slate/source/css/custom.scss */
 .btn-group > .language-dropdown {
   width: 131px;
   text-transform: capitalize;
@@ -1028,29 +1035,29 @@ beta:after {
   text-align: left;
   z-index: 2; }
 
-/* line 490, /Users/sgoyal4/office/slate/source/css/custom.scss */
+/* line 496, /Users/sgoyal4/office/slate/source/css/custom.scss */
 .btn-group > .btn:not(:first-child):not(:last-child) {
   border-radius: 0;
   border-right: 0; }
 
-/* line 495, /Users/sgoyal4/office/slate/source/css/custom.scss */
+/* line 501, /Users/sgoyal4/office/slate/source/css/custom.scss */
 .separator {
   display: none;
   border-top: 1px solid #9ed6fa; }
 
-/* line 500, /Users/sgoyal4/office/slate/source/css/custom.scss */
+/* line 506, /Users/sgoyal4/office/slate/source/css/custom.scss */
 .platform-nav {
   margin-bottom: 36px; }
 
-/* line 504, /Users/sgoyal4/office/slate/source/css/custom.scss */
+/* line 510, /Users/sgoyal4/office/slate/source/css/custom.scss */
 .separator-top {
   margin-top: 10px; }
 
-/* line 508, /Users/sgoyal4/office/slate/source/css/custom.scss */
+/* line 514, /Users/sgoyal4/office/slate/source/css/custom.scss */
 .clear {
   clear: both; }
 
-/* line 512, /Users/sgoyal4/office/slate/source/css/custom.scss */
+/* line 518, /Users/sgoyal4/office/slate/source/css/custom.scss */
 .arrow-down {
   width: 0;
   height: 0;
@@ -1061,25 +1068,25 @@ beta:after {
   position: absolute;
   right: 15px; }
 
-/* line 524, /Users/sgoyal4/office/slate/source/css/custom.scss */
+/* line 530, /Users/sgoyal4/office/slate/source/css/custom.scss */
 .badge img {
   display: inline-block; }
 
-/* line 528, /Users/sgoyal4/office/slate/source/css/custom.scss */
+/* line 534, /Users/sgoyal4/office/slate/source/css/custom.scss */
 .half-width-img img {
   max-width: 50%; }
 
-/* line 532, /Users/sgoyal4/office/slate/source/css/custom.scss */
+/* line 538, /Users/sgoyal4/office/slate/source/css/custom.scss */
 .three-fourth-width-img img {
   max-width: 75%; }
 
-/* line 536, /Users/sgoyal4/office/slate/source/css/custom.scss */
+/* line 542, /Users/sgoyal4/office/slate/source/css/custom.scss */
 .header-primary {
   height: 94px;
   padding-top: 22px;
   background: #007dc6; }
 
-/* line 542, /Users/sgoyal4/office/slate/source/css/custom.scss */
+/* line 548, /Users/sgoyal4/office/slate/source/css/custom.scss */
 .download-button {
   margin: 0px 42px;
   color: #fff;
