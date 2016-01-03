@@ -1105,299 +1105,24 @@ beta:after {
   vertical-align: middle;
   cursor: pointer; }
 
-/* line 572, /Users/sgoyal4/office/slate/source/css/custom.scss */
-.highlight table td {
-  padding: 5px; }
-
-/* line 573, /Users/sgoyal4/office/slate/source/css/custom.scss */
-.highlight table pre {
-  margin: 0; }
-
-/* line 574, /Users/sgoyal4/office/slate/source/css/custom.scss */
-.highlight .c, .highlight .cd {
-  color: #75715e;
-  font-style: italic; }
-
-/* line 578, /Users/sgoyal4/office/slate/source/css/custom.scss */
-.highlight .cm {
-  color: #75715e;
-  font-style: italic; }
-
-/* line 582, /Users/sgoyal4/office/slate/source/css/custom.scss */
-.highlight .c1 {
-  color: #75715e;
-  font-style: italic; }
-
-/* line 586, /Users/sgoyal4/office/slate/source/css/custom.scss */
-.highlight .cp {
-  color: #75715e;
-  font-weight: bold; }
-
-/* line 590, /Users/sgoyal4/office/slate/source/css/custom.scss */
-.highlight .cs {
-  color: #75715e;
-  font-weight: bold;
-  font-style: italic; }
-
-/* line 595, /Users/sgoyal4/office/slate/source/css/custom.scss */
-.highlight .err {
-  color: #960050;
-  background-color: #1e0010; }
-
-/* line 599, /Users/sgoyal4/office/slate/source/css/custom.scss */
-.highlight .gd {
-  color: #000000; }
-
-/* line 602, /Users/sgoyal4/office/slate/source/css/custom.scss */
-.highlight .gi {
-  color: #000000; }
-
-/* line 605, /Users/sgoyal4/office/slate/source/css/custom.scss */
-.highlight .ge {
-  color: #000000;
-  font-style: italic; }
-
-/* line 609, /Users/sgoyal4/office/slate/source/css/custom.scss */
-.highlight .gr {
-  color: #aa0000; }
-
-/* line 612, /Users/sgoyal4/office/slate/source/css/custom.scss */
-.highlight .gt {
-  color: #aa0000; }
-
-/* line 615, /Users/sgoyal4/office/slate/source/css/custom.scss */
-.highlight .gh {
-  color: #999999; }
-
-/* line 618, /Users/sgoyal4/office/slate/source/css/custom.scss */
-.highlight .go {
-  color: #888888; }
-
-/* line 621, /Users/sgoyal4/office/slate/source/css/custom.scss */
-.highlight .gp {
-  color: #555555; }
-
-/* line 624, /Users/sgoyal4/office/slate/source/css/custom.scss */
-.highlight .gs {
-  font-weight: bold; }
-
-/* line 627, /Users/sgoyal4/office/slate/source/css/custom.scss */
-.highlight .gu {
-  color: #aaaaaa; }
-
-/* line 630, /Users/sgoyal4/office/slate/source/css/custom.scss */
-.highlight .k, .highlight .kv {
-  color: #66d9ef;
-  font-weight: bold; }
-
-/* line 634, /Users/sgoyal4/office/slate/source/css/custom.scss */
-.highlight .kc {
-  color: #66d9ef;
-  font-weight: bold; }
-
-/* line 638, /Users/sgoyal4/office/slate/source/css/custom.scss */
-.highlight .kd {
-  color: #66d9ef;
-  font-weight: bold; }
-
-/* line 642, /Users/sgoyal4/office/slate/source/css/custom.scss */
-.highlight .kp {
-  color: #66d9ef;
-  font-weight: bold; }
-
-/* line 646, /Users/sgoyal4/office/slate/source/css/custom.scss */
-.highlight .kr {
-  color: #66d9ef;
-  font-weight: bold; }
-
-/* line 650, /Users/sgoyal4/office/slate/source/css/custom.scss */
-.highlight .kt {
-  color: #66d9ef;
-  font-weight: bold; }
-
-/* line 654, /Users/sgoyal4/office/slate/source/css/custom.scss */
-.highlight .kn {
-  color: #f92672;
-  font-weight: bold; }
-
-/* line 658, /Users/sgoyal4/office/slate/source/css/custom.scss */
-.highlight .ow {
-  color: #f92672;
-  font-weight: bold; }
-
-/* line 662, /Users/sgoyal4/office/slate/source/css/custom.scss */
-.highlight .o {
-  color: #f92672;
-  font-weight: bold; }
-
-/* line 666, /Users/sgoyal4/office/slate/source/css/custom.scss */
-.highlight .mf {
-  color: #ae81ff; }
-
-/* line 669, /Users/sgoyal4/office/slate/source/css/custom.scss */
-.highlight .mh {
-  color: #ae81ff; }
-
-/* line 672, /Users/sgoyal4/office/slate/source/css/custom.scss */
-.highlight .il {
-  color: #ae81ff; }
-
-/* line 675, /Users/sgoyal4/office/slate/source/css/custom.scss */
-.highlight .mi {
-  color: #ae81ff; }
-
-/* line 678, /Users/sgoyal4/office/slate/source/css/custom.scss */
-.highlight .mo {
-  color: #ae81ff; }
-
-/* line 681, /Users/sgoyal4/office/slate/source/css/custom.scss */
-.highlight .m, .highlight .mb, .highlight .mx {
-  color: #ae81ff; }
-
-/* line 684, /Users/sgoyal4/office/slate/source/css/custom.scss */
-.highlight .se {
-  color: #ae81ff; }
-
-/* line 687, /Users/sgoyal4/office/slate/source/css/custom.scss */
-.highlight .sb {
-  color: #e6db74; }
-
-/* line 690, /Users/sgoyal4/office/slate/source/css/custom.scss */
-.highlight .sc {
-  color: #e6db74; }
-
-/* line 693, /Users/sgoyal4/office/slate/source/css/custom.scss */
-.highlight .sd {
-  color: #e6db74; }
-
-/* line 696, /Users/sgoyal4/office/slate/source/css/custom.scss */
-.highlight .s2 {
-  color: #e6db74; }
-
-/* line 699, /Users/sgoyal4/office/slate/source/css/custom.scss */
-.highlight .sh {
-  color: #e6db74; }
-
-/* line 702, /Users/sgoyal4/office/slate/source/css/custom.scss */
-.highlight .si {
-  color: #e6db74; }
-
-/* line 705, /Users/sgoyal4/office/slate/source/css/custom.scss */
-.highlight .sx {
-  color: #e6db74; }
-
-/* line 708, /Users/sgoyal4/office/slate/source/css/custom.scss */
-.highlight .sr {
-  color: #e6db74; }
-
-/* line 711, /Users/sgoyal4/office/slate/source/css/custom.scss */
-.highlight .s1 {
-  color: #e6db74; }
-
-/* line 714, /Users/sgoyal4/office/slate/source/css/custom.scss */
-.highlight .ss {
-  color: #e6db74; }
-
-/* line 717, /Users/sgoyal4/office/slate/source/css/custom.scss */
-.highlight .s {
-  color: #e6db74; }
-
-/* line 720, /Users/sgoyal4/office/slate/source/css/custom.scss */
-.highlight .na {
-  color: #a6e22e; }
-
-/* line 723, /Users/sgoyal4/office/slate/source/css/custom.scss */
-.highlight .nc {
-  color: #a6e22e;
-  font-weight: bold; }
-
-/* line 727, /Users/sgoyal4/office/slate/source/css/custom.scss */
-.highlight .nd {
-  color: #a6e22e;
-  font-weight: bold; }
-
-/* line 731, /Users/sgoyal4/office/slate/source/css/custom.scss */
-.highlight .ne {
-  color: #a6e22e;
-  font-weight: bold; }
-
-/* line 735, /Users/sgoyal4/office/slate/source/css/custom.scss */
-.highlight .nf {
-  color: #a6e22e;
-  font-weight: bold; }
-
-/* line 739, /Users/sgoyal4/office/slate/source/css/custom.scss */
-.highlight .no {
-  color: #66d9ef; }
-
-/* line 742, /Users/sgoyal4/office/slate/source/css/custom.scss */
-.highlight .bp {
-  color: #f8f8f2; }
-
-/* line 745, /Users/sgoyal4/office/slate/source/css/custom.scss */
-.highlight .nb {
-  color: #f8f8f2; }
-
-/* line 748, /Users/sgoyal4/office/slate/source/css/custom.scss */
-.highlight .ni {
-  color: #f8f8f2; }
-
-/* line 751, /Users/sgoyal4/office/slate/source/css/custom.scss */
-.highlight .nn {
-  color: #f8f8f2; }
-
-/* line 754, /Users/sgoyal4/office/slate/source/css/custom.scss */
-.highlight .vc {
-  color: #f8f8f2; }
-
-/* line 757, /Users/sgoyal4/office/slate/source/css/custom.scss */
-.highlight .vg {
-  color: #f8f8f2; }
-
-/* line 760, /Users/sgoyal4/office/slate/source/css/custom.scss */
-.highlight .vi {
-  color: #f8f8f2; }
-
-/* line 763, /Users/sgoyal4/office/slate/source/css/custom.scss */
-.highlight .nv {
-  color: #f8f8f2; }
-
-/* line 766, /Users/sgoyal4/office/slate/source/css/custom.scss */
-.highlight .w {
-  color: #f8f8f2; }
-
-/* line 769, /Users/sgoyal4/office/slate/source/css/custom.scss */
-.highlight .nl {
-  color: #f8f8f2;
-  font-weight: bold; }
-
-/* line 773, /Users/sgoyal4/office/slate/source/css/custom.scss */
-.highlight .nt {
-  color: #f92672; }
-
-/* line 776, /Users/sgoyal4/office/slate/source/css/custom.scss */
-.highlight {
-  color: #f8f8f2;
-  background-color: #49483e; }
-
 /*
 Tables
 ---------------------------------------------------------------------------------------------------- */
-/* line 787, /Users/sgoyal4/office/slate/source/css/custom.scss */
+/* line 575, /Users/sgoyal4/office/slate/source/css/custom.scss */
 table {
   max-width: 100%; }
 
-/* line 791, /Users/sgoyal4/office/slate/source/css/custom.scss */
+/* line 579, /Users/sgoyal4/office/slate/source/css/custom.scss */
 th {
   text-align: left; }
 
-/* line 795, /Users/sgoyal4/office/slate/source/css/custom.scss */
+/* line 583, /Users/sgoyal4/office/slate/source/css/custom.scss */
 .table {
   width: 85%;
   margin-left: 48px;
   margin-bottom: 20px; }
 
-/* line 801, /Users/sgoyal4/office/slate/source/css/custom.scss */
+/* line 589, /Users/sgoyal4/office/slate/source/css/custom.scss */
 .table > thead > tr > th,
 .table > tbody > tr > th,
 .table > tfoot > tr > th,
@@ -1409,12 +1134,12 @@ th {
   vertical-align: top;
   border-top: 1px solid #ddd; }
 
-/* line 813, /Users/sgoyal4/office/slate/source/css/custom.scss */
+/* line 601, /Users/sgoyal4/office/slate/source/css/custom.scss */
 .table > thead > tr > th {
   vertical-align: bottom;
   border-bottom: 2px solid #ddd; }
 
-/* line 818, /Users/sgoyal4/office/slate/source/css/custom.scss */
+/* line 606, /Users/sgoyal4/office/slate/source/css/custom.scss */
 .table > caption + thead > tr:first-child > th,
 .table > colgroup + thead > tr:first-child > th,
 .table > thead:first-child > tr:first-child > th,
@@ -1423,15 +1148,15 @@ th {
 .table > thead:first-child > tr:first-child > td {
   border-top: 0; }
 
-/* line 827, /Users/sgoyal4/office/slate/source/css/custom.scss */
+/* line 615, /Users/sgoyal4/office/slate/source/css/custom.scss */
 .table > tbody + tbody {
   border-top: 2px solid #ddd; }
 
-/* line 831, /Users/sgoyal4/office/slate/source/css/custom.scss */
+/* line 619, /Users/sgoyal4/office/slate/source/css/custom.scss */
 .table .table {
   background-color: #fff; }
 
-/* line 835, /Users/sgoyal4/office/slate/source/css/custom.scss */
+/* line 623, /Users/sgoyal4/office/slate/source/css/custom.scss */
 .table-condensed > thead > tr > th,
 .table-condensed > tbody > tr > th,
 .table-condensed > tfoot > tr > th,
@@ -1440,11 +1165,11 @@ th {
 .table-condensed > tfoot > tr > td {
   padding: 5px; }
 
-/* line 844, /Users/sgoyal4/office/slate/source/css/custom.scss */
+/* line 632, /Users/sgoyal4/office/slate/source/css/custom.scss */
 .table-bordered {
   border: 1px solid #ddd; }
 
-/* line 848, /Users/sgoyal4/office/slate/source/css/custom.scss */
+/* line 636, /Users/sgoyal4/office/slate/source/css/custom.scss */
 .table-bordered > thead > tr > th,
 .table-bordered > tbody > tr > th,
 .table-bordered > tfoot > tr > th,
@@ -1453,17 +1178,110 @@ th {
 .table-bordered > tfoot > tr > td {
   border: 1px solid #ddd; }
 
-/* line 857, /Users/sgoyal4/office/slate/source/css/custom.scss */
+/* line 645, /Users/sgoyal4/office/slate/source/css/custom.scss */
 .table-bordered > thead > tr > th,
 .table-bordered > thead > tr > td {
   border-bottom-width: 2px; }
 
-/* line 862, /Users/sgoyal4/office/slate/source/css/custom.scss */
+/* line 650, /Users/sgoyal4/office/slate/source/css/custom.scss */
 .table-striped > tbody > tr:nth-child(odd) > td,
 .table-striped > tbody > tr:nth-child(odd) > th {
   background-color: #eaeaea; }
 
-/* line 867, /Users/sgoyal4/office/slate/source/css/custom.scss */
+/* line 655, /Users/sgoyal4/office/slate/source/css/custom.scss */
 .table-hover > tbody > tr:hover > td,
 .table-hover > tbody > tr:hover > th {
   background-color: #f5f5f5; }
+
+/*
+
+XCode style (c) Angel Garcia <angelgarcia.mail@gmail.com>
+
+*/
+/* line 667, /Users/sgoyal4/office/slate/source/css/custom.scss */
+.hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 0.5em;
+  background: #fff;
+  color: black; }
+
+/* line 675, /Users/sgoyal4/office/slate/source/css/custom.scss */
+.hljs-comment,
+.hljs-quote {
+  color: #006a00; }
+
+/* line 680, /Users/sgoyal4/office/slate/source/css/custom.scss */
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-literal {
+  color: #aa0d91; }
+
+/* line 686, /Users/sgoyal4/office/slate/source/css/custom.scss */
+.hljs-name {
+  color: #008; }
+
+/* line 690, /Users/sgoyal4/office/slate/source/css/custom.scss */
+.hljs-variable,
+.hljs-template-variable {
+  color: #660; }
+
+/* line 695, /Users/sgoyal4/office/slate/source/css/custom.scss */
+.hljs-string {
+  color: #c41a16; }
+
+/* line 699, /Users/sgoyal4/office/slate/source/css/custom.scss */
+.hljs-regexp,
+.hljs-link {
+  color: #080; }
+
+/* line 704, /Users/sgoyal4/office/slate/source/css/custom.scss */
+.hljs-title,
+.hljs-tag,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-number,
+.hljs-meta {
+  color: #1c00cf; }
+
+/* line 713, /Users/sgoyal4/office/slate/source/css/custom.scss */
+.hljs-section,
+.hljs-class .hljs-title,
+.hljs-type,
+.hljs-attr,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-params {
+  color: #5c2699; }
+
+/* line 723, /Users/sgoyal4/office/slate/source/css/custom.scss */
+.hljs-attribute,
+.hljs-subst {
+  color: #000; }
+
+/* line 728, /Users/sgoyal4/office/slate/source/css/custom.scss */
+.hljs-formula {
+  background-color: #eee;
+  font-style: italic; }
+
+/* line 733, /Users/sgoyal4/office/slate/source/css/custom.scss */
+.hljs-addition {
+  background-color: #baeeba; }
+
+/* line 737, /Users/sgoyal4/office/slate/source/css/custom.scss */
+.hljs-deletion {
+  background-color: #ffc8bd; }
+
+/* line 741, /Users/sgoyal4/office/slate/source/css/custom.scss */
+.hljs-selector-id,
+.hljs-selector-class {
+  color: #9b703f; }
+
+/* line 746, /Users/sgoyal4/office/slate/source/css/custom.scss */
+.hljs-doctag,
+.hljs-strong {
+  font-weight: bold; }
+
+/* line 751, /Users/sgoyal4/office/slate/source/css/custom.scss */
+.hljs-emphasis {
+  font-style: italic; }
