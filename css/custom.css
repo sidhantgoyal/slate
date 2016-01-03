@@ -847,10 +847,11 @@ th {
 
 /* line 795, /Users/sgoyal4/office/slate/source/css/custom.scss */
 .table {
-  width: 100%;
+  max-width: 85%;
+  margin-left: 48px;
   margin-bottom: 20px; }
 
-/* line 800, /Users/sgoyal4/office/slate/source/css/custom.scss */
+/* line 801, /Users/sgoyal4/office/slate/source/css/custom.scss */
 .table > thead > tr > th,
 .table > tbody > tr > th,
 .table > tfoot > tr > th,
@@ -862,12 +863,12 @@ th {
   vertical-align: top;
   border-top: 1px solid #ddd; }
 
-/* line 812, /Users/sgoyal4/office/slate/source/css/custom.scss */
+/* line 813, /Users/sgoyal4/office/slate/source/css/custom.scss */
 .table > thead > tr > th {
   vertical-align: bottom;
   border-bottom: 2px solid #ddd; }
 
-/* line 817, /Users/sgoyal4/office/slate/source/css/custom.scss */
+/* line 818, /Users/sgoyal4/office/slate/source/css/custom.scss */
 .table > caption + thead > tr:first-child > th,
 .table > colgroup + thead > tr:first-child > th,
 .table > thead:first-child > tr:first-child > th,
@@ -876,15 +877,15 @@ th {
 .table > thead:first-child > tr:first-child > td {
   border-top: 0; }
 
-/* line 826, /Users/sgoyal4/office/slate/source/css/custom.scss */
+/* line 827, /Users/sgoyal4/office/slate/source/css/custom.scss */
 .table > tbody + tbody {
   border-top: 2px solid #ddd; }
 
-/* line 830, /Users/sgoyal4/office/slate/source/css/custom.scss */
+/* line 831, /Users/sgoyal4/office/slate/source/css/custom.scss */
 .table .table {
   background-color: #fff; }
 
-/* line 834, /Users/sgoyal4/office/slate/source/css/custom.scss */
+/* line 835, /Users/sgoyal4/office/slate/source/css/custom.scss */
 .table-condensed > thead > tr > th,
 .table-condensed > tbody > tr > th,
 .table-condensed > tfoot > tr > th,
@@ -893,11 +894,11 @@ th {
 .table-condensed > tfoot > tr > td {
   padding: 5px; }
 
-/* line 843, /Users/sgoyal4/office/slate/source/css/custom.scss */
+/* line 844, /Users/sgoyal4/office/slate/source/css/custom.scss */
 .table-bordered {
   border: 1px solid #ddd; }
 
-/* line 847, /Users/sgoyal4/office/slate/source/css/custom.scss */
+/* line 848, /Users/sgoyal4/office/slate/source/css/custom.scss */
 .table-bordered > thead > tr > th,
 .table-bordered > tbody > tr > th,
 .table-bordered > tfoot > tr > th,
@@ -906,17 +907,17 @@ th {
 .table-bordered > tfoot > tr > td {
   border: 1px solid #ddd; }
 
-/* line 856, /Users/sgoyal4/office/slate/source/css/custom.scss */
+/* line 857, /Users/sgoyal4/office/slate/source/css/custom.scss */
 .table-bordered > thead > tr > th,
 .table-bordered > thead > tr > td {
   border-bottom-width: 2px; }
 
-/* line 861, /Users/sgoyal4/office/slate/source/css/custom.scss */
+/* line 862, /Users/sgoyal4/office/slate/source/css/custom.scss */
 .table-striped > tbody > tr:nth-child(odd) > td,
 .table-striped > tbody > tr:nth-child(odd) > th {
   background-color: #eaeaea; }
 
-/* line 866, /Users/sgoyal4/office/slate/source/css/custom.scss */
+/* line 867, /Users/sgoyal4/office/slate/source/css/custom.scss */
 .table-hover > tbody > tr:hover > td,
 .table-hover > tbody > tr:hover > th {
   background-color: #f5f5f5; }
