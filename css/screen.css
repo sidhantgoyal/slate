@@ -1546,16 +1546,16 @@ beta:after {
 /* line 348, /Users/sgoyal4/office/slate/source/css/custom.scss */
 .content code,
 .content pre {
+  font-family: Monaco,Menlo,Consolas,"Courier New",monospace;
+  font-size: 13px;
   line-height: 1.6;
   margin-bottom: 1.4em; }
 
-/* line 354, /Users/sgoyal4/office/slate/source/css/custom.scss */
+/* line 356, /Users/sgoyal4/office/slate/source/css/custom.scss */
 .content code {
   font-weight: bold;
-  font-size: 13px;
   border-radius: 3px;
-  text-shadow: none;
-  font-family: Monaco,Menlo,Consolas,"Courier New",monospace; }
+  text-shadow: none; }
 
 /* line 362, /Users/sgoyal4/office/slate/source/css/custom.scss */
 .content tbody td:first-child {
