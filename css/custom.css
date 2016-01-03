@@ -564,3 +564,96 @@ beta:after {
   text-align: center;
   vertical-align: middle;
   cursor: pointer; }
+
+/*
+
+XCode style (c) Angel Garcia <angelgarcia.mail@gmail.com>
+
+*/
+/* line 582, /Users/sgoyal4/office/slate/source/css/custom.scss */
+.hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 0.5em;
+  background: #fff;
+  color: black; }
+
+/* line 590, /Users/sgoyal4/office/slate/source/css/custom.scss */
+.hljs-comment,
+.hljs-quote {
+  color: #006a00; }
+
+/* line 595, /Users/sgoyal4/office/slate/source/css/custom.scss */
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-literal {
+  color: #aa0d91; }
+
+/* line 601, /Users/sgoyal4/office/slate/source/css/custom.scss */
+.hljs-name {
+  color: #008; }
+
+/* line 605, /Users/sgoyal4/office/slate/source/css/custom.scss */
+.hljs-variable,
+.hljs-template-variable {
+  color: #660; }
+
+/* line 610, /Users/sgoyal4/office/slate/source/css/custom.scss */
+.hljs-string {
+  color: #c41a16; }
+
+/* line 614, /Users/sgoyal4/office/slate/source/css/custom.scss */
+.hljs-regexp,
+.hljs-link {
+  color: #080; }
+
+/* line 619, /Users/sgoyal4/office/slate/source/css/custom.scss */
+.hljs-title,
+.hljs-tag,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-number,
+.hljs-meta {
+  color: #1c00cf; }
+
+/* line 628, /Users/sgoyal4/office/slate/source/css/custom.scss */
+.hljs-section,
+.hljs-class .hljs-title,
+.hljs-type,
+.hljs-attr,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-params {
+  color: #5c2699; }
+
+/* line 638, /Users/sgoyal4/office/slate/source/css/custom.scss */
+.hljs-attribute,
+.hljs-subst {
+  color: #000; }
+
+/* line 643, /Users/sgoyal4/office/slate/source/css/custom.scss */
+.hljs-formula {
+  background-color: #eee;
+  font-style: italic; }
+
+/* line 648, /Users/sgoyal4/office/slate/source/css/custom.scss */
+.hljs-addition {
+  background-color: #baeeba; }
+
+/* line 652, /Users/sgoyal4/office/slate/source/css/custom.scss */
+.hljs-deletion {
+  background-color: #ffc8bd; }
+
+/* line 656, /Users/sgoyal4/office/slate/source/css/custom.scss */
+.hljs-selector-id,
+.hljs-selector-class {
+  color: #9b703f; }
+
+/* line 661, /Users/sgoyal4/office/slate/source/css/custom.scss */
+.hljs-doctag,
+.hljs-strong {
+  font-weight: bold; }
+
+/* line 666, /Users/sgoyal4/office/slate/source/css/custom.scss */
+.hljs-emphasis {
+  font-style: italic; }
