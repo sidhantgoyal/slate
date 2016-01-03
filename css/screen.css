@@ -2036,7 +2036,7 @@ th {
 
 /* line 795, /Users/sgoyal4/office/slate/source/css/custom.scss */
 .table {
-  max-width: 85%;
+  width: 85%;
   margin-left: 48px;
   margin-bottom: 20px; }
 
