@@ -239,7 +239,9 @@ the cart on <a href="http://www.walmart.com">Walmart</a> opened in-app.</p>
 
 <p>You can add the BuyNow button to your view like you would any other UIView. Create a new BuyNow button WMTBuyNowControl
 instance along with the productIds as shown in the code example shown below.</p>
-<pre class="highlight objective_c"><code><span class="cp">#import "ViewController.h"
+<pre class="highlight objective_c"><code>
+<span class="c1">// ViewController.m example
+</span><span class="cp">#import "ViewController.h"
 </span><span class="k">@import</span> <span class="n">WMTSDKKit</span><span class="p">;</span>
 
 <span class="k">@interface</span> <span class="nc">ViewController</span><span class="p">()</span>
@@ -250,14 +252,16 @@ instance along with the productIds as shown in the code example shown below.</p>
 <span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="n">viewDidLoad</span> <span class="p">{</span>
     <span class="p">[</span><span class="n">super</span> <span class="nf">viewDidLoad</span><span class="p">];</span>
     <span class="n">NSSet</span> <span class="o">*</span><span class="n">productIdSet</span> <span class="o">=</span> <span class="p">[</span><span class="n">NSSet</span> <span class="nf">setWithObjects</span><span class="p">:</span><span class="s">@"39665237"</span><span class="p">,</span> <span class="s">@"47364217"</span><span class="p">,</span> <span class="nb">nil</span><span class="p">];</span>
-    <span class="n">WMTBuyNowControl</span> <span class="o">*</span><span class="n">_wmtBuyControl</span> <span class="o">=</span> <span class="p">[[</span><span class="n">WMTBuyNowControl</span> <span class="nf">alloc</span><span class="p">]</span> <span class="nf">initWithProductIds</span><span class="p">:</span><span class="n">productIdSet</span><span class="p">];</span>
-    <span class="n">_wmtBuyControl</span><span class="p">.</span><span class="n">center</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="n">view</span><span class="p">.</span><span class="n">center</span><span class="p">;</span>
-    <span class="p">[</span><span class="n">self</span><span class="p">.</span><span class="n">view</span> <span class="nf">addSubview</span><span class="p">:</span><span class="n">_wmtBuyControl</span><span class="p">];</span>
+    <span class="n">WMTBuyNowControl</span> <span class="o">*</span><span class="n">buyNowButton</span> <span class="o">=</span> <span class="p">[[</span><span class="n">WMTBuyNowControl</span> <span class="nf">alloc</span><span class="p">]</span> <span class="nf">initWithProductIds</span><span class="p">:</span><span class="n">productIdSet</span><span class="p">];</span>
+    <span class="n">buyNowButton</span><span class="p">.</span><span class="n">center</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="n">view</span><span class="p">.</span><span class="n">center</span><span class="p">;</span>
+    <span class="p">[</span><span class="n">self</span><span class="p">.</span><span class="n">view</span> <span class="nf">addSubview</span><span class="p">:</span><span class="n">buyNowButton</span><span class="p">];</span>
 <span class="p">}</span>
 
 <span class="k">@end</span>
 </code></pre>
-<pre class="highlight swift"><code><span class="kd">import</span> <span class="kt">UIKit</span>
+<pre class="highlight swift"><code>
+<span class="c1">// ViewController.swift example</span>
+<span class="kd">import</span> <span class="kt">UIKit</span>
 <span class="kd">import</span> <span class="kt">WMTSDKKit</span>
 
 <span class="kd">class</span> <span class="kt">ViewController</span><span class="p">:</span> <span class="kt">UIViewController</span> <span class="p">{</span>
@@ -273,7 +277,7 @@ instance along with the productIds as shown in the code example shown below.</p>
 
 </code></pre>
 
-<h3 id="customize-buynow-button">Customize BuyNow button</h3>
+<h3 id="customize-look-and-feel-of-buynow-button">Customize Look and Feel of BuyNow button</h3>
 
 <p>You can customize the BuyNow button size and color using the options shown in the following table.</p>
 
@@ -284,12 +288,56 @@ instance along with the productIds as shown in the code example shown below.</p>
     <tr>
     <tr>
         <th>sizeScheme</th>
-        <th>1. Primary (Default)
-            2. Compact
-            3. Mini
+        <th>1. Primary<code> (Default) <br/>
+            2. Compact<br/>
+            3. Mini<br/>
         </th>
     </tr>
+    <tr>
+            <th>colorScheme</th>
+            <th>1. Orange<code> (Default) <br/>
+                2. Blue<br/>
+            </th>
+        </tr>
 </table>
+
+<p><strong>code example</strong></p>
+<pre class="highlight objective_c"><code><span class="c1">// Change Size to Compact Scheme
+</span><span class="n">buyNowButton</span><span class="p">.</span><span class="n">sizeScheme</span> <span class="o">=</span> <span class="n">WMTButtonSizeSchemeCompact</span><span class="p">;</span>
+
+<span class="c1">// Change Color to Blue Scheme
+</span><span class="n">buyNowButton</span><span class="p">.</span><span class="n">colorScheme</span> <span class="o">=</span> <span class="n">WMTButtonColorSchemeBlue</span><span class="p">;</span>
+</code></pre>
+<pre class="highlight swift"><code><span class="c1">// Change Size to Compact Scheme</span>
+<span class="n">buyNowButton</span><span class="o">.</span><span class="n">sizeScheme</span> <span class="o">=</span> <span class="kt">WMTButtonSizeScheme</span><span class="o">.</span><span class="kt">Compact</span><span class="p">;</span>
+
+<span class="c1">// Change Color to Blue Scheme</span>
+<span class="n">buyNowButton</span><span class="o">.</span><span class="n">colorScheme</span> <span class="o">=</span> <span class="kt">WMTButtonColorScheme</span><span class="o">.</span><span class="kt">Blue</span><span class="p">;</span>
+</code></pre>
+
+<h3 id="dynamic-products-support">Dynamic Products support</h3>
+
+<p>Once you have created a BuyNow button it is also possible to add or remove associated productIds. See the code
+example below:</p>
+<pre class="highlight objective_c"><code>
+<span class="c1">// Add a single product
+</span><span class="p">[</span><span class="n">buyNowButton</span> <span class="nf">addProductId</span><span class="p">:{</span><span class="n">productId</span><span class="p">}];</span>
+
+<span class="c1">// Or Remove a single product
+</span><span class="p">[</span><span class="n">buyNowButton</span> <span class="nf">removeProductId</span><span class="p">:{</span><span class="n">productId</span><span class="p">}];</span>
+
+<span class="c1">// Or you can also Set Products
+</span><span class="p">[</span><span class="n">buyNowButton</span> <span class="nf">setProductIds</span><span class="p">:{</span><span class="n">setOfProductIds</span><span class="p">}];</span>
+</code></pre>
+<pre class="highlight swift"><code><span class="c1">// Add a single product</span>
+<span class="n">buyNowButton</span><span class="o">.</span><span class="nf">addProductId</span><span class="p">(</span><span class="n">productId</span><span class="p">)</span>
+
+<span class="c1">// Or Remove a single product</span>
+<span class="n">buyNowButton</span><span class="o">.</span><span class="nf">removeProductId</span><span class="p">(</span><span class="n">productId</span><span class="p">);</span>
+
+<span class="c1">// Or you can also Set Products</span>
+<span class="n">buyNowButton</span><span class="o">.</span><span class="nf">setProductIds</span><span class="p">(</span><span class="n">setOfProductIds</span><span class="p">)</span>
+</code></pre>
 
       </div>
       <div class="dark-box">
