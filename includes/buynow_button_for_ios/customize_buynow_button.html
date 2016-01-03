@@ -44,25 +44,31 @@
 
 <p>You can customize the BuyNow button size and color using the options shown in the following table.</p>
 
-<table>
-    <tr>
-        <th>Setting</th>
-        <th>Options</th>
-    <tr>
-    <tr>
-        <th>sizeScheme</th>
-        <th>1. &ldquo;`objective_c Primary&rdquo;`<br/>
-            2. Compact<br/>
-            3. Mini<br/>
-        </th>
-    </tr>
-    <tr>
-            <th>colorScheme</th>
-            <th>1. Orange<code> (Default) <br/>
-                2. Blue<br/>
-            </th>
-        </tr>
-</table>
+<div class="table-responsive">
+    <table class="table table-bordered">
+        <thead>
+            <tr><th>Size</th><th>Orange - Default Color</th><th>Blue Color</th></tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Primary - Default</td>
+                <td><div class="walmart-buy-now" data-partnerid="PD0Em23B4ME" data-itemid="45698070" data-buynow-added="1"><iframe style="height: 41px; width: 162px; border: none;" src="//affil.walmart.com/buttons/buynow?item=45698070&amp;size=primary&amp;color=orange&amp;partner=PD0Em23B4ME"></iframe></div></td>
+                <td><div class="walmart-buy-now" data-partnerid="PD0Em23B4ME" data-itemid="45698070" data-color="blue" data-buynow-added="1"><iframe style="height: 41px; width: 162px; border: none;" src="//affil.walmart.com/buttons/buynow?item=45698070&amp;size=primary&amp;color=blue&amp;partner=PD0Em23B4ME"></iframe></div></td>
+            </tr>
+            <tr>
+                <td>Compact</td>
+                <td><div class="walmart-buy-now" data-partnerid="PD0Em23B4ME" data-itemid="45698070" data-size="compact" data-buynow-added="1"><iframe style="height: 41px; width: 126px; border: none;" src="//affil.walmart.com/buttons/buynow?item=45698070&amp;size=compact&amp;color=orange&amp;partner=PD0Em23B4ME"></iframe></div></td>
+                <td><div class="walmart-buy-now" data-partnerid="PD0Em23B4ME" data-itemid="45698070" data-size="compact" data-color="blue" data-buynow-added="1"><iframe style="height: 41px; width: 126px; border: none;" src="//affil.walmart.com/buttons/buynow?item=45698070&amp;size=compact&amp;color=blue&amp;partner=PD0Em23B4ME"></iframe></div></td>
+            </tr>
+            <tr>
+                <td>Mini</td>
+                <td><div class="walmart-buy-now" data-partnerid="PD0Em23B4ME" data-itemid="45698070" data-size="mini" data-buynow-added="1"><iframe style="height: 32px; width: 134px; border: none;" src="//affil.walmart.com/buttons/buynow?item=45698070&amp;size=mini&amp;color=orange&amp;partner=PD0Em23B4ME"></iframe></div></td>
+                <td><div class="walmart-buy-now" data-partnerid="PD0Em23B4ME" data-itemid="45698070" data-size="mini" data-color="blue" data-buynow-added="1"><iframe style="height: 32px; width: 134px; border: none;" src="//affil.walmart.com/buttons/buynow?item=45698070&amp;size=mini&amp;color=blue&amp;partner=PD0Em23B4ME"></iframe></div></td>
+            </tr>
+        </tbody>
+
+    </table>
+</div>
 
 <p><strong>code example</strong></p>
 <pre class="highlight objective_c"><code><span class="c1">// Change Size to Compact Scheme
@@ -98,26 +104,6 @@ example below:</p>
 <span class="c1">// Or you can also Set Products</span>
 <span class="n">buyNowButton</span><span class="o">.</span><span class="nf">setProductIds</span><span class="p">(</span><span class="n">setOfProductIds</span><span class="p">)</span>
 </code></pre>
-
-<div>
-
-  <!-- Nav tabs -->
-  <ul class="nav nav-tabs" role="tablist">
-    <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Home</a></li>
-    <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Profile</a></li>
-    <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Messages</a></li>
-    <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">Settings</a></li>
-  </ul>
-
-  <!-- Tab panes -->
-  <div class="tab-content">
-    <div role="tabpanel" class="tab-pane active" id="home">&hellip;</div>
-    <div role="tabpanel" class="tab-pane" id="profile">&hellip;</div>
-    <div role="tabpanel" class="tab-pane" id="messages">&hellip;</div>
-    <div role="tabpanel" class="tab-pane" id="settings">&hellip;</div>
-  </div>
-
-</div>
 
       </div>
     </div>
