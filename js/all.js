@@ -3918,7 +3918,7 @@ under the License.
 */
 
 ( function(global) {
-    var languages = ['javascript', 'java', 'swift', 'objective_c'];
+    var languages = ['swift', 'objective_c'];
 
     global.setupLanguages = setupLanguages;
     global.activateLanguage = activateLanguage;
