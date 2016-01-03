@@ -65,8 +65,7 @@ integrating the SDK and app makers seeking to engage with their users.</p>
 <p>You can integrate the Walmart BuyNow SDK with your iOS app. This will let you drive sales and your app users will be
 able to buy from Walmart quickly. A good way to start is to follow this quick tutorial.
 In the later part of this tutorial we have also provided source code examples for both Objective-C and
-Swift. You can view code examples inline, and you can switch the programming language of the examples with the tabs
-in the top left.</p>
+Swift.</p>
 
 <h3 id="prerequisites">Prerequisites</h3>
 
@@ -87,15 +86,13 @@ in the top left.</p>
 
 <ol>
 <li><p>Open <code class="prettyprint">~/Documents/WalmartSDK</code></p></li>
-<li><p>Drag <code class="prettyprint">WMTSDKKit.framework</code> into the <code class="prettyprint">Embedded Binaries</code> section of your target. Make sure <strong>Copy items if
-needed</strong> is selected and click <strong>Finish</strong>.</p>
+<li><p>Drag <code class="prettyprint">WMTSDKKit.framework</code> into the <code class="prettyprint">Embedded Binaries</code> section of your target. Make sure <code class="prettyprint">Copy items if
+needed</code> is selected and click <code class="prettyprint">Finish</code>.</p>
 
 <p><span class="three-fourth-width-img"><img alt="Embed Framework" src="../images/embed_framework.png" /></span></p>
 
-<aside class="notice">If your application is <strong>Objective-C</strong> based, make sure in your <code>Build
-Settings</code>
-the <code>Build Option, Embedded ContentContains Swift Code</code> is set to <code>Yes</code>
-</aside>
+<p><strong>Important</strong>: If your application is <strong>Objective-C</strong> based, make sure in your <code>Build
+Settings</code> the <code>Build Option, Embedded ContentContains Swift Code</code> is set to <code>Yes</code></p>
 
 <p><span class="three-fourth-width-img"><img alt="Embedded Content Contains Swift Code" src="../images/embedded_content_contains_swift_code.png" /></span></p></li>
 <li><p>Add a new <code class="prettyprint">Run Script Phase</code> in your target’s <code class="prettyprint">Build Phases</code>.</p>
@@ -119,7 +116,7 @@ field:</p>
 then Linkshare publisher Id can be used. Now configure the <code class="prettyprint">.plist</code> for your project:</p>
 
 <ol>
-<li>In Xcode right-click your <code class="prettyprint">.plist</code> file and choose &ldquo;Open As Source Code&rdquo;.</li>
+<li>In Xcode right-click your <code class="prettyprint">.plist</code> file and choose <code class="prettyprint">Open As Source Code</code>.</li>
 <li><p>Copy &amp; Paste the XML snippet into the body of your file (<code class="prettyprint">&lt;dict&gt;...&lt;/dict&gt;</code>).</p>
 <pre class="highlight xml"><code><span class="nt">&lt;key&gt;</span>WalmartPublisherId<span class="nt">&lt;/key&gt;</span>
 <span class="nt">&lt;string&gt;</span>{your-publisher-id}<span class="nt">&lt;/string&gt;</span>
@@ -162,45 +159,55 @@ Walmart domains in your app by adding the following to your application&rsquo;s 
 <p>Now that you have covered all the above steps and successfully installed the SDK, you&rsquo;ll need to initialize it
 first in your app to use it. A good place to do that is in your <code class="prettyprint">AppDelegate</code>&rsquo;s application <code class="prettyprint">
 (_:didFinishLaunchingWithOptions:)</code> method.
-You can also configure other settings of the SDK there as well. Please
-go through the detailed Reference docs for iOS for available settings.</p>
-<pre class="highlight objective_c"><code><span class="cp">#import "AppDelegate.h"
-</span><span class="k">@import</span> <span class="n">WMTSDKKit</span><span class="p">;</span>
+You can also configure other settings of the SDK there as well. Please go through the detailed <a href="#">Reference docs for
+iOS</a> for available settings.</p>
 
-<span class="k">@interface</span> <span class="nc">AppDelegate</span> <span class="p">()</span>
+<p><strong>Code Example</strong></p>
 
-<span class="k">@end</span>
+<ul>
+<li><p>Objective_C
+&ldquo;`objective_c</p>
 
-<span class="k">@implementation</span> <span class="nc">AppDelegate</span>
+<h1 id="import-quot-appdelegate-h-quot">import &quot;AppDelegate.h&rdquo;</h1>
 
+<p>@import WMTSDKKit;</p>
 
-<span class="k">-</span> <span class="p">(</span><span class="n">BOOL</span><span class="p">)</span><span class="nf">application</span><span class="p">:(</span><span class="n">UIApplication</span> <span class="o">*</span><span class="p">)</span><span class="nv">application</span> <span class="nf">didFinishLaunchingWithOptions</span><span class="p">:(</span><span class="n">NSDictionary</span> <span class="o">*</span><span class="p">)</span><span class="nv">launchOptions</span> <span class="p">{</span>
-    <span class="p">[</span><span class="n">WMTSDK</span> <span class="nf">initSDK</span><span class="p">:</span><span class="nb">false</span><span class="p">];</span>
-    <span class="p">[</span><span class="n">WMTSDK</span> <span class="nf">setEnableDebugging</span><span class="p">:</span><span class="nb">true</span><span class="p">];</span>
-    <span class="p">[</span><span class="n">WMTSDK</span> <span class="nf">setLinksharePartner</span><span class="p">:</span><span class="nb">true</span><span class="p">];</span>
-    <span class="c1">// Override point for customization after application launch.
-</span>    <span class="k">return</span> <span class="nb">YES</span><span class="p">;</span>
-<span class="p">}</span>
-<span class="p">......</span>
-</code></pre>
-<pre class="highlight swift"><code>
-<span class="kd">import</span> <span class="kt">UIKit</span>
-<span class="kd">import</span> <span class="kt">WMTSDKKit</span>
+<p>@interface AppDelegate ()
+@end</p>
 
-<span class="k">@UIApplicationMain</span>
-<span class="kd">class</span> <span class="kt">AppDelegate</span><span class="p">:</span> <span class="kt">UIResponder</span><span class="p">,</span> <span class="kt">UIApplicationDelegate</span> <span class="p">{</span>
+<p>@implementation AppDelegate</p>
 
-    <span class="k">var</span> <span class="nv">window</span><span class="p">:</span> <span class="kt">UIWindow</span><span class="p">?</span>
+<ul>
+<li>(BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+[WMTSDK initSDK:false];
+[WMTSDK setEnableDebugging:true];
+[WMTSDK setLinksharePartner:true];
+// Override point for customization after application launch.
+return YES;
+}
+&hellip;&hellip;
+&ldquo;`</li>
+</ul></li>
+<li><p>Swift
+&rdquo;`swift
+import UIKit
+import WMTSDKKit</p>
 
-    <span class="kd">func</span> <span class="nf">application</span><span class="p">(</span><span class="nv">application</span><span class="p">:</span> <span class="kt">UIApplication</span><span class="p">,</span> <span class="n">didFinishLaunchingWithOptions</span> <span class="nv">launchOptions</span><span class="p">:</span> <span class="p">[</span><span class="kt">NSObject</span><span class="p">:</span> <span class="kt">AnyObject</span><span class="p">]?)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span> <span class="p">{</span>
-        <span class="c1">// Override point for customization after application launch.</span>
-        <span class="kt">WMTSDK</span><span class="o">.</span><span class="nf">initSDK</span><span class="p">()</span>
-        <span class="kt">WMTSDK</span><span class="o">.</span><span class="nf">setEnableDebugging</span><span class="p">(</span><span class="kc">true</span><span class="p">)</span>
-        <span class="kt">WMTSDK</span><span class="o">.</span><span class="nf">setLinksharePartner</span><span class="p">(</span><span class="kc">true</span><span class="p">)</span>
-        <span class="k">return</span> <span class="kc">true</span>
-    <span class="p">}</span>
-    <span class="o">......</span>
-</code></pre>
+<p>@UIApplicationMain
+class AppDelegate: UIResponder, UIApplicationDelegate {</p>
+
+<p>var window: UIWindow?</p>
+
+<p>func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -&gt; Bool {
+        // Override point for customization after application launch.
+        WMTSDK.initSDK()
+        WMTSDK.setEnableDebugging(true)
+        WMTSDK.setLinksharePartner(true)
+        return true
+    }
+    &hellip;&hellip;
+&ldquo;`</p></li>
+</ul>
 
           <h1 id="buynow-button-for-ios">BuyNow Button for iOS</h1>
 

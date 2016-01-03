@@ -44,15 +44,13 @@
 
 <ol>
 <li><p>Open <code class="prettyprint">~/Documents/WalmartSDK</code></p></li>
-<li><p>Drag <code class="prettyprint">WMTSDKKit.framework</code> into the <code class="prettyprint">Embedded Binaries</code> section of your target. Make sure <strong>Copy items if
-needed</strong> is selected and click <strong>Finish</strong>.</p>
+<li><p>Drag <code class="prettyprint">WMTSDKKit.framework</code> into the <code class="prettyprint">Embedded Binaries</code> section of your target. Make sure <code class="prettyprint">Copy items if
+needed</code> is selected and click <code class="prettyprint">Finish</code>.</p>
 
 <p><span class="three-fourth-width-img"><img alt="Embed Framework" src="../../images/embed_framework.png" /></span></p>
 
-<aside class="notice">If your application is <strong>Objective-C</strong> based, make sure in your <code>Build
-Settings</code>
-the <code>Build Option, Embedded ContentContains Swift Code</code> is set to <code>Yes</code>
-</aside>
+<p><strong>Important</strong>: If your application is <strong>Objective-C</strong> based, make sure in your <code>Build
+Settings</code> the <code>Build Option, Embedded ContentContains Swift Code</code> is set to <code>Yes</code></p>
 
 <p><span class="three-fourth-width-img"><img alt="Embedded Content Contains Swift Code" src="../../images/embedded_content_contains_swift_code.png" /></span></p></li>
 <li><p>Add a new <code class="prettyprint">Run Script Phase</code> in your target’s <code class="prettyprint">Build Phases</code>.</p>
