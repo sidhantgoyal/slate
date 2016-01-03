@@ -41,27 +41,29 @@
         <h2 id="configure-your-xcode-project">Configure your Xcode Project</h2>
 
 <p>You will need a publisher Id to use the SDK. This is either provided by Walmart or if you are a Linkshare publisher,
-then Linkshare publisher Id can be used. Now configure the <code class="prettyprint">.plist</code> for your project:</p>
+then Linkshare publisher Id can be used. Now configure the <code>.plist</code> for your project:</p>
 
 <ol>
-<li>In Xcode right-click your <code class="prettyprint">.plist</code> file and choose &ldquo;Open As Source Code&rdquo;.</li>
-<li><p>Copy &amp; Paste the XML snippet into the body of your file (<code class="prettyprint">&lt;dict&gt;...&lt;/dict&gt;</code>).</p>
+<li>In Xcode right-click your <code>.plist</code> file and choose &ldquo;Open As Source Code&rdquo;.</li>
+<li><p>Copy &amp; Paste the XML snippet into the body of your file (<code>&lt;dict&gt;...&lt;/dict&gt;</code>).</p>
 
-<pre><code class="prettyprint lang-xml">&lt;key&gt;WalmartPublisherId&lt;/key&gt;
+<p><code>xml
+&lt;key&gt;WalmartPublisherId&lt;/key&gt;
 &lt;string&gt;{your-publisher-id}&lt;/string&gt;
-</code></pre></li>
+</code></p></li>
 <li><p>Replace:</p>
 
-<p><code class="prettyprint">{your-publisher-id}</code> with your publisher Id</p></li>
+<p><code>{your-publisher-id}</code> with your publisher Id</p></li>
 </ol>
 
 <h5>For iOS 9 only: Whitelist Walmart Servers</h5>
 
-<p>If you compile your app with iOS SDK <code class="prettyprint">9.0</code>, you will be affected by <a href="https://developer
+<p>If you compile your app with iOS SDK <code>9.0</code>, you will be affected by <a href="https://developer
 .apple.com/library/prerelease/ios/technotes/App-Transport-Security-Technote/">App Transport Security</a>. Currently, you will need to whitelist
-Walmart domains in your app by adding the following to your application&rsquo;s <code class="prettyprint">plist</code></p>
+Walmart domains in your app by adding the following to your application&rsquo;s <code>plist</code></p>
 
-<pre><code class="prettyprint lang-xml">&lt;key&gt;NSAppTransportSecurity&lt;/key&gt;
+<p><code>xml
+&lt;key&gt;NSAppTransportSecurity&lt;/key&gt;
 &lt;dict&gt;
     &lt;key&gt;NSExceptionDomains&lt;/key&gt;
     &lt;dict&gt;
@@ -82,7 +84,7 @@ Walmart domains in your app by adding the following to your application&rsquo;s 
         &lt;/dict&gt;
     &lt;/dict&gt;
 &lt;/dict&gt;
-</code></pre>
+</code></p>
 
       </div>
     </div>

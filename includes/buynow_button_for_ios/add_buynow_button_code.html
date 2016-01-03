@@ -43,44 +43,50 @@
 <p>You can add the BuyNow button to your view like you would any other UIView. Create a new BuyNow button WMTBuyNowControl
 instance along with the productIds as shown in the code example shown below.</p>
 
-<pre><code class="prettyprint lang-objective_c">
-// ViewController.m example
-#import &quot;ViewController.h&quot;
-@import WMTSDKKit;
+<p>&ldquo;`objective_c</p>
 
-@interface ViewController()
-@end
+<p>// ViewController.m example</p>
 
-@implementation ViewController
+<h1 id="import-quot-viewcontroller-h-quot">import &quot;ViewController.h&rdquo;</h1>
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    NSSet *productIdSet = [NSSet setWithObjects:@&quot;39665237&quot;, @&quot;47364217&quot;, nil];
-    WMTBuyNowControl *buyNowButton = [[WMTBuyNowControl alloc] initWithProductIds:productIdSet];
-    buyNowButton.center = self.view.center;
-    [self.view addSubview:buyNowButton];
-}
+<p>@import WMTSDKKit;</p>
 
-@end
-</code></pre>
+<p>@interface ViewController()
+@end</p>
 
-<pre><code class="prettyprint lang-swift">
-// ViewController.swift example
+<p>@implementation ViewController</p>
+
+<ul>
+<li>(void)viewDidLoad {
+[super viewDidLoad];
+NSSet *productIdSet = [NSSet setWithObjects:@&ldquo;39665237&rdquo;, @&ldquo;47364217&rdquo;, nil];
+WMTBuyNowControl *buyNowButton = [[WMTBuyNowControl alloc] initWithProductIds:productIdSet];
+buyNowButton.center = self.view.center;
+[self.view addSubview:buyNowButton];
+}</li>
+</ul>
+
+<p>@end
+&ldquo;`</p>
+
+<p>&rdquo;`swift</p>
+
+<p>// ViewController.swift example
 import UIKit
-import WMTSDKKit
+import WMTSDKKit</p>
 
-class ViewController: UIViewController {
+<p>class ViewController: UIViewController {</p>
 
-    override func viewDidLoad() {
+<p>override func viewDidLoad() {
         super.viewDidLoad()
-        let productIdsSet: Set&lt;String&gt; = [&quot;39665237&quot;, &quot;47364217&quot;]
+        let productIdsSet: Set<String> = [&ldquo;39665237&rdquo;, &ldquo;47364217&rdquo;]
         let wmtBuyNowControl = WMTBuyNowControl(productIds: productIdsSet)
         wmtBuyNowControl.center = self.view.center
         self.view.addSubview(wmtBuyNowControl)
     }
-}
+}</p>
 
-</code></pre>
+<p>&ldquo;`</p>
 
       </div>
     </div>

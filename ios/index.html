@@ -79,14 +79,14 @@ in the top left.</p>
 
           <h2 id="download-sdk">Download SDK</h2>
 
-<p>Download the SDK and unzip the archive to  <code class="prettyprint">~/Documents/WalmartSDK</code>
+<p>Download the SDK and unzip the archive to  <code>~/Documents/WalmartSDK</code>
 <div class="download-button">Download iOS SDK</div></p>
 
           <h2 id="add-the-sdk-to-your-xcode-project">Add the SDK to your Xcode Project</h2>
 
 <ol>
-<li><p>Open <code class="prettyprint">~/Documents/WalmartSDK</code></p></li>
-<li><p>Drag <code class="prettyprint">WMTSDKKit.framework</code> into the <code class="prettyprint">Embedded Binaries</code> section of your target. Make sure <strong>Copy items if
+<li><p>Open <code>~/Documents/WalmartSDK</code></p></li>
+<li><p>Drag <code>WMTSDKKit.framework</code> into the <code>Embedded Binaries</code> section of your target. Make sure <strong>Copy items if
 needed</strong> is selected and click <strong>Finish</strong>.</p>
 
 <p><span class="three-fourth-width-img"><img alt="Embed Framework" src="../images/embed_framework.png" /></span></p>
@@ -97,17 +97,17 @@ the <code>Build Option, Embedded ContentContains Swift Code</code> is set to <co
 </aside>
 
 <p><span class="three-fourth-width-img"><img alt="Embedded Content Contains Swift Code" src="../images/embedded_content_contains_swift_code.png" /></span></p></li>
-<li><p>Add a new <code class="prettyprint">Run Script Phase</code> in your target’s <code class="prettyprint">Build Phases</code>.</p>
+<li><p>Add a new <code>Run Script Phase</code> in your target’s <code>Build Phases</code>.</p>
 
-<p><strong>Important</strong>: Make sure this <code class="prettyprint">Run Script Phase</code> is below the <code class="prettyprint">Embed Frameworks</code> build phase. You can drag
+<p><strong>Important</strong>: Make sure this <code>Run Script Phase</code> is below the <code>Embed Frameworks</code> build phase. You can drag
 and drop build phases to rearrange them.
-Paste the following line in this <code class="prettyprint">Run Script Phase</code>&rsquo;s script text
+Paste the following line in this <code>Run Script Phase</code>&rsquo;s script text
 field:</p>
 
-<pre><code class="prettyprint lang-bash">bash &quot;$BUILT_PRODUCTS_DIR/$FRAMEWORKS_FOLDER_PATH/WMTSDKKit.framework/strip-framework.sh&quot;
-</code></pre>
-
-<p>This step is required to work around an <a href="http://www.openradar
+<p><code>bash
+bash &quot;$BUILT_PRODUCTS_DIR/$FRAMEWORKS_FOLDER_PATH/WMTSDKKit.framework/strip-framework.sh&quot;
+</code>
+This step is required to work around an <a href="http://www.openradar
 .me/radar?id=6409498411401216">App Store submission bug</a> when archiving universal binaries.</p>
 
 <p><span class="three-fourth-width-img"><img alt="Run Script Phase" src="../images/run_script_phase.png" /></span></p></li>
@@ -116,27 +116,29 @@ field:</p>
           <h2 id="configure-your-xcode-project">Configure your Xcode Project</h2>
 
 <p>You will need a publisher Id to use the SDK. This is either provided by Walmart or if you are a Linkshare publisher,
-then Linkshare publisher Id can be used. Now configure the <code class="prettyprint">.plist</code> for your project:</p>
+then Linkshare publisher Id can be used. Now configure the <code>.plist</code> for your project:</p>
 
 <ol>
-<li>In Xcode right-click your <code class="prettyprint">.plist</code> file and choose &ldquo;Open As Source Code&rdquo;.</li>
-<li><p>Copy &amp; Paste the XML snippet into the body of your file (<code class="prettyprint">&lt;dict&gt;...&lt;/dict&gt;</code>).</p>
+<li>In Xcode right-click your <code>.plist</code> file and choose &ldquo;Open As Source Code&rdquo;.</li>
+<li><p>Copy &amp; Paste the XML snippet into the body of your file (<code>&lt;dict&gt;...&lt;/dict&gt;</code>).</p>
 
-<pre><code class="prettyprint lang-xml">&lt;key&gt;WalmartPublisherId&lt;/key&gt;
+<p><code>xml
+&lt;key&gt;WalmartPublisherId&lt;/key&gt;
 &lt;string&gt;{your-publisher-id}&lt;/string&gt;
-</code></pre></li>
+</code></p></li>
 <li><p>Replace:</p>
 
-<p><code class="prettyprint">{your-publisher-id}</code> with your publisher Id</p></li>
+<p><code>{your-publisher-id}</code> with your publisher Id</p></li>
 </ol>
 
 <h5>For iOS 9 only: Whitelist Walmart Servers</h5>
 
-<p>If you compile your app with iOS SDK <code class="prettyprint">9.0</code>, you will be affected by <a href="https://developer
+<p>If you compile your app with iOS SDK <code>9.0</code>, you will be affected by <a href="https://developer
 .apple.com/library/prerelease/ios/technotes/App-Transport-Security-Technote/">App Transport Security</a>. Currently, you will need to whitelist
-Walmart domains in your app by adding the following to your application&rsquo;s <code class="prettyprint">plist</code></p>
+Walmart domains in your app by adding the following to your application&rsquo;s <code>plist</code></p>
 
-<pre><code class="prettyprint lang-xml">&lt;key&gt;NSAppTransportSecurity&lt;/key&gt;
+<p><code>xml
+&lt;key&gt;NSAppTransportSecurity&lt;/key&gt;
 &lt;dict&gt;
     &lt;key&gt;NSExceptionDomains&lt;/key&gt;
     &lt;dict&gt;
@@ -157,54 +159,59 @@ Walmart domains in your app by adding the following to your application&rsquo;s 
         &lt;/dict&gt;
     &lt;/dict&gt;
 &lt;/dict&gt;
-</code></pre>
+</code></p>
 
           <h2 id="initialize-walmart-sdk">Initialize Walmart SDK</h2>
 
 <p>Now that you have covered all the above steps and successfully installed the SDK, you&rsquo;ll need to initialize it
-first in your app to use it. A good place to do that is in your <code class="prettyprint">AppDelegate</code>&rsquo;s application <code class="prettyprint">
+first in your app to use it. A good place to do that is in your <code>AppDelegate</code>&rsquo;s application <code>
 (_:didFinishLaunchingWithOptions:)</code> method.
 You can also configure other settings of the SDK there as well. Please
 go through the detailed Reference docs for iOS for available settings.</p>
 
-<pre><code class="prettyprint lang-objective_c">#import &quot;AppDelegate.h&quot;
-@import WMTSDKKit;
+<p>&ldquo;`objective_c</p>
 
-@interface AppDelegate ()
+<h1 id="import-quot-appdelegate-h-quot">import &quot;AppDelegate.h&rdquo;</h1>
 
-@end
+<p>@import WMTSDKKit;</p>
 
-@implementation AppDelegate
+<p>@interface AppDelegate ()</p>
 
+<p>@end</p>
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    [WMTSDK initSDK:false];
-    [WMTSDK setEnableDebugging:true];
-    [WMTSDK setLinksharePartner:true];
-    // Override point for customization after application launch.
-    return YES;
+<p>@implementation AppDelegate</p>
+
+<ul>
+<li>(BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+[WMTSDK initSDK:false];
+[WMTSDK setEnableDebugging:true];
+[WMTSDK setLinksharePartner:true];
+// Override point for customization after application launch.
+return YES;
 }
-......
-</code></pre>
+&hellip;&hellip;
+&ldquo;`</li>
+</ul>
 
-<pre><code class="prettyprint lang-swift">
-import UIKit
-import WMTSDKKit
+<p>&rdquo;`swift</p>
 
-@UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+<p>import UIKit
+import WMTSDKKit</p>
 
-    var window: UIWindow?
+<p>@UIApplicationMain
+class AppDelegate: UIResponder, UIApplicationDelegate {</p>
 
-    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -&gt; Bool {
+<p>var window: UIWindow?</p>
+
+<p>func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -&gt; Bool {
         // Override point for customization after application launch.
         WMTSDK.initSDK()
         WMTSDK.setEnableDebugging(true)
         WMTSDK.setLinksharePartner(true)
         return true
     }
-    ......
-</code></pre>
+    &hellip;&hellip;
+&ldquo;`</p>
 
           <h1 id="buynow-button-for-ios">BuyNow Button for iOS</h1>
 
@@ -229,44 +236,50 @@ the cart on <a href="http://www.walmart.com">Walmart</a> opened in-app.</p>
 <p>You can add the BuyNow button to your view like you would any other UIView. Create a new BuyNow button WMTBuyNowControl
 instance along with the productIds as shown in the code example shown below.</p>
 
-<pre><code class="prettyprint lang-objective_c">
-// ViewController.m example
-#import &quot;ViewController.h&quot;
-@import WMTSDKKit;
+<p>&ldquo;`objective_c</p>
 
-@interface ViewController()
-@end
+<p>// ViewController.m example</p>
 
-@implementation ViewController
+<h1 id="import-quot-viewcontroller-h-quot">import &quot;ViewController.h&rdquo;</h1>
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    NSSet *productIdSet = [NSSet setWithObjects:@&quot;39665237&quot;, @&quot;47364217&quot;, nil];
-    WMTBuyNowControl *buyNowButton = [[WMTBuyNowControl alloc] initWithProductIds:productIdSet];
-    buyNowButton.center = self.view.center;
-    [self.view addSubview:buyNowButton];
-}
+<p>@import WMTSDKKit;</p>
 
-@end
-</code></pre>
+<p>@interface ViewController()
+@end</p>
 
-<pre><code class="prettyprint lang-swift">
-// ViewController.swift example
+<p>@implementation ViewController</p>
+
+<ul>
+<li>(void)viewDidLoad {
+[super viewDidLoad];
+NSSet *productIdSet = [NSSet setWithObjects:@&ldquo;39665237&rdquo;, @&ldquo;47364217&rdquo;, nil];
+WMTBuyNowControl *buyNowButton = [[WMTBuyNowControl alloc] initWithProductIds:productIdSet];
+buyNowButton.center = self.view.center;
+[self.view addSubview:buyNowButton];
+}</li>
+</ul>
+
+<p>@end
+&ldquo;`</p>
+
+<p>&rdquo;`swift</p>
+
+<p>// ViewController.swift example
 import UIKit
-import WMTSDKKit
+import WMTSDKKit</p>
 
-class ViewController: UIViewController {
+<p>class ViewController: UIViewController {</p>
 
-    override func viewDidLoad() {
+<p>override func viewDidLoad() {
         super.viewDidLoad()
-        let productIdsSet: Set&lt;String&gt; = [&quot;39665237&quot;, &quot;47364217&quot;]
+        let productIdsSet: Set<String> = [&ldquo;39665237&rdquo;, &ldquo;47364217&rdquo;]
         let wmtBuyNowControl = WMTBuyNowControl(productIds: productIdsSet)
         wmtBuyNowControl.center = self.view.center
         self.view.addSubview(wmtBuyNowControl)
     }
-}
+}</p>
 
-</code></pre>
+<p>&ldquo;`</p>
 
           <h2 id="customize-buynow-button">Customize BuyNow button</h2>
 
@@ -294,42 +307,45 @@ class ViewController: UIViewController {
 
 <p><strong>code example</strong></p>
 
-<pre><code class="prettyprint lang-objective_c">// Change Size to Compact Scheme
-buyNowButton.sizeScheme = WMTButtonSizeSchemeCompact;
+<p>```objective_c
+// Change Size to Compact Scheme
+buyNowButton.sizeScheme = WMTButtonSizeSchemeCompact;</p>
 
-// Change Color to Blue Scheme
+<p>// Change Color to Blue Scheme
 buyNowButton.colorScheme = WMTButtonColorSchemeBlue;
-</code></pre>
+```</p>
 
-<pre><code class="prettyprint lang-swift">// Change Size to Compact Scheme
-buyNowButton.sizeScheme = WMTButtonSizeScheme.Compact;
+<p>```swift
+// Change Size to Compact Scheme
+buyNowButton.sizeScheme = WMTButtonSizeScheme.Compact;</p>
 
-// Change Color to Blue Scheme
+<p>// Change Color to Blue Scheme
 buyNowButton.colorScheme = WMTButtonColorScheme.Blue;
-</code></pre>
+```</p>
 
 <p>Once you have created a BuyNow button it is also possible to add or remove associated productIds. See the code
 example below:</p>
 
-<pre><code class="prettyprint lang-objective_c">// Add a single product
-[buyNowButton addProductId:{productId}];
+<p>```objective_c
+// Add a single product
+[buyNowButton addProductId:{productId}];</p>
 
-// Or Remove a single product
-[buyNowButton removeProductId:{productId}];
+<p>// Or Remove a single product
+[buyNowButton removeProductId:{productId}];</p>
 
-// Or you can also Set Products
+<p>// Or you can also Set Products
 [buyNowButton setProductIds:{setOfProductIds}];
-</code></pre>
+<code>
+</code>swift
+// Add a single product
+buyNowButton.addProductId(productId)</p>
 
-<pre><code class="prettyprint lang-swift">// Add a single product
-buyNowButton.addProductId(productId)
+<p>// Or Remove a single product
+buyNowButton.removeProductId(productId);</p>
 
-// Or Remove a single product
-buyNowButton.removeProductId(productId);
-
-// Or you can also Set Products
+<p>// Or you can also Set Products
 buyNowButton.setProductIds(setOfProductIds)
-</code></pre>
+&ldquo;`</p>
 
       </div>
     </div>

@@ -41,49 +41,54 @@
         <h2 id="initialize-walmart-sdk">Initialize Walmart SDK</h2>
 
 <p>Now that you have covered all the above steps and successfully installed the SDK, you&rsquo;ll need to initialize it
-first in your app to use it. A good place to do that is in your <code class="prettyprint">AppDelegate</code>&rsquo;s application <code class="prettyprint">
+first in your app to use it. A good place to do that is in your <code>AppDelegate</code>&rsquo;s application <code>
 (_:didFinishLaunchingWithOptions:)</code> method.
 You can also configure other settings of the SDK there as well. Please
 go through the detailed Reference docs for iOS for available settings.</p>
 
-<pre><code class="prettyprint lang-objective_c">#import &quot;AppDelegate.h&quot;
-@import WMTSDKKit;
+<p>&ldquo;`objective_c</p>
 
-@interface AppDelegate ()
+<h1 id="import-quot-appdelegate-h-quot">import &quot;AppDelegate.h&rdquo;</h1>
 
-@end
+<p>@import WMTSDKKit;</p>
 
-@implementation AppDelegate
+<p>@interface AppDelegate ()</p>
 
+<p>@end</p>
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    [WMTSDK initSDK:false];
-    [WMTSDK setEnableDebugging:true];
-    [WMTSDK setLinksharePartner:true];
-    // Override point for customization after application launch.
-    return YES;
+<p>@implementation AppDelegate</p>
+
+<ul>
+<li>(BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+[WMTSDK initSDK:false];
+[WMTSDK setEnableDebugging:true];
+[WMTSDK setLinksharePartner:true];
+// Override point for customization after application launch.
+return YES;
 }
-......
-</code></pre>
+&hellip;&hellip;
+&ldquo;`</li>
+</ul>
 
-<pre><code class="prettyprint lang-swift">
-import UIKit
-import WMTSDKKit
+<p>&rdquo;`swift</p>
 
-@UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+<p>import UIKit
+import WMTSDKKit</p>
 
-    var window: UIWindow?
+<p>@UIApplicationMain
+class AppDelegate: UIResponder, UIApplicationDelegate {</p>
 
-    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -&gt; Bool {
+<p>var window: UIWindow?</p>
+
+<p>func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -&gt; Bool {
         // Override point for customization after application launch.
         WMTSDK.initSDK()
         WMTSDK.setEnableDebugging(true)
         WMTSDK.setLinksharePartner(true)
         return true
     }
-    ......
-</code></pre>
+    &hellip;&hellip;
+&ldquo;`</p>
 
       </div>
     </div>
