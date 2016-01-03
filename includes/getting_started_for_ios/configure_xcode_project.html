@@ -47,10 +47,9 @@ then Linkshare publisher Id can be used. Now configure the <code>.plist</code> f
 <li>In Xcode right-click your <code>.plist</code> file and choose &ldquo;Open As Source Code&rdquo;.</li>
 <li><p>Copy &amp; Paste the XML snippet into the body of your file (<code>&lt;dict&gt;...&lt;/dict&gt;</code>).</p>
 
-<p><code>xml
-&lt;key&gt;WalmartPublisherId&lt;/key&gt;
+<pre><code class="xml">&lt;key&gt;WalmartPublisherId&lt;/key&gt;
 &lt;string&gt;{your-publisher-id}&lt;/string&gt;
-</code></p></li>
+</code></pre></li>
 <li><p>Replace:</p>
 
 <p><code>{your-publisher-id}</code> with your publisher Id</p></li>
@@ -62,8 +61,7 @@ then Linkshare publisher Id can be used. Now configure the <code>.plist</code> f
 .apple.com/library/prerelease/ios/technotes/App-Transport-Security-Technote/">App Transport Security</a>. Currently, you will need to whitelist
 Walmart domains in your app by adding the following to your application&rsquo;s <code>plist</code></p>
 
-<p><code>xml
-&lt;key&gt;NSAppTransportSecurity&lt;/key&gt;
+<pre><code class="xml">&lt;key&gt;NSAppTransportSecurity&lt;/key&gt;
 &lt;dict&gt;
     &lt;key&gt;NSExceptionDomains&lt;/key&gt;
     &lt;dict&gt;
@@ -84,7 +82,7 @@ Walmart domains in your app by adding the following to your application&rsquo;s 
         &lt;/dict&gt;
     &lt;/dict&gt;
 &lt;/dict&gt;
-</code></p>
+</code></pre>
 
       </div>
     </div>

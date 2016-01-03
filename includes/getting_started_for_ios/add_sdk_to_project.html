@@ -60,10 +60,10 @@ and drop build phases to rearrange them.
 Paste the following line in this <code>Run Script Phase</code>&rsquo;s script text
 field:</p>
 
-<p><code>bash
-bash &quot;$BUILT_PRODUCTS_DIR/$FRAMEWORKS_FOLDER_PATH/WMTSDKKit.framework/strip-framework.sh&quot;
-</code>
-This step is required to work around an <a href="http://www.openradar
+<pre><code class="bash">bash &quot;$BUILT_PRODUCTS_DIR/$FRAMEWORKS_FOLDER_PATH/WMTSDKKit.framework/strip-framework.sh&quot;
+</code></pre>
+
+<p>This step is required to work around an <a href="http://www.openradar
 .me/radar?id=6409498411401216">App Store submission bug</a> when archiving universal binaries.</p>
 
 <p><span class="three-fourth-width-img"><img alt="Run Script Phase" src="../../images/run_script_phase.png" /></span></p></li>
