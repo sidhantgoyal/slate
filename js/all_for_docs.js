@@ -3839,7 +3839,6 @@ This adds the platform toggle support and turn the language links into a dropdow
     $(function() {
         $('.platform-selector button').on('click', function() {
             var platform = $(this).data('platform-name');
-
             if (platform === 'android') {
                 window.location = '/buttons/assets/docs/android/index.html';
             } else if (platform === 'web') {
