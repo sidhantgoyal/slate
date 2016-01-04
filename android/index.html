@@ -4,12 +4,12 @@
     <meta charset="utf-8">
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>Walmart Buttons</title>
+    <title>API Documentation</title>
     <link href="../css/screen.css" rel="stylesheet" type="text/css" media="screen" />
     <link href="../css/print.css" rel="stylesheet" type="text/css" media="print" />
     <!-- Latest compiled and minified CSS -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-      <script src="../js/all_for_docs.js" type="text/javascript"></script>
+      <script src="../js/all_nosearch_for_docs.js" type="text/javascript"></script>
     <script>hljs.initHighlightingOnLoad();</script>
 
   </head>
@@ -34,335 +34,43 @@
         <div class="clear"></div>
       </div>
       <div class="separator"></div>
-        <div class="search">
-          <input type="text" class="search" id="input-search" placeholder="Search">
-        </div>
-        <ul class="search-results"></ul>
       <div id="toc">
       </div>
-        <ul class="toc-footer">
-            <li><a href="/ios">iOS Guide</a> | <a href="#">Class Reference</a></li>
-            <li><a href="/android">Android Guide</a> | <a href="javadocs/index.html">Class Reference</a></li>
-            <li><a href="index.html">Web Guide</a></li>
-        </ul>
     </div>
     <div class="page-wrapper">
       <div class="dark-box"></div>
       <div class="content">
-        
-          <h1 id="welcome">Welcome</h1>
+        <hr>
 
-<p>The Walmart Buttons are designed to let you drive sales right in your app or on your website. The Call to Action button
-can be placed next to a product offering on the website or mobile application and it can be configured to drive the
-user to <a href="http://www.walmart.com">Walmart</a> product details page or to directly add the product to the cart on
-<a href="http://www.walmart.com">Walmart</a></p>
+<p>title: Walmart Buttons</p>
 
-<p>This page provides in-depth documentation on Walmart Button features and is meant to be a guide for developers
-integrating the SDK and app makers seeking to engage with their users.</p>
+<p>language_tabs:</p>
 
-          <h1 id="getting-started-for-ios">Getting Started for iOS</h1>
+<p>toc_footers:
+- <a href="buttons/assets/docs/ios/index.html">iOS Guide</a> | <a href="#">Class Reference</a>
+- <a href="buttons/assets/docs/android/index.html">Android Guide</a> | <a href="buttons/assets/docs/javadocs/index
+.html">Class Reference</a>
+- <a href="buttons/assets/docs/web/index.html">Web Guide</a></p>
 
-<p>You can integrate the Walmart BuyNow SDK with your iOS app. This will let you drive sales and your app users will be
-able to buy from Walmart quickly. A good way to start is to follow this quick tutorial.
-In the later part of this tutorial we have also provided source code examples for both Objective-C and
-Swift.</p>
-
-<h3 id="prerequisites">Prerequisites</h3>
+<p>includes:
+- welcome</p>
 
 <ul>
-<li>Apps using Walmart BuyNow SDK can target: iOS 8 or later (iOS 7 cannot be supported because it does not allow using
-3rd party dynamic frameworks, and it is impossible to build static libraries that contain Swift code.)</li>
-<li>Xcode (<a href="https://developer.apple.com/xcode/">Documentation</a> / <a href="http://itunes.apple.com/us/app/xcode/id497799835?ls=1&amp;mt=12">Download</a>)</li>
+<li>getting_started_for_ios/getting_started_for_ios</li>
+<li>getting_started_for_ios/download_sdk</li>
+<li>getting_started_for_ios/add_sdk_to_project</li>
+<li>getting_started_for_ios/configure_xcode_project</li>
+<li><p>getting_started_for_ios/initialize_sdk</p></li>
+<li><p>buynow_button_for_ios/buynow_button_for_ios</p></li>
+<li><p>buynow_button_for_ios/add_button</p></li>
+<li><p>buynow_button_for_ios/general_ios_setup</p></li>
+<li><p>buynow_button_for_ios/add_buynow_button_code</p></li>
+<li><p>buynow_button_for_ios/customize_buynow_button</p></li>
 </ul>
 
-          <h2 id="download-sdk">Download SDK</h2>
+<p>search: true</p>
 
-<p>Download the SDK and unzip the archive to  <code>~/Documents/WalmartSDK</code>
-<form method="get" action="WalmartSDK.zip">
-<button class="download-button" type="submit">Download iOS SDK</button>
-</form></p>
-
-          <h2 id="add-the-sdk-to-your-xcode-project">Add the SDK to your Xcode Project</h2>
-
-<ol>
-<li><p>Open <code>~/Documents/WalmartSDK</code></p></li>
-<li><p>Drag <code>WMTSDKKit.framework</code> into the <code>Embedded Binaries</code> section of your target. Make sure <code>Copy items if
-needed</code> is selected and click <code>Finish</code>.</p>
-
-<p><span class="three-fourth-width-img"><img alt="Embed Framework" src="../images/embed_framework.png" /></span></p>
-
-<p><strong>Important</strong>: If your application is <strong>Objective-C</strong> based, make sure in your <code>Build
-Settings</code> the <code>Build Option, Embedded ContentContains Swift Code</code> is set to <code>Yes</code></p>
-
-<p><span class="three-fourth-width-img"><img alt="Embedded Content Contains Swift Code" src="../images/embedded_content_contains_swift_code.png" /></span></p></li>
-<li><p>Add a new <code>Run Script Phase</code> in your target’s <code>Build Phases</code>.</p>
-
-<p><strong>Important</strong>: Make sure this <code>Run Script Phase</code> is below the <code>Embed Frameworks</code> build phase. You can drag
-and drop build phases to rearrange them.
-Paste the following line in this <code>Run Script Phase</code>&rsquo;s script text
-field:</p>
-
-<pre><code class="bash">bash &quot;$BUILT_PRODUCTS_DIR/$FRAMEWORKS_FOLDER_PATH/WMTSDKKit.framework/strip-framework.sh&quot;
-</code></pre>
-
-<p>This step is required to work around an <a href="http://www.openradar
-.me/radar?id=6409498411401216">App Store submission bug</a> when archiving universal binaries.</p>
-
-<p><span class="three-fourth-width-img"><img alt="Run Script Phase" src="../images/run_script_phase.png" /></span></p></li>
-</ol>
-
-          <h2 id="configure-your-xcode-project">Configure your Xcode Project</h2>
-
-<p>You will need a publisher Id to use the SDK. This is either provided by Walmart or if you are a Linkshare publisher,
-then Linkshare publisher Id can be used. Now configure the <code>.plist</code> for your project:</p>
-
-<ol>
-<li>In Xcode right-click your <code>.plist</code> file and choose <code>Open As Source Code</code>.</li>
-<li><p>Copy &amp; Paste the XML snippet into the body of your file (<code>&lt;dict&gt;...&lt;/dict&gt;</code>).</p>
-
-<pre><code class="xml">&lt;key&gt;WalmartPublisherId&lt;/key&gt;
-&lt;string&gt;{your-publisher-id}&lt;/string&gt;
-</code></pre></li>
-<li><p>Replace:</p>
-
-<p><code>{your-publisher-id}</code> with your publisher Id</p></li>
-</ol>
-
-<h5>For iOS 9 only: Whitelist Walmart Servers</h5>
-
-<p>If you compile your app with iOS SDK <code>9.0</code>, you will be affected by <a href="https://developer
-.apple.com/library/prerelease/ios/technotes/App-Transport-Security-Technote/">App Transport Security</a>. Currently, you will need to whitelist
-Walmart domains in your app by adding the following to your application&rsquo;s <code>plist</code></p>
-
-<pre><code class="xml">&lt;key&gt;NSAppTransportSecurity&lt;/key&gt;
-&lt;dict&gt;
-    &lt;key&gt;NSExceptionDomains&lt;/key&gt;
-    &lt;dict&gt;
-        &lt;key&gt;walmart.com&lt;/key&gt;
-        &lt;dict&gt;
-            &lt;key&gt;NSIncludesSubdomains&lt;/key&gt;&lt;true/&gt;
-            &lt;key&gt;NSExceptionAllowsInsecureHTTPLoads&lt;/key&gt;&lt;true/&gt;
-        &lt;/dict&gt;
-        &lt;key&gt;walmartimages.com&lt;/key&gt;
-        &lt;dict&gt;
-            &lt;key&gt;NSIncludesSubdomains&lt;/key&gt;&lt;true/&gt;
-            &lt;key&gt;NSExceptionAllowsInsecureHTTPLoads&lt;/key&gt;&lt;true/&gt;
-        &lt;/dict&gt;
-        &lt;key&gt;wal.co&lt;/key&gt;
-        &lt;dict&gt;
-            &lt;key&gt;NSIncludesSubdomains&lt;/key&gt;&lt;true/&gt;
-            &lt;key&gt;NSExceptionAllowsInsecureHTTPLoads&lt;/key&gt;&lt;true/&gt;
-        &lt;/dict&gt;
-    &lt;/dict&gt;
-&lt;/dict&gt;
-</code></pre>
-
-          <h2 id="initialize-walmart-sdk">Initialize Walmart SDK</h2>
-
-<p>Now that you have covered all the above steps and successfully installed the SDK, you&rsquo;ll need to initialize it
-first in your app to use it. A good place to do that is in your <code>AppDelegate</code>&rsquo;s application <code>
-(_:didFinishLaunchingWithOptions:)</code> method.
-You can also configure other settings of the SDK there as well. Please go through the detailed <a href="#">Reference docs for
-iOS</a> for available settings.</p>
-
-<p><strong>Code Example</strong></p>
-
-<ul>
-<li><strong>Objective_C</strong></li>
-</ul>
-
-<pre><code class="objective_c">#import &quot;AppDelegate.h&quot;
-@import WMTSDKKit;
-
-@interface AppDelegate ()
-@end
-
-@implementation AppDelegate
-
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    [WMTSDK initSDK:false];
-    [WMTSDK setEnableDebugging:true];
-    [WMTSDK setLinksharePartner:true];
-    // Override point for customization after application launch.
-    return YES;
-}
-......
-</code></pre>
-
-<ul>
-<li><strong>Swift</strong></li>
-</ul>
-
-<pre><code class="swift">import UIKit
-import WMTSDKKit
-
-@UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
-
-    var window: UIWindow?
-
-    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -&gt; Bool {
-        // Override point for customization after application launch.
-        WMTSDK.initSDK()
-        WMTSDK.setEnableDebugging(true)
-        WMTSDK.setLinksharePartner(true)
-        return true
-    }
-    ......
-</code></pre>
-
-          <h1 id="buynow-button-for-ios">BuyNow Button for iOS</h1>
-
-<p>The BuyNow button is way to drive the user to the walmart.com product details page or to directly add the product to
-the cart on <a href="http://www.walmart.com">Walmart</a> opened in-app.</p>
-
-          <h2 id="add-buynow-button-to-your-application">Add BuyNow button to your application</h2>
-
-<p><span class="half-width-img"><img alt="Buy Now Flow" src="../images/buynow_button.png" /></span></p>
-
-          <h2 id="general-ios-setup">General iOS Setup</h2>
-
-<p>Complete the <a href="#getting-started-for-ios">Getting Started Guide</a> for Walmart iOS SDK before adding the BuyNow button. The guide will include:</p>
-
-<ul>
-<li>Downloading and installing the Walmart iOS SDK.</li>
-<li>Adding the Walmart iOS SDK to your project.</li>
-</ul>
-
-          <h2 id="add-buynow-button-code">Add BuyNow Button Code</h2>
-
-<p>You can add the BuyNow button to your view like you would any other UIView. Create a new BuyNow button WMTBuyNowControl
-instance along with the productIds as shown in the code example shown below.</p>
-
-<ul>
-<li><strong>Objective_C</strong>:</li>
-</ul>
-
-<pre><code class="objective_c">
-// ViewController.m example
-#import &quot;ViewController.h&quot;
-@import WMTSDKKit;
-
-@interface ViewController()
-@end
-
-@implementation ViewController
-
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    NSSet *productIdSet = [NSSet setWithObjects:@&quot;39665237&quot;, @&quot;47364217&quot;, nil];
-    WMTBuyNowControl *buyNowButton = [[WMTBuyNowControl alloc] initWithProductIds:productIdSet];
-    buyNowButton.center = self.view.center;
-    [self.view addSubview:buyNowButton];
-}
-
-@end
-</code></pre>
-
-<ul>
-<li><strong>Swift</strong>:</li>
-</ul>
-
-<pre><code class="swift">
-// ViewController.swift example
-import UIKit
-import WMTSDKKit
-
-class ViewController: UIViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        let productIdsSet: Set&lt;String&gt; = [&quot;39665237&quot;, &quot;47364217&quot;]
-        let wmtBuyNowControl = WMTBuyNowControl(productIds: productIdsSet)
-        wmtBuyNowControl.center = self.view.center
-        self.view.addSubview(wmtBuyNowControl)
-    }
-}
-
-</code></pre>
-
-          <h2 id="customize-buynow-button">Customize BuyNow button</h2>
-
-<p>You can customize the BuyNow button size and color using the options shown in the following table.</p>
-
-<div class="table-responsive">
-    <table class="table table-bordered">
-        <thead>
-            <tr><th>Size</th><th>Orange - Default Color</th><th>Blue Color</th></tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>Primary - Default</td>
-                <td><div class="walmart-buy-now" data-partnerid="PD0Em23B4ME" data-itemid="45698070" data-buynow-added="1"><iframe style="height: 41px; width: 162px; border: none;" src="//affil.walmart.com/buttons/buynow?item=45698070&amp;size=primary&amp;color=orange&amp;partner=PD0Em23B4ME"></iframe></div></td>
-                <td><div class="walmart-buy-now" data-partnerid="PD0Em23B4ME" data-itemid="45698070" data-color="blue" data-buynow-added="1"><iframe style="height: 41px; width: 162px; border: none;" src="//affil.walmart.com/buttons/buynow?item=45698070&amp;size=primary&amp;color=blue&amp;partner=PD0Em23B4ME"></iframe></div></td>
-            </tr>
-            <tr>
-                <td>Compact</td>
-                <td><div class="walmart-buy-now" data-partnerid="PD0Em23B4ME" data-itemid="45698070" data-size="compact" data-buynow-added="1"><iframe style="height: 41px; width: 126px; border: none;" src="//affil.walmart.com/buttons/buynow?item=45698070&amp;size=compact&amp;color=orange&amp;partner=PD0Em23B4ME"></iframe></div></td>
-                <td><div class="walmart-buy-now" data-partnerid="PD0Em23B4ME" data-itemid="45698070" data-size="compact" data-color="blue" data-buynow-added="1"><iframe style="height: 41px; width: 126px; border: none;" src="//affil.walmart.com/buttons/buynow?item=45698070&amp;size=compact&amp;color=blue&amp;partner=PD0Em23B4ME"></iframe></div></td>
-            </tr>
-            <tr>
-                <td>Mini</td>
-                <td><div class="walmart-buy-now" data-partnerid="PD0Em23B4ME" data-itemid="45698070" data-size="mini" data-buynow-added="1"><iframe style="height: 32px; width: 134px; border: none;" src="//affil.walmart.com/buttons/buynow?item=45698070&amp;size=mini&amp;color=orange&amp;partner=PD0Em23B4ME"></iframe></div></td>
-                <td><div class="walmart-buy-now" data-partnerid="PD0Em23B4ME" data-itemid="45698070" data-size="mini" data-color="blue" data-buynow-added="1"><iframe style="height: 32px; width: 134px; border: none;" src="//affil.walmart.com/buttons/buynow?item=45698070&amp;size=mini&amp;color=blue&amp;partner=PD0Em23B4ME"></iframe></div></td>
-            </tr>
-        </tbody>
-
-    </table>
-</div>
-
-<ul>
-<li><strong>Objective_C</strong>:</li>
-</ul>
-
-<pre><code class="objective_c">// Change Size to Compact Scheme
-buyNowButton.sizeScheme = WMTButtonSizeSchemeCompact;
-
-// Change Color to Blue Scheme
-buyNowButton.colorScheme = WMTButtonColorSchemeBlue;
-</code></pre>
-
-<ul>
-<li><strong>Swift</strong>:</li>
-</ul>
-
-<pre><code class="swift">// Change Size to Compact Scheme
-buyNowButton.sizeScheme = WMTButtonSizeScheme.Compact;
-
-// Change Color to Blue Scheme
-buyNowButton.colorScheme = WMTButtonColorScheme.Blue;
-</code></pre>
-
-<p>Once you have created a BuyNow button it is also possible to add or remove associated productIds. See the code
-example below:</p>
-
-<ul>
-<li><strong>Objective_C</strong>:</li>
-</ul>
-
-<pre><code class="objective_c">// Add a single product
-[buyNowButton addProductId:{productId}];
-
-// Or Remove a single product
-[buyNowButton removeProductId:{productId}];
-
-// Or you can also Set Products
-[buyNowButton setProductIds:{setOfProductIds}];
-</code></pre>
-
-<ul>
-<li><strong>Swift</strong>:</li>
-</ul>
-
-<pre><code class="swift">// Add a single product
-buyNowButton.addProductId(productId)
-
-// Or Remove a single product
-buyNowButton.removeProductId(productId);
-
-// Or you can also Set Products
-buyNowButton.setProductIds(setOfProductIds)
-</code></pre>
+<h2 id="api_docs_link">api_docs_link:</h2>
 
       </div>
     </div>
