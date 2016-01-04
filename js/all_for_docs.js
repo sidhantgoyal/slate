@@ -3862,11 +3862,11 @@ This adds the platform toggle support and turn the language links into a dropdow
                 all the languages for this view. For the 'iOS' view, the array has only two
                 values: objective_c and swift.
             */
-            setupLanguages(['java']);
+//            setupLanguages(['java']);
         } else if (path.indexOf('javascript') !== -1) {
             selectPlaform('web');
             localStorage.setItem("language", "javascript");
-            setupLanguages(['javascript']);
+//            setupLanguages(['javascript']);
         } else {
             selectPlaform('ios');
             localStorage.setItem("language", "objective_c");
