@@ -27,13 +27,11 @@ This adds the platform toggle support and turn the language links into a dropdow
             var platform = $(this).data('platform-name');
 
             if (platform === 'android') {
-                window.location = '/buttons/assets/docs/android.html' + window.location.hash;
+                window.location = '/buttons/assets/docs/android/index.html' + window.location.hash;
             } else if (platform === 'web') {
-                window.location = '/buttons/assets/docs/index.html' + window.location.hash;
-            } else if (platform === 'rest') {
-                window.location = '/rest' + window.location.hash;
+                window.location = '/buttons/assets/docs/web/index.html' + window.location.hash;
             } else {
-                window.location = '/buttons/assets/docs/ios.html' + window.location.hash;
+                window.location = '/buttons/assets/docs/ios/index.html' + window.location.hash;
             }
         });
 
