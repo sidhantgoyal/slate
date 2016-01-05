@@ -28,258 +28,258 @@ WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
 License for the specific language governing permissions and limitations
 under the License.
 */
-/* line 20, /Users/sgoyal4/office/slate/source/css/syntax.css.scss.erb */
+/* line 20, /Users/sgoyal4/office/BuyNow-SDK-docs/source/css/syntax.css.scss.erb */
 .highlight table td {
   padding: 5px; }
 
-/* line 21, /Users/sgoyal4/office/slate/source/css/syntax.css.scss.erb */
+/* line 21, /Users/sgoyal4/office/BuyNow-SDK-docs/source/css/syntax.css.scss.erb */
 .highlight table pre {
   margin: 0; }
 
-/* line 22, /Users/sgoyal4/office/slate/source/css/syntax.css.scss.erb */
+/* line 22, /Users/sgoyal4/office/BuyNow-SDK-docs/source/css/syntax.css.scss.erb */
 .highlight .gh {
   color: #999999; }
 
-/* line 25, /Users/sgoyal4/office/slate/source/css/syntax.css.scss.erb */
+/* line 25, /Users/sgoyal4/office/BuyNow-SDK-docs/source/css/syntax.css.scss.erb */
 .highlight .sr {
   color: #f6aa11; }
 
-/* line 28, /Users/sgoyal4/office/slate/source/css/syntax.css.scss.erb */
+/* line 28, /Users/sgoyal4/office/BuyNow-SDK-docs/source/css/syntax.css.scss.erb */
 .highlight .go {
   color: #888888; }
 
-/* line 31, /Users/sgoyal4/office/slate/source/css/syntax.css.scss.erb */
+/* line 31, /Users/sgoyal4/office/BuyNow-SDK-docs/source/css/syntax.css.scss.erb */
 .highlight .gp {
   color: #555555; }
 
-/* line 36, /Users/sgoyal4/office/slate/source/css/syntax.css.scss.erb */
+/* line 36, /Users/sgoyal4/office/BuyNow-SDK-docs/source/css/syntax.css.scss.erb */
 .highlight .gu {
   color: #aaaaaa; }
 
-/* line 39, /Users/sgoyal4/office/slate/source/css/syntax.css.scss.erb */
+/* line 39, /Users/sgoyal4/office/BuyNow-SDK-docs/source/css/syntax.css.scss.erb */
 .highlight .nb {
   color: #f6aa11; }
 
-/* line 42, /Users/sgoyal4/office/slate/source/css/syntax.css.scss.erb */
+/* line 42, /Users/sgoyal4/office/BuyNow-SDK-docs/source/css/syntax.css.scss.erb */
 .highlight .cm {
   color: #75715e; }
 
-/* line 45, /Users/sgoyal4/office/slate/source/css/syntax.css.scss.erb */
+/* line 45, /Users/sgoyal4/office/BuyNow-SDK-docs/source/css/syntax.css.scss.erb */
 .highlight .cp {
   color: #75715e; }
 
-/* line 48, /Users/sgoyal4/office/slate/source/css/syntax.css.scss.erb */
+/* line 48, /Users/sgoyal4/office/BuyNow-SDK-docs/source/css/syntax.css.scss.erb */
 .highlight .c1 {
   color: #75715e; }
 
-/* line 51, /Users/sgoyal4/office/slate/source/css/syntax.css.scss.erb */
+/* line 51, /Users/sgoyal4/office/BuyNow-SDK-docs/source/css/syntax.css.scss.erb */
 .highlight .cs {
   color: #75715e; }
 
-/* line 54, /Users/sgoyal4/office/slate/source/css/syntax.css.scss.erb */
+/* line 54, /Users/sgoyal4/office/BuyNow-SDK-docs/source/css/syntax.css.scss.erb */
 .highlight .c, .highlight .cd {
   color: #75715e; }
 
-/* line 57, /Users/sgoyal4/office/slate/source/css/syntax.css.scss.erb */
+/* line 57, /Users/sgoyal4/office/BuyNow-SDK-docs/source/css/syntax.css.scss.erb */
 .highlight .err {
   color: #960050; }
 
-/* line 60, /Users/sgoyal4/office/slate/source/css/syntax.css.scss.erb */
+/* line 60, /Users/sgoyal4/office/BuyNow-SDK-docs/source/css/syntax.css.scss.erb */
 .highlight .gr {
   color: #960050; }
 
-/* line 63, /Users/sgoyal4/office/slate/source/css/syntax.css.scss.erb */
+/* line 63, /Users/sgoyal4/office/BuyNow-SDK-docs/source/css/syntax.css.scss.erb */
 .highlight .gt {
   color: #960050; }
 
-/* line 66, /Users/sgoyal4/office/slate/source/css/syntax.css.scss.erb */
+/* line 66, /Users/sgoyal4/office/BuyNow-SDK-docs/source/css/syntax.css.scss.erb */
 .highlight .gd {
   color: #49483e; }
 
-/* line 69, /Users/sgoyal4/office/slate/source/css/syntax.css.scss.erb */
+/* line 69, /Users/sgoyal4/office/BuyNow-SDK-docs/source/css/syntax.css.scss.erb */
 .highlight .gi {
   color: #49483e; }
 
-/* line 72, /Users/sgoyal4/office/slate/source/css/syntax.css.scss.erb */
+/* line 72, /Users/sgoyal4/office/BuyNow-SDK-docs/source/css/syntax.css.scss.erb */
 .highlight .ge {
   color: #49483e; }
 
-/* line 75, /Users/sgoyal4/office/slate/source/css/syntax.css.scss.erb */
+/* line 75, /Users/sgoyal4/office/BuyNow-SDK-docs/source/css/syntax.css.scss.erb */
 .highlight .kc {
   color: #66d9ef; }
 
-/* line 78, /Users/sgoyal4/office/slate/source/css/syntax.css.scss.erb */
+/* line 78, /Users/sgoyal4/office/BuyNow-SDK-docs/source/css/syntax.css.scss.erb */
 .highlight .kd {
   color: #66d9ef; }
 
-/* line 81, /Users/sgoyal4/office/slate/source/css/syntax.css.scss.erb */
+/* line 81, /Users/sgoyal4/office/BuyNow-SDK-docs/source/css/syntax.css.scss.erb */
 .highlight .kr {
   color: #66d9ef; }
 
-/* line 84, /Users/sgoyal4/office/slate/source/css/syntax.css.scss.erb */
+/* line 84, /Users/sgoyal4/office/BuyNow-SDK-docs/source/css/syntax.css.scss.erb */
 .highlight .no {
   color: #66d9ef; }
 
-/* line 87, /Users/sgoyal4/office/slate/source/css/syntax.css.scss.erb */
+/* line 87, /Users/sgoyal4/office/BuyNow-SDK-docs/source/css/syntax.css.scss.erb */
 .highlight .kt {
   color: #66d9ef; }
 
-/* line 90, /Users/sgoyal4/office/slate/source/css/syntax.css.scss.erb */
+/* line 90, /Users/sgoyal4/office/BuyNow-SDK-docs/source/css/syntax.css.scss.erb */
 .highlight .mf {
   color: #ae81ff; }
 
-/* line 93, /Users/sgoyal4/office/slate/source/css/syntax.css.scss.erb */
+/* line 93, /Users/sgoyal4/office/BuyNow-SDK-docs/source/css/syntax.css.scss.erb */
 .highlight .mh {
   color: #ae81ff; }
 
-/* line 96, /Users/sgoyal4/office/slate/source/css/syntax.css.scss.erb */
+/* line 96, /Users/sgoyal4/office/BuyNow-SDK-docs/source/css/syntax.css.scss.erb */
 .highlight .il {
   color: #ae81ff; }
 
-/* line 99, /Users/sgoyal4/office/slate/source/css/syntax.css.scss.erb */
+/* line 99, /Users/sgoyal4/office/BuyNow-SDK-docs/source/css/syntax.css.scss.erb */
 .highlight .mi {
   color: #ae81ff; }
 
-/* line 102, /Users/sgoyal4/office/slate/source/css/syntax.css.scss.erb */
+/* line 102, /Users/sgoyal4/office/BuyNow-SDK-docs/source/css/syntax.css.scss.erb */
 .highlight .mo {
   color: #ae81ff; }
 
-/* line 105, /Users/sgoyal4/office/slate/source/css/syntax.css.scss.erb */
+/* line 105, /Users/sgoyal4/office/BuyNow-SDK-docs/source/css/syntax.css.scss.erb */
 .highlight .m, .highlight .mb, .highlight .mx {
   color: #ae81ff; }
 
-/* line 108, /Users/sgoyal4/office/slate/source/css/syntax.css.scss.erb */
+/* line 108, /Users/sgoyal4/office/BuyNow-SDK-docs/source/css/syntax.css.scss.erb */
 .highlight .sc {
   color: #ae81ff; }
 
-/* line 111, /Users/sgoyal4/office/slate/source/css/syntax.css.scss.erb */
+/* line 111, /Users/sgoyal4/office/BuyNow-SDK-docs/source/css/syntax.css.scss.erb */
 .highlight .se {
   color: #ae81ff; }
 
-/* line 114, /Users/sgoyal4/office/slate/source/css/syntax.css.scss.erb */
+/* line 114, /Users/sgoyal4/office/BuyNow-SDK-docs/source/css/syntax.css.scss.erb */
 .highlight .ss {
   color: #ae81ff; }
 
-/* line 117, /Users/sgoyal4/office/slate/source/css/syntax.css.scss.erb */
+/* line 117, /Users/sgoyal4/office/BuyNow-SDK-docs/source/css/syntax.css.scss.erb */
 .highlight .sd {
   color: #e6db74; }
 
-/* line 120, /Users/sgoyal4/office/slate/source/css/syntax.css.scss.erb */
+/* line 120, /Users/sgoyal4/office/BuyNow-SDK-docs/source/css/syntax.css.scss.erb */
 .highlight .s2 {
   color: #e6db74; }
 
-/* line 123, /Users/sgoyal4/office/slate/source/css/syntax.css.scss.erb */
+/* line 123, /Users/sgoyal4/office/BuyNow-SDK-docs/source/css/syntax.css.scss.erb */
 .highlight .sb {
   color: #e6db74; }
 
-/* line 126, /Users/sgoyal4/office/slate/source/css/syntax.css.scss.erb */
+/* line 126, /Users/sgoyal4/office/BuyNow-SDK-docs/source/css/syntax.css.scss.erb */
 .highlight .sh {
   color: #e6db74; }
 
-/* line 129, /Users/sgoyal4/office/slate/source/css/syntax.css.scss.erb */
+/* line 129, /Users/sgoyal4/office/BuyNow-SDK-docs/source/css/syntax.css.scss.erb */
 .highlight .si {
   color: #e6db74; }
 
-/* line 132, /Users/sgoyal4/office/slate/source/css/syntax.css.scss.erb */
+/* line 132, /Users/sgoyal4/office/BuyNow-SDK-docs/source/css/syntax.css.scss.erb */
 .highlight .sx {
   color: #e6db74; }
 
-/* line 135, /Users/sgoyal4/office/slate/source/css/syntax.css.scss.erb */
+/* line 135, /Users/sgoyal4/office/BuyNow-SDK-docs/source/css/syntax.css.scss.erb */
 .highlight .s1 {
   color: #e6db74; }
 
-/* line 138, /Users/sgoyal4/office/slate/source/css/syntax.css.scss.erb */
+/* line 138, /Users/sgoyal4/office/BuyNow-SDK-docs/source/css/syntax.css.scss.erb */
 .highlight .s {
   color: #e6db74; }
 
-/* line 141, /Users/sgoyal4/office/slate/source/css/syntax.css.scss.erb */
+/* line 141, /Users/sgoyal4/office/BuyNow-SDK-docs/source/css/syntax.css.scss.erb */
 .highlight .na {
   color: #a6e22e; }
 
-/* line 144, /Users/sgoyal4/office/slate/source/css/syntax.css.scss.erb */
+/* line 144, /Users/sgoyal4/office/BuyNow-SDK-docs/source/css/syntax.css.scss.erb */
 .highlight .nc {
   color: #a6e22e; }
 
-/* line 147, /Users/sgoyal4/office/slate/source/css/syntax.css.scss.erb */
+/* line 147, /Users/sgoyal4/office/BuyNow-SDK-docs/source/css/syntax.css.scss.erb */
 .highlight .nd {
   color: #a6e22e; }
 
-/* line 150, /Users/sgoyal4/office/slate/source/css/syntax.css.scss.erb */
+/* line 150, /Users/sgoyal4/office/BuyNow-SDK-docs/source/css/syntax.css.scss.erb */
 .highlight .ne {
   color: #a6e22e; }
 
-/* line 153, /Users/sgoyal4/office/slate/source/css/syntax.css.scss.erb */
+/* line 153, /Users/sgoyal4/office/BuyNow-SDK-docs/source/css/syntax.css.scss.erb */
 .highlight .nf {
   color: #a6e22e; }
 
-/* line 156, /Users/sgoyal4/office/slate/source/css/syntax.css.scss.erb */
+/* line 156, /Users/sgoyal4/office/BuyNow-SDK-docs/source/css/syntax.css.scss.erb */
 .highlight .vc {
   color: #ffffff; }
 
-/* line 159, /Users/sgoyal4/office/slate/source/css/syntax.css.scss.erb */
+/* line 159, /Users/sgoyal4/office/BuyNow-SDK-docs/source/css/syntax.css.scss.erb */
 .highlight .nn {
   color: #ffffff; }
 
-/* line 162, /Users/sgoyal4/office/slate/source/css/syntax.css.scss.erb */
+/* line 162, /Users/sgoyal4/office/BuyNow-SDK-docs/source/css/syntax.css.scss.erb */
 .highlight .nl {
   color: #ffffff; }
 
-/* line 165, /Users/sgoyal4/office/slate/source/css/syntax.css.scss.erb */
+/* line 165, /Users/sgoyal4/office/BuyNow-SDK-docs/source/css/syntax.css.scss.erb */
 .highlight .ni {
   color: #ffffff; }
 
-/* line 168, /Users/sgoyal4/office/slate/source/css/syntax.css.scss.erb */
+/* line 168, /Users/sgoyal4/office/BuyNow-SDK-docs/source/css/syntax.css.scss.erb */
 .highlight .bp {
   color: #ffffff; }
 
-/* line 171, /Users/sgoyal4/office/slate/source/css/syntax.css.scss.erb */
+/* line 171, /Users/sgoyal4/office/BuyNow-SDK-docs/source/css/syntax.css.scss.erb */
 .highlight .vg {
   color: #ffffff; }
 
-/* line 174, /Users/sgoyal4/office/slate/source/css/syntax.css.scss.erb */
+/* line 174, /Users/sgoyal4/office/BuyNow-SDK-docs/source/css/syntax.css.scss.erb */
 .highlight .vi {
   color: #ffffff; }
 
-/* line 177, /Users/sgoyal4/office/slate/source/css/syntax.css.scss.erb */
+/* line 177, /Users/sgoyal4/office/BuyNow-SDK-docs/source/css/syntax.css.scss.erb */
 .highlight .nv {
   color: #ffffff; }
 
-/* line 180, /Users/sgoyal4/office/slate/source/css/syntax.css.scss.erb */
+/* line 180, /Users/sgoyal4/office/BuyNow-SDK-docs/source/css/syntax.css.scss.erb */
 .highlight .w {
   color: #ffffff; }
 
-/* line 183, /Users/sgoyal4/office/slate/source/css/syntax.css.scss.erb */
+/* line 183, /Users/sgoyal4/office/BuyNow-SDK-docs/source/css/syntax.css.scss.erb */
 .highlight {
   color: #ffffff; }
 
-/* line 186, /Users/sgoyal4/office/slate/source/css/syntax.css.scss.erb */
+/* line 186, /Users/sgoyal4/office/BuyNow-SDK-docs/source/css/syntax.css.scss.erb */
 .highlight .n, .highlight .py, .highlight .nx {
   color: #ffffff; }
 
-/* line 189, /Users/sgoyal4/office/slate/source/css/syntax.css.scss.erb */
+/* line 189, /Users/sgoyal4/office/BuyNow-SDK-docs/source/css/syntax.css.scss.erb */
 .highlight .ow {
   color: #f92672; }
 
-/* line 192, /Users/sgoyal4/office/slate/source/css/syntax.css.scss.erb */
+/* line 192, /Users/sgoyal4/office/BuyNow-SDK-docs/source/css/syntax.css.scss.erb */
 .highlight .nt {
   color: #f92672; }
 
-/* line 195, /Users/sgoyal4/office/slate/source/css/syntax.css.scss.erb */
+/* line 195, /Users/sgoyal4/office/BuyNow-SDK-docs/source/css/syntax.css.scss.erb */
 .highlight .k, .highlight .kv {
   color: #f92672; }
 
-/* line 198, /Users/sgoyal4/office/slate/source/css/syntax.css.scss.erb */
+/* line 198, /Users/sgoyal4/office/BuyNow-SDK-docs/source/css/syntax.css.scss.erb */
 .highlight .kn {
   color: #f92672; }
 
-/* line 201, /Users/sgoyal4/office/slate/source/css/syntax.css.scss.erb */
+/* line 201, /Users/sgoyal4/office/BuyNow-SDK-docs/source/css/syntax.css.scss.erb */
 .highlight .kp {
   color: #f92672; }
 
-/* line 204, /Users/sgoyal4/office/slate/source/css/syntax.css.scss.erb */
+/* line 204, /Users/sgoyal4/office/BuyNow-SDK-docs/source/css/syntax.css.scss.erb */
 .highlight .o {
   color: #f92672; }
 
-/* line 208, /Users/sgoyal4/office/slate/source/css/syntax.css.scss.erb */
+/* line 208, /Users/sgoyal4/office/BuyNow-SDK-docs/source/css/syntax.css.scss.erb */
 .highlight .c, .highlight .cm, .highlight .c1, .highlight .cs {
   color: #909090; }

@@ -62,10 +62,9 @@ integrating the SDK and app makers seeking to engage with their users.</p>
 
           <h1 id="getting-started-for-ios">Getting Started for iOS</h1>
 
-<p>You can integrate the Walmart BuyNow SDK with your iOS app. This will let you drive sales and your app users will be
+<p>You can integrate the Walmart BuyNow SDK with your Android app. This will let you drive sales and your app users will be
 able to buy from Walmart quickly. A good way to start is to follow this quick tutorial.
-In the later part of this tutorial we have also provided source code examples for both Objective-C and
-Swift.</p>
+In the later part of this tutorial we have also provided source code examples for Java.</p>
 
 <h3 id="prerequisites">Prerequisites</h3>
 
@@ -180,7 +179,7 @@ iOS</a> for available settings.</p>
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    [WMTSDK initSDK:false];
+    [WMTSDK initSDK];
     [WMTSDK setEnableDebugging:true];
     [WMTSDK setLinksharePartner:true];
     // Override point for customization after application launch.
